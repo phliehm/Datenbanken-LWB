@@ -89,6 +89,7 @@ INSERT INTO spielerInnen VALUES (5, 'Klocki',0);
 INSERT INTO spielerInnen VALUES (6, 'Bob',0);
 INSERT INTO spielerInnen VALUES (7, 'LWB-Master',0);
 INSERT INTO spielerInnen VALUES (8, 'Nerd42',0);
+INSERT INTO spielerInnen VALUES (9, 'Supermensch',0);
 
 
 -- minigame (gameNr$, gameName, gameVnr!)
@@ -121,6 +122,7 @@ INSERT INTO spielstand VALUES (1, 5, 2.0, 325);
 INSERT INTO spielstand VALUES (1, 6, 4.0, 325);
 INSERT INTO spielstand VALUES (1, 7, 1.0, 325);
 INSERT INTO spielstand VALUES (1, 8, 3.0, 325);
+INSERT INTO spielstand VALUES (1, 9, 4.0, 325);
 
 INSERT INTO spielstand VALUES (2, 1, 1.3, 225);
 INSERT INTO spielstand VALUES (2, 2, 1.0, 225);
@@ -130,6 +132,7 @@ INSERT INTO spielstand VALUES (2, 5, 2.0, 225);
 INSERT INTO spielstand VALUES (2, 6, 3.7, 225);
 INSERT INTO spielstand VALUES (2, 7, 1.0, 225);
 INSERT INTO spielstand VALUES (2, 8, 2.7, 225);
+INSERT INTO spielstand VALUES (2, 9, 4.0, 325);
 
 INSERT INTO spielstand VALUES (3, 1, 1.0, 630);
 INSERT INTO spielstand VALUES (3, 2, 2.3, 432);
@@ -139,6 +142,7 @@ INSERT INTO spielstand VALUES (3, 5, 2.0, 487);
 INSERT INTO spielstand VALUES (3, 6, 3.3, 333);
 INSERT INTO spielstand VALUES (3, 7, 1.0, 650);
 INSERT INTO spielstand VALUES (3, 8, 1.0, 600);
+INSERT INTO spielstand VALUES (3, 9, 4.0, 325);
 
 INSERT INTO spielstand VALUES (4, 1, 1.3, 325);
 INSERT INTO spielstand VALUES (4, 2, 1.0, 325);
@@ -147,6 +151,7 @@ INSERT INTO spielstand VALUES (4, 4, 1.3, 325);
 INSERT INTO spielstand VALUES (4, 5, 2.0, 325);
 INSERT INTO spielstand VALUES (4, 6, 3.0, 325);
 INSERT INTO spielstand VALUES (4, 7, 2.3, 325);
+INSERT INTO spielstand VALUES (4, 9, 4.0, 325);
 
 INSERT INTO spielstand VALUES (5, 1, 1.0, 100);
 INSERT INTO spielstand VALUES (5, 2, 1.7, 88);
@@ -155,30 +160,35 @@ INSERT INTO spielstand VALUES (5, 4, 2.0, 79);
 INSERT INTO spielstand VALUES (5, 6, 6.0, 44);
 INSERT INTO spielstand VALUES (5, 7, 1.0, 100);
 INSERT INTO spielstand VALUES (5, 8, 2.3, 73);
+INSERT INTO spielstand VALUES (5, 9, 4.0, 50);
 
 INSERT INTO spielstand VALUES (6, 1, 2.3, 325);
 INSERT INTO spielstand VALUES (6, 2, 2.0, 325);
 INSERT INTO spielstand VALUES (6, 3, 1.7, 325);
 INSERT INTO spielstand VALUES (6, 4, 1.0, 325);
 INSERT INTO spielstand VALUES (6, 7, 1.0, 325);
+INSERT INTO spielstand VALUES (6, 9, 4.0, 325);
 
 INSERT INTO spielstand VALUES (7, 1, 1.7, 325);
 INSERT INTO spielstand VALUES (7, 2, 2.3, 325);
 INSERT INTO spielstand VALUES (7, 3, 1.0, 325);
 INSERT INTO spielstand VALUES (7, 4, 1.3, 325);
 INSERT INTO spielstand VALUES (7, 7, 1.0, 325);
+INSERT INTO spielstand VALUES (7, 9, 4.0, 325);
 
 INSERT INTO spielstand VALUES (8, 1, 1.3, 325);
 INSERT INTO spielstand VALUES (8, 2, 1.0, 325);
 INSERT INTO spielstand VALUES (8, 3, 1.7, 325);
 INSERT INTO spielstand VALUES (8, 4, 1.3, 325);
 INSERT INTO spielstand VALUES (8, 7, 1.0, 325);
+INSERT INTO spielstand VALUES (8, 9, 4.0, 325);
 
 INSERT INTO spielstand VALUES (9, 1, 3.0, 325);
 INSERT INTO spielstand VALUES (9, 2, 2.0, 325);
 INSERT INTO spielstand VALUES (9, 3, 1.3, 325);
 INSERT INTO spielstand VALUES (9, 4, 1.0, 325);
 INSERT INTO spielstand VALUES (9, 7, 1.0, 325);
+INSERT INTO spielstand VALUES (9, 9, 4.0, 325);
 
 
 --INSERT INTO Professoren VALUES (2126, 'Russel', 'C4', 5700.00, 232);
