@@ -1,0 +1,112 @@
+------------------------------
+SQL-Anfragen aus dem SQL-Quest
+------------------------------
+
+im Quest benutzte Tabellen:
+---------------------------
+
+raeume (raumnr, raumname, ort)
+dozenten (doznr, dozname, lieblingsgetraenk)
+veranstaltungen (vnr, vname, doznr, semester, sws)
+mini-games (gamenr, gamename, vnr, maxpunktzahl)
+
+
+(An-)Fragen:
+------------
+
+1. Welche Räume gibt es in der LWB-Adventure-World?
+	SELECT * FROM raeume;
+2. Welche Lehrveranstaltungen gibt es im 4. Semester?
+	SELECT * FROM veranstaltungen WHERE semester = 4;
+3. Wie heißen die DOzenten im LWB-Adventure?
+	SELECT dozname FROM dozenten;
+4. Welche Lehrveranstaltungen haben konkret etwas mit 'Programmierung' zu tun?
+	SELECT * FROM veranstaltungen WHERE vname LIKE '%Programmierung';
+5. Was ist das Lieblingsgetränk von Herk?
+	SELECT lieblingsgetraenk FROM dozenten WHERE dozname = 'Herk';
+6. Wieviele Mini-Games gibt es in der LWB-Adventure-World?
+	SELECT COUNT(*) AS AnzahlMiniGames FROM mini-games;
+7. Wieviele SWS müssen in der LWB ingesamt absolviert werden?
+	SELECT SUM(sws) AS GesamtanzahlSWS FROM veranstaltungen;
+8. Wie heißt die Veranstaltung mit den meisten SWS?
+	SELECT vname FROM veranstaltungen WHERE sws = (SELECT MAX(sws) FROM veranstaltungen);
+9. Gesucht sind die Namen, Semester und SWS aller Veranstaltungen von Winnie the K absteigend sortiert nach SWS-Anzahl!
+	SELECT vname, semester, sws FROM veranstaltungen NATURAL JOIN dozenten WHERE dozname = 'Winnie the K' ORDER BY sws DESC;
+10. Wieviele Veranstaltungen gibt es pro Standort?
+	SELECT ort, COUNT(*) AS AnzahlVeranstaltungen FROM raeume, veranstaltungen WHERE raumnr = semester GROUP BY ort ORDER BY COUNT(*);
+
+
+Ausgaben zu den Anfragen im SQL-Quest:
+--------------------------------------
+
+1.
+ RAUM-NR.     RAUM-NAME                      ORT
+------------------------------------------------------------------
+ 1            1. Semester                    FU (Dahlem)
+ 2            2. Semester                    digital (BBB)
+ 3            3. Semester                    FU (Dahlem)
+ 4            4. Semester                    STEPS (Mitte)
+ 5            Nichtzeugnis-Verleihung        N.N.
+
+2.
+ V-NR.   VERANSTALTUNGS-NAME                             DOZ-NR.   SEM.    SWS
+--------------------------------------------------------------------------------
+ 4.1     Nichtsequentielle & verteilte Programmierung    2         4       6
+ 4.2     Rechnernetze                                    6         4       2
+ 4.3     Unterrichtsbezogenes Softwarepraktikum          1         4       3
+ 4.4     Unterrichtsbezogenes Datenbankpraktikum         4         4       3
+ 4.5     Analyse fachlichen Lernens                      3         4       2
+
+3.
+ DOZENTEN-NAME
+---------------
+ Amoebi
+ Darth Schmidter
+ Fab Web
+ Herk
+ J.EthI
+ Winnie the K
+
+4.
+ V-NR.  VERANSTALTUNGS-NAME                              DOZ-NR.  SEM.    SWS
+--------------------------------------------------------------------------------
+ 1.2    Funktionale Programmierung                        3        1       8
+ 2.1    Imperative & projektorientierte Programmierung    2        2       7
+ 4.1    Nichtsequentielle & verteilte Programmierung      2        4       9
+
+5.
+ LIEBLINGSGETRÄNK
+------------------
+ Melissentee
+
+6.
+ AnzahlMiniGames
+------------------
+ 9
+
+7.
+ GesamtanzahlSWS
+-----------------
+ 64
+
+8.
+ V-NAME                         SWS
+-----------------------------------------
+ Funktionale Programmierung     8
+
+9.
+ V-NAME                                    SEMESTER        SWS
+---------------------------------------------------------------
+ Betriebssystemwerkzeuge                   1. Semester     2
+ Grundlagen der technischen Informatik     1. Semester     6
+ Rechnerarchitektur                        2. Semester     4
+ Fachdidaktik Informatik                   3. Semester     4
+ Rechnernetze                              4. Semester     2
+
+10.
+ ORT               AnzahlVeranstaltungen
+------------------------------------------
+ FU (Dahlem)       6
+ digital (BBB)     3
+ STEPS (Mitte)     5
+
