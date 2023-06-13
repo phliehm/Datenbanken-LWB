@@ -40,7 +40,7 @@ INSERT INTO dozentInnen VALUES (2, 'Bier');
 INSERT INTO sNPC VALUES (1, 'StEPS-Chefin'); 
 -- INSERT INTO sNPC VALUES (2, 'Palim-Palim rufen!');
 INSERT INTO sNPC VALUES (2, 'Helferlein'); 
-INSERT INTO sNPC VALUES (3, 'Hubi'); 
+INSERT INTO sNPC VALUES (3, 'Kontrolletis'); 
 
 
 -- raum(raumNr$, raumName, ort)
