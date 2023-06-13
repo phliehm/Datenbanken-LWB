@@ -44,7 +44,8 @@ mini-games (gamenr, gamename, vnr, maxpunktzahl)
 10. Wieviele Veranstaltungen gibt es pro Standort?
 	SELECT ort, COUNT(*) AS AnzahlVeranstaltungen FROM raeume, veranstaltungen WHERE raumnr = semester GROUP BY ort ORDER BY COUNT(*);
 
-Ergänzung mit Negation:
+mögliche Ergänzung mit Negation:
+--------------------------------
 
 11. Welche Lehrveranstaltungen finden nicht in der FU statt?
 	SELECT (*) FROM raeume, veranstaltungen WHERE raumnr = semester AND ort NOT LIKE '%FU%';
