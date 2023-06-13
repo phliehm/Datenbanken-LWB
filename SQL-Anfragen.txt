@@ -16,24 +16,41 @@ mini-games (gamenr, gamename, vnr, maxpunktzahl)
 
 1. Welche Räume gibt es in der LWB-Adventure-World?
 	SELECT * FROM raeume;
+
 2. Welche Lehrveranstaltungen gibt es im 4. Semester?
 	SELECT * FROM veranstaltungen WHERE semester = 4;
+
 3. Wie heißen die DOzenten im LWB-Adventure?
 	SELECT dozname FROM dozenten;
+
 4. Welche Lehrveranstaltungen haben konkret etwas mit 'Programmierung' zu tun?
 	SELECT * FROM veranstaltungen WHERE vname LIKE '%Programmierung';
+
 5. Was ist das Lieblingsgetränk von Herk?
 	SELECT lieblingsgetraenk FROM dozenten WHERE dozname = 'Herk';
+
 6. Wieviele Mini-Games gibt es in der LWB-Adventure-World?
 	SELECT COUNT(*) AS AnzahlMiniGames FROM mini-games;
+
 7. Wieviele SWS müssen in der LWB ingesamt absolviert werden?
 	SELECT SUM(sws) AS GesamtanzahlSWS FROM veranstaltungen;
+
 8. Wie heißt die Veranstaltung mit den meisten SWS?
 	SELECT vname FROM veranstaltungen WHERE sws = (SELECT MAX(sws) FROM veranstaltungen);
+
 9. Gesucht sind die Namen, Semester und SWS aller Veranstaltungen von Winnie the K absteigend sortiert nach SWS-Anzahl!
 	SELECT vname, semester, sws FROM veranstaltungen NATURAL JOIN dozenten WHERE dozname = 'Winnie the K' ORDER BY sws DESC;
+
 10. Wieviele Veranstaltungen gibt es pro Standort?
 	SELECT ort, COUNT(*) AS AnzahlVeranstaltungen FROM raeume, veranstaltungen WHERE raumnr = semester GROUP BY ort ORDER BY COUNT(*);
+
+Ergänzung mit Negation:
+
+11. Welche Lehrveranstaltungen finden nicht in der FU statt?
+	SELECT (*) FROM raeume, veranstaltungen WHERE raumnr = semester AND ort NOT LIKE '%FU%';
+
+12. Welche Spieler_innen haben einen Notendurchschnitt, der nicht zwischen 2.0 und 4.0 liegt?
+	SELECT (*) FROM spieler_in NATURAL JOIN spielstand WHERE note = (SELECT AVG(note) FROM spielstand WHERE AVG(note) NOT BETWEEN 2.0 AND 4.0);
 
 
 Ausgaben zu den Anfragen im SQL-Quest:
