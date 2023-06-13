@@ -24,10 +24,10 @@
 --     --- wird Herausgenommen: kursraum(kRaumNr$!) einfacher und konsitenter
 -- sRaum(kRaumNr$!,sFunktion)
 -- veranstaltung(vNr$, vName, sws, thema, kuerzel, vDozNr!, semester!)
--- spielerIn(spielerNr$, sName, sRaumNr)
+-- spielerInnen(spNr$, spName, spRaumNr)
 -- minigame(gameNr$, gameName, gameVnr!)
 -- sRaum()
--- spielstand(sGameNr!, sSpielerNr!, Note, Punktzahl)
+-- spielstand(sGameNr!, sSpNr!, Note, Punktzahl)
 -- aufenthalt(asNPCnr!,aRaumNr!)
 
 
@@ -40,13 +40,13 @@ CREATE TABLE npc (
 COMMENT ON Table npc IS 'Miniwelt LWBadventure';
 
 
--- dozentIn(dozNr$!,lieblingsgetreank)
-CREATE TABLE dozentIn (
+-- dozentInnen (dozNr$!,lieblingsgetreank)
+CREATE TABLE dozentInnen (
   dozNr 				INTEGER 			REFERENCES npc (npcNr),		-- NPC-Nummer
   lieblingsgetreank		VARCHAR (100)		NOT NULL,	-- jeder Dozent braucht ein Lieblingsgetränk
-  CONSTRAINT dozentInKEY PRIMARY KEY (dozNr)
+  CONSTRAINT dozentInnenKEY PRIMARY KEY (dozNr)
 );
-COMMENT ON Table dozentIn IS 'Miniwelt LWBadventure';
+COMMENT ON Table dozentInnen IS 'Miniwelt LWBadventure';
 
 
 -- sNPC(snpcNr$!,funktion)
@@ -77,8 +77,14 @@ COMMENT ON Table raum IS 'Miniwelt LWBadventure';
 --);
 --COMMENT ON Table kursraum IS 'Miniwelt LWBadventure';
 
+-- betreuung(vNr!,dozNr!)											-- statt sRaum?!
+CREATE TABLE betreuung (
+  vNr 			INTEGER			REFERENCES veranstaltung (vNr),
+  dozNr			INTEGER			REFERENCES dozentInnen (dozNr),
+);
+COMMENT ON Table betreuung IS 'Miniwelt LWBadventure';
 
--- sRaum(sRaumNr$!,sFunktion)
+-- sRaum(sRaumNr$!,sFunktion)										-- sinnvoll?!
 CREATE TABLE sRaum (
   sRaumNr 		INTEGER 			REFERENCES raum (raumNr),		-- Raumnummer
   sFunktion		VARCHAR (100)		NOT NULL,	-- jeder Raum hat eine Funktion
@@ -106,16 +112,16 @@ CREATE TABLE veranstaltung (
 COMMENT ON Table veranstaltung IS 'Miniwelt LWBadventure';
 
 
--- spielerIn(spielerNr$, sName, sRaumNr)
-CREATE TABLE spielerIn (
-  spielerNr 	INTEGER				NOT NULL, 	--CHECK (MatrNr BETWEEN 10000 AND 99999),
-  sName 		VARCHAR (50)		NOT NULL,
-  sRaumNr 		INTEGER 			REFERENCES raum (raumNr) DEFAULT 1,
+-- spielerInnen (spNr$, spName, spRaumNr)
+CREATE TABLE spielerInnen (
+  spNr	 		INTEGER				NOT NULL, 	--CHECK (MatrNr BETWEEN 10000 AND 99999),
+  spName 		VARCHAR (50)		NOT NULL,
+  spRaumNr 		INTEGER 			REFERENCES raum (raumNr) DEFAULT 1,
    -- NOT NULL CHECK (Semester > 0 AND Semester < 20) DEFAULT 1,
-  CONSTRAINT spielerInKEY PRIMARY KEY (spielerNr)
---  CONSTRAINT DEFAULTraum DEFAULT 1
+  CONSTRAINT spielerInnenKEY PRIMARY KEY (sNr)
+--  CONSTRAINT DEFAULTraum DEFAULT 0
 );
-COMMENT ON Table SpielerIn IS 'Miniwelt LWBadventure';
+COMMENT ON Table spielerInnen IS 'Miniwelt LWBadventure';
 
 
 -- minigame (gameNr$, gameName, gameVnr!)
@@ -140,10 +146,10 @@ CREATE DOMAIN NOTEN
 			6.0));
 
 
--- spielstand(sGameNr!, sSpielerNr!, Note, Punktzahl)
+-- spielstand(sGameNr!, sSpNr!, Note, Punktzahl)
 CREATE TABLE spielstand (
   sGameNr 		INTEGER			REFERENCES minigame (gameNr),
-  sSpielerNr	INTEGER			REFERENCES spielerIn (spielerNr),
+  sSpNr			INTEGER			REFERENCES spielerIn (spNr),
   note			NOTEN			,-- nur spezielle Noten
   punkte		INTEGER			NOT NULL
 );
