@@ -50,7 +50,7 @@ mögliche Ergänzung mit Negation:
 11. Welche Lehrveranstaltungen finden nicht in der FU statt?
 	SELECT (*) FROM raeume, veranstaltungen WHERE raumnr = semester AND ort NOT LIKE '%FU%';
 
-12. Welche Spieler_innen haben einen Notendurchschnitt, der nicht zwischen 2.0 und 4.0 liegt?
+12. Welche Spieler_innen haben einen Gesamt-Notendurchschnitt, der nicht zwischen 2.0 und 4.0 liegt?
 	SELECT (*) FROM spieler_in NATURAL JOIN spielstand WHERE note = (SELECT AVG(note) FROM spielstand WHERE AVG(note) NOT BETWEEN 2.0 AND 4.0);
 
 
