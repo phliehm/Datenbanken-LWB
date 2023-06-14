@@ -6,30 +6,29 @@ Relationenmodell in dritter Normalform
 Folgende Reltionen werden erzeugt:
 $ = Schlüssel; ! = Fremdschlüssel
 
-NPCs(NPC# $, NPCName)
+NPCs($ NPCNr, NPCName)
 
-DozentInnen(Lieblingsgetränk, NPC# !$)
+DozentInnen(! NPCNr, Lieblingsgetränk)
 
-sonstigeNPCs(Funktion, NPC# !)
+sonstigeNPCs(! NPCNr, Funktion)
 
-Veranstaltungen(Veranstaltungs# 
-$,Veranstaltungsname,Kürzel,SWS,Themengebiet,NPC# !,Raum# !)
+Veranstaltungen($ VNr, VName, Kürzel, SWS, GebietNr, ! NPCNr, ! RaumNr)
 
-Minigames(Minigame# $,Minigame-Name,Veranstaltungs# !)
+Minigames($ GameNr, Game-Name, ! VNr)
 
-SpielerInnen(SpielerInnen# $, SName,Schüsselanzahl,Raum# !)
+SpielerInnen($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
 
-Räume(Raum# $,Raumname,Ort)
+Räume($ RaumNr, Raumname, Ort)
 
 Kursräume(Semster,Raum# !)
 
 sonstigeRäume(Funktion,Raum# !)
 
-Spielstände(Punkte,Note,Minigame# !,SpielerInnen# !)
+Spielstände(! GameNr, ! SpNr, Punkte, Note)
 
-Aufenthalt(NPC# !,Raum# !)
+Aufenthalt(! NPCNr, ! RaumNr)
 
-Assistenz(NPC# !,Veranstaltungs# !)
+Assistenz(! NPCNr, ! VeranstaltungsNr)
 
 
 
@@ -37,13 +36,13 @@ Kommentar zum Auflösen der Beziehnungen:
 ****************************************
 
 1. Dozentinnen sind NPCs: 
-ISA-Beziehung => Der übergeordnete Schlüssel wird verwendet.
+IS A-Beziehung => Der übergeordnete Schlüssel wird verwendet.
 
 2. sonstige NPCs sind NPCs:
-ISA-Beziehung => Der übergeordnete Schlüssel wird verwendet.
+IS A-Beziehung => Der übergeordnete Schlüssel wird verwendet.
 
 3. DozentInnen unterrichten Veranstaltungen in Kursräumen:
-ternären Beziehung => Zerlegung der ternären Beziehung in eine eigene Relation wäre die 
+ternäre Beziehung => Zerlegung der ternären Beziehung in eine eigene Relation wäre die 
 Regel, ist aber nicht nötig, da jeder Veranstaltung genau eine DozentIn 
 und ein Kursraum zugeordent wird. Beides für sich sind obligatorische 1:n-Beziehungen. 
 Daher wird die NPC-Nummer und die Raumnummer als Fremdschlüssel in die 
@@ -76,10 +75,10 @@ obligatorische 1:n-Beziehung => Die Raumnummer wird als Fremdschlüssel
 in die Relation SpielerInnen eingetragen.
 
 8. Kursraum ist ein Raum: 
-ISA-Beziehung => Der übergeordnete Schlüssel wird verwendet.
+IS A-Beziehung => Der übergeordnete Schlüssel wird verwendet.
 
 9. sonstiger Raum ist ein Raum: 
-ISA-Beziehung => Der übergeordnete Schlüssel wird verwendet.
+IS A-Beziehung => Der übergeordnete Schlüssel wird verwendet.
 
 10. sonstige NPCs sind in den Räumen anzutreffen:
 einseitig optionale n:m-Beziehung => Die Schlüssel der Entitäten werden 
