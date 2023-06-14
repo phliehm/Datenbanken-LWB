@@ -20,6 +20,9 @@ Veranstaltungen stattfinden, und in andere Räumen, die eine andere
 Funktion haben. Die Kursräume sind von 1 bis 4 nummeriert und 
 entspechen mit der Raumnummer dem jeweiligen Semster.
 
+Sonstige NPCs können sich (im gegensatz zur realen Welt) in allen
+Räumen aufhalten – sogar gleichzeitig in mehreren. 
+
 Die Veranstaltungen werden von einer DozentenIn in einem Kursraum 
 gehalten. Dabei können sie von einer anderen DozentIn unterstützt 
 werden. Veranstaltungen haben einen Titel, eine 

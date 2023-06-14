@@ -1,0 +1,14 @@
+
+Integritätsbedingungen
+**********************
+
+1.
+Die Schlüsselanzahl wird von den erspielten Noten abgeleitet. Die 
+Schlüsselanzahl entspricht dem Semester, in dem sie sich befinden. Es 
+können nur Spiele gespielt werden, deren Semsternummer der 
+Schlüsselanzahl entspricht bzw. unterbietet. Um die Schlüsselanzahl zu 
+erhöhen müssen die SpielerInnen in den jeweiligen vorherigen Semstern 
+die Spiele mit mindestens Note 4.0 beenden.
+
+2.
+Die Kursraumnummern und Semester stimmen überein.
