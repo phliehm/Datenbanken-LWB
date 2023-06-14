@@ -7,7 +7,7 @@ Folgende Relationen werden erzeugt ($ = Schlüssel, ! = Fremdschlüssel):
 
 NPCs ($ NPCNr, NPCName)
 
-DozentInnen (! NPCNr, Lieblingsgetränk)
+Dozent_innen (! NPCNr, Lieblingsgetränk)
 
 sonstigeNPCs (! NPCNr, Funktion)
 
@@ -17,7 +17,7 @@ Themengebiete ($ GebietNr, GebietName)
 
 Minigames ($ GameNr, Game-Name, ! VNr)
 
-SpielerInnen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
+Spieler_innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
 
 Räume ($ RaumNr, Raumname, Ort, Funktion)
 
@@ -25,7 +25,7 @@ Unterricht (! VNr, ! NPCNr, ! RaumNr)
 
 Spielstände (! GameNr, ! SpNr, Punkte, Note)
 
-Standort (! NPCNr, ! RaumNr)
+Standorte (! NPCNr, ! RaumNr)
 
 Assistenz (! NPCNr, ! VeranstaltungsNr)
 
@@ -34,16 +34,16 @@ Assistenz (! NPCNr, ! VeranstaltungsNr)
 Kommentar zum Auflösen der Beziehungen:
 ****************************************
 
-1. Dozentinnen und sonstige NPCs sind NPCs: 
+1. Dozent_innen und sonstige NPCs sind NPCs: 
 IS A-Beziehung => Der übergeordnete Schlüssel wird verwendet.
 
-2. DozentInnen unterrichten Veranstaltungen in Kursräumen:
+2. Dozent_innen unterrichten Veranstaltungen in Kursräumen:
 ternäre Beziehung => Die ternäre Beziehung wird in eine eigene Relation
 "Unterricht" zerlegt, die Schlüssel der zugehörigen Entitäten (NPC-Nummer der
 DozentInnen, Raum-Nummer und Veranstaltungs-Nummer) werden als Fremdschlüssel
 eingetragen.
 
-3. DozentInnen assistieren bei Veranstaltungen:
+3. Dozent_innen assistieren bei Veranstaltungen:
 optionale 1:n-Beziehung => Da NULL-Werte verhindert werden sollen wird 
 eine eigene Relation Assistenz erstellt. Die NPC-Nummer der DozentInnen 
 und die Veranstaltungsnummer werden als Fremdschlüssel eingetragen.
@@ -57,7 +57,7 @@ jedoch entschieden der eigentlich schwachen Entität einen eigenen Schlüssel
 "Spielstand" nutzen zu können und dort Nullwerte zu vermeiden, die ggf.
 entstehen könnten, wenn es zu einer Veranstaltung kein MiniGame gibt.
 
-5. SpielerInnen spielen MiniGames:
+5. Spieler_innen spielen MiniGames:
 zweiseitig optionale n:m-Beziehung mit Attributen => Die Beziehung wird 
 in eine eigene Relation Spielstand mit den Schlüsseln der Entitäten 
 umgewandelt. Da die Minigames eine 
@@ -68,10 +68,10 @@ geben darf. Daher haben wir uns entschieden, den Minigames eine Minigame-Nummer
 als eigenen Schlüssel zu geben und diesen in Spielstände zusammen mit der 
 SpielerInnen-Nummer als Fremdschlüssel einzutragen.
 
-7. SpielerInnen befindeten sich in Räumen:
+7. Spieler_innen befindeten sich in Räumen:
 obligatorische 1:n-Beziehung => Die Raumnummer wird als Fremdschlüssel 
-in die Relation SpielerInnen eingetragen.
+in die Relation Spieler_innen eingetragen.
 
 10. sonstige NPCs sind in den Räumen anzutreffen:
 einseitig optionale n:m-Beziehung => Die Schlüssel der Entitäten (sNPCNr und
-RaumNr) werden als Fremdschlüssel in eine neue Relation "Standort" eingetragen.
+RaumNr) werden als Fremdschlüssel in eine neue Relation "Standorte" eingetragen.
