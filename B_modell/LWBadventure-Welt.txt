@@ -34,5 +34,5 @@ eine Punktzahl und eine Note.
 Die SpielerInnen haben am Anfang des Spiels einen Schlüssel für den 
 Kursraum 1 und können diesen betreten. Im Laufe des Spiels können sie 
 sich weitere Schlüssel erspielen, um die anderen Räume zu betreten. 
-Dazu müssen Sie in den jeweiligen vorherigen Räumen die Spiele mit 
+Dazu müssen Sie in den jeweiligen vorherigen Semestern die Spiele mit 
 mindestens Note 4.0 beenden.
