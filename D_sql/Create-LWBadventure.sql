@@ -17,23 +17,24 @@
 -- Folgende Tabellen werden implementiert:
 -- $ = Schlüssel; ! = Fremdschlüssel
 
--- npcs(npcNr $, NPCName)
--- dozentInnen(Lieblingsgetränk, npcNr !$)
--- sonstigeNPCs(funktion,  npcNr !$)
--- veranstaltungen(VeranstaltungsNr $,Veranstaltungsname,Kürzel,SWS, ThemenNr !)
--- themengebiete(ThemenNr,Themenname)
--- minigames(MinigameNr $,Minigame-Name,Veranstaltungsnr !)
--- spielerInnen(SpielerInnenNr $, SName,Schuesselanzahl,Raumnr !)
--- raeume(raumNr $,Raumname,Ort)
--- kursraeume(Semster,RaumNr !)
--- sonstigeRaeume(sFunktion,RaumNr !)
--- Spielstände(Punkte,Note,Minigame# !,SpielerInnen# !)
--- Aufenthalt(NPC# !,Raum# !)
--- Assistenz(NPC# !,Veranstaltungs# !)
--- Unterricht(Veranstaltungs# !,NPC# !, !Raum# !)
+-- npcs(npcNr$,npcName) 				NPCs - Non-Playing-Character (Mitarbeiter) 
+-- dozentInnen(npcNr !$,lieblingsgetraenk)
+-- sNPCs(npcsNr $!,funktion)
+-- raeum(raumNr $!, raumName, ort)
+-- kursraeume(semster,raumNr !)
+-- sRaeume(raumNr $!,sFunktion)										-- sinnvoll?!
+-- themengebiete(themenNr $,themenname)
+-- veranstaltungen(vNr$, vName, kuerzel, sws, themenNr !)
+-- spielerInnen(spNr$, spName, schuesselanzahl, raumNr!)
+-- minigames(gameNr$, gameName, vNr!)
+-- spielstaende(gameNr!, spNr!, Note, Punktzahl)
+-- aufenthalt(npcnr!,raumNr!)
+-- unterricht(vNr !, npc !, raumNr !)							
+-- assistenz(vNr !,npcNr !)
 
 
--- NPCs - Non-Playing-Character (Mitarbeiter):  npcs(npcNr$,npcName)
+
+-- npcs(npcNr$,npcName) 		NPCs - Non-Playing-Character (Mitarbeiter) 
 CREATE TABLE npcs (
   npcNr 		INTEGER				NOT NULL,	
   npcName 		VARCHAR (50)		NOT NULL,
@@ -42,7 +43,7 @@ CREATE TABLE npcs (
 COMMENT ON Table npcs IS 'Miniwelt LWBadventure';
 
 
--- dozentInnen(lieblingsgetraenk, npcNr !$)
+-- dozentInnen(npcNr !$,lieblingsgetraenk)
 CREATE TABLE dozentInnen (
   npcNr 				INTEGER 			REFERENCES npcs (npcNr),		-- NPC-Nummer
   lieblingsgetraenk		VARCHAR (100)		NOT NULL,	-- jeder Dozent braucht ein Lieblingsgetränk
@@ -51,7 +52,7 @@ CREATE TABLE dozentInnen (
 COMMENT ON Table dozentInnen IS 'Miniwelt LWBadventure';
 
 
--- sNPCs(snpcsNr$!,funktion)
+-- sNPCs(npcsNr $!,funktion)
 CREATE TABLE sNPCs (
   npcNr 		INTEGER 			REFERENCES npcs (npcNr),		-- NPC-Nummer
   funktion		VARCHAR (100)		NOT NULL,	-- jeder Mitarbeiter hat eine Funktion
@@ -60,7 +61,7 @@ CREATE TABLE sNPCs (
 COMMENT ON Table sNPCs IS 'Miniwelt LWBadventure';
 
 
--- raeum(raumNr$, raumName, ort)
+-- raeum(raumNr $!, raumName, ort)
 CREATE TABLE raeume (
   raumNr 		INTEGER				NOT NULL,
   raumName		VARCHAR (50)		NOT NULL,
@@ -82,7 +83,7 @@ CREATE TABLE kursraeume (
 COMMENT ON Table kursraeume IS 'Miniwelt LWBadventure';
 
 
--- sRaeume(sRaumNr$!,sFunktion)										-- sinnvoll?!
+-- sRaeume(raumNr $!,sFunktion)										-- sinnvoll?!
 CREATE TABLE sRaeume (
   raumNr 		INTEGER 			REFERENCES raeume (raumNr),		-- Raumnummer
   sFunktion		VARCHAR (100)		NOT NULL,	-- jeder Raum hat eine Funktion
@@ -92,7 +93,7 @@ CREATE TABLE sRaeume (
 COMMENT ON Table sRaeume IS 'Miniwelt LWBadventure';
 
 
--- themengebiete(themenNr,themenname)
+-- themengebiete(themenNr $,themenname)
 CREATE TABLE themengebiete (
   themenNr 		INTEGER				NOT NULL,
   themenname	VARCHAR (100)		NOT NULL,
@@ -117,7 +118,7 @@ CREATE TABLE veranstaltungen (
 COMMENT ON Table veranstaltungen IS 'Miniwelt LWBadventure';
 
 
--- spielerInnen(spNr$, spName, schuesselanzahl, spRaumNr!)
+-- spielerInnen(spNr$, spName, schuesselanzahl, raumNr!)
 CREATE TABLE spielerInnen (
   spNr	 		  	INTEGER				NOT NULL, 	--CHECK (MatrNr BETWEEN 10000 AND 99999),
   spName 		  	VARCHAR (50)		NOT NULL,
@@ -168,7 +169,7 @@ CREATE TABLE aufenthalt (
 COMMENT ON Table aufenthalt IS 'Miniwelt LWBadventure';
 
 
--- unterricht(Veranstaltungs# !,NPC# !, !Raum# !)							
+-- unterricht(vNr !, npc !, raumNr !)							
 CREATE TABLE unterricht (
   vNr 			INTEGER			REFERENCES veranstaltungen (vNr),
   npcNr			INTEGER			REFERENCES dozentInnen (npcNr),
@@ -183,3 +184,5 @@ CREATE TABLE assistenz (
   npcNr			INTEGER			REFERENCES dozentInnen (npcNr)
 );
 COMMENT ON Table assistenz IS 'Miniwelt LWBadventure';
+
+

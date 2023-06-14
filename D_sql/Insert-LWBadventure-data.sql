@@ -70,7 +70,7 @@ INSERT INTO themengebiete VALUES (4, 'Datenbanken');
 INSERT INTO themengebiete VALUES (5, 'Didaktik');
 
 
--- veranstaltungen(vNr$, vName, sws, kuerzel, themenNr !)
+-- veranstaltungen(vNr$, vName, kuerzel, sws, themenNr !)
 INSERT INTO veranstaltungen VALUES (1, 'Betriebssystemwerkzeuge','BSW',2,1);
 INSERT INTO veranstaltungen VALUES (2, 'Funktionale Programmierung','FP',8,2);
 INSERT INTO veranstaltungen VALUES (3, 'Grundlagen der Technischen Informatik','RS',6,3);
