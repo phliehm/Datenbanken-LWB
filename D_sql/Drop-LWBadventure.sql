@@ -16,7 +16,7 @@ DROP TABLE themengebiete		CASCADE;
 --DROP TABLE kursraeume  			CASCADE;
 --DROP TABLE sRaeume  			CASCADE;
 DROP TABLE raeume    			CASCADE;
-DROP TABLE sNPCs         		CASCADE;
+DROP TABLE sonstigeNPCs    		CASCADE;
 DROP TABLE dozent_innen        	CASCADE;
 DROP TABLE npcs		      		CASCADE;
 --DROP TABLE kursraum  		CASCADE;

@@ -19,7 +19,7 @@
 
 -- npcs ($npcNr, npcName) 				NPCs - Non-Playing-Character
 -- dozent_innen (!npcNr, lieblingsgetraenk)
--- sNPCs (!npcNr, funktion)
+-- sonstigeNPCs (!npcNr, funktion)
 -- raeume ($raumNr, raumName, ort, funktion)
 -- themengebiete ($gebietNr, gebietName)
 -- veranstaltungen ($vNr, vName, kuerzel, sws, !gebietNr)
@@ -50,13 +50,13 @@ CREATE TABLE dozent_innen (
 COMMENT ON Table dozent_innen IS 'Miniwelt LWBadventure';
 
 
--- sNPCs (!npcNr, funktion)
-CREATE TABLE sNPCs (
+-- sonstigeNPCs (!npcNr, funktion)
+CREATE TABLE sonstigeNPCs (
   npcNr 		INTEGER 			REFERENCES npcs (npcNr),			-- NPC-Nummer
   funktion		VARCHAR (100)		NOT NULL,							-- jede/r sonstige NPC hat eine Funktion
-  CONSTRAINT sNPCKEY PRIMARY KEY (npcNr)
+  CONSTRAINT sonstigeNPCsKEY PRIMARY KEY (npcNr)
 );
-COMMENT ON Table sNPCs IS 'Miniwelt LWBadventure';
+COMMENT ON Table sonstigeNPCs IS 'Miniwelt LWBadventure';
 
 
 -- raeume ($raumNr, raumName, ort, funktion)
@@ -162,7 +162,7 @@ COMMENT ON Table spielstaende IS 'Miniwelt LWBadventure';
 
 -- standorte (!npcNr, !raumNr)
 CREATE TABLE standorte (
-  npcnr 		INTEGER			REFERENCES sNPCs (npcnr),				-- Nummer des sonstigen NPCs im Raum
+  npcnr 		INTEGER			REFERENCES sonstigeNPCs (npcnr),				-- Nummer des sonstigen NPCs im Raum
   raumNr		INTEGER			REFERENCES raeume (raumNr)
 );
 COMMENT ON Table standorte IS 'Miniwelt LWBadventure';

@@ -35,10 +35,10 @@ INSERT INTO dozent_innen VALUES (5, 'Kaffee mit Milch und 2x Zucker');
 INSERT INTO dozent_innen VALUES (6, 'Hefeweizen');
 
 
--- sNPCs (!npcNr, funktion)
-INSERT INTO sNPCs VALUES (7, 'StEPS-Chefin'); 
-INSERT INTO sNPCs VALUES (8, 'Helferlein'); 
-INSERT INTO sNPCs VALUES (9, 'Kontrolletis'); 
+-- sonstigeNPCs (!npcNr, funktion)
+INSERT INTO sonstigeNPCs VALUES (7, 'StEPS-Chefin'); 
+INSERT INTO sonstigeNPCs VALUES (8, 'Helferlein'); 
+INSERT INTO sonstigeNPCs VALUES (9, 'Kontrolletis'); 
 
 
 -- raeume ($raumNr, raumName, ort, funktion)
