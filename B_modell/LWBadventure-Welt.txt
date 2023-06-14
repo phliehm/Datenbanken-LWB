@@ -1,0 +1,38 @@
+
+
+Beschreibung der Miniwelt
+*************************
+
+Die Miniwelt beschreibt die Spielwelt des selbstgeschriebenen Programms 
+LWBadventure. Dieses Spiel ist an die Lehrerweiterbildung
+Informatik Berlin angelehnt. Die SpielerInnen absolvieren die vier
+Semester des Studiums, indem sie kleine Mini-Games spielen,
+welche die Lehrinhalte der jeweiligen Semester thematisieren.
+
+Die Welt beinhaltet Non-Playing-Characters (NPCs) die eine Namen 
+(Alias) haben und sich in DozentInnen und sonstige NPCs unterteilen. 
+Die DozentInnen haben ein Lieblingsgetränk. Die NPCs erfüllen eine Funktion 
+im Spiel.
+
+Das Spiel hat verschiedene Räume an verschieden Standorten (FU Berlin, 
+STEPS, Home Office) und unterteilen sich in Kursräume, in denen die 
+Veranstaltungen stattfinden, und in andere Räumen, die eine andere 
+Funktion haben. Die Kursräume sind von 1 bis 4 nummeriert und 
+entspechen mit der Raumnummer dem jeweiligen Semster.
+
+Die Veranstaltungen werden von einer DozentenIn in einem Kursraum 
+gehalten. Dabei können sie von einer anderen DozentIn unterstützt 
+werden. Veranstaltungen haben einen Titel, eine 
+Semesterwochenstundenzahl und gehören zu einem Themengebiet.
+
+Zu den Veranstaltungen kann es Minispiele (oder Minigames) geben, aber 
+nicht zu allen, welche Prüfungen zu den Veranstaltungen repräsentieren. 
+Die SpielerInnen können verschiedene Räume betreten und dabei die 
+Minispiele spielen. Jeder Spieler erhält nach Beendigung des Spiels 
+eine Punktzahl und eine Note. 
+
+Die SpielerInnen haben am Anfang des Spiels einen Schlüssel für den 
+Kursraum 1 und können diesen betreten. Im Laufe des Spiels können sie 
+sich weitere Schlüssel erspielen, um die anderen Räume zu betreten. 
+Dazu müssen Sie in den jeweiligen vorherigen Räumen die Spiele mit 
+mindestens Note 4.0 beenden.
