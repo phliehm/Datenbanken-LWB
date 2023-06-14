@@ -31,7 +31,7 @@
 -- aufenthalt(asNPCnr!,aRaumNr!)
 
 
--- NPC - Non-Playing-Character (Mitarbeiter):  npcs(npcNr$,npcName)
+-- NPCs - Non-Playing-Character (Mitarbeiter):  npcs(npcNr$,npcName)
 CREATE TABLE npcs (
   npcNr 		INTEGER				NOT NULL,	
   npcName 		VARCHAR (50)		NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE npcs (
 COMMENT ON Table npcs IS 'Miniwelt LWBadventure';
 
 
--- dozentInnen (lieblingsgetreank)
+-- dozentInnen(lieblingsgetreank)
 CREATE TABLE dozentInnen (
   npcNr 				INTEGER 			REFERENCES npcs (npcNr),		-- NPC-Nummer
   lieblingsgetreank		VARCHAR (100)		NOT NULL,	-- jeder Dozent braucht ein Lieblingsgetränk
@@ -49,7 +49,7 @@ CREATE TABLE dozentInnen (
 COMMENT ON Table dozentInnen IS 'Miniwelt LWBadventure';
 
 
--- sNPC(snpcNr$!,funktion)
+-- sNPCs(snpcsNr$!,funktion)
 CREATE TABLE sNPCs (
   npcNr 		INTEGER 			REFERENCES npcs (npcNr),		-- NPC-Nummer
   funktion		VARCHAR (100)		NOT NULL,	-- jeder Mitarbeiter hat eine Funktion
@@ -58,7 +58,7 @@ CREATE TABLE sNPCs (
 COMMENT ON Table sNPCs IS 'Miniwelt LWBadventure';
 
 
--- raum(raumNr$, raumName, ort)
+-- raeum(raeumeNr$, raumName, ort)
 CREATE TABLE raeume (
   raumNr 		INTEGER				NOT NULL,
   raumName		VARCHAR (50)		NOT NULL,
@@ -78,7 +78,7 @@ COMMENT ON Table raeume IS 'Miniwelt LWBadventure';
 --COMMENT ON Table kursraum IS 'Miniwelt LWBadventure';
 
 
--- sRaum(sRaumNr$!,sFunktion)										-- sinnvoll?!
+-- sRaeume(sRaumNr$!,sFunktion)										-- sinnvoll?!
 CREATE TABLE sRaeume (
   raumNr 		INTEGER 			REFERENCES raeume (raumNr),		-- Raumnummer
   sFunktion		VARCHAR (100)		NOT NULL,	-- jeder Raum hat eine Funktion
@@ -106,7 +106,7 @@ CREATE TABLE veranstaltungen (
 COMMENT ON Table veranstaltungen IS 'Miniwelt LWBadventure';
 
 
--- betreuung(vNr!,dozNr!)											-- statt sRaum?!
+-- betreuungen(vNr!,dozNr!)											-- statt sRaum?!
 CREATE TABLE betreuung (
   vNr 			INTEGER			REFERENCES veranstaltungen (vNr),
   npcNr			INTEGER			REFERENCES dozentInnen (npcNr)
@@ -114,7 +114,7 @@ CREATE TABLE betreuung (
 COMMENT ON Table betreuung IS 'Miniwelt LWBadventure';
 
 
--- spielerInnen (spNr$, spName, spRaumNr)
+-- spielerInnen(spNr$, spName, spRaumNr!)
 CREATE TABLE spielerInnen (
   spNr	 		INTEGER				NOT NULL, 	--CHECK (MatrNr BETWEEN 10000 AND 99999),
   spName 		VARCHAR (50)		NOT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE spielerInnen (
 COMMENT ON Table spielerInnen IS 'Miniwelt LWBadventure';
 
 
--- minigame (gameNr$, gameName, gameVnr!)
+-- minigames(gameNr$, gameName, gameVnr!)
 CREATE TABLE minigames(
   gameNr 		INTEGER				NOT NULL,	-- oder CHECK (vNr > 0),
   gameName		VARCHAR (50)		NOT NULL,
@@ -148,7 +148,7 @@ CREATE DOMAIN NOTEN
 			6.0));
 
 
--- spielstand(sGameNr!, sSpNr!, Note, Punktzahl)
+-- spielstaende(sGameNr!, sSpNr!, Note, Punktzahl)
 CREATE TABLE spielstaende (
   gameNr 		INTEGER			REFERENCES minigames (gameNr),
   spNr			INTEGER			REFERENCES spielerInnen (spNr),
