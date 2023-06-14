@@ -1,0 +1,30 @@
+%
+% Tierwelt
+%
+% SQL Formulation
+
+/multiline on
+/show_compilations off
+/ra
+
+select true (Unterarten);
+
+project Name (Tiere);
+
+project Name (select Geschlecht = 'W'(Tiere));
+
+select true (Tiere njoin Unterarten);
+
+project Name (Tiere njoin (select Bezeichnung = 'Bartagame'(Unterarten)));
+
+project Name (Tiere njoin Terrarien njoin (select Bezeichnung = 'Wüste' (Habitattypen)));
+
+project Faelligkeit (Tierpflege njoin Arbeitsdienste njoin (select Bezeichnung = 'Fütterung' (Arbeitsdiensttypen)) njoin (select Name = 'Exo' (Tiere)));
+% die Darstellung eines Like-Operators in RA in DES ist uns unbekannt
+
+% geht in DES nicht
+
+project Faelligkeit ((select Name = 'Exo' (Tiere)) njoin Terrarien njoin Verbrauch njoin Arbeitsdienste njoin (select Bezeichnung = 'Frischwasser'(Arbeitsdiensttypen)));
+% Warum diese Abfrage kein Ergebnis liefert, ist uns nicht klar. Wir vermuten, dass es mit zu langen Zwischenergebnistabellen zusammenhängt (ähnliches Problem gab es in SQL, konnte dort aber gelöst werden).
+
+% geht in DES nicht

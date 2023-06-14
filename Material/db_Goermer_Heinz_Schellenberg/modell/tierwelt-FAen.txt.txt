@@ -1,0 +1,53 @@
+Übersicht über die funktionalen Abhängigkeiten
+Relation Unterarten
+UA_ID → {Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten}
+sowie alle trivialen Kombinationen, in denen UA_ID enthalten ist
+Relation Tiere
+TI_ID → {Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID}
+sowie alle trivialen Kombinationen, in denen TI_ID enthalten ist
+{Name, Zugangsdatum} → {TI_ID, UA_ID, Geschlecht, Laenge, Gewicht, TR_ID}
+Relation Tierpflege
+AD_ID → {TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie}
+sowie alle trivialen Kombinationen, in denen AD_ID enthalten ist
+Relation Habitattypen
+HT_ID → {Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung}
+sowie alle trivialen Kombinationen, in denen HT_ID enthalten ist
+Relation Terrarien
+TR_ID → {Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn}
+sowie alle trivialen Kombinationen, in denen TR_ID enthalten ist
+{Name, Raumnummer} → {TR_ID, Beschreibung, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn}
+Relation Terrariumpflege
+AD_ID → TR_ID
+sowie alle trivialen Kombinationen, in denen AD_ID enthalten ist
+Relation Arbeitsdienste
+AD_ID → {AT_ID, Faelligkeit}
+sowie alle trivialen Kombinationen, in denen AD_ID enthalten ist
+Relation Arbeitsdiensttypen
+AT_ID → {Bezeichnung, Beschreibung, Frequenz}
+sowie alle trivialen Kombinationen, in denen AT_ID enthalten ist
+Relation Wasserbecken
+VM_ID → {bepflanzt, Breite, Hoehe, Tiefe}
+sowie alle trivialen Kombinationen, in denen VM_ID enthalten ist
+Relation Deko
+VM_ID → {Material, Farbe, Zweck}
+sowie alle trivialen Kombinationen, in denen VM_ID enthalten ist
+Relation Pflanzen
+VM_ID → {Wasserverbrauch, kuenstlich, spruehen}
+sowie alle trivialen Kombinationen, in denen VM_ID enthalten ist
+Relation Leuchtmittel
+VM_ID → {Waermeleistung, Helligkeit}
+sowie alle trivialen Kombinationen, in denen VM_ID enthalten ist
+Relation Bodenbelag
+VM_ID → {Farbe, Koernung}
+sowie alle trivialen Kombinationen, in denen VM_ID enthalten ist
+Relation Verbrauchsmittel
+VM_ID → {Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten}
+sowie alle trivialen Kombinationen, in denen VM_ID enthalten ist
+Relation Verbrauch
+{TR_ID, VM_ID} → {Anzahl, AD_ID}
+AD_ID → {TR_ID, Anzahl, VM_ID}
+sowie alle trivialen Kombinationen, in denen AD_ID enthalten ist
+Relation Lagerpflege
+AD_ID → VM_ID
+Relation Futter
+FU_ID → {Bezeichnung, Lagerungsform}

@@ -1,0 +1,5 @@
+Semantische Bezüge bzw. Integritätsbedingungen, die sich nicht im Modell wiederfinden
+theoretisch unbeschränkte Anzahl der Fütterungen etc
+Es gibt keine Kontrolle darüber, wie viele Fütterungsdienste zu einem Tier erstellt werden. Ähnlich verhält es sich mit anderen Dienstarten.
+Anzeige des Fälligkeitsdatums bei Diensten, die mehrmals pro Woche ausgeführt werden müssen
+Bei solchen Diensten wird lediglich das aktuellste Datum in der Woche als Fälligkeitsdatum angezeigt. [Bei täglichen Diensten also auch nur ein Wochentag.]

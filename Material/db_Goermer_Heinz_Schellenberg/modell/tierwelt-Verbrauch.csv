@@ -1,0 +1,102 @@
+﻿;Verknüfungen:;Verbrauchsmittel, Terrarien und Arbeitsdienste sind anhand ihrer IDs in ihren Tabellen zu finden;;;;;;
+;;;;;;;;
+Verbrauch;;;;;;;;
+Terrarien;TR_ID;VM_ID;Anzahl;AD_ID;;Verbrauchsmittel;;
+Bartagamengruppe;1;22;3;7;;Holzteil groß;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 22, 3, 7);"
+Bartagamengruppe;1;26;1;;;Schwimmbecken mittel;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 26, 1, );"
+Bartagamengruppe;1;18;0;;;Sand;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 18, 0, );"
+Bartagamengruppe;1;13;1;;;künstliche Topflanze;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 13, 1, );"
+Bartagamengruppe;1;4;1;;;Wärmelampe;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 4, 1, );"
+Shy Guy;2;13;1;;;künstliche Topflanze;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 13, 1, );"
+Shy Guy;2;11;1;;;Topfpflanze mittel;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 11, 1, );"
+Shy Guy;2;24;1;;;Steinplatte;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 24, 1, );"
+Shy Guy;2;25;1;;;Stein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 25, 1, );"
+Shy Guy;2;22;3;;;Holzteil groß;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 22, 3, );"
+Shy Guy;2;17;0;;;Rindenmulch grob;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 17, 0, );"
+Günther & Giesela;3;4;1;;;Wärmelampe;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 4, 1, );"
+Günther & Giesela;3;25;4;;;Stein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 25, 4, );"
+Günther & Giesela;3;21;1;;;Holzteil klein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 21, 1, );"
+Günther & Giesela;3;32;1;;;Aquarium klein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 32, 1, );"
+Günther & Giesela;3;33;3;;;Algen;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 33, 3, );"
+Günther & Giesela;3;31;0;;;Kies;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 31, 0, );"
+Cäsar, Cleopatra;4;4;1;;;Wärmelampe;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 4, 1, );"
+Cäsar, Cleopatra;4;8;1;;;UV-Lampe mittel;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 8, 1, );"
+Cäsar, Cleopatra;4;23;3;;;Häuschen/Höhle;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 23, 3, );"
+Cäsar, Cleopatra;4;20;1;;;Moos;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 20, 1, );"
+Cäsar, Cleopatra;4;19;0;;;Sandimitat;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 19, 0, );"
+Koka;5;34;1;;;Kokosnusschale;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (5, 34, 1, );"
+Koka;5;25;3;;;Stein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (5, 25, 3, );"
+Koka;5;23;1;;;Häuschen/Höhle;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (5, 23, 1, );"
+Koka;5;18;0;;;Sand;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (5, 18, 0, );"
+Walburga;6;21;1;;;Holzteil klein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (6, 21, 1, );"
+Walburga;6;23;1;;;Häuschen/Höhle;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (6, 23, 1, );"
+Walburga;6;35;1;;;Aquarium groß;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (6, 35, 1, );"
+Walburga;6;31;0;;;Kies;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (6, 31, 0, );"
+Exo;7;11;1;;;Topfpflanze mittel;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 11, 1, );"
+Exo;7;13;4;;;künstliche Topflanze;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 13, 4, );"
+Exo;7;21;3;;;Holzteil klein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 21, 3, );"
+Exo;7;36;1;;;Muschel;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 36, 1, );"
+Exo;7;32;1;;;Aquarium klein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 32, 1, );"
+Exo;7;20;1;;;Moos;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 20, 1, );"
+Exo;7;16;0;;;Rindenmulch fein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 16, 0, );"
+Terra;8;11;1;;;Topfpflanze mittel;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 11, 1, );"
+Terra;8;13;3;;;künstliche Topflanze;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 13, 3, );"
+Terra;8;24;2;;;Steinplatte;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 24, 2, );"
+Terra;8;25;1;;;Stein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 25, 1, );"
+Terra;8;21;4;;;Holzteil klein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 21, 4, );"
+Terra;8;32;1;;;Aquarium klein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 32, 1, );"
+Terra;8;20;1;;;Moos;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 20, 1, );"
+Terra;8;16;0;;;Rindenmulch fein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 16, 0, );"
+Diva;9;11;1;;;Topfpflanze mittel;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 11, 1, );"
+Diva;9;13;4;;;künstliche Topflanze;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 13, 4, );"
+Diva;9;21;5;;;Holzteil klein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 21, 5, );"
+Diva;9;37;1;;;Sisalring;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 37, 1, );"
+Diva;9;38;1;;;Dripper;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 38, 1, );"
+Diva;9;20;1;;;Moos;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 20, 1, );"
+Diva;9;16;0;;;Rindenmulch fein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 16, 0, );"
+Schnute;10;4;2;;;Wärmelampe;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 4, 2, );"
+Schnute;10;13;2;;;künstliche Topflanze;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 13, 2, );"
+Schnute;10;25;9;;;Stein;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 25, 9, );"
+Schnute;10;29;1;;;Schwimmbecken groß;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 29, 1, );"
+Schnute;10;39;2;;;Salatschale;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 39, 2, );"
+Schnute;10;18;0;;;Sand;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 18, 0, );"
+Sandfische;11;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (11, , , );"
+NoOne;12;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (12, , , );"
+Avery;13;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (13, , , );"
+Tiana;14;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (14, , , );"
+Nagini;15;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (15, , , );"
+Schnecken;16;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (16, , , );"
+Ritteranolis;17;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (17, , , );"
+Beatles;18;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (18, , , );"
+Riegel;19;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (19, , , );"
+Cola;20;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (20, , , );"
+Lola & Diego;21;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (21, , , );"
+Paul;22;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (22, , , );"
+Zwergagame;23;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (23, , , );"
+Kiwi;24;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (24, , , );"
+Charlie;25;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (25, , , );"
+Papa Wutz;26;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (26, , , );"
+Lord;27;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (27, , , );"
+Baby blue;28;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (28, , , );"
+Klassenraum;29;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (29, , , );"
+;;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (, , , );"
+;;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (, , , );"
+;;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (, , , );"
+;;;;;;;;"INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (, , , );"
+;;;;;;;;
+Hinweis:;Verbrauchsmittel-Nummer;Bezeichnung;Verbrauchsmittel-Nummer;Bezeichnung;;;;
+;1;Tageslichtlampe groß;16;Rindenmulch fein;;;;
+;2;Tageslichtlampe mittel;17;Rindenmulch grob;;;;
+;3;Tageslichtlampe klein;18;Sand;;;;
+;4;Wärmelampe groß;19;Sandimitat;;;;
+;5;Wärmelampe mittel;20;Moos;;;;
+;6;Wärmelampe klein;21;Holzteil klein;;;;
+;7;UV-Lampe groß;22;Holzteil groß;;;;
+;8;UV-Lampe mittel;23;Häuschen/Unterschlupf;;;;
+;9;UV-Lampe klein;24;Steinplatte;;;;
+;10;Topfpflanze klein;25;Stein;;;;
+;11;Topfpflanze mittel;26;Aquariumfilter;;;;
+;12;Topfpflanze groß;27;Schwimmbecken klein;;;;
+;13;künstliche Topflanze;28;Schwimmbecken mittel;;;;
+;14;künstliche Pflanze;29;Schwimmbecken groß;;;;
+;15;künstliches Pflanzenteil;30;Wasserschale;;;;

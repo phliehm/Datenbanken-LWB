@@ -1,0 +1,75 @@
+﻿Verknüpfungen:;Unterart über die ID in weiterer Tabelle zu finden;;;;;;;;;
+;Terrarium über die ID in weiterer Tabelle zu finden;;;;INSERT:;;;;;
+Tiere;;;U=unbekannt;;leer=null, sonst='2022-05-09'; in cm;in Gramm;;;Beispiel für INSERT-String:
+TI_ID;Name;UA_ID;Geschlecht;Foto;Zugangsdatum;Laenge;Gewicht;TR_ID;;"INSERT INTO adresse (adnr,plz,ort,bezirk,strasse,hnr) VALUES (100,10623,'Berlin','Charlottenburg','Fasanenstr.','88');"
+1;Exo;4;M;;;54;229;7;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (1, 'Exo', 4, 'M', '', 54, 229, 7);"
+2;Terra;4;M;;;52;221;8;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (2, 'Terra', 4, 'M', '', 52, 221, 8);"
+3;Diva;2;W;;;21;80;9;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (3, 'Diva', 2, 'W', '', 21, 80, 9);"
+4;Kleopatra;7;W;;;22;40;4;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (4, 'Kleopatra', 7, 'W', '', 22, 40, 4);"
+5;Caesar;7;M;;;20;41;4;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (5, 'Caesar', 7, 'M', '', 20, 41, 4);"
+6;Tiana;7;W;;;18;41;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (6, 'Tiana', 7, 'W', '', 18, 41, );"
+7;Avery;7;M;;;24;58;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (7, 'Avery', 7, 'M', '', 24, 58, );"
+8;Walburga;3;W;;;21;;6;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (8, 'Walburga', 3, 'W', '', 21, , 6);"
+9;Cola;12;M;;;30;45;20;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (9, 'Cola', 12, 'M', '', 30, 45, 20);"
+10;Lola;7;W;;;21;50;21;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (10, 'Lola', 7, 'W', '', 21, 50, 21);"
+11;Belle;7;W;;;14;30;21;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (11, 'Belle', 7, 'W', '', 14, 30, 21);"
+12;Diego;7;M;;;21;47;21;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (12, 'Diego', 7, 'M', '', 21, 47, 21);"
+13;Variana;7;W;;;22;;21;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (13, 'Variana', 7, 'W', '', 22, , 21);"
+14;Stonki;13;W;;;20;50;31;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (14, 'Stonki', 13, 'W', '', 20, 50, 31);"
+15;Wutz;1;M;;;25;230;26;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (15, 'Wutz', 1, 'M', '', 25, 230, 26);"
+16;Lord;4;M;;;;;27;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (16, 'Lord', 4, 'M', '', , , 27);"
+17;Blue;4;W;;;60;173;28;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (17, 'Blue', 4, 'W', '', 60, 173, 28);"
+18;Kiwi;6;W;;;17;;24;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (18, 'Kiwi', 6, 'W', '', 17, , 24);"
+19;Charlie;6;M;;;;;25;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (19, 'Charlie', 6, 'M', '', , , 25);"
+20;Yoshie;8;M;;;18;;32;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (20, 'Yoshie', 8, 'M', '', 18, , 32);"
+21;Faxe;1;W;;;41;268;30;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (21, 'Faxe', 1, 'W', '', 41, 268, 30);"
+22;Snore;1;W;;;29;287;30;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (22, 'Snore', 1, 'W', '', 29, 287, 30);"
+23;Sparta;1;W;;;42;205;30;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (23, 'Sparta', 1, 'W', '', 42, 205, 30);"
+24;Malte;1;M;;;49;324;30;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (24, 'Malte', 1, 'M', '', 49, 324, 30);"
+25;Golden Dragon;11;M;;;42;283;30;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (25, 'Golden Dragon', 11, 'M', '', 42, 283, 30);"
+26;Riegel;5;M;;;;;19;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (26, 'Riegel', 5, 'M', '', , , 19);"
+27;Ritter;9;U;;;;;17;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (27, 'Ritter', 9, 'U', '', , , 17);"
+28;Sport;9;U;;;;;17;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (28, 'Sport', 9, 'U', '', , , 17);"
+29;Schoko;9;U;;;;;17;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (29, 'Schoko', 9, 'U', '', , , 17);"
+30;Lennon;10;U;;;;;18;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (30, 'Lennon', 10, 'U', '', , , 18);"
+31;McCartney;10;U;;;;;18;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (31, 'McCartney', 10, 'U', '', , , 18);"
+32;Harrison;10;U;;;;;18;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (32, 'Harrison', 10, 'U', '', , , 18);"
+33;Starr;10;U;;;;;18;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (33, 'Starr', 10, 'U', '', , , 18);"
+34;Giesela;14;W;;;;;3;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (34, 'Giesela', 14, 'W', '', , , 3);"
+35;Günther;14;M;;;;;3;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (35, 'Günther', 14, 'M', '', , , 3);"
+36;Shy Guy;8;M;;;;;2;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (36, 'Shy Guy', 8, 'M', '', , , 2);"
+37;Nagini;15;U;;;;;15;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (37, 'Nagini', 15, 'U', '', , , 15);"
+38;Sandy;16;U;;;;;11;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (38, 'Sandy', 16, 'U', '', , , 11);"
+39;Gaara;16;U;;;;;11;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (39, 'Gaara', 16, 'U', '', , , 11);"
+40;Tonks;16;U;;;;;11;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (40, 'Tonks', 16, 'U', '', , , 11);"
+41;NoOne;17;U;;;;;12;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (41, 'NoOne', 17, 'U', '', , , 12);"
+42;Koka;;U;;;;;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (42, 'Koka', , 'U', '', , , );"
+43;Xena;18;W;;;;;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (43, 'Xena', 18, 'W', '', , , );"
+44;Quitschie;;;;;;;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (44, 'Quitschie', , '', '', , , );"
+45;;;;;;;;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (45, '', , '', '', , , );"
+46;;;;;;;;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (46, '', , '', '', , , );"
+47;;;;;;;;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (47, '', , '', '', , , );"
+48;;;;;;;;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (48, '', , '', '', , , );"
+49;;;;;;;;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (49, '', , '', '', , , );"
+50;;;;;;;;;;"INSERT INTO Tiere (TI_ID, Name, UA_ID, Geschlecht, Zugangsdatum, Laenge, Gewicht, TR_ID) VALUES (50, '', , '', '', , , );"
+;;;;;;;;;;
+Hinweis:;;;;;;;;;;
+UnterArt-ID;Bezeichnung;;;;;;;;;
+1;Bartagame;;;;;;;;;
+2;Chamäleon;;;;;;;;;
+3;Europäische Sumpfschildkröte;;;;;;;;;
+4;Grüne Wasseragame;;;;;;;;;
+5;Kornnatter;;;;;;;;;
+6;Griechische Landschildkröte;;;;;;;;;
+7;Leopardengecko;;;;;;;;;
+8;Madagaskar-Taggecko;;;;;;;;;
+9;Ritteranolis;;;;;;;;;
+10;Stachelleguan;;;;;;;;;
+11;Sudan-Schildechse;;;;;;;;;
+12;Wüsten-Halsbandleguan;;;;;;;;;
+13;Zwergbartagame;;;;;;;;;
+14;Moschusschildkröte;;;;;;;;;
+15;Königspython;;;;;;;;;
+16;Sandfische;;;;;;;;;
+17;Fächerfingergecko;;;;;;;;;
+18;Grüner Leguan;;;;;;;;;

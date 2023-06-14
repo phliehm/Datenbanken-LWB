@@ -1,0 +1,48 @@
+﻿Verknüfungen:;Habitat-ID kann in anderer Tabelle gefunden werden;;;;;;;;;
+;;;;;;;;;;
+Terrarien;;;;;in cm;in cm;in cm;in cm;;
+TR_ID;Name;Beschreibung;Raumnummer;HT_ID;Hoehe;Tiefe;Breite;Breite_vorn;;
+1;Bartagamengruppe;;;2;210;;366;366;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (1, 'Bartagamengruppe', '', '', 2, 210, , 366, 366);"
+2;Shy Guy;;;1;738;73;39;39;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (2, 'Shy Guy', '', '', 1, 738, 73, 39, 39);"
+3;Günther & Giesela;mittig geteilt;;3;50;60;120;120;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (3, 'Günther & Giesela', 'mittig geteilt', '', 3, 50, 60, 120, 120);"
+4;Cäsar, Cleopatra;;;2;50;50;100;100;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (4, 'Cäsar, Cleopatra', '', '', 2, 50, 50, 100, 100);"
+5;Koka;;;2;40;50;125;125;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (5, 'Koka', '', '', 2, 40, 50, 125, 125);"
+6;Walburga;;;3;40;50;140;140;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (6, 'Walburga', '', '', 3, 40, 50, 140, 140);"
+7;Exo;;;1;140;64;95;95;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (7, 'Exo', '', '', 1, 140, 64, 95, 95);"
+8;Terra;;;1;140;64;95;95;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (8, 'Terra', '', '', 1, 140, 64, 95, 95);"
+9;Diva;;;1;150;58;111;62;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (9, 'Diva', '', '', 1, 150, 58, 111, 62);"
+10;Schnute;;;1;300;155;350;250;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (10, 'Schnute', '', '', 1, 300, 155, 350, 250);"
+11;Sandfische;;;2;50;42;100;100;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (11, 'Sandfische', '', '', 2, 50, 42, 100, 100);"
+12;NoOne;;;2;40;40;80;80;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (12, 'NoOne', '', '', 2, 40, 40, 80, 80);"
+13;Avery;;;2;38;40;100;100;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (13, 'Avery', '', '', 2, 38, 40, 100, 100);"
+14;Tiana;;;2;50;40;100;100;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (14, 'Tiana', '', '', 2, 50, 40, 100, 100);"
+15;Nagini;;;1;120;72;100;76;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (15, 'Nagini', '', '', 1, 120, 72, 100, 76);"
+16;Schnecken;;;5;41;50;124;124;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (16, 'Schnecken', '', '', 5, 41, 50, 124, 124);"
+17;Ritteranolis;;;1;120;59;120;120;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (17, 'Ritteranolis', '', '', 1, 120, 59, 120, 120);"
+18;Beatles;;;2;65;59;120;120;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (18, 'Beatles', '', '', 2, 65, 59, 120, 120);"
+19;Riegel;;;1;65;59;120;120;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (19, 'Riegel', '', '', 1, 65, 59, 120, 120);"
+20;Cola;;;2;72;59;120;120;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (20, 'Cola', '', '', 2, 72, 59, 120, 120);"
+21;Lola & Diego;;;2;72;59;120;120;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (21, 'Lola & Diego', '', '', 2, 72, 59, 120, 120);"
+22;Paul;;;2;72;59;120;120;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (22, 'Paul', '', '', 2, 72, 59, 120, 120);"
+23;Zwergagame;;;2;8;45;120;120;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (23, 'Zwergagame', '', '', 2, 8, 45, 120, 120);"
+24;Kiwi;;;2;35;100;155;155;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (24, 'Kiwi', '', '', 2, 35, 100, 155, 155);"
+25;Charlie;;;2;35;80;210;210;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (25, 'Charlie', '', '', 2, 35, 80, 210, 210);"
+26;Papa Wutz;;;2;72;59;150;150;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (26, 'Papa Wutz', '', '', 2, 72, 59, 150, 150);"
+27;Lord;;;1;300;150;320;320;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (27, 'Lord', '', '', 1, 300, 150, 320, 320);"
+28;Baby blue;;;1;300;180;290;290;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (28, 'Baby blue', '', '', 1, 300, 180, 290, 290);"
+29;Klassenraum;;;4;300;810;700;700;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (29, 'Klassenraum', '', '', 4, 300, 810, 700, 700);"
+30;Golden Dragon;;;;;;;;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (30, 'Golden Dragon', '', '', , , , , );"
+31;Stonki;;;;;;;;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (31, 'Stonki', '', '', , , , , );"
+32;Yoshie;;;;;;;;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (32, 'Yoshie', '', '', , , , , );"
+33;;;;;;;;;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (33, '', '', '', , , , , );"
+34;;;;;;;;;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (34, '', '', '', , , , , );"
+35;;;;;;;;;;"INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (35, '', '', '', , , , , );"
+;;;;;;;;;;
+;;;;;;;;;;
+Hinweis:;HT-Nummer;Bezeichnung;;;;;;;;
+;1;Regenwald;;;;;;;;
+;2;Wüste;;;;;;;;
+;3;Aquarium süß;;;;;;;;
+;4;Katastrophengebiet;;;;;;;;
+;5;Wald;;;;;;;;
+;6;Aquarium salzig;;;;;;;;

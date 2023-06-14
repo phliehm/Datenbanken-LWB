@@ -1,0 +1,761 @@
+	Verknüfungen:				
+					
+	Arbeitsdienste				
+	AD_ID	AT_ID	Faelligkeit		
+Tiana	1	1	27.04.2022	Futterdienste	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (1, 1, '2022-04-27');
+Avery	2	1		Fütterung carnivor 1x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (2, 1, '');
+Walburga	3	1		Fütterung carnivor 1x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (3, 1, '');
+Walburga	4	1		Fütterung carnivor 1x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (4, 1, '');
+Lola	5	1		Fütterung carnivor 1x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (5, 1, '');
+Belle	6	1		Fütterung carnivor 1x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (6, 1, '');
+Diego	7	1		Fütterung carnivor 1x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (7, 1, '');
+Variana	8	1		Fütterung carnivor 1x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (8, 1, '');
+Stonki	9	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (9, 3, '');
+Stonki	10	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (10, 3, '');
+Wutz	11	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (11, 3, '');
+Lord	12	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (12, 3, '');
+Lord	13	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (13, 3, '');
+Lord	14	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (14, 3, '');
+Blue	15	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (15, 3, '');
+Blue	16	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (16, 3, '');
+Blue	17	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (17, 3, '');
+Yoshie	18	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (18, 3, '');
+Yoshie	19	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (19, 3, '');
+Faxe	20	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (20, 3, '');
+Faxe	21	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (21, 3, '');
+Faxe	22	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (22, 3, '');
+Snore	23	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (23, 3, '');
+Snore	24	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (24, 3, '');
+Snore	25	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (25, 3, '');
+Sparta	26	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (26, 3, '');
+Sparta	27	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (27, 3, '');
+Sparta	28	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (28, 3, '');
+Malte	29	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (29, 3, '');
+Malte	30	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (30, 3, '');
+Malte	31	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (31, 3, '');
+Golden Dragon	32	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (32, 3, '');
+Golden Dragon	33	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (33, 3, '');
+Golden Dragon	34	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (34, 3, '');
+Riegel	35	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (35, 3, '');
+Ritter	36	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (36, 3, '');
+Ritter	37	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (37, 3, '');
+Ritter	38	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (38, 3, '');
+Sport	39	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (39, 3, '');
+Sport	40	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (40, 3, '');
+Sport	41	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (41, 3, '');
+Schoko	42	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (42, 3, '');
+Schoko	43	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (43, 3, '');
+Schoko	44	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (44, 3, '');
+Lennon	45	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (45, 3, '');
+Mc Cartney	46	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (46, 3, '');
+Harrison	47	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (47, 3, '');
+Star	48	3		Fütterung carnivor 3x/Woche	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (48, 3, '');
+Giesela	49	13		Fütterung vegetarisch 1x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (49, 13, '');
+Giesela	50	13		Fütterung vegetarisch 1x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (50, 13, '');
+Günther	51	13		Fütterung vegetarisch 1x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (51, 13, '');
+Günther	52	13		Fütterung vegetarisch 1x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (52, 13, '');
+Shy Guy	53	14		Fütterung vegetarisch 2x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (53, 14, '');
+Shy Guy	54	14		Fütterung vegetarisch 2x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (54, 14, '');
+Nagini	55	15		Fütterung vegetarisch 3x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (55, 15, '');
+Sandy	56	15		Fütterung vegetarisch 3x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (56, 15, '');
+Gaara	57	15		Fütterung vegetarisch 3x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (57, 15, '');
+Tonks	58	15		Fütterung vegetarisch 3x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (58, 15, '');
+NoOne	59	15		Fütterung vegetarisch 3x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (59, 15, '');
+Quitschie	60	15		Fütterung vegetarisch 3x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (60, 15, '');
+Exo	61	15		Fütterung vegetarisch 3x	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (61, 15, '');
+Tageslichtlampe groß	62	16		"Lagerprüfdienste/
+Verbrauchsmittelpflege"	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (62, 16, '');
+Tageslichtlampe mittel	63	16		Leuchtmittel prüfen	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (63, 16, '');
+Tageslichtlampe klein	64	16		Leuchtmittel prüfen	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (64, 16, '');
+Wärmelampe groß	65	16		Leuchtmittel prüfen	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (65, 16, '');
+Wärmelampe mittel	66	16		Leuchtmittel prüfen	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (66, 16, '');
+Wärmelampe klein	67	16		Leuchtmittel prüfen	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (67, 16, '');
+UV-Lampe groß	68	16		Leuchtmittel prüfen	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (68, 16, '');
+UV-Lampe mittel	69	16		Leuchtmittel prüfen	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (69, 16, '');
+UV-Lampe klein	70	16		Leuchtmittel prüfen	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (70, 16, '');
+Topfpflanze klein	71	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (71, 20, '');
+Topfpflanze mittel	72	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (72, 20, '');
+Topfpflanze groß	73	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (73, 20, '');
+künstliche Topflanze	74	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (74, 20, '');
+künstliche Pflanze	75	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (75, 20, '');
+künstliches Pflanzenteil	76	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (76, 20, '');
+Rindenmulch fein	77	23		Lager prüfen, monatlich	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (77, 23, '');
+Rindenmulch grob	78	23		Lager prüfen, monatlich	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (78, 23, '');
+Sand	79	23		Lager prüfen, monatlich	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (79, 23, '');
+Sandimitat	80	23		Lager prüfen, monatlich	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (80, 23, '');
+Moos	81	23		Lager prüfen, monatlich	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (81, 23, '');
+Holzteil klein	82	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (82, 20, '');
+Holzteil groß	83	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (83, 20, '');
+Häuschen/Unterschlupf	84	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (84, 20, '');
+Steinplatte	85	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (85, 20, '');
+Stein	86	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (86, 20, '');
+Aquariumfilter	87	21		Lager prüfen, halbjährig	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (87, 21, '');
+Schwimmbecken klein	88	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (88, 20, '');
+Schwimmbecken mittel	89	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (89, 20, '');
+Schwimmbecken groß	90	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (90, 20, '');
+Wasserschale	91	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (91, 20, '');
+Kies	92	23		Lager prüfen, monatlich	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (92, 23, '');
+Aquarium klein	93	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (93, 20, '');
+Algen	94	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (94, 20, '');
+Kokosnusschale	95	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (95, 20, '');
+Aquarium groß	96	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (96, 20, '');
+Muschel	97	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (97, 20, '');
+Sisalring	98	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (98, 20, '');
+Dripper	99	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (99, 20, '');
+Salatschale	100	20		Inventur	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (100, 20, '');
+Terrarium 1	101	4		Terrariendienste: Frischwasser	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (101, 4, '');
+Terrarium 2	102	5		Bodenbelagreinigung	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (102, 5, '');
+Terrarium 3	103	6		Gießen	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (103, 6, '');
+Terrarium 4	104	7		Terrarienglasreinigung	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (104, 7, '');
+Terrarium 5	105	8		Terrariumgeneralreinigung	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (105, 8, '');
+Terrarium 6	106	9		Sprühen morgens	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (106, 9, '');
+Terrarium 7	107	10		Sprühen mittags	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (107, 10, '');
+Terrarium 8	108	11		Sprühen abends	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (108, 11, '');
+Terrarium 9	109	12		Terrariumreinigung	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (109, 12, '');
+Terrarium 10	110	18		Wasserbeckenreinigung	INSERT INTO Arbeitsdienste (AD_ID, AT_ID, Faelligkeit) VALUES (110, 18, '');
+	111				
+	112				
+	113				
+	114				
+	115				
+
+	Verknüfungen:	Arbeitsdienstnummer ist in Verbrauch, Ernährung und Terrarienpflege zu finden					
+							
+	Arbeitsdiensttypen			Differenz bis zur nächsten Ausführung in Tagen	bei +2 Tagen muss geprüft werden, ob dieser Tag ein Wochentag ist		
+	AT_ID	Bezeichnung	Beschreibung	Frequenz wörtlich	Frequenz		
+	1	Fütterung carnivor 1x/Woche	Futterreste entsorgen, Futtertiere zum Jagen ins Gehege setzen	Mi	7		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (1, 'Fütterung carnivor 1x/Woche', 'Futterreste entsorgen, Futtertiere zum Jagen ins Gehege setzen', 7);
+	2	Fütterung carnivor 2x/Woche		Mo, Fr	4		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (2, 'Fütterung carnivor 2x/Woche', '', 4);
+	3	Fütterung carnivor 3x/Woche		Mo, Mi, Fr	2		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (3, 'Fütterung carnivor 3x/Woche', '', 2);
+	4	Frischwasser	Wasserschale reinigen und neu befüllen	1x / Tag	1		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (4, 'Frischwasser', 'Wasserschale reinigen und neu befüllen', 1);
+	5	Bodenbelagreinigung	Sand komplett aus dem Terrarium entfernen, reinigen bzw. erneuern	2x / Jahr (365/2)	182		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (5, 'Bodenbelagreinigung', 'Sand komplett aus dem Terrarium entfernen, reinigen bzw. erneuern', 182);
+	6	Gießen	Lebendpflanzen in und vor den Terrarien	1x / Woche	7		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (6, 'Gießen', 'Lebendpflanzen in und vor den Terrarien', 7);
+	7	Terrarienglasreinigung	Teil der Genralreinigung, wenn das Terrarium ausgeräumt wurde	6x / Jahr (365/6)	61		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (7, 'Terrarienglasreinigung', 'Teil der Genralreinigung, wenn das Terrarium ausgeräumt wurde', 61);
+ALT!	8	Terrariumgeneralreinigung	gesamtes Terrarieninventar ausräumen und abspülen	6x / Jahr	61		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (8, 'Terrariumgeneralreinigung', 'gesamtes Terrarieninventar ausräumen und abspülen', 61);
+9	9	Sprühen morgens	zur Erhöhung der Luftfeuchtigkeit	insgesamt 2-3x / Tag	1		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (9, 'Sprühen morgens', 'zur Erhöhung der Luftfeuchtigkeit', 1);
+	10	Sprühen mittags	zur Erhöhung der Luftfeuchtigkeit		1		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (10, 'Sprühen mittags', 'zur Erhöhung der Luftfeuchtigkeit', 1);
+	11	Sprühen abends	zur Erhöhung der Luftfeuchtigkeit		1		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (11, 'Sprühen abends', 'zur Erhöhung der Luftfeuchtigkeit', 1);
+10	12	Terrariumreinigung	Exkremente und andere grobe Verschmutzungen beseitigen	1x / Tag	1		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (12, 'Terrariumreinigung', 'Exkremente und andere grobe Verschmutzungen beseitigen', 1);
+11	13	Fütterung vegetarisch 1x	Futtertrog reinigen, vorbereiten, verteilen	Mi	7		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (13, 'Fütterung vegetarisch 1x', 'Futtertrog reinigen, vorbereiten, verteilen', 7);
+12	14	Fütterung vegetarisch 2x		Mo, Fr	4		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (14, 'Fütterung vegetarisch 2x', '', 4);
+13	15	Fütterung vegetarisch 3x		Mo, Mi, Fr	2		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (15, 'Fütterung vegetarisch 3x', '', 2);
+14	16	Leuchtmittel prüfen	UV-Lampen mithilfe eines Messgerätes, Wärmelampen über den Tastsinn (auf sichere Entfernung) auf Leistung prüfen	2x / Jahr	182		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (16, 'Leuchtmittel prüfen', 'UV-Lampen mithilfe eines Messgerätes, Wärmelampen über den Tastsinn (auf sichere Entfernung) auf Leistung prüfen', 182);
+15	17	Leuchtmittel wechseln	Leuchtmittel nach Prüfung ersetzen bei zuwenig Leistung oder nach Totalausfall	-			INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (17, 'Leuchtmittel wechseln', 'Leuchtmittel nach Prüfung ersetzen bei zuwenig Leistung oder nach Totalausfall', );
+16	18	Wasserbeckenreinigung	nach Bedarf bei entsprechender Verschmutzung, tägliche Prüfung nötig	1x / Tag	1		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (18, 'Wasserbeckenreinigung', 'nach Bedarf bei entsprechender Verschmutzung, tägliche Prüfung nötig', 1);
+17	19	Fütterung aquatisch	Fischpellets ins Wasser geben	1x / Woche	7		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (19, 'Fütterung aquatisch', 'Fischpellets ins Wasser geben', 7);
+18	20	Inventur	aller Lebewesen und Bestandsgegenstände prüfen und ggf. Bestellung auslösen	1. Montag im Jahr	365		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (20, 'Inventur', 'aller Lebewesen und Bestandsgegenstände prüfen und ggf. Bestellung auslösen', 365);
+19	21	Lager prüfen, halbjährig	Lagerbestand prüfen und ggf. Bestellung (z.B. Leuchtmittel)	2x im Jahr	182		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (21, 'Lager prüfen, halbjährig', 'Lagerbestand prüfen und ggf. Bestellung (z.B. Leuchtmittel)', 182);
+20	22	Lager prüfen, vierteljährig	Lagerbestand prüfen und ggf. Bestellung (z.B. Bodenbeläge)	4x	91		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (22, 'Lager prüfen, vierteljährig', 'Lagerbestand prüfen und ggf. Bestellung (z.B. Bodenbeläge)', 91);
+21	23	Lager prüfen, monatlich	Lagerbestand prüfen und ggf. Bestellung (z.B. täglicher Bedarf)	12x / Jahr	30		INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (23, 'Lager prüfen, monatlich', 'Lagerbestand prüfen und ggf. Bestellung (z.B. täglicher Bedarf)', 30);
+	24						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (24, '', '', );
+	25						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (25, '', '', );
+	26						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (26, '', '', );
+	27						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (27, '', '', );
+	28						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (28, '', '', );
+	29						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (29, '', '', );
+	30						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (30, '', '', );
+	31						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (31, '', '', );
+	32						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (32, '', '', );
+	33						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (33, '', '', );
+	34						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (34, '', '', );
+	35						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (35, '', '', );
+	36						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (36, '', '', );
+	37						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (37, '', '', );
+	38						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (38, '', '', );
+	39						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (39, '', '', );
+	40						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (40, '', '', );
+	41						INSERT INTO Arbeitsdiensttypen (AT_ID, Bezeichnung, Beschreibung, Frequenz) VALUES (41, '', '', );
+
+	Verknüfungen:	in der Tabelle Verbrauch wird mit den Terrarien verknüpft				
+						
+	Bodenbelag					
+	VM_ID	Farbe	Koernung			
+Rindenmulch fein	16	Dunkelbraun	bis 25mm			INSERT INTO Bodenbelag (VM_ID, Farbe, Koernung) VALUES (16, 'Dunkelbraun', 'bis 25mm');
+Rindenmulch grob	17	Dunkelbraun	25mm - 60mm			INSERT INTO Bodenbelag (VM_ID, Farbe, Koernung) VALUES (17, 'Dunkelbraun', '25mm - 60mm');
+Sand	18	Gelblich-Weiß	bis 2mm			INSERT INTO Bodenbelag (VM_ID, Farbe, Koernung) VALUES (18, 'Gelblich-Weiß', 'bis 2mm');
+Sandimitat	19	Rötlich-Gelb	bis 1mm			INSERT INTO Bodenbelag (VM_ID, Farbe, Koernung) VALUES (19, 'Rötlich-Gelb', 'bis 1mm');
+Moos	20	Gelblich-Braun	bis 200mm			INSERT INTO Bodenbelag (VM_ID, Farbe, Koernung) VALUES (20, 'Gelblich-Braun', 'bis 200mm');
+Kies	31	Weiß-Grau	8mm - 20mm			INSERT INTO Bodenbelag (VM_ID, Farbe, Koernung) VALUES (31, 'Weiß-Grau', '8mm - 20mm');
+
+
+	Verknüfungen:	in der Tabelle Verbrauch wird mit den Terrarien verknüpft					
+							
+	Deko						
+Verbrauchmittel	VM_ID	Material	Farbe	Zweck			
+Holzteil klein	21	Holz	braun	Klettern, Unterschlupf			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (21, 'Holz', 'braun', 'Klettern, Unterschlupf');
+Holzteil groß	22	Holz	braun	Klettern, Unterschlupf			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (22, 'Holz', 'braun', 'Klettern, Unterschlupf');
+Häuschen/Höhle	23	Stein, Plastik, Holz	variabel	Unterschlupf			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (23, 'Stein, Plastik, Holz', 'variabel', 'Unterschlupf');
+Steinplatte	24	Marmorstein	weiß bis grau	Klettern			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (24, 'Marmorstein', 'weiß bis grau', 'Klettern');
+Stein	25	Stein	weiß bis grau	Klettern			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (25, 'Stein', 'weiß bis grau', 'Klettern');
+Aquariumfilter	26	Elektronik	-	Reinigung			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (26, 'Elektronik', '-', 'Reinigung');
+Kokosnusschale	34	Kokos	braun	Klettern, Unterschlupf			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (34, 'Kokos', 'braun', 'Klettern, Unterschlupf');
+Muschel	36	Perlmut	weiß	Klettern, Unterschlupf			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (36, 'Perlmut', 'weiß', 'Klettern, Unterschlupf');
+Sisalring	37	Flachs/Sisal	braun	Klettern			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (37, 'Flachs/Sisal', 'braun', 'Klettern');
+Dripper	38	Elektronik	-	Trinkwasserabgabe			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (38, 'Elektronik', '-', 'Trinkwasserabgabe');
+Salatschale	39	Stein	grau	Nahrungsbereitstellung			INSERT INTO Deko (VM_ID, Material, Farbe, Zweck) VALUES (39, 'Stein', 'grau', 'Nahrungsbereitstellung');
+							
+							
+							
+							
+Kletterwand		Holz		Habitatausstattung			
+				Brutpflege			
+				Spiel			
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+erdachte Einträge - bitte PRÜFEN bzw ERWEITERN/ERSETZEN							
+
+Verknüfungen:	in Tabelle "Ernährung" werden die Tiere mit ihrem Futter und dem Intervall verknüpft			
+				
+Futter				
+FU_ID	Bezeichnung	Lagerungsform		
+1	Fische	tiefgekühlt		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (1, 'Fische', 'tiefgekühlt');
+2	Wasserschildkröten- / Gupyfutter (Fischpellets)	getrocknet		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (2, 'Wasserschildkröten- / Gupyfutter (Fischpellets)', 'getrocknet');
+3	Frischwasser	frisch/Wasserhahn		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (3, 'Frischwasser', 'frisch/Wasserhahn');
+4	Heimchen	lebend		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (4, 'Heimchen', 'lebend');
+5	Heuschrecken, adult	lebend		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (5, 'Heuschrecken, adult', 'lebend');
+6	Heuschrecken, subadult	lebend		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (6, 'Heuschrecken, subadult', 'lebend');
+7	Mäuse / Sinte	tiefgekühlt		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (7, 'Mäuse / Sinte', 'tiefgekühlt');
+8	Rohkost / Salat	frisch/gekühlt		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (8, 'Rohkost / Salat', 'frisch/gekühlt');
+9	Schrimps	getrocknet		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (9, 'Schrimps', 'getrocknet');
+10	Fruchtbrei			INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (10, 'Fruchtbrei', '');
+11	Obstschale	frisch		INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (11, 'Obstschale', 'frisch');
+12				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (12, '', '');
+13				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (13, '', '');
+14				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (14, '', '');
+15				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (15, '', '');
+16				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (16, '', '');
+17				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (17, '', '');
+18				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (18, '', '');
+19				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (19, '', '');
+20				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (20, '', '');
+21				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (21, '', '');
+22				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (22, '', '');
+23				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (23, '', '');
+24				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (24, '', '');
+25				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (25, '', '');
+26				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (26, '', '');
+27				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (27, '', '');
+28				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (28, '', '');
+29				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (29, '', '');
+30				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (30, '', '');
+31				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (31, '', '');
+32				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (32, '', '');
+33				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (33, '', '');
+34				INSERT INTO Futter (FU_ID, Bezeichnung, Lagerungsform) VALUES (34, '', '');
+
+Verknüfungen:	Habitat-ID wird bei Terrarien eingetragen						
+							
+Habitattypen			in C°	in %			
+HT_ID	Bezeichnung	Beschreibung	Temperatur	Luftfeuchtigkeit	Ausstattung		
+1	Regenwald						INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (1, 'Regenwald', '', , , '');
+2	Wüste						INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (2, 'Wüste', '', , , '');
+3	Aquarium süß			100			INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (3, 'Aquarium süß', '', , 100, '');
+4	Katastrophengebiet						INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (4, 'Katastrophengebiet', '', , , '');
+5	Wald						INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (5, 'Wald', '', , , '');
+6	Aquarium salzig			100			INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (6, 'Aquarium salzig', '', , 100, '');
+7							INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (7, '', '', , , '');
+8							INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (8, '', '', , , '');
+9							INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (9, '', '', , , '');
+10							INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (10, '', '', , , '');
+11							INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (11, '', '', , , '');
+12							INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (12, '', '', , , '');
+13							INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (13, '', '', , , '');
+14							INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (14, '', '', , , '');
+15							INSERT INTO Habitattypen (HT_ID, Bezeichnung, Beschreibung, Temperatur, Luftfeuchtigkeit, Ausstattung) VALUES (15, '', '', , , '');
+							
+Verbesserungsvorschlag:							
+
+
+Verknüpfungen:	AD_ID -> Arbeitsdienst mit AT_ID (Bez.,Beschr.&Intervall)) & Datum			
+				
+Lagerpflege	-> Lagerbestandsprüfung			
+AD_ID	VM_ID	Bezeichnung in Verbrauchsmittel	AT_ID in Arbeitsdienste	
+62	1	Tageslichtlampe groß	20	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (62, 1);
+63	2	Tageslichtlampe mittel	20	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (63, 2);
+64	3	Tageslichtlampe klein	20	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (64, 3);
+65	4	Wärmelampe groß	20	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (65, 4);
+66	5	Wärmelampe mittel	20	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (66, 5);
+67	6	Wärmelampe klein	20	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (67, 6);
+68	7	UV-Lampe groß	20	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (68, 7);
+69	8	UV-Lampe mittel	20	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (69, 8);
+70	9	UV-Lampe klein	20	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (70, 9);
+71	10	Topfpflanze klein	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (71, 10);
+72	11	Topfpflanze mittel	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (72, 11);
+73	12	Topfpflanze groß	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (73, 12);
+74	13	künstliche Topflanze	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (74, 13);
+75	14	künstliche Pflanze	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (75, 14);
+76	15	künstliches Pflanzenteil	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (76, 15);
+77	16	Rindenmulch fein	21	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (77, 16);
+78	17	Rindenmulch grob	21	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (78, 17);
+79	18	Sand	21	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (79, 18);
+80	19	Sandimitat	21	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (80, 19);
+81	20	Moos	21	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (81, 20);
+82	21	Holzteil klein	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (82, 21);
+83	22	Holzteil groß	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (83, 22);
+84	23	Häuschen/Unterschlupf	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (84, 23);
+85	24	Steinplatte	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (85, 24);
+86	25	Stein	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (86, 25);
+87	26	Aquariumfilter	19	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (87, 26);
+88	27	Schwimmbecken klein	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (88, 27);
+89	28	Schwimmbecken mittel	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (89, 28);
+90	29	Schwimmbecken groß	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (90, 29);
+91	30	Wasserschale	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (91, 30);
+92	31	Kies	21	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (92, 31);
+93	32	Aquarium klein	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (93, 32);
+94	33	Algen	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (94, 33);
+95	34	Kokosnusschale	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (95, 34);
+96	35	Aquarium groß	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (96, 35);
+97	36	Muschel	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (97, 36);
+98	37	Sisalring	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (98, 37);
+99	38	Dripper	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (99, 38);
+100	39	Salatschale	18	INSERT INTO Lagerpflege (AD_ID, VM_ID) VALUES (100, 39);
+
+	Verknüfungen:	in der Tabelle Verbrauch wird mit den Terrarien verknüpft				
+						
+	Leuchtmittel		in Watt	in Lumen		
+	VM_ID	Bezeichnung (steht in Verbrauchmittel)	Waermeleistung	Helligkeit		
+Tageslichtlampe groß	1		150			INSERT INTO Leuchtmittel (VM_ID, Waermeleistung, Helligkeit) VALUES (1, 150, );
+Tageslichtlampe mittel	2					INSERT INTO Leuchtmittel (VM_ID, Waermeleistung, Helligkeit) VALUES (2, , );
+Tageslichtlampe klein	3					INSERT INTO Leuchtmittel (VM_ID, Waermeleistung, Helligkeit) VALUES (3, , );
+Wärmelampe groß	4		150			INSERT INTO Leuchtmittel (VM_ID, Waermeleistung, Helligkeit) VALUES (4, 150, );
+Wärmelampe mittel	5					INSERT INTO Leuchtmittel (VM_ID, Waermeleistung, Helligkeit) VALUES (5, , );
+Wärmelampe klein	6					INSERT INTO Leuchtmittel (VM_ID, Waermeleistung, Helligkeit) VALUES (6, , );
+UV-Lampe groß	7		300			INSERT INTO Leuchtmittel (VM_ID, Waermeleistung, Helligkeit) VALUES (7, 300, );
+UV-Lampe mittel	8	UV-Flood Plus	100			INSERT INTO Leuchtmittel (VM_ID, Waermeleistung, Helligkeit) VALUES (8, 100, );
+UV-Lampe klein	9		75			INSERT INTO Leuchtmittel (VM_ID, Waermeleistung, Helligkeit) VALUES (9, 75, );
+
+	Verknüfungen:		in der Tabelle Verbrauch wird mit den Terrarien verknüpft			
+						
+	Pflanzen					
+	VM_ID	Wasserverbrauch	kuenstlich	spruehen		
+Topfpflanze klein	10		false	true		INSERT INTO Pflanzen (VM_ID, Wasserverbrauch, kuenstlich, spruehen) VALUES (10, , false, true);
+Topfpflanze mittel	11		false	true		INSERT INTO Pflanzen (VM_ID, Wasserverbrauch, kuenstlich, spruehen) VALUES (11, , false, true);
+Topfpflanze groß	12		false	true		INSERT INTO Pflanzen (VM_ID, Wasserverbrauch, kuenstlich, spruehen) VALUES (12, , false, true);
+künstliche Topflanze	13	0	true	false		INSERT INTO Pflanzen (VM_ID, Wasserverbrauch, kuenstlich, spruehen) VALUES (13, 0, true, false);
+künstliche Pflanze	14	0	true	false		INSERT INTO Pflanzen (VM_ID, Wasserverbrauch, kuenstlich, spruehen) VALUES (14, 0, true, false);
+künstliches Pflanzenteil	15	0	true	false		INSERT INTO Pflanzen (VM_ID, Wasserverbrauch, kuenstlich, spruehen) VALUES (15, 0, true, false);
+Algen	33	0	false	false		INSERT INTO Pflanzen (VM_ID, Wasserverbrauch, kuenstlich, spruehen) VALUES (33, 0, false, false);
+
+
+Verknüfungen:	Habitat-ID kann in anderer Tabelle gefunden werden									
+										
+Terrarien					in cm	in cm	in cm	in cm		
+TR_ID	Name	Beschreibung	Raumnummer	HT_ID	Hoehe	Tiefe	Breite	Breite_vorn		
+1	Bartagamengruppe			2	210		366	366		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (1, 'Bartagamengruppe', '', '', 2, 210, , 366, 366);
+2	Shy Guy			1	738	73	39	39		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (2, 'Shy Guy', '', '', 1, 738, 73, 39, 39);
+3	Günther & Giesela	mittig geteilt		3	50	60	120	120		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (3, 'Günther & Giesela', 'mittig geteilt', '', 3, 50, 60, 120, 120);
+4	Cäsar, Cleopatra			2	50	50	100	100		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (4, 'Cäsar, Cleopatra', '', '', 2, 50, 50, 100, 100);
+5	Koka			2	40	50	125	125		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (5, 'Koka', '', '', 2, 40, 50, 125, 125);
+6	Walburga			3	40	50	140	140		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (6, 'Walburga', '', '', 3, 40, 50, 140, 140);
+7	Exo			1	140	64	95	95		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (7, 'Exo', '', '', 1, 140, 64, 95, 95);
+8	Terra			1	140	64	95	95		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (8, 'Terra', '', '', 1, 140, 64, 95, 95);
+9	Diva			1	150	58	111	62		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (9, 'Diva', '', '', 1, 150, 58, 111, 62);
+10	Schnute			1	300	155	350	250		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (10, 'Schnute', '', '', 1, 300, 155, 350, 250);
+11	Sandfische			2	50	42	100	100		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (11, 'Sandfische', '', '', 2, 50, 42, 100, 100);
+12	NoOne			2	40	40	80	80		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (12, 'NoOne', '', '', 2, 40, 40, 80, 80);
+13	Avery			2	38	40	100	100		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (13, 'Avery', '', '', 2, 38, 40, 100, 100);
+14	Tiana			2	50	40	100	100		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (14, 'Tiana', '', '', 2, 50, 40, 100, 100);
+15	Nagini			1	120	72	100	76		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (15, 'Nagini', '', '', 1, 120, 72, 100, 76);
+16	Schnecken			5	41	50	124	124		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (16, 'Schnecken', '', '', 5, 41, 50, 124, 124);
+17	Ritteranolis			1	120	59	120	120		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (17, 'Ritteranolis', '', '', 1, 120, 59, 120, 120);
+18	Beatles			2	65	59	120	120		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (18, 'Beatles', '', '', 2, 65, 59, 120, 120);
+19	Riegel			1	65	59	120	120		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (19, 'Riegel', '', '', 1, 65, 59, 120, 120);
+20	Cola			2	72	59	120	120		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (20, 'Cola', '', '', 2, 72, 59, 120, 120);
+21	Lola & Diego			2	72	59	120	120		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (21, 'Lola & Diego', '', '', 2, 72, 59, 120, 120);
+22	Paul			2	72	59	120	120		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (22, 'Paul', '', '', 2, 72, 59, 120, 120);
+23	Zwergagame			2	8	45	120	120		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (23, 'Zwergagame', '', '', 2, 8, 45, 120, 120);
+24	Kiwi			2	35	100	155	155		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (24, 'Kiwi', '', '', 2, 35, 100, 155, 155);
+25	Charlie			2	35	80	210	210		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (25, 'Charlie', '', '', 2, 35, 80, 210, 210);
+26	Papa Wutz			2	72	59	150	150		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (26, 'Papa Wutz', '', '', 2, 72, 59, 150, 150);
+27	Lord			1	300	150	320	320		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (27, 'Lord', '', '', 1, 300, 150, 320, 320);
+28	Baby blue			1	300	180	290	290		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (28, 'Baby blue', '', '', 1, 300, 180, 290, 290);
+29	Klassenraum			4	300	810	700	700		INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (29, 'Klassenraum', '', '', 4, 300, 810, 700, 700);
+30	Golden Dragon									INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (30, 'Golden Dragon', '', '', , , , , );
+31	Stonki									INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (31, 'Stonki', '', '', , , , , );
+32	Yoshie									INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (32, 'Yoshie', '', '', , , , , );
+33										INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (33, '', '', '', , , , , );
+34										INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (34, '', '', '', , , , , );
+35										INSERT INTO Terrarien (TR_ID, Name, Beschreibung, Raumnummer, HT_ID, Hoehe, Tiefe, Breite, Breite_vorn) VALUES (35, '', '', '', , , , , );
+										
+										
+Hinweis:	HT-Nummer	Bezeichnung								
+	1	Regenwald								
+	2	Wüste								
+	3	Aquarium süß								
+	4	Katastrophengebiet								
+	5	Wald								
+	6	Aquarium salzig								
+
+Verknüfungen:					
+					
+Terrariumpflege					
+AD_ID	TR_ID		AT_ID	Arbeitstypen	
+101	1		4	Frischwasser	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (101, 1);
+102	1		5	Bodenbelagreinigung	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (102, 1);
+103	1		6	Gießen	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (103, 1);
+104	1		7	Terrarienglasreinigung	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (104, 1);
+105	1		8	Terrariumgeneralreinigung	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (105, 1);
+106	1		9	Sprühen morgens	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (106, 1);
+107	1		10	Sprühen mittags	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (107, 1);
+108	1		11	Sprühen abends	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (108, 1);
+109	1		12	Terrariumreinigung	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (109, 1);
+110	1		18	Wasserbeckenreinigung	INSERT INTO Terrariumpflege (AD_ID, TR_ID) VALUES (110, 1);
+
+Verknüpfungen:	Unterart über die ID in weiterer Tabelle zu finden							
+	Terrarium über die ID in weiterer Tabelle zu finden				INSERT:			
+Tiere			U=unbekannt		leer=null, sonst='2022-05-09'	 in cm	in Gramm	
+TI_ID	Name	UA_ID	Geschlecht	Foto	Zugangsdatum	Laenge	Gewicht	TR_ID
+1	Exo	4	M			54	229	7
+2	Terra	4	M			52	221	8
+3	Diva	2	W			21	80	9
+4	Kleopatra	7	W			22	40	4
+5	Caesar	7	M			20	41	4
+6	Tiana	7	W			18	41	
+7	Avery	7	M			24	58	
+8	Walburga	3	W			21		6
+9	Cola	12	M			30	45	20
+10	Lola	7	W			21	50	21
+11	Belle	7	W			14	30	21
+12	Diego	7	M			21	47	21
+13	Variana	7	W			22		21
+14	Stonki	13	W			20	50	31
+15	Wutz	1	M			25	230	26
+16	Lord	4	M					27
+17	Blue	4	W			60	173	28
+18	Kiwi	6	W			17		24
+19	Charlie	6	M					25
+20	Yoshie	8	M			18		32
+21	Faxe	1	W			41	268	30
+22	Snore	1	W			29	287	30
+23	Sparta	1	W			42	205	30
+24	Malte	1	M			49	324	30
+25	Golden Dragon	11	M			42	283	30
+26	Riegel	5	M					19
+27	Ritter	9	U					17
+28	Sport	9	U					17
+29	Schoko	9	U					17
+30	Lennon	10	U					18
+31	McCartney	10	U					18
+32	Harrison	10	U					18
+33	Starr	10	U					18
+34	Giesela	14	W					3
+35	Günther	14	M					3
+36	Shy Guy	8	M					2
+37	Nagini	15	U					15
+38	Sandy	16	U					11
+39	Gaara	16	U					11
+40	Tonks	16	U					11
+41	NoOne	17	U					12
+42	Koka		U					
+43	Xena	18	W					
+44	Quitschie							
+45								
+46								
+47								
+48								
+49								
+50								
+
+
+	Verknüfungen:	die Tiere, Futter & Arbeitsdienst findet man anhand ihrer ID in anderer Tabelle									
+											
+Tierpflege						"1: Hauptmahl
+2: alternatives Hauptmahl
+3: Nebenmahl"					
+Tiere	AD_ID	TI_ID	FU_ID	Menge_min	Menge_max	Mahlkategorie			Futter		
+Tiana	1	6	4	1	2	1		f	Fische		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (1, 6, 4, 1, 2, 1);
+Avery	2	7	4	1	2	1		f	Fische		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (2, 7, 4, 1, 2, 1);
+Walburga	3	8	1	2	2	1		f	Fische		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (3, 8, 1, 2, 2, 1);
+Walburga	4	8	2	1	1	3		f	Mäuse / Sinte		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (4, 8, 2, 1, 1, 3);
+Lola	5	10	4	3	4	1		f	Mäuse / Sinte		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (5, 10, 4, 3, 4, 1);
+Belle	6	11	4	3	4	1		f	Wasserschildkröten- / Gupyfutter (Fischpellets)		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (6, 11, 4, 3, 4, 1);
+Diego	7	12	4	3	4	1		f	Wasserschildkröten- / Gupyfutter (Fischpellets)		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (7, 12, 4, 3, 4, 1);
+Variana	8	13	4	3	4	1		f	Wasserschildkröten- / Gupyfutter (Fischpellets)		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (8, 13, 4, 3, 4, 1);
+Stonki	9	14	4	3	4	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (9, 14, 4, 3, 4, 1);
+Stonki	10	14	8	1	1	2		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (10, 14, 8, 1, 1, 2);
+Wutz	11	15	4	2	3	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (11, 15, 4, 2, 3, 1);
+Lord	12	16	5	2	3	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (12, 16, 5, 2, 3, 1);
+Lord	13	16	11	1	1	3		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (13, 16, 11, 1, 1, 3);
+Lord	14	16	4	6	8	2		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (14, 16, 4, 6, 8, 2);
+Blue	15	17	5	2	3	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (15, 17, 5, 2, 3, 1);
+Blue	16	17	11	1	1	3		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (16, 17, 11, 1, 1, 3);
+Blue	17	17	4	4	5	2		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (17, 17, 4, 4, 5, 2);
+Yoshie	18	20	4	1	2	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (18, 20, 4, 1, 2, 1);
+Yoshie	19	20	10	1	1	3		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (19, 20, 10, 1, 1, 3);
+Faxe	20	21	4	4	5	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (20, 21, 4, 4, 5, 1);
+Faxe	21	21	5	1	1	2		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (21, 21, 5, 1, 1, 2);
+Faxe	22	21	8	1	1	3		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (22, 21, 8, 1, 1, 3);
+Snore	23	22	4	4	5	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (23, 22, 4, 4, 5, 1);
+Snore	24	22	5	1	1	2		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (24, 22, 5, 1, 1, 2);
+Snore	25	22	8	1	1	3		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (25, 22, 8, 1, 1, 3);
+Sparta	26	23	4	4	5	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (26, 23, 4, 4, 5, 1);
+Sparta	27	23	5	1	1	2		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (27, 23, 5, 1, 1, 2);
+Sparta	28	23	8	1	1	3		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (28, 23, 8, 1, 1, 3);
+Malte	29	24	4	4	5	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (29, 24, 4, 4, 5, 1);
+Malte	30	24	5	1	1	2		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (30, 24, 5, 1, 1, 2);
+Malte	31	24	8	1	1	3		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (31, 24, 8, 1, 1, 3);
+Golden Dragon	32	25	4	4	5	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (32, 25, 4, 4, 5, 1);
+Golden Dragon	33	25	5	1	1	2		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (33, 25, 5, 1, 1, 2);
+Golden Dragon	34	25	8	1	1	3		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (34, 25, 8, 1, 1, 3);
+Riegel	35	26	7	1	1	1		f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (35, 26, 7, 1, 1, 1);
+Ritter	36	27	5	2	2	1		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (36, 27, 5, 2, 2, 1);
+Ritter	37	27	6	3	3	2		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (37, 27, 6, 3, 3, 2);
+Ritter	38	27	4	4	5	2		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (38, 27, 4, 4, 5, 2);
+Sport	39	28	5	2	2	1		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (39, 28, 5, 2, 2, 1);
+Sport	40	28	6	3	3	2		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (40, 28, 6, 3, 3, 2);
+Sport	41	28	4	4	5	2		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (41, 28, 4, 4, 5, 2);
+Schoko	42	29	5	2	2	1		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (42, 29, 5, 2, 2, 1);
+Schoko	43	29	6	3	3	2		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (43, 29, 6, 3, 3, 2);
+Schoko	44	29	4	4	5	2		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (44, 29, 4, 4, 5, 2);
+Lennon	45	30	4	15	15	1		f	Heuschrecken, adult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (45, 30, 4, 15, 15, 1);
+Mc Cartney	46	31	4	15	15	1		f	Heuschrecken, subadult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (46, 31, 4, 15, 15, 1);
+Harrison	47	32	4	15	15	1		f	Heuschrecken, subadult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (47, 32, 4, 15, 15, 1);
+Star	48	33	4	15	15	1		f	Heuschrecken, subadult		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (48, 33, 4, 15, 15, 1);
+Giesela	49	34	1	1	1	1		v	Obstschale		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (49, 34, 1, 1, 1, 1);
+Giesela	50	34	2	1	1	3		v	Obstschale		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (50, 34, 2, 1, 1, 3);
+Günther	51	35	1	1	1	1		v	Rohkost		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (51, 35, 1, 1, 1, 1);
+Günther	52	35	2	1	1	3		v	Rohkost		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (52, 35, 2, 1, 1, 3);
+Shy Guy	53	36	10	1	1	3		v	Fruchtbrei		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (53, 36, 10, 1, 1, 3);
+Shy Guy	54	36	4	1	2	1		v	Fruchtbrei		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (54, 36, 4, 1, 2, 1);
+Nagini	55	37	7	1	1	1		v	Rohkost		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (55, 37, 7, 1, 1, 1);
+Sandy	56	38	4	3	3	1		v	Rohkost		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (56, 38, 4, 3, 3, 1);
+Gaara	57	39	4	3	3	1		v	Rohkost		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (57, 39, 4, 3, 3, 1);
+Tonks	58	40	4	3	3	1		v	Rohkost		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (58, 40, 4, 3, 3, 1);
+NoOne	59	41	4	5	8	1		v	Rohkost		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (59, 41, 4, 5, 8, 1);
+Quitschie	60	44	8	1	1	1		v	Rohkost		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (60, 44, 8, 1, 1, 1);
+Exo	61	1						v	Rohkost		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (61, 1, , , , );
+Terra	62	2						f	Heimchen		INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (62, 2, , , , );
+Diva	63	3									INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (63, 3, , , , );
+Kleopatra	64	4									INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (64, 4, , , , );
+Caesar	65	5									INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (65, 5, , , , );
+Cola	66	9									INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (66, 9, , , , );
+Kiwi	67	18	8	1	1	1					INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (67, 18, 8, 1, 1, 1);
+Charlie	68	19	8	1	1	1					INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (68, 19, 8, 1, 1, 1);
+Koka	69	42									INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (69, 42, , , , );
+Xena	70	43									INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (70, 43, , , , );
+											
+Hinweis:		FU-Nummer	Futterart/-bezeichnung	Alternativen							
+		1	Fische								
+Tierpflege = Ernaehrung (vorher)		2	Wasserschildkröten- / Gupyfutter (Fischpellets)								
+		3	Frischwasser								
+		4	Heimchen								
+		5	Heuschrecken, adult								
+		6	Heuschrecken, subadult								
+		7	Mäuse / Sinte								
+		8	Rohkost								
+		9	Schrimps								
+		10	Fruchtbrei								
+		11	Obstschale								
+
+Verknüfungen:	werden eingetragen bei den Tieren										
+											
+Unterarten				in C°	in …	in cm	in Jahren				
+UA_ID	Bezeichnung	Heimat	Lebensraum	Temperatur	Luftfeuchtigkeit	Groesse	Lebenserwartung	Ernaehrung	Besonderheiten		
+1	Bartagame										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (1, 'Bartagame', '', '', '', '', '', '', '', '');
+2	Chamäleon										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (2, 'Chamäleon', '', '', '', '', '', '', '', '');
+3	Europäische Sumpfschildkröte										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (3, 'Europäische Sumpfschildkröte', '', '', '', '', '', '', '', '');
+4	Grüne Wasseragame										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (4, 'Grüne Wasseragame', '', '', '', '', '', '', '', '');
+5	Kornnatter										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (5, 'Kornnatter', '', '', '', '', '', '', '', '');
+6	Griechische Landschildkröte										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (6, 'Griechische Landschildkröte', '', '', '', '', '', '', '', '');
+7	Leopardengecko										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (7, 'Leopardengecko', '', '', '', '', '', '', '', '');
+8	Madagaskar-Taggecko										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (8, 'Madagaskar-Taggecko', '', '', '', '', '', '', '', '');
+9	Ritteranolis										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (9, 'Ritteranolis', '', '', '', '', '', '', '', '');
+10	Stachelleguan										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (10, 'Stachelleguan', '', '', '', '', '', '', '', '');
+11	Sudan-Schildechse										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (11, 'Sudan-Schildechse', '', '', '', '', '', '', '', '');
+12	Wüsten-Halsbandleguan										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (12, 'Wüsten-Halsbandleguan', '', '', '', '', '', '', '', '');
+13	Zwergbartagame										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (13, 'Zwergbartagame', '', '', '', '', '', '', '', '');
+14	Moschusschildkröte										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (14, 'Moschusschildkröte', '', '', '', '', '', '', '', '');
+15	Königspython										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (15, 'Königspython', '', '', '', '', '', '', '', '');
+16	Sandfische										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (16, 'Sandfische', '', '', '', '', '', '', '', '');
+17	Fächerfingergecko	Nordafrika, Iran, Irak									INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (17, 'Fächerfingergecko', 'Nordafrika, Iran, Irak', '', '', '', '', '', '', '');
+18	Grüner Leguan										INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (18, 'Grüner Leguan', '', '', '', '', '', '', '', '');
+19											INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (19, '', '', '', '', '', '', '', '', '');
+20											INSERT INTO Unterarten (UA_ID, Bezeichnung, Heimat, Lebensraum, Temperatur, Luftfeuchtigkeit, Groesse, Lebenserwartung, Ernaehrung, Besonderheiten) VALUES (20, '', '', '', '', '', '', '', '', '');
+
+	Verknüfungen:	Verbrauchsmittel, Terrarien und Arbeitsdienste sind anhand ihrer IDs in ihren Tabellen zu finden						
+								
+Verbrauch								
+Terrarien	TR_ID	VM_ID	Anzahl	AD_ID		Verbrauchsmittel		
+Bartagamengruppe	1	22	3	7		Holzteil groß		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 22, 3, 7);
+Bartagamengruppe	1	26	1			Schwimmbecken mittel		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 26, 1, );
+Bartagamengruppe	1	18	0			Sand		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 18, 0, );
+Bartagamengruppe	1	13	1			künstliche Topflanze		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 13, 1, );
+Bartagamengruppe	1	4	1			Wärmelampe		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (1, 4, 1, );
+Shy Guy	2	13	1			künstliche Topflanze		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 13, 1, );
+Shy Guy	2	11	1			Topfpflanze mittel		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 11, 1, );
+Shy Guy	2	24	1			Steinplatte		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 24, 1, );
+Shy Guy	2	25	1			Stein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 25, 1, );
+Shy Guy	2	22	3			Holzteil groß		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 22, 3, );
+Shy Guy	2	17	0			Rindenmulch grob		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (2, 17, 0, );
+Günther & Giesela	3	4	1			Wärmelampe		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 4, 1, );
+Günther & Giesela	3	25	4			Stein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 25, 4, );
+Günther & Giesela	3	21	1			Holzteil klein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 21, 1, );
+Günther & Giesela	3	32	1			Aquarium klein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 32, 1, );
+Günther & Giesela	3	33	3			Algen		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 33, 3, );
+Günther & Giesela	3	31	0			Kies		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (3, 31, 0, );
+Cäsar, Cleopatra	4	4	1			Wärmelampe		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 4, 1, );
+Cäsar, Cleopatra	4	8	1			UV-Lampe mittel		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 8, 1, );
+Cäsar, Cleopatra	4	23	3			Häuschen/Höhle		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 23, 3, );
+Cäsar, Cleopatra	4	20	1			Moos		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 20, 1, );
+Cäsar, Cleopatra	4	19	0			Sandimitat		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (4, 19, 0, );
+Koka	5	34	1			Kokosnusschale		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (5, 34, 1, );
+Koka	5	25	3			Stein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (5, 25, 3, );
+Koka	5	23	1			Häuschen/Höhle		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (5, 23, 1, );
+Koka	5	18	0			Sand		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (5, 18, 0, );
+Walburga	6	21	1			Holzteil klein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (6, 21, 1, );
+Walburga	6	23	1			Häuschen/Höhle		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (6, 23, 1, );
+Walburga	6	35	1			Aquarium groß		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (6, 35, 1, );
+Walburga	6	31	0			Kies		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (6, 31, 0, );
+Exo	7	11	1			Topfpflanze mittel		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 11, 1, );
+Exo	7	13	4			künstliche Topflanze		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 13, 4, );
+Exo	7	21	3			Holzteil klein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 21, 3, );
+Exo	7	36	1			Muschel		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 36, 1, );
+Exo	7	32	1			Aquarium klein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 32, 1, );
+Exo	7	20	1			Moos		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 20, 1, );
+Exo	7	16	0			Rindenmulch fein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (7, 16, 0, );
+Terra	8	11	1			Topfpflanze mittel		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 11, 1, );
+Terra	8	13	3			künstliche Topflanze		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 13, 3, );
+Terra	8	24	2			Steinplatte		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 24, 2, );
+Terra	8	25	1			Stein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 25, 1, );
+Terra	8	21	4			Holzteil klein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 21, 4, );
+Terra	8	32	1			Aquarium klein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 32, 1, );
+Terra	8	20	1			Moos		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 20, 1, );
+Terra	8	16	0			Rindenmulch fein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (8, 16, 0, );
+Diva	9	11	1			Topfpflanze mittel		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 11, 1, );
+Diva	9	13	4			künstliche Topflanze		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 13, 4, );
+Diva	9	21	5			Holzteil klein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 21, 5, );
+Diva	9	37	1			Sisalring		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 37, 1, );
+Diva	9	38	1			Dripper		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 38, 1, );
+Diva	9	20	1			Moos		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 20, 1, );
+Diva	9	16	0			Rindenmulch fein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (9, 16, 0, );
+Schnute	10	4	2			Wärmelampe		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 4, 2, );
+Schnute	10	13	2			künstliche Topflanze		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 13, 2, );
+Schnute	10	25	9			Stein		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 25, 9, );
+Schnute	10	29	1			Schwimmbecken groß		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 29, 1, );
+Schnute	10	39	2			Salatschale		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 39, 2, );
+Schnute	10	18	0			Sand		INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (10, 18, 0, );
+Sandfische	11							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (11, , , );
+NoOne	12							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (12, , , );
+Avery	13							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (13, , , );
+Tiana	14							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (14, , , );
+Nagini	15							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (15, , , );
+Schnecken	16							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (16, , , );
+Ritteranolis	17							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (17, , , );
+Beatles	18							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (18, , , );
+Riegel	19							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (19, , , );
+Cola	20							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (20, , , );
+Lola & Diego	21							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (21, , , );
+Paul	22							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (22, , , );
+Zwergagame	23							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (23, , , );
+Kiwi	24							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (24, , , );
+Charlie	25							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (25, , , );
+Papa Wutz	26							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (26, , , );
+Lord	27							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (27, , , );
+Baby blue	28							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (28, , , );
+Klassenraum	29							INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (29, , , );
+								INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (, , , );
+								INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (, , , );
+								INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (, , , );
+								INSERT INTO Verbrauch (TR_ID, VM_ID, Anzahl, AD_ID) VALUES (, , , );
+								
+Hinweis:	Verbrauchsmittel-Nummer	Bezeichnung	Verbrauchsmittel-Nummer	Bezeichnung				
+	1	Tageslichtlampe groß	16	Rindenmulch fein				
+	2	Tageslichtlampe mittel	17	Rindenmulch grob				
+	3	Tageslichtlampe klein	18	Sand				
+	4	Wärmelampe groß	19	Sandimitat				
+	5	Wärmelampe mittel	20	Moos				
+	6	Wärmelampe klein	21	Holzteil klein				
+	7	UV-Lampe groß	22	Holzteil groß				
+	8	UV-Lampe mittel	23	Häuschen/Unterschlupf				
+	9	UV-Lampe klein	24	Steinplatte				
+	10	Topfpflanze klein	25	Stein				
+	11	Topfpflanze mittel	26	Aquariumfilter				
+	12	Topfpflanze groß	27	Schwimmbecken klein				
+	13	künstliche Topflanze	28	Schwimmbecken mittel				
+	14	künstliche Pflanze	29	Schwimmbecken groß				
+	15	künstliches Pflanzenteil	30	Wasserschale				
+
+
+Verknüfungen:	zu jedem Eintrag hier gibt es weitere Eigenschaften in anderer Tabelle (Sand, Pflanzen, Leuchtmittel usw)						
+	in der Tabelle Verbrauch wird mit den Terrarien verknüpft						
+Verbrauchsmittel			in Stück	in Stück	in €		
+VM_ID	Bezeichnung	Beschreibung	Lager_min	Lager_akt	Kosten		
+1	Tageslichtlampe groß	? Röhre von …cm Länge					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (1, 'Tageslichtlampe groß', '? Röhre von …cm Länge', , , );
+2	Tageslichtlampe mittel	? Röhre von …cm Länge					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (2, 'Tageslichtlampe mittel', '? Röhre von …cm Länge', , , );
+3	Tageslichtlampe klein	? Röhre von …cm Länge					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (3, 'Tageslichtlampe klein', '? Röhre von …cm Länge', , , );
+4	Wärmelampe groß	? Strahler mit …cm Durchmesser					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (4, 'Wärmelampe groß', '? Strahler mit …cm Durchmesser', , , );
+5	Wärmelampe mittel	? Strahler mit …cm Durchmesser					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (5, 'Wärmelampe mittel', '? Strahler mit …cm Durchmesser', , , );
+6	Wärmelampe klein	? Strahler mit …cm Durchmesser					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (6, 'Wärmelampe klein', '? Strahler mit …cm Durchmesser', , , );
+7	UV-Lampe groß	? Strahler mit …cm Durchmesser					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (7, 'UV-Lampe groß', '? Strahler mit …cm Durchmesser', , , );
+8	UV-Lampe mittel	? Strahler mit …cm Durchmesser					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (8, 'UV-Lampe mittel', '? Strahler mit …cm Durchmesser', , , );
+9	UV-Lampe klein	? Strahler mit …cm Durchmesser					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (9, 'UV-Lampe klein', '? Strahler mit …cm Durchmesser', , , );
+10	Topfpflanze klein	Sukkulenten, wie …					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (10, 'Topfpflanze klein', 'Sukkulenten, wie …', , , );
+11	Topfpflanze mittel	z.B. Gummibaum					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (11, 'Topfpflanze mittel', 'z.B. Gummibaum', , , );
+12	Topfpflanze groß	z.B. Gummibaum					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (12, 'Topfpflanze groß', 'z.B. Gummibaum', , , );
+13	künstliche Topflanze	vollständiges Imitat im Topf					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (13, 'künstliche Topflanze', 'vollständiges Imitat im Topf', , , );
+14	künstliche Pflanze	aufgesetzt auf einen Stein, häufig Kakteen					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (14, 'künstliche Pflanze', 'aufgesetzt auf einen Stein, häufig Kakteen', , , );
+15	künstliches Pflanzenteil	Ast oder Ranke mit meist kleinen Blättern					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (15, 'künstliches Pflanzenteil', 'Ast oder Ranke mit meist kleinen Blättern', , , );
+16	Rindenmulch fein	häufig in Kombination mit Moos verwendet					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (16, 'Rindenmulch fein', 'häufig in Kombination mit Moos verwendet', , , );
+17	Rindenmulch grob	häufig in Kombination mit Moos verwendet					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (17, 'Rindenmulch grob', 'häufig in Kombination mit Moos verwendet', , , );
+18	Sand	bodenfüllend aufgebracht in unterschiedlichen Höhen					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (18, 'Sand', 'bodenfüllend aufgebracht in unterschiedlichen Höhen', , , );
+19	Sandimitat	direkt und fest auf dem Untergrund aufgebracht					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (19, 'Sandimitat', 'direkt und fest auf dem Untergrund aufgebracht', , , );
+20	Moos	als Ballen in getrockneter Form zusätzlich zu anderem Untergrund 					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (20, 'Moos', 'als Ballen in getrockneter Form zusätzlich zu anderem Untergrund ', , , );
+21	Holzteil klein	Äste und Wurzeln im Durchmesser von ca. 3 bis 5cm					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (21, 'Holzteil klein', 'Äste und Wurzeln im Durchmesser von ca. 3 bis 5cm', , , );
+22	Holzteil groß	Äste und Wurzeln im Durchmesser über 5cm sowie ganze Stamm-/Wurzelteile					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (22, 'Holzteil groß', 'Äste und Wurzeln im Durchmesser über 5cm sowie ganze Stamm-/Wurzelteile', , , );
+23	Häuschen/Unterschlupf	meist verschiebbare Höhlen mit einem Eingang					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (23, 'Häuschen/Unterschlupf', 'meist verschiebbare Höhlen mit einem Eingang', , , );
+24	Steinplatte	häufig quadratisch mit Kantenlänge etwa 20 biw 30 cm					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (24, 'Steinplatte', 'häufig quadratisch mit Kantenlänge etwa 20 biw 30 cm', , , );
+25	Stein	mehr oder weniger rund					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (25, 'Stein', 'mehr oder weniger rund', , , );
+26	Aquariumfilter	sorgt für sauberes Wasser					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (26, 'Aquariumfilter', 'sorgt für sauberes Wasser', , , );
+27	Schwimmbecken klein	Becken in das Tiere gänzlich eintauchen können					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (27, 'Schwimmbecken klein', 'Becken in das Tiere gänzlich eintauchen können', , , );
+28	Schwimmbecken mittel	Becken in das Tiere gänzlich eintauchen können					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (28, 'Schwimmbecken mittel', 'Becken in das Tiere gänzlich eintauchen können', , , );
+29	Schwimmbecken groß	Becken in das Tiere gänzlich eintauchen können					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (29, 'Schwimmbecken groß', 'Becken in das Tiere gänzlich eintauchen können', , , );
+30	Wasserschale	Behältnis zur Wasseraufnahme / Trinken					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (30, 'Wasserschale', 'Behältnis zur Wasseraufnahme / Trinken', , , );
+31	Kies	kleine Steine bodenfüllend aufgebracht in unterschiedlichen Höhen					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (31, 'Kies', 'kleine Steine bodenfüllend aufgebracht in unterschiedlichen Höhen', , , );
+32	Aquarium klein	zum Schwimmen innerhalb eines Terrariums					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (32, 'Aquarium klein', 'zum Schwimmen innerhalb eines Terrariums', , , );
+33	Algen	in Aquarien und Schwimmbecken eingesetzt					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (33, 'Algen', 'in Aquarien und Schwimmbecken eingesetzt', , , );
+34	Kokosnusschale	trockene, halbe Schale					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (34, 'Kokosnusschale', 'trockene, halbe Schale', , , );
+35	Aquarium groß	zum Schwimmen innerhalb eines Terrariums					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (35, 'Aquarium groß', 'zum Schwimmen innerhalb eines Terrariums', , , );
+36	Muschel	halbe Schale in unterschiedlichen Größen, Farben und Formen					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (36, 'Muschel', 'halbe Schale in unterschiedlichen Größen, Farben und Formen', , , );
+37	Sisalring	geschlossener Ring, etwa 30cm Durchmesser					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (37, 'Sisalring', 'geschlossener Ring, etwa 30cm Durchmesser', , , );
+38	Dripper	Gerät, um Trinkwasser tropfenweise abzugeben					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (38, 'Dripper', 'Gerät, um Trinkwasser tropfenweise abzugeben', , , );
+39	Salatschale	Behältnis zur Bereitstellung von Salat und Gemüse					INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (39, 'Salatschale', 'Behältnis zur Bereitstellung von Salat und Gemüse', , , );
+40							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (40, '', '', , , );
+41							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (41, '', '', , , );
+42							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (42, '', '', , , );
+43							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (43, '', '', , , );
+44							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (44, '', '', , , );
+45							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (45, '', '', , , );
+46							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (46, '', '', , , );
+47							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (47, '', '', , , );
+48							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (48, '', '', , , );
+49							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (49, '', '', , , );
+50							INSERT INTO Verbrauchsmittel (VM_ID, Bezeichnung, Beschreibung, Lager_min, Lager_akt, Kosten) VALUES (50, '', '', , , );
+							
+erdachte Einträge - bitte PRÜFEN bzw ERWEITERN/ERSETZEN							
+
+
+	Verknüfungen:	in der Tabelle Verbrauch wird mit den Terrarien verknüpft					
+							
+	Wasserbecken		in cm	in cm	in cm		
+	VM_ID	bepflanzt	Breite	Hoehe	Tiefe		
+Schwimmbecken klein	27	false					INSERT INTO Wasserbecken (VM_ID, bepflanzt, Breite, Hoehe, Tiefe) VALUES (27, false, , , );
+Schwimmbecken mittel	28	false	80	15	55		INSERT INTO Wasserbecken (VM_ID, bepflanzt, Breite, Hoehe, Tiefe) VALUES (28, false, 80, 15, 55);
+Schwimmbecken groß	29	false	110	15	45		INSERT INTO Wasserbecken (VM_ID, bepflanzt, Breite, Hoehe, Tiefe) VALUES (29, false, 110, 15, 45);
+Wasserschale	30	false					INSERT INTO Wasserbecken (VM_ID, bepflanzt, Breite, Hoehe, Tiefe) VALUES (30, false, , , );
+Aquarium klein	32	false	40	30	25		INSERT INTO Wasserbecken (VM_ID, bepflanzt, Breite, Hoehe, Tiefe) VALUES (32, false, 40, 30, 25);
+Aquarium groß	35	true	70	15	50		INSERT INTO Wasserbecken (VM_ID, bepflanzt, Breite, Hoehe, Tiefe) VALUES (35, true, 70, 15, 50);
+
+
+
+
+
+
+

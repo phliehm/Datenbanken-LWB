@@ -1,0 +1,89 @@
+﻿;Verknüfungen:;die Tiere, Futter & Arbeitsdienst findet man anhand ihrer ID in anderer Tabelle;;;;;;;;;
+;;;;;;;;;;;
+Tierpflege;;;;;;"1: Hauptmahl
+2: alternatives Hauptmahl
+3: Nebenmahl";;;;;
+Tiere;AD_ID;TI_ID;FU_ID;Menge_min;Menge_max;Mahlkategorie;;;Futter;;
+Tiana;1;6;4;1;2;1;;f;Fische;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (1, 6, 4, 1, 2, 1);"
+Avery;2;7;4;1;2;1;;f;Fische;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (2, 7, 4, 1, 2, 1);"
+Walburga;3;8;1;2;2;1;;f;Fische;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (3, 8, 1, 2, 2, 1);"
+Walburga;4;8;2;1;1;3;;f;Mäuse / Sinte;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (4, 8, 2, 1, 1, 3);"
+Lola;5;10;4;3;4;1;;f;Mäuse / Sinte;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (5, 10, 4, 3, 4, 1);"
+Belle;6;11;4;3;4;1;;f;Wasserschildkröten- / Gupyfutter (Fischpellets);;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (6, 11, 4, 3, 4, 1);"
+Diego;7;12;4;3;4;1;;f;Wasserschildkröten- / Gupyfutter (Fischpellets);;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (7, 12, 4, 3, 4, 1);"
+Variana;8;13;4;3;4;1;;f;Wasserschildkröten- / Gupyfutter (Fischpellets);;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (8, 13, 4, 3, 4, 1);"
+Stonki;9;14;4;3;4;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (9, 14, 4, 3, 4, 1);"
+Stonki;10;14;8;1;1;2;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (10, 14, 8, 1, 1, 2);"
+Wutz;11;15;4;2;3;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (11, 15, 4, 2, 3, 1);"
+Lord;12;16;5;2;3;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (12, 16, 5, 2, 3, 1);"
+Lord;13;16;11;1;1;3;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (13, 16, 11, 1, 1, 3);"
+Lord;14;16;4;6;8;2;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (14, 16, 4, 6, 8, 2);"
+Blue;15;17;5;2;3;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (15, 17, 5, 2, 3, 1);"
+Blue;16;17;11;1;1;3;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (16, 17, 11, 1, 1, 3);"
+Blue;17;17;4;4;5;2;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (17, 17, 4, 4, 5, 2);"
+Yoshie;18;20;4;1;2;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (18, 20, 4, 1, 2, 1);"
+Yoshie;19;20;10;1;1;3;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (19, 20, 10, 1, 1, 3);"
+Faxe;20;21;4;4;5;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (20, 21, 4, 4, 5, 1);"
+Faxe;21;21;5;1;1;2;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (21, 21, 5, 1, 1, 2);"
+Faxe;22;21;8;1;1;3;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (22, 21, 8, 1, 1, 3);"
+Snore;23;22;4;4;5;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (23, 22, 4, 4, 5, 1);"
+Snore;24;22;5;1;1;2;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (24, 22, 5, 1, 1, 2);"
+Snore;25;22;8;1;1;3;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (25, 22, 8, 1, 1, 3);"
+Sparta;26;23;4;4;5;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (26, 23, 4, 4, 5, 1);"
+Sparta;27;23;5;1;1;2;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (27, 23, 5, 1, 1, 2);"
+Sparta;28;23;8;1;1;3;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (28, 23, 8, 1, 1, 3);"
+Malte;29;24;4;4;5;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (29, 24, 4, 4, 5, 1);"
+Malte;30;24;5;1;1;2;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (30, 24, 5, 1, 1, 2);"
+Malte;31;24;8;1;1;3;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (31, 24, 8, 1, 1, 3);"
+Golden Dragon;32;25;4;4;5;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (32, 25, 4, 4, 5, 1);"
+Golden Dragon;33;25;5;1;1;2;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (33, 25, 5, 1, 1, 2);"
+Golden Dragon;34;25;8;1;1;3;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (34, 25, 8, 1, 1, 3);"
+Riegel;35;26;7;1;1;1;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (35, 26, 7, 1, 1, 1);"
+Ritter;36;27;5;2;2;1;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (36, 27, 5, 2, 2, 1);"
+Ritter;37;27;6;3;3;2;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (37, 27, 6, 3, 3, 2);"
+Ritter;38;27;4;4;5;2;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (38, 27, 4, 4, 5, 2);"
+Sport;39;28;5;2;2;1;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (39, 28, 5, 2, 2, 1);"
+Sport;40;28;6;3;3;2;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (40, 28, 6, 3, 3, 2);"
+Sport;41;28;4;4;5;2;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (41, 28, 4, 4, 5, 2);"
+Schoko;42;29;5;2;2;1;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (42, 29, 5, 2, 2, 1);"
+Schoko;43;29;6;3;3;2;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (43, 29, 6, 3, 3, 2);"
+Schoko;44;29;4;4;5;2;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (44, 29, 4, 4, 5, 2);"
+Lennon;45;30;4;15;15;1;;f;Heuschrecken, adult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (45, 30, 4, 15, 15, 1);"
+Mc Cartney;46;31;4;15;15;1;;f;Heuschrecken, subadult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (46, 31, 4, 15, 15, 1);"
+Harrison;47;32;4;15;15;1;;f;Heuschrecken, subadult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (47, 32, 4, 15, 15, 1);"
+Star;48;33;4;15;15;1;;f;Heuschrecken, subadult;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (48, 33, 4, 15, 15, 1);"
+Giesela;49;34;1;1;1;1;;v;Obstschale;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (49, 34, 1, 1, 1, 1);"
+Giesela;50;34;2;1;1;3;;v;Obstschale;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (50, 34, 2, 1, 1, 3);"
+Günther;51;35;1;1;1;1;;v;Rohkost;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (51, 35, 1, 1, 1, 1);"
+Günther;52;35;2;1;1;3;;v;Rohkost;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (52, 35, 2, 1, 1, 3);"
+Shy Guy;53;36;10;1;1;3;;v;Fruchtbrei;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (53, 36, 10, 1, 1, 3);"
+Shy Guy;54;36;4;1;2;1;;v;Fruchtbrei;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (54, 36, 4, 1, 2, 1);"
+Nagini;55;37;7;1;1;1;;v;Rohkost;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (55, 37, 7, 1, 1, 1);"
+Sandy;56;38;4;3;3;1;;v;Rohkost;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (56, 38, 4, 3, 3, 1);"
+Gaara;57;39;4;3;3;1;;v;Rohkost;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (57, 39, 4, 3, 3, 1);"
+Tonks;58;40;4;3;3;1;;v;Rohkost;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (58, 40, 4, 3, 3, 1);"
+NoOne;59;41;4;5;8;1;;v;Rohkost;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (59, 41, 4, 5, 8, 1);"
+Quitschie;60;44;8;1;1;1;;v;Rohkost;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (60, 44, 8, 1, 1, 1);"
+Exo;61;1;;;;;;v;Rohkost;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (61, 1, , , , );"
+Terra;62;2;;;;;;f;Heimchen;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (62, 2, , , , );"
+Diva;63;3;;;;;;;;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (63, 3, , , , );"
+Kleopatra;64;4;;;;;;;;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (64, 4, , , , );"
+Caesar;65;5;;;;;;;;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (65, 5, , , , );"
+Cola;66;9;;;;;;;;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (66, 9, , , , );"
+Kiwi;67;18;8;1;1;1;;;;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (67, 18, 8, 1, 1, 1);"
+Charlie;68;19;8;1;1;1;;;;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (68, 19, 8, 1, 1, 1);"
+Koka;69;42;;;;;;;;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (69, 42, , , , );"
+Xena;70;43;;;;;;;;;"INSERT INTO Tierpflege (AD_ID, TI_ID, FU_ID, Menge_min, Menge_max, Mahlkategorie) VALUES (70, 43, , , , );"
+;;;;;;;;;;;
+Hinweis:;;FU-Nummer;Futterart/-bezeichnung;Alternativen;;;;;;;
+;;1;Fische;;;;;;;;
+Tierpflege = Ernaehrung (vorher);;2;Wasserschildkröten- / Gupyfutter (Fischpellets);;;;;;;;
+;;3;Frischwasser;;;;;;;;
+;;4;Heimchen;;;;;;;;
+;;5;Heuschrecken, adult;;;;;;;;
+;;6;Heuschrecken, subadult;;;;;;;;
+;;7;Mäuse / Sinte;;;;;;;;
+;;8;Rohkost;;;;;;;;
+;;9;Schrimps;;;;;;;;
+;;10;Fruchtbrei;;;;;;;;
+;;11;Obstschale;;;;;;;;

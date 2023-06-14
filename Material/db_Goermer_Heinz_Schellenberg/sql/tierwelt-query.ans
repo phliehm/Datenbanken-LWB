@@ -1,0 +1,204 @@
+1) SELECT * FROM Unterarten;
+
+ ua_id |         bezeichnung          |         heimat         | lebensraum | temperatur | luftfeuchtigkeit | groesse | lebenserwartung | ernaehrung | besonderheiten 
+-------+------------------------------+------------------------+------------+------------+------------------+---------+-----------------+------------+----------------
+     1 | Bartagame                    |                        |            |            |                  |         |                 |            | 
+     2 | Chamäleon                    |                        |            |            |                  |         |                 |            | 
+     3 | Europäische Sumpfschildkröte |                        |            |            |                  |         |                 |            | 
+     4 | Grüne Wasseragame            |                        |            |            |                  |         |                 |            | 
+     5 | Kornnatter                   |                        |            |            |                  |         |                 |            | 
+     6 | Griechische Landschildkröte  |                        |            |            |                  |         |                 |            | 
+     7 | Leopardengecko               |                        |            |            |                  |         |                 |            | 
+     8 | Madagaskar-Taggecko          |                        |            |            |                  |         |                 |            | 
+     9 | Ritteranolis                 |                        |            |            |                  |         |                 |            | 
+    10 | Stachelleguan                |                        |            |            |                  |         |                 |            | 
+    11 | Sudan-Schildechse            |                        |            |            |                  |         |                 |            | 
+    12 | Wüsten-Halsbandleguan        |                        |            |            |                  |         |                 |            | 
+    13 | Zwergbartagame               |                        |            |            |                  |         |                 |            | 
+    14 | Moschusschildkröte           |                        |            |            |                  |         |                 |            | 
+    15 | Königspython                 |                        |            |            |                  |         |                 |            | 
+    16 | Sandfische                   |                        |            |            |                  |         |                 |            | 
+    17 | Fächerfingergecko            | Nordafrika, Iran, Irak |            |            |                  |         |                 |            | 
+    18 | Grüner Leguan                |                        |            |            |                  |         |                 |            | 
+(18 Zeilen)
+
+
+2) SELECT Name FROM Tiere;
+
+     name      
+---------------
+ Exo
+ Terra
+ Diva
+ Kleopatra
+ Caesar
+ Tiana
+ Avery
+ Walburga
+ Cola
+ Lola
+ Belle
+ Diego
+ Variana
+ Stonki
+ Wutz
+ Lord
+ Blue
+ Kiwi
+ Charlie
+ Yoshie
+ Faxe
+ Snore
+ Sparta
+ Malte
+ Golden Dragon
+ Riegel
+ Ritter
+ Sport
+ Schoko
+ Lennon
+ McCartney
+ Harrison
+ Starr
+ Giesela
+ Günther
+ Shy Guy
+ Nagini
+ Sandy
+ Gaara
+ Tonks
+ NoOne
+ Koka
+ Xena
+ Quitschie
+(44 Zeilen)
+
+
+3) SELECT Name FROM Tiere WHERE Geschlecht = 'W';
+
+   name    
+-----------
+ Diva
+ Kleopatra
+ Tiana
+ Walburga
+ Lola
+ Belle
+ Variana
+ Stonki
+ Blue
+ Kiwi
+ Faxe
+ Snore
+ Sparta
+ Giesela
+ Xena
+(15 Zeilen)
+
+
+4) SELECT * FROM Tiere NATURAL JOIN Unterarten;
+
+ ua_id | ti_id |     name      | geschlecht | laenge | gewicht | zugangsdatum | tr_id |         bezeichnung          |         heimat         | lebensraum | temperatur | luftfeuchtigkeit | groesse | lebenserwartung | ernaehrung | besonderheiten 
+-------+-------+---------------+------------+--------+---------+--------------+-------+------------------------------+------------------------+------------+------------+------------------+---------+-----------------+------------+----------------
+     4 |     1 | Exo           | M          |     54 |     229 |              |     7 | Grüne Wasseragame            |                        |            |            |                  |         |                 |            | 
+     4 |     2 | Terra         | M          |     52 |     221 |              |     8 | Grüne Wasseragame            |                        |            |            |                  |         |                 |            | 
+     2 |     3 | Diva          | W          |     21 |      80 |              |     9 | Chamäleon                    |                        |            |            |                  |         |                 |            | 
+     7 |     4 | Kleopatra     | W          |     22 |      40 |              |     4 | Leopardengecko               |                        |            |            |                  |         |                 |            | 
+     7 |     5 | Caesar        | M          |     20 |      41 |              |     4 | Leopardengecko               |                        |            |            |                  |         |                 |            | 
+     7 |     6 | Tiana         | W          |     18 |      41 |              |       | Leopardengecko               |                        |            |            |                  |         |                 |            | 
+     7 |     7 | Avery         | M          |     24 |      58 |              |       | Leopardengecko               |                        |            |            |                  |         |                 |            | 
+     3 |     8 | Walburga      | W          |     21 |         |              |     6 | Europäische Sumpfschildkröte |                        |            |            |                  |         |                 |            | 
+    12 |     9 | Cola          | M          |     30 |      45 |              |    20 | Wüsten-Halsbandleguan        |                        |            |            |                  |         |                 |            | 
+     7 |    10 | Lola          | W          |     21 |      50 |              |    21 | Leopardengecko               |                        |            |            |                  |         |                 |            | 
+     7 |    11 | Belle         | W          |     14 |      30 |              |    21 | Leopardengecko               |                        |            |            |                  |         |                 |            | 
+     7 |    12 | Diego         | M          |     21 |      47 |              |    21 | Leopardengecko               |                        |            |            |                  |         |                 |            | 
+     7 |    13 | Variana       | W          |     22 |         |              |    21 | Leopardengecko               |                        |            |            |                  |         |                 |            | 
+    13 |    14 | Stonki        | W          |     20 |      50 |              |    31 | Zwergbartagame               |                        |            |            |                  |         |                 |            | 
+     1 |    15 | Wutz          | M          |     25 |     230 |              |    26 | Bartagame                    |                        |            |            |                  |         |                 |            | 
+     4 |    16 | Lord          | M          |        |         |              |    27 | Grüne Wasseragame            |                        |            |            |                  |         |                 |            | 
+     4 |    17 | Blue          | W          |     60 |     173 |              |    28 | Grüne Wasseragame            |                        |            |            |                  |         |                 |            | 
+     6 |    18 | Kiwi          | W          |     17 |         |              |    24 | Griechische Landschildkröte  |                        |            |            |                  |         |                 |            | 
+     6 |    19 | Charlie       | M          |        |         |              |    25 | Griechische Landschildkröte  |                        |            |            |                  |         |                 |            | 
+     8 |    20 | Yoshie        | M          |     18 |         |              |    32 | Madagaskar-Taggecko          |                        |            |            |                  |         |                 |            | 
+     1 |    21 | Faxe          | W          |     41 |     268 |              |    30 | Bartagame                    |                        |            |            |                  |         |                 |            | 
+     1 |    22 | Snore         | W          |     29 |     287 |              |    30 | Bartagame                    |                        |            |            |                  |         |                 |            | 
+     1 |    23 | Sparta        | W          |     42 |     205 |              |    30 | Bartagame                    |                        |            |            |                  |         |                 |            | 
+     1 |    24 | Malte         | M          |     49 |     324 |              |    30 | Bartagame                    |                        |            |            |                  |         |                 |            | 
+    11 |    25 | Golden Dragon | M          |     42 |     283 |              |    30 | Sudan-Schildechse            |                        |            |            |                  |         |                 |            | 
+     5 |    26 | Riegel        | M          |        |         |              |    19 | Kornnatter                   |                        |            |            |                  |         |                 |            | 
+     9 |    27 | Ritter        | U          |        |         |              |    17 | Ritteranolis                 |                        |            |            |                  |         |                 |            | 
+     9 |    28 | Sport         | U          |        |         |              |    17 | Ritteranolis                 |                        |            |            |                  |         |                 |            | 
+     9 |    29 | Schoko        | U          |        |         |              |    17 | Ritteranolis                 |                        |            |            |                  |         |                 |            | 
+    10 |    30 | Lennon        | U          |        |         |              |    18 | Stachelleguan                |                        |            |            |                  |         |                 |            | 
+    10 |    31 | McCartney     | U          |        |         |              |    18 | Stachelleguan                |                        |            |            |                  |         |                 |            | 
+    10 |    32 | Harrison      | U          |        |         |              |    18 | Stachelleguan                |                        |            |            |                  |         |                 |            | 
+    10 |    33 | Starr         | U          |        |         |              |    18 | Stachelleguan                |                        |            |            |                  |         |                 |            | 
+    14 |    34 | Giesela       | W          |        |         |              |     3 | Moschusschildkröte           |                        |            |            |                  |         |                 |            | 
+    14 |    35 | Günther       | M          |        |         |              |     3 | Moschusschildkröte           |                        |            |            |                  |         |                 |            | 
+     8 |    36 | Shy Guy       | M          |        |         |              |     2 | Madagaskar-Taggecko          |                        |            |            |                  |         |                 |            | 
+    15 |    37 | Nagini        | U          |        |         |              |    15 | Königspython                 |                        |            |            |                  |         |                 |            | 
+    16 |    38 | Sandy         | U          |        |         |              |    11 | Sandfische                   |                        |            |            |                  |         |                 |            | 
+    16 |    39 | Gaara         | U          |        |         |              |    11 | Sandfische                   |                        |            |            |                  |         |                 |            | 
+    16 |    40 | Tonks         | U          |        |         |              |    11 | Sandfische                   |                        |            |            |                  |         |                 |            | 
+    17 |    41 | NoOne         | U          |        |         |              |    12 | Fächerfingergecko            | Nordafrika, Iran, Irak |            |            |                  |         |                 |            | 
+    18 |    43 | Xena          | W          |        |         |              |       | Grüner Leguan                |                        |            |            |                  |         |                 |            | 
+(42 Zeilen)
+
+
+5) SELECT Name FROM Tiere NATURAL JOIN (SELECT * FROM Unterarten WHERE Bezeichnung = 'Bartagame') AS xyz;
+
+  name  
+--------
+ Wutz
+ Faxe
+ Snore
+ Sparta
+ Malte
+(5 Zeilen)
+
+
+6) SELECT Name FROM Tiere NATURAL JOIN Terrarien NATURAL JOIN (SELECT * FROM Habitattypen WHERE Bezeichnung = 'Wüste') AS xyz;
+
+  name   
+---------
+ Cola
+ Kiwi
+ Charlie
+ NoOne
+(4 Zeilen)
+
+
+7) SELECT Faelligkeit FROM Tierpflege NATURAL JOIN Arbeitsdienste NATURAL JOIN (SELECT AT_ID FROM Arbeitsdiensttypen WHERE Bezeichnung LIKE 'Fütterung%') AS x NATURAL JOIN (SELECT TI_ID FROM Tiere WHERE Name = 'Exo') AS y;
+
+ faelligkeit 
+-------------
+ 2022-06-15
+(1 Zeile)
+
+
+8) SELECT AD_ID, Faelligkeit, Bezeichnung, Beschreibung FROM Arbeitsdiensttypen NATURAL JOIN (SELECT * FROM Arbeitsdienste WHERE DATE_PART('week',Faelligkeit) = DATE_PART('week', CURRENT_DATE)) AS xyz ORDER BY Faelligkeit;
+
+ ad_id | faelligkeit |         bezeichnung         |                          beschreibung                          
+-------+-------------+-----------------------------+----------------------------------------------------------------
+     1 | 2022-06-07  | Fütterung carnivor 1x/Woche | Futterreste entsorgen, Futtertiere zum Jagen ins Gehege setzen
+     6 | 2022-06-10  | Fütterung carnivor 1x/Woche | Futterreste entsorgen, Futtertiere zum Jagen ins Gehege setzen
+     7 | 2022-06-12  | Fütterung carnivor 1x/Woche | Futterreste entsorgen, Futtertiere zum Jagen ins Gehege setzen
+(3 Zeilen)
+
+
+9) SELECT Faelligkeit FROM (SELECT TR_ID FROM Tiere WHERE Name = 'Exo') AS x NATURAL JOIN Terrarien NATURAL JOIN Verbrauch NATURAL JOIN Arbeitsdienste NATURAL JOIN (SELECT AT_ID FROM Arbeitsdiensttypen WHERE Bezeichnung = 'Frischwasser') AS y;
+
+ faelligkeit 
+-------------
+ 2022-07-01
+(1 Zeile)
+
+
+10) SELECT * FROM Terrarien NATURAL JOIN (SELECT TR_ID, COUNT(*) FROM (SELECT TR_ID, AD_ID FROM Verbrauch UNION SELECT TR_ID,AD_ID FROM Terrariumpflege) AS x GROUP BY TR_ID HAVING COUNT(*) > 1) as y;
+
+ tr_id |       name       | beschreibung | raumnummer | breite | breite_vorn | tiefe | hoehe | ht_id | count 
+-------+------------------+--------------+------------+--------+-------------+-------+-------+-------+-------
+     1 | Bartagamengruppe |              |            |    366 |         366 |       |   210 |     2 |    12
+     7 | Exo              |              |            |     95 |          95 |    64 |   140 |     1 |     2
+(2 Zeilen)
+
