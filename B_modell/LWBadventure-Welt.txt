@@ -25,7 +25,7 @@ Räumen aufhalten – sogar gleichzeitig in mehreren.
 
 Die Veranstaltungen werden von einer DozentenIn in einem Kursraum 
 gehalten. Dabei können sie von einer anderen DozentIn unterstützt 
-werden. Veranstaltungen haben einen Titel, eine 
+werden. Veranstaltungen haben einen Titel, ein Abkürzung (Kürzel) eine 
 Semesterwochenstundenzahl und gehören zu einem Themengebiet.
 
 Zu den Veranstaltungen kann es Minispiele (oder Minigames) geben, aber 
