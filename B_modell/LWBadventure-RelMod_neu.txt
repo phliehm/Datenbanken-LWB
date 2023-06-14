@@ -11,7 +11,7 @@ Dozent_innen (! NPCNr, Lieblingsgetränk)
 
 sonstigeNPCs (! NPCNr, Funktion)
 
-Veranstaltungen ($ VNr, VName, Kürzel, SWS, GebietNr, ! NPCNr, ! RaumNr)
+Veranstaltungen ($ VNr, VName, Kürzel, SWS, ! GebietNr)
 
 Themengebiete ($ GebietNr, GebietName)
 
