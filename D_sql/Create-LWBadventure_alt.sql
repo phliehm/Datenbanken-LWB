@@ -17,22 +17,24 @@
 -- Folgende Tabellen werden implementiert:
 -- $ = Schlüssel; ! = Fremdschlüssel
 
--- npcs ($npcNr, npcName) 				NPCs - Non-Playing-Character
--- dozent_innen (!npcNr, lieblingsgetraenk)
--- sonstigeNPCs (!npcNr, aufgabe)
--- raeume ($raumNr, raumName, ort, funktion)
--- themengebiete ($gebietNr, gebietName)
--- veranstaltungen ($vNr, vName, kuerzel, sws, !gebietNr)
--- spieler_innen ($spNr, spName, schluesselanzahl, !raumNr)
--- minigames ($gameNr, gameName, !vNr)
--- spielstaende (!gameNr, !spNr, Note, Punktzahl)
--- aufenthaltsorte (!npcNr, !raumNr)
--- unterricht (!vNr, !npcNr, !raumNr)							
--- assistenz (!vNr,!npcNr)
+-- npcs(npcNr$,npcName) 				NPCs - Non-Playing-Character (Mitarbeiter) 
+-- dozentInnen(npcNr !$,lieblingsgetraenk)
+-- sNPCs(npcsNr $!,funktion)
+-- raeum(raumNr $!, raumName, ort)
+-- kursraeume(semster,raumNr !)
+-- sRaeume(raumNr $!,sFunktion)										-- sinnvoll?!
+-- themengebiete(themenNr $,themenname)
+-- veranstaltungen(vNr$, vName, kuerzel, sws, themenNr !)
+-- spielerInnen(spNr$, spName, schuesselanzahl, raumNr!)
+-- minigames(gameNr$, gameName, vNr!)
+-- spielstaende(gameNr!, spNr!, Note, Punktzahl)
+-- aufenthalt(npcnr!,raumNr!)
+-- unterricht(vNr !, npc !, raumNr !)							
+-- assistenz(vNr !,npcNr !)
 
 
 
--- npcs ($npcNr, npcName) 				NPCs - Non-Playing-Character
+-- npcs(npcNr$,npcName) 		NPCs - Non-Playing-Character (Mitarbeiter) 
 CREATE TABLE npcs (
   npcNr 		INTEGER				NOT NULL,	
   npcName 		VARCHAR (50)		NOT NULL,
@@ -41,35 +43,34 @@ CREATE TABLE npcs (
 COMMENT ON Table npcs IS 'Miniwelt LWBadventure';
 
 
--- dozent_innen (!npcNr, lieblingsgetraenk)
-CREATE TABLE dozent_innen (
-  npcNr 				INTEGER 			REFERENCES npcs (npcNr),	-- NPC-Nummer
-  lieblingsgetraenk		VARCHAR (100)		NOT NULL,					-- jede/r Dozent_in braucht ein Lieblingsgetränk
-  CONSTRAINT dozent_innenKEY PRIMARY KEY (npcNr)
+-- dozentInnen(npcNr !$,lieblingsgetraenk)
+CREATE TABLE dozentInnen (
+  npcNr 				INTEGER 			REFERENCES npcs (npcNr),		-- NPC-Nummer
+  lieblingsgetraenk		VARCHAR (100)		NOT NULL,	-- jeder Dozent braucht ein Lieblingsgetränk
+  CONSTRAINT dozentInnenKEY PRIMARY KEY (npcNr)
 );
-COMMENT ON Table dozent_innen IS 'Miniwelt LWBadventure';
+COMMENT ON Table dozentInnen IS 'Miniwelt LWBadventure';
 
 
--- sonstigeNPCs (!npcNr, aufgabe)
-CREATE TABLE sonstigeNPCs (
-  npcNr 		INTEGER 			REFERENCES npcs (npcNr),			-- NPC-Nummer
-  aufgabe		VARCHAR (100)		NOT NULL,							-- jede/r sonstige NPC hat eine Aufgabe
-  CONSTRAINT sonstigeNPCsKEY PRIMARY KEY (npcNr)
+-- sNPCs(npcsNr $!,funktion)
+CREATE TABLE sNPCs (
+  npcNr 		INTEGER 			REFERENCES npcs (npcNr),		-- NPC-Nummer
+  funktion		VARCHAR (100)		NOT NULL,	-- jeder Mitarbeiter hat eine Funktion
+  CONSTRAINT sNPCKEY PRIMARY KEY (npcNr)
 );
-COMMENT ON Table sonstigeNPCs IS 'Miniwelt LWBadventure';
+COMMENT ON Table sNPCs IS 'Miniwelt LWBadventure';
 
 
--- raeume ($raumNr, raumName, ort, funktion)
+-- raeum(raumNr $!, raumName, ort)
 CREATE TABLE raeume (
   raumNr 		INTEGER				NOT NULL,
   raumName		VARCHAR (50)		NOT NULL,
   ort			VARCHAR (50)		NOT NULL,
-  funktion		VARCHAR (50)		NOT NULL,							-- jeder Raum hat eine Funktion
   CONSTRAINT raumKEY PRIMARY KEY (raumNr)
 );
 COMMENT ON Table raeume IS 'Miniwelt LWBadventure';
 
-/*
+
 -- kursraeume(semster,raumNr !)
 CREATE TABLE kursraeume (
   semester		INTEGER				NOT NULL DEFAULT 1,
@@ -90,45 +91,45 @@ CREATE TABLE sRaeume (
   CONSTRAINT sRaumKEY PRIMARY KEY (raumNr)
 );
 COMMENT ON Table sRaeume IS 'Miniwelt LWBadventure';
-*/
 
--- themengebiete ($gebietNr, gebietName)
+
+-- themengebiete(themenNr $,themenname)
 CREATE TABLE themengebiete (
-  gebietNr 		INTEGER				NOT NULL,
-  gebietName	VARCHAR (100)		NOT NULL,
-  CONSTRAINT themengebieteKEY PRIMARY KEY (gebietNr)
+  themenNr 		INTEGER				NOT NULL,
+  themenname	VARCHAR (100)		NOT NULL,
+  CONSTRAINT themengebieteKEY PRIMARY KEY (themenNr)
 );
 COMMENT ON Table themengebiete IS 'Miniwelt LWBadventure';
 
 
--- veranstaltungen ($vNr, vName, kuerzel, sws, !gebietNr)
+-- veranstaltungen(vNr$, vName, kuerzel, sws, themenNr !)
 CREATE TABLE veranstaltungen (
   vNr 			INTEGER				NOT NULL,	-- Veranstaltungsnummer
   vName			VARCHAR (50)		NOT NULL,
   kuerzel		VARCHAR (5)			NOT NULL,
   sws			INTEGER				CHECK (sws > 0),
-  gebietNr		INTEGER				REFERENCES themengebiete (gebietNr),
+  themenNr		INTEGER				REFERENCES themengebiete (themenNr),
 --  CONSTRAINT vRaumNrCHECK CHECK (semester BETWEEN 1 AND 4),
 --  gelesenVon INTEGER REFERENCES Professoren (PersNr)
 --    ON DELETE SET NULL
 --    ON UPDATE CASCADE,
-  CONSTRAINT veranstaltungenKEY PRIMARY KEY (vNr)
+  CONSTRAINT veranstaltungKEY PRIMARY KEY (vNr)
 );
 COMMENT ON Table veranstaltungen IS 'Miniwelt LWBadventure';
 
 
--- spieler_innen ($spNr, spName, schluesselanzahl, !raumNr)
-CREATE TABLE spieler_innen (
+-- spielerInnen(spNr$, spName, schuesselanzahl, raumNr!)
+CREATE TABLE spielerInnen (
   spNr	 		  	INTEGER				NOT NULL, 	--CHECK (MatrNr BETWEEN 10000 AND 99999),
   spName 		  	VARCHAR (50)		NOT NULL,
   schuesselanzahl	INTEGER				NOT NULL,
   raumNr 		 	INTEGER 			REFERENCES raeume (raumNr) DEFAULT 1,
-  CONSTRAINT spieler_innenKEY PRIMARY KEY (spNr)
+  CONSTRAINT spielerInnenKEY PRIMARY KEY (spNr)
 );
-COMMENT ON Table spieler_innen IS 'Miniwelt LWBadventure';
+COMMENT ON Table spielerInnen IS 'Miniwelt LWBadventure';
 
 
--- minigames ($gameNr, gameName, !vNr)
+-- minigames(gameNr$, gameName, vNr!)
 CREATE TABLE minigames(
   gameNr 		INTEGER				NOT NULL,	-- oder CHECK (vNr > 0),
   gameName		VARCHAR (50)		NOT NULL,
@@ -150,37 +151,37 @@ CREATE DOMAIN NOTEN
 			6.0));
 
 
--- spielstaende (!gameNr, !spNr, Note, Punktzahl)
+-- spielstaende(gameNr!, spNr!, Note, Punktzahl)
 CREATE TABLE spielstaende (
   gameNr 		INTEGER			REFERENCES minigames (gameNr),
-  spNr			INTEGER			REFERENCES spieler_innen (spNr),
+  spNr			INTEGER			REFERENCES spielerInnen (spNr),
   note			NOTEN			,-- nur spezielle Noten
   punkte		INTEGER			NOT NULL
 );
 COMMENT ON Table spielstaende IS 'Miniwelt LWBadventure';
 
 
--- aufenthaltsorte (!npcNr, !raumNr)
-CREATE TABLE aufenthaltsorte (
-  npcnr 		INTEGER			REFERENCES sonstigeNPCs (npcnr),				-- Nummer des sonstigen NPCs im Raum
+-- aufenthalt(npcnr!,raumNr!)
+CREATE TABLE aufenthalt (
+  npcnr 		INTEGER			REFERENCES sNPCs (npcnr),	-- Nummer des sonstigen NPCs im Raum
   raumNr		INTEGER			REFERENCES raeume (raumNr)
 );
-COMMENT ON Table aufenthaltsorte IS 'Miniwelt LWBadventure';
+COMMENT ON Table aufenthalt IS 'Miniwelt LWBadventure';
 
 
--- unterricht (!vNr, !npcNr, !raumNr)							
+-- unterricht(vNr !, npc !, raumNr !)							
 CREATE TABLE unterricht (
   vNr 			INTEGER			REFERENCES veranstaltungen (vNr),
-  npcNr			INTEGER			REFERENCES dozent_innen (npcNr),
-  raumNr		INTEGER			REFERENCES raeume (raumNr)
+  npcNr			INTEGER			REFERENCES dozentInnen (npcNr),
+  raumNr		INTEGER			REFERENCES kursraeume (raumNr)
 );
 COMMENT ON Table unterricht IS 'Miniwelt LWBadventure';
 
 
--- assistenz (!vNr,!npcNr)
+-- assistenz(vNr !,npcNr !)
 CREATE TABLE assistenz (
   vNr 			INTEGER			REFERENCES veranstaltungen (vNr),
-  npcNr			INTEGER			REFERENCES dozent_innen (npcNr)
+  npcNr			INTEGER			REFERENCES dozentInnen (npcNr)
 );
 COMMENT ON Table assistenz IS 'Miniwelt LWBadventure';
 
