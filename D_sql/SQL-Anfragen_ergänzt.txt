@@ -8,7 +8,7 @@ Relationen:
 NPCs ($ NPCNr, NPCName)			-- NPC: Non Playing Character
 Dozent_innen (! NPCNr, Lieblingsgetränk)
 sonstigeNPCs (! NPCNr, Âufgabe)
-Veranstaltungen ($ VNr, VName, Kürzel, SWS, GebietNr, ! NPCNr, ! RaumNr)
+Veranstaltungen ($ VNr, VName, Kürzel, SWS, ! GebietNr)
 Themengebiete ($ GebietNr, GebietName)
 Minigames ($ GameNr, Game-Name, ! VNr)
 Spieler_innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
@@ -35,7 +35,7 @@ SELECT aufgabe FROM sonstigenpcs;
 SELECT * FROM veranstaltungen WHERE semester = 4;
 
 2b. Welche Lehrveranstaltungen gibt es im 4. Semester?
-σ_(RaumNr = 4) (Veranstaltungen)
+σ_(RaumNr = 4) (Veranstaltungen ⋈ Unterricht)
 SELECT * FROM veranstaltungen WHERE raumnr = 4;
 
 2c. Welche Minigames gibt es im 4. Semester?
