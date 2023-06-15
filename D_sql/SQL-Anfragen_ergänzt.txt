@@ -7,7 +7,7 @@ Relationen:
 
 NPCs ($ NPCNr, NPCName)			-- NPC: Non Playing Character
 Dozent_innen (! NPCNr, Lieblingsgetränk)
-sonstigeNPCs (! NPCNr, Funktion)
+sonstigeNPCs (! NPCNr, Âufgabe)
 Veranstaltungen ($ VNr, VName, Kürzel, SWS, GebietNr, ! NPCNr, ! RaumNr)
 Themengebiete ($ GebietNr, GebietName)
 Minigames ($ GameNr, Game-Name, ! VNr)
@@ -26,9 +26,9 @@ Assistenz (! NPCNr, ! VeranstaltungsNr)
 Raeume
 SELECT * FROM raeume;
 
-1b. Welche Funktionen haben die sonstigen NPCs im LWB-Adventure?
-π_Funktion (sonstigeNPCs) 
-SELECT funktion FROM sonstigenpcs;
+1b. Welche Aufgaben haben die sonstigen NPCs im LWB-Adventure?
+π_Aufgabe (sonstigeNPCs) 
+SELECT aufgabe FROM sonstigenpcs;
 
 2a. Welche Lehrveranstaltungen haben 6 SWS?
 σ_(SWS = 6) (Veranstaltungen)
@@ -50,9 +50,9 @@ SELECT spname FROM spieler_innen NATURAL JOIN npcs;
 π_NPCName (Dozent_innen ⋈ NPCs) 
 SELECT npcname FROM dozent_innen NATURAL JOIN npcs;
 
-3c. Welche Funktion hat 'Heidi'?
-π_Funktion (sonstigeNPCs ⋈ NPCs) 
-SELECT funktion FROM sonstigenpcs NATURAL JOIN npcs WHERE npcname = 'Heidi';
+3c. Welche Aufgabe hat 'Heidi'?
+π_Aufgabe (sonstigeNPCs ⋈ NPCs) 
+SELECT aufgabe FROM sonstigenpcs NATURAL JOIN npcs WHERE npcname = 'Heidi';
 
 4a. Welche Lehrveranstaltungen haben etwas mit 'Daten' (/'Programmierung') zu tun?
 σ_(VName = '*Daten*') (Veranstaltungen)
