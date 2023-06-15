@@ -1,0 +1,14 @@
+ToDo
+
+
+- Tabelle ordentlich formatieren
+--> wie mit zu langen Wörtern umgehen? --> Textboxen probieren?
+--> automatisch Tabelle mit Textboxen generieren, die Anzahl und Namen der Attribute
+kann abgefragt werden
+
+
+- Wie kann man zu Laufzeit die Typen der Attribute abfragen? 
+Sonst muss man sie für jede Tabellenkombination wissen, da wäre sinnlos.
+Antwort: Man verwendet Variablen des Typs interface{}, dann geht es
+
+

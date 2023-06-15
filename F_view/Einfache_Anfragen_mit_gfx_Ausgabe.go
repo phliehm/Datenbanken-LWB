@@ -50,9 +50,24 @@ func main() {
 
 // SELECT Anfrage für raeume
 func zeigeRaeume(conn SQL.Verbindung,rs SQL.Ergebnismenge) {
-	
+	/*
 	var rname, ort string
 	var rnr int					// Woher weiß ich welche Datentypen in der DB verwendet wurden?
+	*/
+	//var rname,ort,rnr interface{}	// So muss man die Datentypen vorher nicht wissen
+	// --> später kann man für die Ausgabe sowieso alles mit fmt.Sprint() in strings konvertieren
+	
+	var ergebnisse []interface{}
+	var empty interface{}
+	ergebnisse = append(ergebnisse,empty)
+	ergebnisse = append(ergebnisse,empty)
+	ergebnisse = append(ergebnisse,empty)
+	
+	var ergebnisAdressen []interface{}
+	for i:=0;i<3;i++ {
+		ergebnisAdressen = append(ergebnisAdressen,&ergebnisse[i])	// &empty weil man später Zeiger benötigt
+	}
+	
 	rs = conn.Anfrage("SELECT * FROM raeume;")
 	fmt.Println("Es gibt ",rs.AnzahlAttribute()," Attribute.")
 	fmt.Println("Die Attribute lauten:")
@@ -61,9 +76,11 @@ func zeigeRaeume(conn SQL.Verbindung,rs SQL.Ergebnismenge) {
 	gfx.Schreibe(100,100,"Raumnummer       Raumname         Ort")
 	var abstand uint16 
 	for rs.GibtTupel() {	// GibtTupel liefert True wenn noch eine Zeile nach der Cursor Position kommt
-		rs.LeseTupel(&rnr,&rname,&ort)	// Liest von den Zeilen die einzelnen Attributswerte
-		gfx.Schreibe(100,140+abstand,fmt.Sprint(rnr)+"                "+rname+"       "+ort)
-		fmt.Println(rnr,rname,ort)	// Ein kompletter Datensatz	
+		//rs.LeseTupel(&rnr,&rname,&ort)	// Liest von den Zeilen die einzelnen Attributswerte
+		rs.LeseTupel(ergebnisAdressen...)
+		//gfx.Schreibe(100,140+abstand,fmt.Sprint(rnr)+"                "+fmt.Sprint(rname)+"       "+fmt.Sprint(ort))
+		//fmt.Println(rnr,rname,ort)	// Ein kompletter Datensatz	
+		fmt.Println(ergebnisse)
 		abstand +=40 // Versetze in y-Richtung
 		time.Sleep(1e9)
 	}
