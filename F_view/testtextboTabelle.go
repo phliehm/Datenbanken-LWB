@@ -21,14 +21,13 @@ func main() {
 	
 	anfrage = "SELECT * FROM veranstaltungen;"
 	sT := sqlTabelle.New(conn,anfrage)
-	fmt.Println(sT.GibTabelle())
+	//fmt.Println(sT.GibTabelle())
 	
 	// Textbox Tabelle
 	tbT := textboxTabelle.New(sT.GibTabelle(),sT.GibKopf(),50,50)
-	tbT.SetzeFarbeTabelle(255,0,0)
+	tbT.SetzeFarbeTabelle(0,0,0)
 	tbT.SetzeZeilenAbstand(20)
 	tbT.SetzeSchriftgrößeTabelle(20)
-	tbT.SetzeSchriftgrößeKopf(20)
 	tbT.SetzeFarbeKopf(0,0,255)
 	tbT.SetzeFontKopf("Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")
 	tbT.SetzeFontTabelle("Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")

@@ -36,14 +36,12 @@ type header struct {
 	kopf	[]string
 	r,g,b	uint8
 	font	string
-	schriftgröße int
 }
 
 func (h *header) formatiere(breite,höhe uint16) {
 	for _,t := range h.tbKopf {
 		t.SetzeBreite(breite)
 		t.SetzeHöhe(höhe)
-		t.SetzeSchriftgröße(h.schriftgröße)
 		t.SetzeFarbe(h.r,h.g,h.b)
 		t.SetzeFont(h.font)
 	}
@@ -74,9 +72,7 @@ func (h *header) schreibeTbHeader(x,y uint16,b,höhe uint16,tT *data) {
 	}
 }
 
-func (h *header) SetzeSchriftgröße(g int) {
-	h.schriftgröße = g
-}
+
 
 func New(tabelle[][]string,kopf []string,x,y uint16) *data {
 	tT := new(data)
@@ -85,7 +81,6 @@ func New(tabelle[][]string,kopf []string,x,y uint16) *data {
 	tT.font = gfx.GibFont()
 	tT.kopf.kopf = kopf
 	tT.kopf.font = tT.font
-	tT.kopf.schriftgröße = 10
 	
 	tT.x,tT.y = x,y
 	tT.spaltenAbstand = 50
@@ -111,9 +106,6 @@ func (tT *data) SetzeFontTabelle(f string) {
 	tT.font = f
 }
 
-func (tT *data) SetzeSchriftgrößeKopf(g int) {
-	tT.kopf.schriftgröße = g
-}
 
 func (tT *data) SetzeFont(font string) {
 	tT.font = font
@@ -147,7 +139,7 @@ func (tT *data) schreibeTbTabelle() {
 	for i,zeile := range tT.stringTabelle {
 		temp := make([]textboxen.Textbox,0) 	// Slice aus Textboxen
 		// y-Position: y der Tabelle insgesamt + Kopf + letzte Zeile
-		y := tT.y + uint16(2*tT.kopf.schriftgröße)+(tT.zeilenAbstand+uint16(tT.schriftgröße))*uint16(i)
+		y := tT.y + uint16(2*tT.schriftgröße)+(tT.zeilenAbstand+uint16(tT.schriftgröße))*uint16(i)
 		for j,_ := range zeile {
 			x:=tT.x + tT.spaltenBreite*uint16(j)	
 			t:=textboxen.New(x,y,tT.spaltenBreite,uint16(2*tT.schriftgröße))	// Höhe ist 2*Schriftgröße, muss das größer sein? +10?
@@ -196,7 +188,7 @@ func (tT *data) VariableBreite() {
 	breiten := gibVariableBreiten(tT.stringTabelle,tT.kopf.kopf)
 	// Ändere Breite
 	for i,zeile := range tT.tBTabelle {
-		y:= tT.y + uint16(2*tT.kopf.schriftgröße)+(tT.zeilenAbstand+uint16(tT.schriftgröße))*uint16(i)
+		y:= tT.y + uint16(2*tT.schriftgröße)+(tT.zeilenAbstand+uint16(tT.schriftgröße))*uint16(i)
 		x := tT.x
 		for j,zelle := range zeile {
 			//fmt.Println("Spaltenbreite: ",breiten[j])
