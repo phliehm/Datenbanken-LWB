@@ -10,6 +10,8 @@ import (
 		"../textboxen"
 		//"fmt"
 		//"time"
+		"unicode/utf8"
+		//"math"
 		)
 
 
@@ -20,6 +22,7 @@ type data struct {
 	kopf 	     header
 	zeilenAbstand uint16
 	spaltenBreite uint16
+	spaltenAbstand uint16
 	font		string
 	schriftgröße 	int
 	r,g,b	uint8
@@ -59,12 +62,15 @@ func (h *header) zeichne() {
 	}
 }
 
-func (h *header) schreibeTbHeader(x,y uint16,b,höhe uint16) {
+func (h *header) schreibeTbHeader(x,y uint16,b,höhe uint16,tT *data) {
 	//fmt.Println("Header: ",h.kopf)
+	breiten := gibVariableBreiten(tT.stringTabelle,h.kopf)
+	verschiebung := x
 	for i,zelle := range h.kopf {
-		tb := textboxen.New(x+uint16(i)*b,y,b,höhe)
+		tb := textboxen.New(verschiebung,y,b,höhe)
 		tb.SchreibeText(zelle)
 		h.tbKopf = append(h.tbKopf,tb)
+		verschiebung += uint16(float32(uint16(tT.schriftgröße)*breiten[i])/2) + tT.spaltenAbstand
 	}
 }
 
@@ -82,6 +88,7 @@ func New(tabelle[][]string,kopf []string,x,y uint16) *data {
 	tT.kopf.schriftgröße = 10
 	
 	tT.x,tT.y = x,y
+	tT.spaltenAbstand = 50
 	tT.schriftgröße = 20
 	
 	tT.stringTabelle = tabelle 
@@ -123,6 +130,10 @@ func (tT *data) SetzeFarbeKopf(r,g,b uint8){
 func (tT *data) SetzeZeilenAbstand(a uint16){
 	tT.zeilenAbstand = a
 }
+func (tT *data) SetzeSpaltenAbstand(a uint16){
+	tT.spaltenAbstand = a
+}
+
 
 func (tT *data) SetzeSpaltenBreite(b uint16) {
 	tT.spaltenBreite = b
@@ -161,28 +172,83 @@ func (tT *data) formatiere() {
 
 func (tT *data) Zeichne() {
 	// Kopf zeichnen
-	tT.kopf.schreibeTbHeader(tT.x,tT.y,tT.spaltenBreite,uint16(tT.schriftgröße))
+	tT.kopf.schreibeTbHeader(tT.x,tT.y,tT.spaltenBreite,uint16(tT.schriftgröße),tT)
 	tT.kopf.formatiere(tT.spaltenBreite,uint16(tT.schriftgröße))
 	tT.kopf.zeichne()
 	// Tabelle zeichnen
 	tT.formatiere()
+	tT.VariableBreite()
 	for z,zeile:= range tT.tBTabelle {
 
 		for s,zelle := range zeile {
 			//fmt.Println(tT.stringTabelle[z][s])
 			zelle.SchreibeText(tT.stringTabelle[z][s])
 			//r,g,b := zelle.GibSchriftfarbe()
-			//fmt.Println(zelle.GibX(),zelle.GibY(),zelle.GibFont(),r,g,b,zelle.GibSchriftgröße())
+			//fmt.Println(zelle.GibX(),zelle.GibY())
 			zelle.Zeichne()
 			//time.Sleep(0.5e9)
 		}
 	}
 }
 
+// Verändert die Tabelle so, dass die Spaltenbreiten variable sind
+func (tT *data) VariableBreite() {
+	breiten := gibVariableBreiten(tT.stringTabelle,tT.kopf.kopf)
+	// Ändere Breite
+	for i,zeile := range tT.tBTabelle {
+		y:= tT.y + uint16(2*tT.kopf.schriftgröße)+(tT.zeilenAbstand+uint16(tT.schriftgröße))*uint16(i)
+		x := tT.x
+		for j,zelle := range zeile {
+			//fmt.Println("Spaltenbreite: ",breiten[j])
+			zelle.SetzeBreite(uint16(tT.schriftgröße)*breiten[j])
+			zelle.SetzePosition(x,y)
+			// Verschiebe um die Spaltenbreiten links von der aktuellen Position
+			// plus einem konstanten Abstand
+			x+=uint16(float32(uint16(tT.schriftgröße)*breiten[j])/2) + tT.spaltenAbstand	
+		}
+	} 
+}
 
 //////////////////////
 // HILFS-FUNKTIONEN //
 //////////////////////
 
+// transponiert einen 2d-Slice aus Strings
+func transponiere(tabelle [][]string) [][]string{
+	var spalten int
+	spalten = len(tabelle[0])
+	
+	transponiert := make([][]string,spalten) 
+	
+	for i:=0;i<len(tabelle);i++ {
+		for j:=0;j<len(tabelle[0]);j++ {
+			transponiert[j] = append(transponiert[j], tabelle[i][j]) 
+		}
+	}
+	return transponiert
+}
 
 
+func findeLängstenString(s []string, h string) uint16 {
+	var maxL uint16
+	maxL = uint16(utf8.RuneCountInString(h))
+	for _,w := range s {
+		l := uint16(utf8.RuneCountInString(w))
+		if l >maxL {maxL =l }
+	}
+	
+	return maxL
+	 
+}
+
+// Gibt die maximalen Breiten aller Spalten
+func gibVariableBreiten(tabelle [][]string,h []string) []uint16 {
+	var breiten []uint16
+	// transponiere Slice damit man leichter an die Spalten kommt
+	transponiert := transponiere(tabelle)
+	// finde längste zelle in jeder Spalte
+	for i,spalte := range transponiert {
+		breiten = append(breiten,findeLängstenString(spalte,h[i]))
+	}
+	return breiten
+}
