@@ -150,6 +150,16 @@ func (tb *data)	GibZeilenAbstand() (uint16) {
 	return tb.zeilenAbstand
 }
 
+func (tb *data) GibText() string {
+	return tb.text
+}
+
+// Vor.: --
+// Erg.: Die Schriftfarbe ist geliefert
+func (tb *data) GibSchriftfarbe() (uint8,uint8,uint8) {
+	return tb.r,tb.g,tb.b
+}
+
 // Vor.: Es existiert eine Font-Datei im ttf-Format im angegebenen Ordner
 // Eff.: Der Font des Textes in der Textbox ist gesetzt. 
 func (tb *data)	SetzeFont(font string) {

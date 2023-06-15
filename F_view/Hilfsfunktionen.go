@@ -28,18 +28,37 @@ func main() {
 	// Zeilen
 	fmt.Println(anzahlZeilen(conn,"raeume"))
 	
+	tabelle := "veranstaltungen"
 	// erstelle Tabelle
-	t := erstelleTabelle(anzahlSpalten(conn,"raeume"),anzahlZeilen(conn,"raeume"))
+	t := erstelleTextboxTabelle(anzahlSpalten(conn,tabelle),anzahlZeilen(conn,tabelle))
 	fmt.Println(t)
-	fülleTbTabelle(t,conn,"raeume")
+	fülleTbTabelle(t,conn,tabelle)
 	
+	// Teste TabellenArray
+	/*var textbTabelle [][]textboxen.Textbox
+	for i:=0;i<3;i++ {
+		temp := make([]textboxen.Textbox,0) 	// Slice aus Textboxen
+		y := 100+50*uint16(i)
+		for j:=0;j<5;j++ {
+			x:=50+200*uint16(j)	
+			fmt.Println(x,y)
+			t:=textboxen.New(x,y,200,40)
+			t.SchreibeText("Zeile: "+fmt.Sprint(i)+"  Spalte: "+fmt.Sprint(j))
+			t.Zeichne()
+			temp = append(temp,t)
+		}
+		textbTabelle = append(textbTabelle,temp)
+	}
+	*/
+	
+	/*
 	// Kurzer Text
 	var tb textboxen.Textbox
 	tb = textboxen.New(600,400,100,50)
 	tb.SchreibeText("Hallo")
 	tb.SetzeHintergrundFarbe(255,0,0)
 	tb.Zeichne()
-	
+	*/
 	
 	gfx.TastaturLesen1()
 }
@@ -67,7 +86,7 @@ func anzahlZeilen(conn SQL.Verbindung, tabelle string) int {
 }
 
 // Erstellt eine Tabelle aus Textboxen mit einer gegebenen Anzahl an Spalten und Zeilen
-func erstelleTabelle(spalten, zeilen int) [][]textboxen.Textbox{
+func erstelleTextboxTabelle(spalten, zeilen int) [][]textboxen.Textbox{
 	// erstelle für jede Zelle eine Textbox
 	// Speichere den Zeiger auf die Textbox in ein feld
 	var textbTabelle [][]textboxen.Textbox
@@ -75,9 +94,9 @@ func erstelleTabelle(spalten, zeilen int) [][]textboxen.Textbox{
 		temp := make([]textboxen.Textbox,0) 	// Slice aus Textboxen
 		y := 100+50*uint16(i)
 		for j:=0;j<spalten;j++ {
-			x:=50+200*uint16(j)	
+			x:=50+300*uint16(j)	
 			fmt.Println(x,y)
-			t:=textboxen.New(x,y,200,40)
+			t:=textboxen.New(x,y,300,40)
 			temp = append(temp,t)
 		}
 		textbTabelle = append(textbTabelle,temp)
@@ -90,7 +109,7 @@ func erstelleTabelle(spalten, zeilen int) [][]textboxen.Textbox{
 func fülleTbTabelle(tabelle [][]textboxen.Textbox,conn SQL.Verbindung,tabellenName string) [][]textboxen.Textbox {
 	fmt.Println("Füllen startet")
 	var rs SQL.Ergebnismenge
-	var n int
+	//var n int
 	var ergebnisse []interface{}	// Slice, beliebig viele Ergebnisse von typen die ich nicht kenne
 	var ergebnisAdressen []interface{}	// Slice mit den Adressen zu den Ergebnissen 
 	//var empty interface{} // braucht man, um weitere Variablen von unbekannten Typen dem Slice hinzuzufügen
@@ -109,25 +128,23 @@ func fülleTbTabelle(tabelle [][]textboxen.Textbox,conn SQL.Verbindung,tabellenN
 	}
 	fmt.Println(ergebnisAdressen)
 	
-	
-	for i:=0;i<len(tabelle);i++ {			// Für alle Zeilen
-		for rs.GibtTupel() {
-			rs.LeseTupel(ergebnisAdressen...)	
-			n+=1
-			for j:=0;j<len(tabelle[0]);j++ {		// Für jeden Wert in einer Zeile, also für jede Spalte
-				tabelle[i][j].SchreibeText(fmt.Sprint(ergebnisse[j]))
-				tabelle[i][j].Zeichne()
-				time.Sleep(8e8)
-				gfx.Stiftfarbe(255,255,255)
-				gfx.Cls()
-				gfx.Stiftfarbe(0,0,0)
-				//fmt.Println(tabelle[i][j].GibSchriftgröße())
-				//fmt.Println(i)
-			}
-			fmt.Println(ergebnisse)
+	i:=0
+	for rs.GibtTupel() {
+		rs.LeseTupel(ergebnisAdressen...)	
+		
+		for j:=0;j<len(tabelle[0]);j++ {		// Für jeden Wert in einer Zeile, also für jede Spalte
+			fmt.Println(i)
+			tabelle[i][j].SchreibeText(fmt.Sprint(ergebnisse[j]))
+			tabelle[i][j].Zeichne()
+			time.Sleep(2e2)
+			/*gfx.Stiftfarbe(255,255,255)
+			gfx.Cls()
+			gfx.Stiftfarbe(0,0,0)*/
+			//fmt.Println(tabelle[i][j].GibSchriftgröße())
+			
 		}
-		
-		
+		fmt.Println(ergebnisse)	
+		i+=1	
 	}
 	return tabelle
 }
