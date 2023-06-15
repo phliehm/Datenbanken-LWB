@@ -5,7 +5,7 @@
 --
 --  Start: 13.06.2023
 
-DROP TABLE standorte			CASCADE;
+DROP TABLE aufenthaltsorte		CASCADE;
 DROP TABLE spielstaende      	CASCADE;
 DROP TABLE unterricht			CASCADE;
 DROP TABLE assistenz			CASCADE;

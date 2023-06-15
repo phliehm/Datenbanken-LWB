@@ -35,7 +35,7 @@ INSERT INTO dozent_innen VALUES (5, 'Kaffee mit Milch und 2x Zucker');
 INSERT INTO dozent_innen VALUES (6, 'Hefeweizen');
 
 
--- sonstigeNPCs (!npcNr, funktion)
+-- sonstigeNPCs (!npcNr, aufgabe)
 INSERT INTO sonstigeNPCs VALUES (7, 'StEPS-Chefin'); 
 INSERT INTO sonstigeNPCs VALUES (8, 'Helferlein'); 
 INSERT INTO sonstigeNPCs VALUES (9, 'Kontrolletis'); 
@@ -110,13 +110,13 @@ INSERT INTO minigames VALUES (8, 'theNETgame',11);
 INSERT INTO minigames VALUES (9, 'BugAttack',12);
 
 
--- standorte (!npcNr, !raumNr)
-INSERT INTO standorte VALUES (7, 0);
-INSERT INTO standorte VALUES (7, 4);
-INSERT INTO standorte VALUES (7, 5);
-INSERT INTO standorte VALUES (8, 0);
-INSERT INTO standorte VALUES (9, 0);
-INSERT INTO standorte VALUES (9, 4);
+-- aufenthaltsorte (!npcNr, !raumNr)
+INSERT INTO aufenthaltsorte VALUES (7, 0);
+INSERT INTO aufenthaltsorte VALUES (7, 4);
+INSERT INTO aufenthaltsorte VALUES (7, 5);
+INSERT INTO aufenthaltsorte VALUES (8, 0);
+INSERT INTO aufenthaltsorte VALUES (9, 0);
+INSERT INTO aufenthaltsorte VALUES (9, 4);
 
 
 -- unterricht (!vNr, !npcNr, !raumNr)							

@@ -19,14 +19,14 @@
 
 -- npcs ($npcNr, npcName) 				NPCs - Non-Playing-Character
 -- dozent_innen (!npcNr, lieblingsgetraenk)
--- sonstigeNPCs (!npcNr, funktion)
+-- sonstigeNPCs (!npcNr, aufgabe)
 -- raeume ($raumNr, raumName, ort, funktion)
 -- themengebiete ($gebietNr, gebietName)
 -- veranstaltungen ($vNr, vName, kuerzel, sws, !gebietNr)
 -- spieler_innen ($spNr, spName, schluesselanzahl, !raumNr)
 -- minigames ($gameNr, gameName, !vNr)
 -- spielstaende (!gameNr, !spNr, Note, Punktzahl)
--- standorte (!npcNr, !raumNr)
+-- aufenthaltsorte (!npcNr, !raumNr)
 -- unterricht (!vNr, !npcNr, !raumNr)							
 -- assistenz (!vNr,!npcNr)
 
@@ -50,10 +50,10 @@ CREATE TABLE dozent_innen (
 COMMENT ON Table dozent_innen IS 'Miniwelt LWBadventure';
 
 
--- sonstigeNPCs (!npcNr, funktion)
+-- sonstigeNPCs (!npcNr, aufgabe)
 CREATE TABLE sonstigeNPCs (
   npcNr 		INTEGER 			REFERENCES npcs (npcNr),			-- NPC-Nummer
-  funktion		VARCHAR (100)		NOT NULL,							-- jede/r sonstige NPC hat eine Funktion
+  aufgabe		VARCHAR (100)		NOT NULL,							-- jede/r sonstige NPC hat eine Aufgabe
   CONSTRAINT sonstigeNPCsKEY PRIMARY KEY (npcNr)
 );
 COMMENT ON Table sonstigeNPCs IS 'Miniwelt LWBadventure';
@@ -160,12 +160,12 @@ CREATE TABLE spielstaende (
 COMMENT ON Table spielstaende IS 'Miniwelt LWBadventure';
 
 
--- standorte (!npcNr, !raumNr)
-CREATE TABLE standorte (
+-- aufenthaltsorte (!npcNr, !raumNr)
+CREATE TABLE aufenthaltsorte (
   npcnr 		INTEGER			REFERENCES sonstigeNPCs (npcnr),				-- Nummer des sonstigen NPCs im Raum
   raumNr		INTEGER			REFERENCES raeume (raumNr)
 );
-COMMENT ON Table standorte IS 'Miniwelt LWBadventure';
+COMMENT ON Table aufenthaltsorte IS 'Miniwelt LWBadventure';
 
 
 -- unterricht (!vNr, !npcNr, !raumNr)							
