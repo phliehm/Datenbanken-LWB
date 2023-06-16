@@ -4,12 +4,15 @@ package main
 // Zweck: DBP - LWB - Datenbank
 //--------------------------------------------------------------------
 
-import ( 	. "gfx"
+import ( 	."gfx"
 			"fmt"
 			"sync"
-			"time"
+			//"time"
 			"felder"
-			"./Klassen/buttons"
+			"../Klassen/buttons"
+			"SQL"
+			"../Klassen/textboxTabelle"
+			"../Klassen/sqlTabelle"
 		)
 
 var Mutex sync.Mutex					// erstellt Mutex
@@ -17,21 +20,25 @@ var Mutex sync.Mutex					// erstellt Mutex
 var Knoepfe, Suchknoepfe []buttons.Button		// Slices für alle erstellten Knöpfe / die Suchfelder
 var Suchfelder []felder.Feld
 var BuZurueck,BuEintrag,BuEnde buttons.Button
-var Akt bool = true						// True gdw. Raum gewechselt wurde
-var Raumnummer uint8					// Raumnummer des momentanen Raumes
+var Akt bool = true							// True gdw. Raum gewechselt wurde _----- NICHT BENÖTIGT?!
+var Raumnummer uint8						// Raumnummer des momentanen Raumes
 var Knopftexte, Suchknopftexte []string
+var conn SQL.Verbindung
+
+var font string = "../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf"
+
 
 func main () {
 	Fenster (1200, 700)
 	Fenstertitel(" ###  LWB - Datenbank  ###")
-	SetzeFont ("./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
+	SetzeFont ("../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
 	
 	Knopftexte = append(Knopftexte, "", "Dozenten", "Minispiele", "Fachgebiete", "Semester")
-	Suchknopftexte = append(Knopftexte, "", "vname", "nname", "str", "plz")
+	Suchknopftexte = append(Suchknopftexte, "Vorlesung", "Thema", "SWS", "Raum","Dozent/in")
 	
 	BuZurueck 	= buttons.New(10,620,200,70, 230,50,100, true, " zurück")				// zurück
 	BuEintrag 	= buttons.New(400,620,350,70, 230,50,100, true, " Erstelle Eintrag")	// Erstelle Eintrag
-	BuEnde 	= buttons.New(1000,620,200,70, 230,50,100, true, " Beenden")				// Beenden
+	BuEnde 	= buttons.New(1000,620,180,70, 230,50,100, true, " Beenden")				// Beenden
 	
 	ErstelleKnoepfe()
 	ErstelleSuchknoepfe()
@@ -39,6 +46,10 @@ func main () {
 	
 	ZeichneRaum()
 
+	// --------------------- Verbindung zur Datenbank -----------------
+	conn = SQL.PgSQL ("user=lewein dbname=lewein")
+	defer conn.Beenden ()
+	fmt.Println("Verbindung hergestellt.\n")
 	
 	// Das Hauptprogramm startet die View-Komponente als nebenläufigen Prozess!
 	// go view_komponente()
@@ -98,18 +109,20 @@ func ErstelleKnoepfe() {
 	Knoepfe = append(Knoepfe, bu1, bu2, bu3, bu4)
 }
 func ErstelleSuchknoepfe() {
-	vname		:= buttons.New(100,100,300,50, 230,50,100, true, Suchknopftexte[1])		// Dozenten
-	nname		:= buttons.New(300,100,300,50, 230,50,100, true, Suchknopftexte[2])		// Minispiele
-	str			:= buttons.New(500,100,300,50, 230,50,100, true, Suchknopftexte[3])		// Fachgebiete
-	plz			:= buttons.New(700,100,300,50, 230,50,100, true, Suchknopftexte[4])		// Semester
-	Suchknoepfe = append(Suchknoepfe, vname, nname, str, plz)
+	su1		:= buttons.New(100,150,260,50, 230,50,100, true, Suchknopftexte[0])		// 
+	su2		:= buttons.New(390,150,180,50, 230,50,100, true, Suchknopftexte[1])		// 
+	su3		:= buttons.New(590,150,80,50, 230,50,100, true, Suchknopftexte[2])		// 
+	su4		:= buttons.New(700,150,80,50, 230,50,100, true, Suchknopftexte[3])		// 
+	su5		:= buttons.New(850,150,150,50, 230,50,100, true, Suchknopftexte[4])		// 
+	Suchknoepfe = append(Suchknoepfe, su1,su2,su3,su4,su5)
 }
 func ErstelleSuchFelder() {
-	vname := felder.New (100, 100, 30, 'l', "Vorname")		// Position 10/10; Länge von 30 Zeichen; linksbündig; Name des Feldes
-	nname := felder.New (300, 100, 30, 'l', "Nachname")
-	str   := felder.New (500, 100, 30, 'l', "Straße")
-	plz   := felder.New (700, 100,  5, 'l', "PLZ")
-	Suchfelder = append(Suchfelder, vname, nname, str, plz)
+	fe1 := felder.New (110, 160, 30, 'l', Suchknopftexte[0])		
+	fe2 := felder.New (400, 160, 20, 'l', Suchknopftexte[1])
+	fe3 := felder.New (600, 160, 5, 'l', Suchknopftexte[2])
+	fe4 := felder.New (710, 160, 5, 'l', Suchknopftexte[3])
+	fe5 := felder.New (860, 160, 15, 'l', Suchknopftexte[4])
+	Suchfelder = append(Suchfelder, fe1,fe2,fe3,fe4,fe5)
 }
 func ZeichneKnoepfe() {
 	for _,bu := range Knoepfe {
@@ -126,7 +139,6 @@ func DeaktiviereKnoepfe() {
 		bu.DeaktiviereButton()
 	}
 }
-
 func ZeichneSuchknoepfe() {
 	for _,bu := range Suchknoepfe {
 		bu.ZeichneButton()
@@ -143,77 +155,11 @@ func DeaktiviereSuchknoepfe() {
 	}
 }
 
-/*
-
-	// Die Kontroll-Komponente 2 ist die 'Mainloop' im Hauptprogramm	
-	// Wir fragen hier nur die Tastatur ab.
-
-	wg.Add(4)						// Wait-Group erhält Counter 4 zum Warten auf das Ende der nebenläufigen Routinen
-
-	SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 28 )
-
-			}
-		}
-*/
-
-
-// Es folgt die VIEW-Komponente		--- wird wahrscheinlich so nicht benötigt
-func view_komponente () { 
-		
-	var t1 int64 = time.Now().UnixNano() 		//Startzeit
-	var anz,anzahl int                  		// zur Bestimmung der Frames pro Sekunde
-	var verzögerung = 90
-
-	// defer wg.Done()
-
-	for { 
-		if Akt {
-			//Endlos ...
-			Mutex.Lock()
-			UpdateAus () 										// Nun wird alles im nicht sichtbaren "hinteren" Fenster gezeichnet!
-			
-			Stiftfarbe(255,255,255)
-			Cls()												// Cleart vollständigen Screen
-			
-			if Akt {
-				ZeichneRaum()
-				Archivieren()
-				Akt = false
-			} else {
-				Restaurieren(0,0,1200,700)						// Restauriert das alte Hintergrundbild
-			}
-			
-
-			SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 35 )
-			Stiftfarbe(100,10,155)
-			Schreibe (2,2,"FPS:"+fmt.Sprint (anzahl))							// Schreibe links oben FPS
-			
-			
-			if time.Now().UnixNano() - t1 < 1000000000 { 		//noch in der Sekunde ...
-				anz++
-			} else {
-				t1 = time.Now().UnixNano() 						// neue Sekunde
-				anzahl = anz
-				anz=0
-				if anzahl < 100 { verzögerung--}				//Selbstregulierung der 
-				if anzahl > 100 { verzögerung++}				//Frame-Rate :-)		-- dieser 8-zeilige Abschnitt wurde  von Herrn Schmidt übernommen
-			}
-			
-			UpdateAn () 										// Nun wird der gezeichnete Frame sichtbar gemacht!
-			Mutex.Unlock()
-		
-			time.Sleep(time.Duration(verzögerung * 1e5)) 		// Immer ca. 100 FPS !!
-		}
-	}
-}
-
-
-
 func ZeichneRaum() {
 	UpdateAus () 										// Nun wird alles im nicht sichtbaren "hinteren" Fenster gezeichnet!
 	Stiftfarbe(255,255,255)
 	Cls()												// Cleart vollständigen Screen
-	SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 80 )
+	SetzeFont ("../Schriftarten/Ubuntu-B.ttf", 80 )
 	Stiftfarbe(100,100,100)
 	switch Raumnummer {
 		case 0:	
@@ -223,6 +169,18 @@ func ZeichneRaum() {
 		BuEnde.ZeichneButton()
 		case 1:
 		SchreibeFont(300,50,Knopftexte[1])
+		
+		var suche felder.Feld
+		var suchwort string
+		felder.Voreinstellungen(0,255,0,32)
+	
+		suche = felder.New (10,  10, 30, 'l', "Suche")
+		
+		suchwort = suche.Edit()
+	
+		anfrage := sucheDozVer(suchwort)
+		textboxTabelle.ZeichneAnfrage(conn,anfrage,100,200,true,0,0,0,0,0,255,16,font)
+	
 		BuZurueck.ZeichneButton()
 		case 2:
 		SchreibeFont(300,50,Knopftexte[2])
@@ -266,36 +224,93 @@ func maussteuerung () {
 						DeaktiviereKnoepfe()
 						Raumnummer = 4						
 					}
+					ZeichneRaum()					// Raum wurde gewechselt und muss neu gezeichnet werden
 				}
 			}
-			for _,suchknopf := range Suchknoepfe { 									// überprüft Knöpfe im Array
+			for _,suchknopf := range Suchknoepfe { 									// überprüft SUCHKNÖPFE im Array
 				if suchknopf.TesteXYPosInButton(mausX,mausY) {
 					fmt.Println("Suchknopf gedrückt: ", suchknopf.GibBeschriftung() )
+					Stiftfarbe(255,255,255)
 					switch suchknopf.GibBeschriftung() {
-						case Suchknopftexte[1]: 
+						case Suchknopftexte[0]: 
+						Vollrechteck(100,150,260,50)
 						Suchfelder[0].Edit()
-						case Suchknopftexte[2]:	
+						case Suchknopftexte[1]:	
+						Vollrechteck(390,150,180,50)
 						Suchfelder[1].Edit()
-						case Suchknopftexte[3]: 
+						case Suchknopftexte[2]: 
+						Vollrechteck(590,150,80,50)
 						Suchfelder[2].Edit()
+						case Suchknopftexte[3]:	
+						Vollrechteck(700,150,80,50)
+						Suchfelder[3].Edit()
 						case Suchknopftexte[4]:	
-						Suchfelder[3].Edit()					
+						Vollrechteck(850,150,150,50)
+						Suchfelder[4].Edit()						
 					}
 				}
 			}
 			if BuZurueck.TesteXYPosInButton(mausX,mausY) {
+				DeaktiviereSuchknoepfe()
 				AktiviereKnoepfe()
 				Raumnummer = 0
+				ZeichneRaum()					// Raum wurde gewechselt und muss neu gezeichnet werden
 			} else if BuEintrag.TesteXYPosInButton(mausX,mausY) {
+				DeaktiviereKnoepfe()
+				AktiviereSuchknoepfe()
 				Raumnummer = 10
-				//ZeichneSuchknoepfe()
-			} 
-				
-			ZeichneRaum()			// etwas wurde geklickt und muss neu gezeichnet werden
+				ZeichneRaum()					// Raum wurde gewechselt und muss neu gezeichnet werden
+			}
 		}
 	}
 }
 
+func zeichneAnfrage(conn SQL.Verbindung,anfrage string) {
+	Stiftfarbe(255,255,255)
+	//Cls()
+	sT := sqlTabelle.New(conn,anfrage)
+	//fmt.Println(sT.GibTabelle())
+	
+	// Nur zum Testen auch SQL Anfrage anzeigen
+	Stiftfarbe(0,0,0)
+	Schreibe(400,200,anfrage)
+	
+	// Textbox Tabelle
+	tbT := textboxTabelle.New(sT.GibTabelle(),sT.GibKopf(),400,250)
+	tbT.SetzeFarbeTabelle(0,0,0)
+	tbT.SetzeZeilenAbstand(1)
+	tbT.SetzeSchriftgrößeTabelle(20)
+	tbT.SetzeSpaltenAbstand(20)
+	tbT.SetzeFarbeKopf(0,0,255)
+	tbT.SetzeFontKopf("../Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")
+	tbT.SetzeFontTabelle("../Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")
+	tbT.Zeichne()
+	//TastaturLesen1()
+	//TastaturLesen1()
+	//tbT.VariableBreite()
+	/*gfx.Stiftfarbe(255,255,255)
+	gfx.Cls()
+	tbT.Zeichne()
+	gfx.TastaturLesen1()
+	* */
+}
+
+// Funktion für Suchfeld für Dozentinnen und Veranstaltungen
+func sucheDozVer(suchwort string ) string {
+	anfrage := "SELECT vname AS Vorlesung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS DozentIn FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname) LIKE '%"
+	anfrage += suchwort
+	anfrage += "%';"
+	return anfrage
+}
+
+// Funktion für SpielerInnen und Games, Scores
+func sucheSpielerGamesScores(suchwort string) string {
+	anfrage := "SELECT spname AS SpielerIn,gamename AS MiniGame,vname AS Vorlesung,note AS Note,punkte AS Punkte"+
+	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
+	anfrage += suchwort
+	anfrage += "%';"
+	return anfrage
+}
 
 
 
