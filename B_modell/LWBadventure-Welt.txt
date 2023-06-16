@@ -15,18 +15,18 @@ Die DozentInnen haben ein Lieblingsgetränk. Die NPCs erfüllen eine Funktion
 im Spiel.
 
 Das Spiel hat verschiedene Räume an verschieden Standorten (FU Berlin, 
-STEPS, Home Office) und unterteilen sich in Kursräume, in denen die 
-Veranstaltungen stattfinden, und in andere Räumen, die eine andere 
-Funktion haben. Die Kursräume sind von 1 bis 4 nummeriert und 
-entspechen mit der Raumnummer dem jeweiligen Semster.
+STEPS, Home Office). In den Räumen 1 bis 4 finden die 
+Veranstaltungen statt (Kursräume), und die anderen Räume haben eine andere 
+Funktion. Dies könnte aber durch spätere Festlegungen verändert werden.
 
-Sonstige NPCs können sich (im gegensatz zur realen Welt) in allen
+Sonstige NPCs können sich (im Gegensatz zur realen Welt) in allen
 Räumen aufhalten – sogar gleichzeitig in mehreren. 
 
 Die Veranstaltungen werden von einer DozentenIn in einem Kursraum 
 gehalten. Dabei können sie von einer anderen DozentIn unterstützt 
 werden. Veranstaltungen haben einen Titel, ein Abkürzung (Kürzel) eine 
-Semesterwochenstundenzahl und gehören zu einem Themengebiet.
+Semesterwochenstundenzahl und könenn einem Themengebiet zugeordnet 
+werden.
 
 Zu den Veranstaltungen kann es Minispiele (oder Minigames) geben, aber 
 nicht zu allen, welche Prüfungen zu den Veranstaltungen repräsentieren. 
