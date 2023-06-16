@@ -17,7 +17,7 @@ im Spiel.
 Das Spiel hat verschiedene Räume an verschieden Standorten (FU Berlin, 
 STEPS, Home Office). In den Räumen 1 bis 4 finden die 
 Veranstaltungen statt (Kursräume), und die anderen Räume haben eine andere 
-Funktion. Dies könnte aber durch spätere Festlegungen verändert werden.
+Funktion.
 
 Sonstige NPCs können sich (im Gegensatz zur realen Welt) in allen
 Räumen aufhalten – sogar gleichzeitig in mehreren. 
@@ -25,7 +25,7 @@ Räumen aufhalten – sogar gleichzeitig in mehreren.
 Die Veranstaltungen werden von einer DozentenIn in einem Kursraum 
 gehalten. Dabei können sie von einer anderen DozentIn unterstützt 
 werden. Veranstaltungen haben einen Titel, ein Abkürzung (Kürzel) eine 
-Semesterwochenstundenzahl und könenn einem Themengebiet zugeordnet 
+Semesterwochenstundenzahl, ein Semster und können einem Themengebiet zugeordnet 
 werden.
 
 Zu den Veranstaltungen kann es Minispiele (oder Minigames) geben, aber 

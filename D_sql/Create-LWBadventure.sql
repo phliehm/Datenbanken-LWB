@@ -107,6 +107,7 @@ CREATE TABLE veranstaltungen (
   vName			VARCHAR (50)		NOT NULL,
   kuerzel		VARCHAR (5)			NOT NULL,
   sws			INTEGER				CHECK (sws > 0),
+  semester		INTEGER				CHECK (semester > 0),
   gebietNr		INTEGER				REFERENCES themengebiete (gebietNr),
 --  CONSTRAINT vRaumNrCHECK CHECK (semester BETWEEN 1 AND 4),
 --  gelesenVon INTEGER REFERENCES Professoren (PersNr)
@@ -172,7 +173,8 @@ COMMENT ON Table aufenthaltsorte IS 'Miniwelt LWBadventure';
 CREATE TABLE unterricht (
   vNr 			INTEGER			REFERENCES veranstaltungen (vNr),
   npcNr			INTEGER			REFERENCES dozent_innen (npcNr),
-  raumNr		INTEGER			REFERENCES raeume (raumNr)
+  raumNr		INTEGER			REFERENCES raeume (raumNr),
+  CONSTRAINT unterrichtRaumCHECK CHECK (raumNr BETWEEN 1 AND 4)
 );
 COMMENT ON Table unterricht IS 'Miniwelt LWBadventure';
 

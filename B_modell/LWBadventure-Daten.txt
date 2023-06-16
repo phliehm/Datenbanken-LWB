@@ -1,3 +1,4 @@
+          NPCs
  npcnr |     npcname     
 -------+-----------------
      1 | Darth Schmidter
@@ -11,6 +12,7 @@
      9 | Hubi-Horde
 (9 Zeilen)
 
+    sonstige NPCs
  npcnr |   aufgabe    
 -------+--------------
      7 | StEPS-Chefin
@@ -18,6 +20,7 @@
      9 | Kontrolletis
 (3 Zeilen)
 
+              DozentInnen
  npcnr |       lieblingsgetraenk        
 -------+--------------------------------
      1 | Extraschwarzer Kaffee
@@ -28,6 +31,7 @@
      6 | Hefeweizen
 (6 Zeilen)
 
+      Unterricht
  vnr | npcnr | raumnr 
 -----+-------+--------
    1 |     2 |      1
@@ -46,6 +50,7 @@
   14 |     3 |      4
 (14 Zeilen)
 
+  Assistenz
  vnr | npcnr 
 -----+-------
    1 |     1
@@ -57,24 +62,26 @@
   14 |     4
 (7 Zeilen)
 
- vnr |                      vname                      | kuerzel | sws | gebietnr 
------+-------------------------------------------------+---------+-----+----------
-   1 | Betriebssystemwerkzeuge                         | BSW     |   2 |        1
-   2 | Funktionale Programmierung                      | FP      |   8 |        2
-   3 | Grundlagen der Technischen Informatik           | RS      |   6 |        3
-   4 | Imperative und objektorientierte Programmierung | ALP2    |   7 |        2
-   5 | Rechnerarchitektur                              | RO      |   4 |        1
-   6 | Einführung in die Theoretischen Informatik      | EthI    |   5 |        3
-   7 | Datenstrukturen und Datenabstraktion            | ALP3    |   6 |        2
-   8 | Datenbanksysteme                                | DBSA    |   6 |        4
-   9 | Fachdidaktik Informatik                         | DDI     |   4 |        5
-  10 | Nichtsequentielle und verteilte Programmierung  | NSP     |   6 |        2
-  11 | Rechnernetze                                    | NET     |   6 |        1
-  12 | Unterrichtsbezogenes Softwarepraktikum          | SWP     |   3 |        2
-  13 | Unterrichtsbezogenes Datenbankpraktikum         | DBP     |   3 |        4
-  14 | Analyse fachlichen Lernens                      | AfL     |   3 |        5
+                                       Veranstaltungen
+ vnr |                      vname                      | kuerzel | sws | semester | gebietnr 
+-----+-------------------------------------------------+---------+-----+----------+----------
+   1 | Betriebssystemwerkzeuge                         | BSW     |   2 |        1 |        1
+   2 | Funktionale Programmierung                      | FP      |   8 |        1 |        2
+   3 | Grundlagen der Technischen Informatik           | RS      |   6 |        1 |        3
+   4 | Imperative und objektorientierte Programmierung | ALP2    |   7 |        2 |        2
+   5 | Rechnerarchitektur                              | RO      |   4 |        2 |        1
+   6 | Einführung in die Theoretischen Informatik      | EthI    |   5 |        2 |        3
+   7 | Datenstrukturen und Datenabstraktion            | ALP3    |   6 |        3 |        2
+   8 | Datenbanksysteme                                | DBSA    |   6 |        3 |        4
+   9 | Fachdidaktik Informatik                         | DDI     |   4 |        3 |        5
+  10 | Nichtsequentielle und verteilte Programmierung  | NSP     |   6 |        4 |        2
+  11 | Rechnernetze                                    | NET     |   6 |        4 |        1
+  12 | Unterrichtsbezogenes Softwarepraktikum          | SWP     |   3 |        4 |        2
+  13 | Unterrichtsbezogenes Datenbankpraktikum         | DBP     |   3 |        4 |        4
+  14 | Analyse fachlichen Lernens                      | AfL     |   3 |        4 |        5
 (14 Zeilen)
 
+                           Themengebiete
  gebietnr |                       gebietname                        
 ----------+---------------------------------------------------------
         1 | Rechnerarchitektur, Betriebs- und Kommunikationssysteme
@@ -84,6 +91,7 @@
         5 | Didaktik
 (5 Zeilen)
 
+               Minigames
  gamenr |        gamename         | vnr 
 --------+-------------------------+-----
       1 | Muster-Spiel            |   2
@@ -97,6 +105,31 @@
       9 | BugAttack               |  12
 (9 Zeilen)
 
+                 SpielerInnen
+ spnr |   spname   | schuesselanzahl | raumnr 
+------+------------+-----------------+--------
+    1 | Cyra       |               1 |      0
+    2 | Maddi      |               1 |      0
+    3 | Ben        |               1 |      0
+    4 | Phil       |               1 |      0
+    5 | Klocki     |               1 |      0
+    6 | Bob        |               1 |      0
+    7 | LWB-Master |               1 |      0
+    8 | Nerd42     |               1 |      0
+(8 Zeilen)
+
+                             Räume
+ raumnr |        raumname         |     ort     |   funktion   
+--------+-------------------------+-------------+--------------
+      0 | Main Floor              | LWB-World   | Start-Raum
+      1 | 1. Semester             | FU Berlin   | Kursraum 1
+      2 | 2. Semester             | Home Office | Kursraum 2
+      3 | 3. Semester             | FU Berlin   | Kursraum 3
+      4 | 4. Semester             | StEPS       | Kursraum 4
+      5 | Nichtzeugnis-Verleihung | schöner Ort | Schluss-Raum
+(6 Zeilen)
+
+          Spielstände
  gamenr | spnr | note | punkte 
 --------+------+------+--------
       1 |    1 |  1.7 |    325
@@ -159,28 +192,7 @@
       9 |    7 |  1.0 |    325
 (58 Zeilen)
 
- spnr |   spname   | schuesselanzahl | raumnr 
-------+------------+-----------------+--------
-    1 | Cyra       |               1 |      0
-    2 | Maddi      |               1 |      0
-    3 | Ben        |               1 |      0
-    4 | Phil       |               1 |      0
-    5 | Klocki     |               1 |      0
-    6 | Bob        |               1 |      0
-    7 | LWB-Master |               1 |      0
-    8 | Nerd42     |               1 |      0
-(8 Zeilen)
-
- raumnr |        raumname         |     ort     |   funktion   
---------+-------------------------+-------------+--------------
-      0 | Main Floor              | LWB-World   | Start-Raum
-      1 | 1. Semester             | FU Berlin   | Kursraum 1
-      2 | 2. Semester             | Home Office | Kursraum 2
-      3 | 3. Semester             | FU Berlin   | Kursraum 3
-      4 | 4. Semester             | StEPS       | Kursraum 4
-      5 | Nichtzeugnis-Verleihung | schöner Ort | Schluss-Raum
-(6 Zeilen)
-
+Aufenthaltsorte
  npcnr | raumnr 
 -------+--------
      7 |      0

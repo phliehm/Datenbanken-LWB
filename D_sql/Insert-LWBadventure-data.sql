@@ -71,20 +71,20 @@ INSERT INTO themengebiete VALUES (5, 'Didaktik');
 
 
 -- veranstaltungen ($vNr, vName, kuerzel, sws, !gebietNr)
-INSERT INTO veranstaltungen VALUES (1, 'Betriebssystemwerkzeuge','BSW',2,1);
-INSERT INTO veranstaltungen VALUES (2, 'Funktionale Programmierung','FP',8,2);
-INSERT INTO veranstaltungen VALUES (3, 'Grundlagen der Technischen Informatik','RS',6,3);
-INSERT INTO veranstaltungen VALUES (4, 'Imperative und objektorientierte Programmierung','ALP2',7,2);
-INSERT INTO veranstaltungen VALUES (5, 'Rechnerarchitektur','RO',4,1);
-INSERT INTO veranstaltungen VALUES (6, 'Einführung in die Theoretischen Informatik','EthI',5,3);
-INSERT INTO veranstaltungen VALUES (7, 'Datenstrukturen und Datenabstraktion','ALP3',6,2);
-INSERT INTO veranstaltungen VALUES (8, 'Datenbanksysteme','DBSA',6,4);
-INSERT INTO veranstaltungen VALUES (9, 'Fachdidaktik Informatik','DDI',4,5);
-INSERT INTO veranstaltungen VALUES (10, 'Nichtsequentielle und verteilte Programmierung','NSP',6,2);
-INSERT INTO veranstaltungen VALUES (11, 'Rechnernetze','NET',6,1);
-INSERT INTO veranstaltungen VALUES (12, 'Unterrichtsbezogenes Softwarepraktikum','SWP',3,2);
-INSERT INTO veranstaltungen VALUES (13, 'Unterrichtsbezogenes Datenbankpraktikum','DBP',3,4);
-INSERT INTO veranstaltungen VALUES (14, 'Analyse fachlichen Lernens','AfL',3,5);
+INSERT INTO veranstaltungen VALUES (1, 'Betriebssystemwerkzeuge','BSW',2,1,1);
+INSERT INTO veranstaltungen VALUES (2, 'Funktionale Programmierung','FP',8,1,2);
+INSERT INTO veranstaltungen VALUES (3, 'Grundlagen der Technischen Informatik','RS',6,1,3);
+INSERT INTO veranstaltungen VALUES (4, 'Imperative und objektorientierte Programmierung','ALP2',7,2,2);
+INSERT INTO veranstaltungen VALUES (5, 'Rechnerarchitektur','RO',4,2,1);
+INSERT INTO veranstaltungen VALUES (6, 'Einführung in die Theoretischen Informatik','EthI',5,2,3);
+INSERT INTO veranstaltungen VALUES (7, 'Datenstrukturen und Datenabstraktion','ALP3',6,3,2);
+INSERT INTO veranstaltungen VALUES (8, 'Datenbanksysteme','DBSA',6,3,4);
+INSERT INTO veranstaltungen VALUES (9, 'Fachdidaktik Informatik','DDI',4,3,5);
+INSERT INTO veranstaltungen VALUES (10, 'Nichtsequentielle und verteilte Programmierung','NSP',6,4,2);
+INSERT INTO veranstaltungen VALUES (11, 'Rechnernetze','NET',6,4,1);
+INSERT INTO veranstaltungen VALUES (12, 'Unterrichtsbezogenes Softwarepraktikum','SWP',3,4,2);
+INSERT INTO veranstaltungen VALUES (13, 'Unterrichtsbezogenes Datenbankpraktikum','DBP',3,4,4);
+INSERT INTO veranstaltungen VALUES (14, 'Analyse fachlichen Lernens','AfL',3,4,5);
 
 
 -- spieler_innen ($spNr, spName, schluesselanzahl, !raumNr)
@@ -119,7 +119,8 @@ INSERT INTO aufenthaltsorte VALUES (9, 0);
 INSERT INTO aufenthaltsorte VALUES (9, 4);
 
 
--- unterricht (!vNr, !npcNr, !raumNr)							
+-- unterricht (!vNr, !npcNr, !raumNr)	
+-- Achtung: Nur Raumnummer von 1 bis 4 verwenden!						
 INSERT INTO unterricht VALUES (1,2,1);
 INSERT INTO unterricht VALUES (2,3,1);
 INSERT INTO unterricht VALUES (3,2,1);
