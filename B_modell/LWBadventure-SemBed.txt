@@ -12,3 +12,7 @@ die Spiele mit mindestens Note 4.0 beenden.
 
 2.
 Die Kursraumnummern und Semester stimmen überein.
+
+3.
+In den Räumen 1 bis 4 finden die Veranstaltungen statt (Kursräume), und 
+die anderen Räume haben eine andere Funktion.
