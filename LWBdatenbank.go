@@ -8,43 +8,49 @@ import ( 	. "gfx"
 			"fmt"
 			"sync"
 			"time"
-			//"felder"
-			"./klassen/buttons"
+			"felder"
+			"./Klassen/buttons"
 		)
 
 var Mutex sync.Mutex					// erstellt Mutex
 	
-var Knoepfe []buttons.Button			// Slice für alle erstellten Knöpfe
-var BuZurueck buttons.Button
+var Knoepfe, Suchknoepfe []buttons.Button		// Slices für alle erstellten Knöpfe / die Suchfelder
+var Suchfelder []felder.Feld
+var BuZurueck,BuEintrag,BuEnde buttons.Button
 var Akt bool = true						// True gdw. Raum gewechselt wurde
 var Raumnummer uint8					// Raumnummer des momentanen Raumes
-var Knopftexte []string
+var Knopftexte, Suchknopftexte []string
 
 func main () {
 	Fenster (1200, 700)
 	Fenstertitel(" ###  LWB - Datenbank  ###")
 	SetzeFont ("./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
 	
-	Knopftexte = append(Knopftexte, "zurück", "Dozenten", "Minispiele", "Fachgebiete", "Semester")
+	Knopftexte = append(Knopftexte, "", "Dozenten", "Minispiele", "Fachgebiete", "Semester")
+	Suchknopftexte = append(Knopftexte, "", "vname", "nname", "str", "plz")
 	
-	BuZurueck 	= buttons.New(10,620,200,70, 230,50,100, true, Knopftexte[0])		// zurück
+	BuZurueck 	= buttons.New(10,620,200,70, 230,50,100, true, " zurück")				// zurück
+	BuEintrag 	= buttons.New(400,620,350,70, 230,50,100, true, " Erstelle Eintrag")	// Erstelle Eintrag
+	BuEnde 	= buttons.New(1000,620,200,70, 230,50,100, true, " Beenden")				// Beenden
 	
-	bu1			:= buttons.New(100,150,300,70, 230,50,100, true, Knopftexte[1])		// Dozenten
-	bu2			:= buttons.New(100,250,300,70, 230,50,100, true, Knopftexte[2])		// Minispiele
-	bu3			:= buttons.New(100,350,300,70, 230,50,100, true, Knopftexte[3])		// Fachgebiete
-	bu4			:= buttons.New(100,450,300,70, 230,50,100, true, Knopftexte[4])		// Semester
-	Knoepfe = append(Knoepfe, bu1, bu2, bu3, bu4)
+	ErstelleKnoepfe()
+	ErstelleSuchknoepfe()
+	ErstelleSuchFelder()
 	
-	
-	
+	ZeichneRaum()
+
 	
 	// Das Hauptprogramm startet die View-Komponente als nebenläufigen Prozess!
-	go view_komponente()
+	// go view_komponente()
 	
 	// Nebenläufig wird die Kontroll-Komponente für die Maus gestartet.
 	go maussteuerung()
 
 	/*
+	vname := felder.New (100,  10, 30, 'l', "Vorname")	
+	vn := vname.Edit ()
+	fmt.Println(vn)
+	
 	var vname,nname,str,plz,ort,leer1,leer2 felder.Feld
 	var s string
 
@@ -80,38 +86,64 @@ func main () {
 	str.Schreibe ("Straßenname ist zu lang und wird gekürzt")
 	ort.Edit ()
 	*/
-
+	for { }
 	TastaturLesen1 ()
 }
 
-func ZeichneKnoepfe(knoepfe []buttons.Button) {
-	for _,bu := range knoepfe {
+func ErstelleKnoepfe() {
+	bu1			:= buttons.New(100,150,300,70, 230,50,100, true, Knopftexte[1])		// Dozenten
+	bu2			:= buttons.New(100,250,300,70, 230,50,100, true, Knopftexte[2])		// Minispiele
+	bu3			:= buttons.New(100,350,300,70, 230,50,100, true, Knopftexte[3])		// Fachgebiete
+	bu4			:= buttons.New(100,450,300,70, 230,50,100, true, Knopftexte[4])		// Semester
+	Knoepfe = append(Knoepfe, bu1, bu2, bu3, bu4)
+}
+func ErstelleSuchknoepfe() {
+	vname		:= buttons.New(100,100,300,50, 230,50,100, true, Suchknopftexte[1])		// Dozenten
+	nname		:= buttons.New(300,100,300,50, 230,50,100, true, Suchknopftexte[2])		// Minispiele
+	str			:= buttons.New(500,100,300,50, 230,50,100, true, Suchknopftexte[3])		// Fachgebiete
+	plz			:= buttons.New(700,100,300,50, 230,50,100, true, Suchknopftexte[4])		// Semester
+	Suchknoepfe = append(Suchknoepfe, vname, nname, str, plz)
+}
+func ErstelleSuchFelder() {
+	vname := felder.New (100, 100, 30, 'l', "Vorname")		// Position 10/10; Länge von 30 Zeichen; linksbündig; Name des Feldes
+	nname := felder.New (300, 100, 30, 'l', "Nachname")
+	str   := felder.New (500, 100, 30, 'l', "Straße")
+	plz   := felder.New (700, 100,  5, 'l', "PLZ")
+	Suchfelder = append(Suchfelder, vname, nname, str, plz)
+}
+func ZeichneKnoepfe() {
+	for _,bu := range Knoepfe {
 		bu.ZeichneButton()
 	}
 }
-func AktiviereKnoepfe(knoepfe []buttons.Button) {
-	for _,bu := range knoepfe {
+func AktiviereKnoepfe() {
+	for _,bu := range Knoepfe {
 		bu.AktiviereButton()
 	}
 }
-func DeaktiviereKnoepfe(knoepfe []buttons.Button) {
-	for _,bu := range knoepfe {
+func DeaktiviereKnoepfe() {
+	for _,bu := range Knoepfe {
 		bu.DeaktiviereButton()
 	}
 }
 
+func ZeichneSuchknoepfe() {
+	for _,bu := range Suchknoepfe {
+		bu.ZeichneButton()
+	}
+}
+func AktiviereSuchknoepfe() {
+	for _,bu := range Suchknoepfe {
+		bu.AktiviereButton()
+	}
+}
+func DeaktiviereSuchknoepfe() {
+	for _,bu := range Suchknoepfe {
+		bu.DeaktiviereButton()
+	}
+}
 
 /*
-	// Das Hauptprogramm startet die View-Komponente als nebenläufigen Prozess!
-	go view_komponente(&obj, maus, okayObjekt, &stop, &akt, &ende, &punkte, &diff, &mutex, &eingabe, &wg)
-
-	// Objekte werden nach und nach in der Welt platziert
-	go spielablauf(&obj, maus, random, &mutex, &akt, &tastatur, &stop, &signal, &ende, &zweiter, &eingabe, &wert, &punkte, &punkteArr, kanal, &wg)
-
-	// Nebenläufig wird die Kontroll-Komponente für die Maus gestartet.
-	go maussteuerung(&obj, maus, okayObjekt, &signal, &stop, &akt, &ende, &punkte, &diff, &wert, kanal, &wg)
-
-	go musikhintergrund(&ende, &wg)
 
 	// Die Kontroll-Komponente 2 ist die 'Mainloop' im Hauptprogramm	
 	// Wir fragen hier nur die Tastatur ab.
@@ -120,64 +152,12 @@ func DeaktiviereKnoepfe(knoepfe []buttons.Button) {
 
 	SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 28 )
 
-
-	A:	for {
-		taste, gedrueckt, tiefe = TastaturLesen1()
-		
-		if tastatur {
-			if gedrueckt == 1  { 						// Beim Drücken der Taste, nicht beim Loslassen!
-				switch {
-					case taste == 27:  									// ESC-Taste
-					break A
-					case taste==13 || taste==271:  						// Enter-Taste(n)
-					signal = true
-					case taste == 32:  									// Leer-Taste
-					eingabe += " "
-					case taste ==  8:  									// Backspace-Taste
-					if eingabe != "" {
-						eingabe = eingabe [:len(eingabe)-1]
-					}
-					case taste ==  276:  								// LINKS-Taste
-					if eingabe != "" {
-						eingabe = eingabe [:len(eingabe)-1]
-					}
-					case taste >= 48 && taste < 58 && tiefe == 0:  		// Zahlen
-					eingabe += string(taste)
-					case taste == 44:
-					eingabe += ","
-					case taste == 46:
-					eingabe += "."
-					case taste == 55 && tiefe > 0:  					// 7
-					eingabe += "["
-					case taste == 56 && tiefe > 0:  					// 8
-					eingabe += "("
-					case taste == 57 && tiefe > 0:    					// 9		
-					eingabe += ")"
-					case taste == 48 && tiefe > 0:  		  			// 0
-					eingabe += "]"
-					case taste == 46 && tiefe > 0:  		
-					eingabe += ":"
-					case taste == 49 && tiefe > 0:  		
-					eingabe += ":"
-					case taste == 50 && tiefe > 0:  		
-					eingabe += "\""
-					case taste == 51 && tiefe > 0:  		
-					eingabe += "'"
-					case taste == 92 && tiefe > 0:  		
-					eingabe += "'"
-					case taste >= 97 && taste < 123 && tiefe == 0:  	// Kleinbuchstaben
-					eingabe += string(taste)
-					case taste >= 97 && taste < 123 && tiefe > 0:		// Großbuchstaben
-					eingabe += string(taste-32)
-					default:
-				}
 			}
 		}
 */
 
 
-
-// Es folgt die VIEW-Komponente
+// Es folgt die VIEW-Komponente		--- wird wahrscheinlich so nicht benötigt
 func view_komponente () { 
 		
 	var t1 int64 = time.Now().UnixNano() 		//Startzeit
@@ -186,51 +166,61 @@ func view_komponente () {
 
 	// defer wg.Done()
 
-	for { //Endlos ...
-		Mutex.Lock()
-		UpdateAus () 										// Nun wird alles im nicht sichtbaren "hinteren" Fenster gezeichnet!
-		
-		Stiftfarbe(255,255,255)
-		Cls()												// Cleart vollständigen Screen
-		
+	for { 
 		if Akt {
-			ZeichneRaum()
-			Archivieren()
-			Akt = false
-		} else {
-			Restaurieren(0,0,1200,700)						// Restauriert das alte Hintergrundbild
-		}
-		
+			//Endlos ...
+			Mutex.Lock()
+			UpdateAus () 										// Nun wird alles im nicht sichtbaren "hinteren" Fenster gezeichnet!
+			
+			Stiftfarbe(255,255,255)
+			Cls()												// Cleart vollständigen Screen
+			
+			if Akt {
+				ZeichneRaum()
+				Archivieren()
+				Akt = false
+			} else {
+				Restaurieren(0,0,1200,700)						// Restauriert das alte Hintergrundbild
+			}
+			
 
-		SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 35 )
-		Stiftfarbe(100,10,155)
-		Schreibe (2,2,"FPS:"+fmt.Sprint (anzahl))							// Schreibe links oben FPS
+			SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 35 )
+			Stiftfarbe(100,10,155)
+			Schreibe (2,2,"FPS:"+fmt.Sprint (anzahl))							// Schreibe links oben FPS
+			
+			
+			if time.Now().UnixNano() - t1 < 1000000000 { 		//noch in der Sekunde ...
+				anz++
+			} else {
+				t1 = time.Now().UnixNano() 						// neue Sekunde
+				anzahl = anz
+				anz=0
+				if anzahl < 100 { verzögerung--}				//Selbstregulierung der 
+				if anzahl > 100 { verzögerung++}				//Frame-Rate :-)		-- dieser 8-zeilige Abschnitt wurde  von Herrn Schmidt übernommen
+			}
+			
+			UpdateAn () 										// Nun wird der gezeichnete Frame sichtbar gemacht!
+			Mutex.Unlock()
 		
-		
-		if time.Now().UnixNano() - t1 < 1000000000 { 		//noch in der Sekunde ...
-			anz++
-		} else {
-			t1 = time.Now().UnixNano() 						// neue Sekunde
-			anzahl = anz
-			anz=0
-			if anzahl < 100 { verzögerung--}				//Selbstregulierung der 
-			if anzahl > 100 { verzögerung++}				//Frame-Rate :-)		-- dieser 8-zeilige Abschnitt wurde  von Herrn Schmidt übernommen
+			time.Sleep(time.Duration(verzögerung * 1e5)) 		// Immer ca. 100 FPS !!
 		}
-		
-		UpdateAn () 										// Nun wird der gezeichnete Frame sichtbar gemacht!
-		Mutex.Unlock()
-	
-		time.Sleep(time.Duration(verzögerung * 1e5)) 		// Immer ca. 100 FPS !!
 	}
 }
 
+
+
 func ZeichneRaum() {
+	UpdateAus () 										// Nun wird alles im nicht sichtbaren "hinteren" Fenster gezeichnet!
+	Stiftfarbe(255,255,255)
+	Cls()												// Cleart vollständigen Screen
 	SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 80 )
 	Stiftfarbe(100,100,100)
 	switch Raumnummer {
 		case 0:	
 		SchreibeFont(300,50,"LWB - Datenbank")
-		ZeichneKnoepfe(Knoepfe)
+		ZeichneKnoepfe()
+		BuEintrag.ZeichneButton()
+		BuEnde.ZeichneButton()
 		case 1:
 		SchreibeFont(300,50,Knopftexte[1])
 		BuZurueck.ZeichneButton()
@@ -243,7 +233,12 @@ func ZeichneRaum() {
 		case 4:
 		SchreibeFont(300,50,Knopftexte[4])
 		BuZurueck.ZeichneButton()
+		case 10:										// Eintrag hinzufügen
+		SchreibeFont(300,50,"Eintrag hinzufügen")
+		ZeichneSuchknoepfe()
+		BuZurueck.ZeichneButton()
 	}
+	UpdateAn () 										// Nun wird der gezeichnete Frame sichtbar gemacht!
 }
 
 // Es folgt die Maus-Komponente 1 --- Kein Bestandteil der Welt, also unabhängig -----
@@ -256,19 +251,47 @@ func maussteuerung () {
 		if status==1 { 													// Maustaste gedrückt
 			for _,knopf := range Knoepfe { 									// überprüft Knöpfe im Array
 				if knopf.TesteXYPosInButton(mausX,mausY) {
-					fmt.Println("Button gedrückt: ", knopf.GibBeschriftung() )
+					fmt.Println("Knopf gedrückt: ", knopf.GibBeschriftung() )
 					switch knopf.GibBeschriftung() {
-						case Knopftexte[0]:	Raumnummer = 0
-						case Knopftexte[1]: Raumnummer = 1; fmt.Println(Raumnummer)
-						case Knopftexte[2]:	Raumnummer = 2
-						case Knopftexte[3]: Raumnummer = 3
-						case Knopftexte[4]:	Raumnummer = 4						
+						case Knopftexte[1]: 
+						DeaktiviereKnoepfe()
+						Raumnummer = 1
+						case Knopftexte[2]:	
+						DeaktiviereKnoepfe()
+						Raumnummer = 2
+						case Knopftexte[3]: 
+						DeaktiviereKnoepfe()
+						Raumnummer = 3
+						case Knopftexte[4]:	
+						DeaktiviereKnoepfe()
+						Raumnummer = 4						
 					}
-				} else if BuZurueck.TesteXYPosInButton(mausX,mausY) {
-					Raumnummer = 0
 				}
-				Akt = true		// etwas wurde geklickt und muss neu gezeichnet werden
 			}
+			for _,suchknopf := range Suchknoepfe { 									// überprüft Knöpfe im Array
+				if suchknopf.TesteXYPosInButton(mausX,mausY) {
+					fmt.Println("Suchknopf gedrückt: ", suchknopf.GibBeschriftung() )
+					switch suchknopf.GibBeschriftung() {
+						case Suchknopftexte[1]: 
+						Suchfelder[0].Edit()
+						case Suchknopftexte[2]:	
+						Suchfelder[1].Edit()
+						case Suchknopftexte[3]: 
+						Suchfelder[2].Edit()
+						case Suchknopftexte[4]:	
+						Suchfelder[3].Edit()					
+					}
+				}
+			}
+			if BuZurueck.TesteXYPosInButton(mausX,mausY) {
+				AktiviereKnoepfe()
+				Raumnummer = 0
+			} else if BuEintrag.TesteXYPosInButton(mausX,mausY) {
+				Raumnummer = 10
+				//ZeichneSuchknoepfe()
+			} 
+				
+			ZeichneRaum()			// etwas wurde geklickt und muss neu gezeichnet werden
 		}
 	}
 }
