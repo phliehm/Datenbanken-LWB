@@ -12,6 +12,8 @@ import (
 		//"time"
 		"unicode/utf8"
 		"math"
+		"../sqlTabelle"
+		"SQL"
 		)
 
 
@@ -248,4 +250,32 @@ func gibVariableBreiten(tabelle [][]string,h []string) []uint16 {
 		breiten = append(breiten,findeLängstenString(spalte,h[i]))
 	}
 	return breiten
+}
+
+
+// 
+
+func ZeichneAnfrage(conn SQL.Verbindung,anfrage string,x,y uint16,zeigeAnfrage bool, 
+					rT,gT,bT,rK,gK,bK uint8, schriftgröße int, font string) {
+	//Stiftfarbe(255,255,255)
+	//Cls()
+	sT := sqlTabelle.New(conn,anfrage)
+	//fmt.Println(sT.GibTabelle())
+	
+	// SQL Anfrage anzeigen
+	if zeigeAnfrage == true {
+		gfx.Stiftfarbe(0,0,0)
+		gfx.Schreibe(10,650,anfrage)	
+	}
+	
+	// Textbox Tabelle
+	tbT := New(sT.GibTabelle(),sT.GibKopf(),x,y)
+	tbT.SetzeFarbeTabelle(rT,gT,bT)
+	tbT.SetzeZeilenAbstand(1)
+	tbT.SetzeSchriftgrößeTabelle(schriftgröße)
+	tbT.SetzeSpaltenAbstand(20)
+	tbT.SetzeFarbeKopf(rK,gK,bK)
+	tbT.SetzeFontKopf(font)
+	tbT.SetzeFontTabelle(font)
+	tbT.Zeichne()
 }

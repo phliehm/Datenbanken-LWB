@@ -129,7 +129,6 @@ func gibTabelle(conn SQL.Verbindung, anfrage string) [][]string {
 
 // nötig um auch den Datentyp "note" bzw. []rune lesen zu können
 func interfaceToString(i interface{}) string {
-	fmt.Printf("%T",i)
 	switch v := i.(type) {
 		case string:
 			return v

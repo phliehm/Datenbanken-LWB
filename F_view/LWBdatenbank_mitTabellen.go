@@ -24,7 +24,7 @@ var Raumnummer uint8					// Raumnummer des momentanen Raumes
 var Knopftexte []string
 var conn SQL.Verbindung
 
-
+var font string = "../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf"
 
 func main () {
 	Fenster (1200, 700)
@@ -141,7 +141,7 @@ func ZeichneRaum() {
 		case 2:
 		SchreibeFont(300,50,Knopftexte[2])
 		anfrage := "SELECT * FROM minigames;"
-		zeichneAnfrage(conn,anfrage)
+		textboxTabelle.ZeichneAnfrage(conn,anfrage,500,200,true,0,0,0,0,0,255,30,font)
 		BuZurueck.ZeichneButton()
 		case 3:
 		SchreibeFont(300,50,Knopftexte[3])

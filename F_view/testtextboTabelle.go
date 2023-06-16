@@ -22,8 +22,6 @@ var anfragenSlice []string = []string{
 "SELECT ort, COUNT(*) AS AnzahlVeranstaltungen FROM raeume, veranstaltungen GROUP BY ort ORDER BY COUNT(*);",
 "SELECT * FROM raeume, veranstaltungen WHERE ort NOT LIKE '%FU%';",
 "SELECT * FROM spielstaende;",
-"SELECT * FROM spieler_innen NATURAL JOIN spielstaende WHERE note = (SELECT AVG(note) FROM spielstaende WHERE AVG(note) NOT BETWEEN 2.0 AND 4.0);",
-
 }		
 
 // "SELECT vname, raumnr, sws FROM (veranstaltungen,unterricht),(dozentinnen,npcs) WHERE npcname = 'Winnie the K' ORDER BY sws DESC;",
