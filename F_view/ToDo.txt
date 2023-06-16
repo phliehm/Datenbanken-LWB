@@ -2,7 +2,7 @@ ToDo
 
 
 
-- Tabellenbreite automatisch anpassen (mit Länge der Strings)
+- 
 
 
 

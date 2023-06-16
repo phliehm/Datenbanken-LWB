@@ -77,7 +77,13 @@ type Textbox interface {
 // Erg.: Die Schriftgröße der Textbox ist geliefert
 	GibSchriftgröße () int
 
-
+// Vor.: --
+// Erg.: Die Schriftfarbe ist geliefert
+    GibSchriftfarbe() (uint8,uint8,uint8) 
+	
+	GibText() string 
+	
+	
 // Vor.: --
 // Erg.: Die Farbe des Textes und des Rahmens (gleich) ist gesetzt
 	SetzeFarbe(r,g,b uint8) 
