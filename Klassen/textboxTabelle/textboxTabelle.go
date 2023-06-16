@@ -11,7 +11,7 @@ import (
 		//"fmt"
 		//"time"
 		"unicode/utf8"
-		//"math"
+		"math"
 		)
 
 
@@ -36,6 +36,7 @@ type header struct {
 	kopf	[]string
 	r,g,b	uint8
 	font	string
+	schriftgröße int
 }
 
 func (h *header) formatiere(breite,höhe uint16) {
@@ -44,6 +45,7 @@ func (h *header) formatiere(breite,höhe uint16) {
 		t.SetzeHöhe(höhe)
 		t.SetzeFarbe(h.r,h.g,h.b)
 		t.SetzeFont(h.font)
+		t.SetzeSchriftgröße(h.schriftgröße)
 	}
 }
 
@@ -63,12 +65,12 @@ func (h *header) zeichne() {
 func (h *header) schreibeTbHeader(x,y uint16,b,höhe uint16,tT *data) {
 	//fmt.Println("Header: ",h.kopf)
 	breiten := gibVariableBreiten(tT.stringTabelle,h.kopf)
-	verschiebung := x
+	verschiebung := float64(x)
 	for i,zelle := range h.kopf {
-		tb := textboxen.New(verschiebung,y,b,höhe)
+		tb := textboxen.New(uint16(math.Round(verschiebung)),y,b,höhe)
 		tb.SchreibeText(zelle)
 		h.tbKopf = append(h.tbKopf,tb)
-		verschiebung += uint16(float32(uint16(tT.schriftgröße)*breiten[i])/2) + tT.spaltenAbstand
+		verschiebung += float64(uint16(tT.schriftgröße)*breiten[i])/2 + float64(tT.spaltenAbstand)
 	}
 }
 
@@ -82,9 +84,11 @@ func New(tabelle[][]string,kopf []string,x,y uint16) *data {
 	tT.kopf.kopf = kopf
 	tT.kopf.font = tT.font
 	
+	
 	tT.x,tT.y = x,y
 	tT.spaltenAbstand = 50
 	tT.schriftgröße = 20
+	tT.kopf.schriftgröße = tT.schriftgröße
 	
 	tT.stringTabelle = tabelle 
 	
@@ -164,6 +168,7 @@ func (tT *data) formatiere() {
 
 func (tT *data) Zeichne() {
 	// Kopf zeichnen
+	tT.kopf.schriftgröße = tT.schriftgröße
 	tT.kopf.schreibeTbHeader(tT.x,tT.y,tT.spaltenBreite,uint16(tT.schriftgröße),tT)
 	tT.kopf.formatiere(tT.spaltenBreite,uint16(tT.schriftgröße))
 	tT.kopf.zeichne()
@@ -189,14 +194,14 @@ func (tT *data) VariableBreite() {
 	// Ändere Breite
 	for i,zeile := range tT.tBTabelle {
 		y:= tT.y + uint16(2*tT.schriftgröße)+(tT.zeilenAbstand+uint16(tT.schriftgröße))*uint16(i)
-		x := tT.x
+		x := float64(tT.x)
 		for j,zelle := range zeile {
 			//fmt.Println("Spaltenbreite: ",breiten[j])
 			zelle.SetzeBreite(uint16(tT.schriftgröße)*breiten[j])
-			zelle.SetzePosition(x,y)
+			zelle.SetzePosition(uint16(math.Round(x)),y)
 			// Verschiebe um die Spaltenbreiten links von der aktuellen Position
 			// plus einem konstanten Abstand
-			x+=uint16(float32(uint16(tT.schriftgröße)*breiten[j])/2) + tT.spaltenAbstand	
+			x+=math.Round(float64(uint16(tT.schriftgröße)*breiten[j])/2) + float64(tT.spaltenAbstand)	
 		}
 	} 
 }

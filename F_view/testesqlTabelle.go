@@ -4,7 +4,7 @@ package main
 import (
 		"fmt"
 		"SQL"
-		"./sqlTabelle"
+		"../Klassen/sqlTabelle"
 		)
 
 func main() {
