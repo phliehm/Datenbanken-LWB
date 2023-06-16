@@ -181,7 +181,9 @@ func ZeichneRaum() {
 		suchwort = suche.Edit()
 	
 		anfrage := sucheDozVer(suchwort)
+		
 		textboxTabelle.ZeichneAnfrage(conn,anfrage,100,200,true,0,0,0,0,0,255,16,font)
+		
 		BuZurueck.ZeichneButton()		
 		
 		case 2:
