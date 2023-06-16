@@ -7,7 +7,7 @@ Folgende Relationen werden erzeugt ($ = Schlüssel, ! = Fremdschlüssel):
 
 NPCs ($ NPCNr, NPCName)
 
-Dozent_innen (! NPCNr, Lieblingsgetränk)
+Dozent_Innen (! NPCNr, Lieblingsgetränk)
 
 sonstigeNPCs (! NPCNr, Aufgabe)
 
@@ -17,7 +17,7 @@ Themengebiete ($ GebietNr, GebietName)
 
 Minigames ($ GameNr, Game-Name, ! VNr)
 
-Spieler_innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
+Spieler_Innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
 
 Räume ($ RaumNr, Raumname, Ort, Funktion)
 
@@ -44,7 +44,7 @@ DozentInnen, Raum-Nummer und Veranstaltungs-Nummer) werden als Fremdschlüssel
 eingetragen.
 
 3. Dozent_innen assistieren bei Veranstaltungen:
-optionale 1:n-Beziehung => Da NULL-Werte verhindert werden sollen wird 
+optionale 1:n-Beziehung => Da NULL-Werte verhindert werden sollen, wird 
 eine eigene Relation Assistenz erstellt. Die NPC-Nummer der DozentInnen 
 und die Veranstaltungsnummer werden als Fremdschlüssel eingetragen.
 
@@ -54,7 +54,7 @@ einseitig optionale 1:1-Beziehung => Der Veranstaltungsschlüssel könnte als
 Fremdschlüssel in die Relation Minigames eingetragen werden. Hier wurde
 jedoch entschieden der eigentlich schwachen Entität einen eigenen Schlüssel
 "GameNr" zu geben, um diesen dann als Fremdschlüssel in der Relation
-"Spielstand" nutzen zu können und dort Nullwerte zu vermeiden, die ggf.
+"Spielstand" nutzen zu können um dort Nullwerte zu vermeiden, die ggf.
 entstehen könnten, wenn es zu einer Veranstaltung kein MiniGame gibt.
 
 5. Spieler_innen spielen MiniGames:
@@ -70,8 +70,8 @@ SpielerInnen-Nummer als Fremdschlüssel einzutragen.
 
 7. Spieler_innen befindeten sich in Räumen:
 obligatorische 1:n-Beziehung => Die Raumnummer wird als Fremdschlüssel 
-in die Relation Spieler_innen eingetragen.
+in die Relation Spieler_Innen eingetragen.
 
 10. sonstige NPCs sind in den Räumen anzutreffen:
-einseitig optionale n:m-Beziehung => Die Schlüssel der Entitäten (sNPCNr und
+einseitig optionale n:m-Beziehung => Die Schlüssel der Entitäten (NPCNr und
 RaumNr) werden als Fremdschlüssel in eine neue Relation "Aufenthaltsorte" eingetragen.
