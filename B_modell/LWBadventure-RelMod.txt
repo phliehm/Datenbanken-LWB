@@ -27,7 +27,7 @@ Spielstände (! GameNr, ! SpNr, Punkte, Note)
 
 Aufenthaltsorte (! NPCNr, ! RaumNr)
 
-Assistenz (! NPCNr, ! VeranstaltungsNr)
+Assistenz (! NPCNr, ! VNr)
 
 
 

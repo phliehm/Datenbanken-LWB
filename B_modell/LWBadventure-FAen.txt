@@ -1,0 +1,48 @@
+
+Funktionale Abhänigkeiten der Realtionen:
+*****************************************
+
+
+* NPCs($ NPC#, NPCName)
+NPC# -> NPCName
+
+
+* Dozent_Innen (! NPCNr, Lieblingsgetränk)
+NPC# -> Lieblingsgetränk
+
+* sonstigeNPCs (! NPCNr, Aufgabe)
+NPC# -> Aufgabe
+
+*Veranstaltungen ($ VNr, VName, Kürzel, SWS, ! GebietNr)
+VNr -> VName,Kürzel,SWS,GebietNr
+VName -> VNr,Kürzel,SWS,GebietNr
+Kürzel -> VNr,VName,SWS,GebietNr
+
+* Themengebiete ($ GebietNr, GebietName)
+GebietNr -> GebietName
+
+* Minigames ($ GameNr, Game-Name, ! VNr)
+Minigames(Minigame# $,Minigame-Name,Veranstaltungs# !)
+GameNr -> Game-Name,VNr
+VNr -> GameNr,Game-Name
+Game-Name -> VNr,GameNr
+
+* Spieler_Innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
+SpNr-> SpName,Schüsselanzahl,RaumNr
+
+* Räume ($ RaumNr, Raumname, Ort, Funktion)
+RaumNr -> Raumname,Ort,Funktion
+
+* Unterricht (! VNr, ! NPCNr, ! RaumNr)
+keine funktionalen Abhängikeiten
+
+* Spielstände (! GameNr, ! SpNr, Punkte, Note)
+(GameNr,SpNr -> Punkte,Note
+
+* Aufenthaltsorte (! NPCNr, ! RaumNr)
+keine funktionale Abhängigkeiten
+
+* Assistenz (! NPCNr, ! VNr)
+VNr -> NPCNr
+
+
