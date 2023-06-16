@@ -2,17 +2,38 @@
 -- Skript gibt alle Realtionen zur Miniwelt LWBadventure aus:
 
 
+\C 'NPCs'
 select * from npcs;
+
+\C 'sonstige NPCs'
 select * from sonstigeNPCs;
+
+\C 'DozentInnen'
 select * from dozent_Innen;
+
+\C 'Unterricht'
 select * from unterricht;
+
+\C 'Assistenz'
 select * from assistenz;
+
+\C 'Veranstaltungen'
 select * from veranstaltungen;
+
+\C 'Themengebiete'
 select * from themengebiete;
+
+\C 'Minigames'
 select * from minigames;
-select * from spielstaende;
+
+\C 'SpielerInnen'
 select * from spieler_Innen;
+
+\C 'Räume'
 select * from raeume;
---select * from kursraeume;
---select * from sraeume;
+
+\C 'Spielstände'
+select * from spielstaende;
+
+\C 'Aufenthaltsorte'
 select * from aufenthaltsorte;
