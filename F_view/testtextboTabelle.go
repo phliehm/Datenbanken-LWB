@@ -9,17 +9,20 @@ import (
 		)
 		
 var anfragenSlice []string = []string{
+"SELECT note FROM spielstaende;",
 "SELECT * FROM raeume;", 
+"SELECT * FROM spielstaende;",
 "SELECT * FROM veranstaltungen WHERE sws = 4;",
-"SELECT npcname FROM dozentinnen NATURAL JOIN npcs;",
+"SELECT npcname FROM dozent_innen NATURAL JOIN npcs;",
 "SELECT * FROM veranstaltungen WHERE vname LIKE '%Programmierung';",
-"SELECT lieblingsgetraenk FROM dozentinnen,npcs WHERE npcname = 'Herk';",
+"SELECT lieblingsgetraenk FROM dozent_innen,npcs WHERE npcname = 'Herk';",
 "SELECT COUNT(*) AS AnzahlMiniGames FROM minigames;",
 "SELECT SUM(sws) AS GesamtanzahlSWS FROM veranstaltungen;",
 "SELECT vname FROM veranstaltungen WHERE sws = (SELECT MAX(sws) FROM veranstaltungen);",
 "SELECT ort, COUNT(*) AS AnzahlVeranstaltungen FROM raeume, veranstaltungen GROUP BY ort ORDER BY COUNT(*);",
 "SELECT * FROM raeume, veranstaltungen WHERE ort NOT LIKE '%FU%';",
-"SELECT * FROM spielerinnen NATURAL JOIN spielstaende WHERE note = (SELECT AVG(note) FROM spielstaende WHERE AVG(note) NOT BETWEEN 2.0 AND 4.0);",
+"SELECT * FROM spielstaende;",
+"SELECT * FROM spieler_innen NATURAL JOIN spielstaende WHERE note = (SELECT AVG(note) FROM spielstaende WHERE AVG(note) NOT BETWEEN 2.0 AND 4.0);",
 
 }		
 
