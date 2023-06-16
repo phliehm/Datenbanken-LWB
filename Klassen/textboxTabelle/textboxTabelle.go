@@ -67,6 +67,8 @@ func (h *header) zeichne() {
 func (h *header) schreibeTbHeader(x,y uint16,b,höhe uint16,tT *data) {
 	//fmt.Println("Header: ",h.kopf)
 	breiten := gibVariableBreiten(tT.stringTabelle,h.kopf)
+	if len(breiten) != len(h.kopf) {return}	// Wenn es keine Antwort gibt
+	//fmt.Println(len(breiten),len(h.kopf))
 	verschiebung := float64(x)
 	for i,zelle := range h.kopf {
 		tb := textboxen.New(uint16(math.Round(verschiebung)),y,b,höhe)
@@ -264,8 +266,13 @@ func ZeichneAnfrage(conn SQL.Verbindung,anfrage string,x,y uint16,zeigeAnfrage b
 	
 	// SQL Anfrage anzeigen
 	if zeigeAnfrage == true {
+		// Nur zum Testen auch SQL Anfrage anzeigen
 		gfx.Stiftfarbe(0,0,0)
-		gfx.Schreibe(10,650,anfrage)	
+		tbAnfrage := textboxen.New(10,650,1100,100)
+		tbAnfrage.SetzeFont("../Schriftarten/terminus-font/Terminus-Bold.ttf")
+		tbAnfrage.SetzeSchriftgröße(12)
+		tbAnfrage.SchreibeText(anfrage)
+		tbAnfrage.Zeichne()
 	}
 	
 	// Textbox Tabelle

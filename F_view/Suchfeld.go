@@ -42,7 +42,7 @@ func main() {
 	
 	// Hinweis Natural Join: liefert Kartesisches Produkt wenn es keine übereinstimmenden Attribute gibt
 	
-	suchwort := "th"
+	suchwort := "Kaff"
 	//anfrage := erstelleLikeAnfrage(relationenDozVorl,listeAttributeDozVorl,suchwort)
 	
 	

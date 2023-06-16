@@ -9,6 +9,7 @@ import (
 		)
 		
 var anfragenSlice []string = []string{
+"SELECT vname AS Vorlesung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS DozentIn FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname) LIKE '%th%';",
 "SELECT note FROM spielstaende;",
 "SELECT * FROM raeume;", 
 "SELECT * FROM spielstaende;",
