@@ -13,10 +13,10 @@ NPC# -> Lieblingsgetränk
 * sonstigeNPCs (! NPCNr, Aufgabe)
 NPC# -> Aufgabe
 
-*Veranstaltungen ($ VNr, VName, Kürzel, SWS, ! GebietNr)
-VNr -> VName,Kürzel,SWS,GebietNr
-VName -> VNr,Kürzel,SWS,GebietNr
-Kürzel -> VNr,VName,SWS,GebietNr
+*Veranstaltungen ($ VNr, VName, Kürzel, SWS, Semster, ! GebietNr)
+VNr -> VName,Kürzel,SWS,Semster,GebietNr
+VName -> VNr,Kürzel,SWS,Semster,GebietNr
+Kürzel -> VNr,VName,SWS,Semster,GebietNr
 
 * Themengebiete ($ GebietNr, GebietName)
 GebietNr -> GebietName
