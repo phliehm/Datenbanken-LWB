@@ -1,0 +1,74 @@
+
+%  RALG-Anfragen
+% ---------------
+
+% (1a) Welche Räume gibt es in der LWB-Adventure-World?
+/listing Raeume
+
+% (1b) Welche Funktionen haben die sonstigen NPCs im LWB-Adventure?
+project Aufgabe (sonstigeNPCs);
+
+% (2a) Welche Lehrveranstaltungen haben 6 SWS?
+select SWS = 6 (Veranstaltungen);
+
+% (2b) Welche Lehrveranstaltungen gibt es im 4. Semester?
+select Semester = 4 (Veranstaltungen);
+
+% (2c) Welche Minigames gibt es im 4. Semester?
+select Semester = 4 (Minigames njoin Veranstaltungen);
+
+% (3a) Wie heißen die Spieler_innen, die bisher das LWB-Adventure gespielt haben?
+project SpName (Spieler_innen);
+
+% (3b) Wie heißen die Dozenten im LWB-Adventure?
+project NPCName (Dozent_innen njoin NPCs);
+
+% (3c) Welche Funktion hat 'Heidi'?
+project Aufgabe (select NPCName = 'Heidi' (sonstigeNPCs njoin NPCs));
+
+% (4a) Welche Lehrveranstaltungen gehören zum Themengebiet 'Programmierung'?
+select GebietName = 'Programmierung' (Veranstaltungen njoin Themengebiete);
+
+% (4b) Welche Lehrveranstaltungen haben etwas mit 'Daten' oder 'Programmierung' zu tun?
+% -->  in RA nicht möglich, da es hier keine Wildcards gibt
+
+% (5) Was ist das Lieblingsgetränk von Darth Schmidter?
+project Lieblingsgetraenk (select NPCName = 'Darth Schmidter' (Dozent_innen njoin NPCs));
+
+% (6) Welche Lehrveranstaltungen finden nicht in der FU statt?
+% Da eine Selektion mit Platzhaltern nicht möglich ist, muss für die RA-Anfrage die vollständige Ortsbezeichnung gegeben sein:
+% Welche Lehrveranstaltungen finden nicht in der 'FU Berlin' statt?
+project VName, Ort ((Raeume difference (select Ort = 'FU Berlin' (Raeume))) njoin Unterricht njoin Veranstaltungen);
+% oder
+project VName, Ort ((select Ort != 'FU Berlin' (Raeume)) njoin Unterricht njoin Veranstaltungen);
+
+% (7) Welche Dozenten sind in der LWB nur leitend tätig und machen keine Assistenz?
+project NPCName (NPCs njoin (project NPCNr (Dozent_innen) difference project NPCNr (Assistenz)));
+
+
+% Anfragen, die nur mit erweiterter relationaler Algebra beschrieben werden können:
+% -----------------------------------------------------------------------------------
+
+% (8) Wieviele Mini-Games gibt es in der LWB-Adventure-World? (Ausgaben-Titel: AnzahlMinigames)
+rename Anzahl (Minigames) (group_by [] count(*) true (Minigames));
+
+% (9) Wieviele SWS müssen in der LWB ingesamt absolviert werden? (Ausgaben-Titel: GesamtanzahlSWS)
+rename Gesamtanzahl (SWS) (group_by [] sum(SWS) true (Veranstaltungen));
+
+% (10) Wie heißt die Veranstaltung mit den meisten SWS?
+project VName (select SWS = MaxAnzahl.SWS (rename MaxAnzahl (SWS) (group_by [] max(SWS) true (Veranstaltungen)) njoin Veranstaltungen));
+
+% (11) Gesucht sind die Namen, Semester und SWS aller Veranstaltungen von Winnie the K absteigend sortiert nach SWS-Anzahl!
+sort SWS desc (project VName, SWS, Semester (select NPCName = 'Winnie the K' (Veranstaltungen njoin Unterricht njoin NPCs)));
+
+% (12) Wieviele Veranstaltungen gibt es pro Standort?
+% Ausgabe der Orte mit jeweiliger Anzahl der Veranstaltungen
+rename Standorte (OrtName, AnzahlVeranstaltungen) (group_by Ort Ort,count(VNr) true (Raeume njoin Unterricht));
+% oder aufsteigend sortiert:
+sort AnzahlVeranstaltungen (rename Standorte (OrtName, AnzahlVeranstaltungen) (group_by Ort Ort,count(VNr) true (Raeume njoin Unterricht))); 
+
+% (13) Welche Spieler_innen haben einen Gesamt-Notendurchschnitt, der nicht zwischen 2.0 und 4.0 liegt? (Sortierung nach Gesamt-Notendurchschnitt aufsteigend, also bester Schnitt zuerst)
+% Ausgabe der SpNamen ohne Noten-Durchschnitt:
+project SpName (sort Schnitt,SpName (select Schnitt < 2.0 or Schnitt > 4.0 (rename Noten (SpName,Schnitt) (group_by SpName SpName,avg(Note) true (Spielstaende njoin Spieler_innen)))));
+% Alternativ-Ausgabe mit SpNamen und Noten-Durchschnitt:
+project round(Schnitt,2),SpName (select Schnitt < 2.0 or Schnitt > 4.0 (rename Noten (SpName,Schnitt) (group_by SpName SpName,avg(Note) true (Spielstaende njoin Spieler_innen)))); 
