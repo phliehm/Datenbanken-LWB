@@ -5,21 +5,18 @@
 --
 --  Start: 13.06.2023
 
+DROP TABLE assistenz			CASCADE;
 DROP TABLE aufenthaltsorte		CASCADE;
 DROP TABLE spielstaende      	CASCADE;
 DROP TABLE unterricht			CASCADE;
-DROP TABLE assistenz			CASCADE;
 DROP TABLE spieler_innen  	  	CASCADE;
+DROP TABLE raeume    			CASCADE;
 DROP TABLE minigames      		CASCADE;
 DROP TABLE veranstaltungen    	CASCADE;
 DROP TABLE themengebiete		CASCADE;
---DROP TABLE kursraeume  			CASCADE;
---DROP TABLE sRaeume  			CASCADE;
-DROP TABLE raeume    			CASCADE;
 DROP TABLE sonstigeNPCs    		CASCADE;
 DROP TABLE dozent_innen        	CASCADE;
 DROP TABLE npcs		      		CASCADE;
---DROP TABLE kursraum  		CASCADE;
 
 DROP DOMAIN NOTEN;
 
