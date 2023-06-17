@@ -30,15 +30,140 @@ func main () {
 		println ("Verbindungstest erfolgreich")
 	}
 	
-	updateLieblingsgetraenk(conn)
+	fügeHinzuVeranst(conn)
+	//updateLieblingsgetraenk(conn)
 	//prüfeUNDfügeHinzuNPCs(conn)
 	//löscheAusTabelle(conn,löscheNPC,"NPC")
 	//löscheDoz(conn)
 	//prüfeUNDfügeHinzuNPCs(conn)
 	//fügeDozentHinzu(conn)
+	gfx.TastaturLesen1()
 	
 }
 
+//
+func fügeHinzuVeranst(conn SQL.Verbindung) {
+	//Name, Thema, Kürzel, Dozentin, SWS, Semester, Raum
+	// 
+	zeigeVeranst(conn)
+	var eingabe string
+	var vnrS,vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS string
+	var gebietnrS,npcnrS string // um gebietnummer zu finden
+	var eintragWarVorhanden bool
+	
+	vnameS = "Lolo"
+	gebietnameS = "Lala"
+	kuerzelS = "Kon"
+	npcnameS = "Ben Schneider"
+	swsS = "7"
+	semesterS ="1"
+	raumnrS = "4"
+	
+	fmt.Println(vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS)
+	// mögliche Probleme
+	// existiert Dozent? Existiert Thema?
+	
+	// 1. Gebiet prüfen ob vorhanden, sonst neu erstellen
+	// --> in veranstaltunen eintragen
+	// 2. neuer Eintrag in unterricht --> vnr, npcnr,raumnr
+	// Da sollte noch kein Eintrag existieren, weil die Veranstaltung ja noch nicht existiert.
+	
+	// GEBIET
+	eintragWarVorhanden,gebietnrS = prüfeObVorhandenFindeNr(conn,"themengebiete", "gebietname", gebietnameS, "gebietnr" )
+	if eintragWarVorhanden == false {
+		// Einfügen in themengebiete
+		eingabe = fmt.Sprintf(`
+		INSERT INTO themengebiete
+		VALUES (%s,'%s');`, gebietnrS,gebietnameS)
+	    conn.Ausfuehren(eingabe)
+		fmt.Println("Neue Werte wurden eingefügt!")
+	}
+	
+	// VERANSTALTUNGEN
+	eintragWarVorhanden, vnrS = prüfeObVorhandenFindeNr(conn,"veranstaltungen", "vname", vnameS, "vnr")
+	if eintragWarVorhanden {return}		// Wenn es den Eintrag schon gab, mache nichts
+	// Trage neue Veranstaltung ein
+	eingabe = fmt.Sprintf(`
+		INSERT INTO veranstaltungen 
+		VALUES ('%s','%s','%s','%s','%s','%s');`,vnrS,vnameS, kuerzelS,swsS,semesterS,gebietnrS)
+	conn.Ausfuehren(eingabe)
+	
+	// NPC
+	eintragWarVorhanden, npcnrS = prüfeObVorhandenFindeNr(conn,"npcs", "npcname", npcnameS, "npcnr")
+	// Wenn es den NPC noch nicht gab, füge ihn hinzu
+	if eintragWarVorhanden == false {
+		eingabe = fmt.Sprintf(`
+		INSERT INTO npcs
+		VALUES ('%s','%s');`,npcnrS,npcnameS)
+	conn.Ausfuehren(eingabe)
+	}
+	
+	// DOZENTIN
+	//_ Da man ja schon eine npcnr hat, die aber nicht überschrieben werde soll
+	eintragWarVorhanden, _ = prüfeObVorhandenFindeNr(conn,"dozent_innen", "npcnr", npcnrS, "npcnr")
+	if eintragWarVorhanden == false {
+		eingabe = fmt.Sprintf(`
+		INSERT INTO dozent_innen
+		VALUES ('%s','?');`,npcnrS)
+	conn.Ausfuehren(eingabe)
+	}
+	
+	// UNTERRICHTEN
+	eingabe = fmt.Sprintf(`
+		INSERT INTO unterricht
+		VALUES ('%s','%s','%s');`,vnrS,npcnrS,raumnrS)
+	conn.Ausfuehren(eingabe)
+	// Nochmal Veranstaltungen zeichnen
+	zeigeVeranst(conn)
+}
+
+
+// Zeigt die wesentlichen Attribute von Veranstaltungen						
+func zeigeVeranst(conn SQL.Verbindung) {
+	anfrage := "SELECT vname,gebietname,kuerzel,npcname,sws,semester,raumnr FROM veranstaltungen"+
+				" NATURAL JOIN unterricht NATURAL JOIN npcs NATURAL JOIN themengebiete;"
+	textboxTabelle.ZeichneAnfrage(conn,anfrage,10,200,true,0,0,0,0,0,255,16,font) 
+				
+}
+
+// Prüft ob ein Attributswert existiert, wenn nicht, ist eine freie Nummer zurückgeliefert, 
+// Wenn ja, ist die zugehörige Nummer geliefert.
+func prüfeObVorhandenFindeNr(conn SQL.Verbindung,tabelle, attributName, attributsWert, nrName string) (bool, string) {
+	var nrWert string
+	var eintragWarVorhanden bool
+	// 1. Tabelle prüfen ob Attributswert vorhanden, sonst neu erstellen
+	anfrage := "SELECT "+ nrName + " FROM " + tabelle + " WHERE "+attributName +"='"+ attributsWert +"';"
+	sT:= sqlTabelle.New(conn,anfrage)
+	//fmt.Println(sT.GibTabelle())
+	// Lese den Wert für die Zahl aus
+	nrWert = sT.GibTabelle()[0][0]
+	// Prüfe ob es den Wert gab
+	if nrWert == "Kein Ergebnis für diese Suchanfrage" {
+		// Nr herausfinden die benutzt werden kann
+		anfrage = "SELECT * FROM " + tabelle + ";"
+		sT := sqlTabelle.New(conn, anfrage)
+		// Transponieren um an Spalte zu kommen
+		transponiert := transponiere(sT.GibTabelle())
+		// Finde freie Nummer
+		for i:=1;i<1000;i++ {
+			if !enthalten(transponiert[0],fmt.Sprint(i)) {		// [0] weil da die nr steht
+				nrWert = fmt.Sprint(i)
+				//fmt.Println("Nummer gefunden:",fmt.Sprint(nrWert))
+				break
+			}
+		}
+		eintragWarVorhanden = false
+		return eintragWarVorhanden,nrWert
+	}
+	eintragWarVorhanden = true
+	return eintragWarVorhanden,nrWert
+}
+
+// Vor.: NPC ist vorhanden
+func findeNpcNummer(conn SQL.Verbindung, npcname string)string {
+	anfrage := "SELECT npcnr FROM npcs WHERE npcname='" + npcname + "';"
+	return sqlTabelle.New(conn,anfrage).GibTabelle()[0][0]
+}
 
 // Funktion zum Updaten/Ändern des Lieblingsgetränks
 func updateLieblingsgetraenk(conn SQL.Verbindung) {
@@ -267,9 +392,9 @@ func transponiere(tabelle [][]string) [][]string{
 
 // Prüft ob ein String in einer Liste von Strings enthalten ist, wenn ja, true
 func enthalten(liste []string,e string) bool{
-	fmt.Println("Element: ",e)
+	//fmt.Println("Element: ",e)
 	for _,s := range liste {
-		fmt.Println(s)
+		//fmt.Println(s)
 		if s == e {return true}
 	}
 	return false
