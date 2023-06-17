@@ -14,6 +14,22 @@ import ( 	."gfx"
 			"../Klassen/textboxTabelle"
 			"../Klassen/sqlTabelle"
 		)
+/*
+EINTRÄGE HINZUFÜGEN:
+-Veranstaltung hinzufügen:
+Name, Thema, Kürzel, Dozentin, SWS, Semester, Raum
+-Dozentin anlegen:
+Name, Lieblingsgetränk
+
+EDIT
+-Veranstaltungen: Raumnummer, Dozentin
+
+ORDER:
+- Highscores: Sortieren/Eingrenzen:
+"Notenbereich", "Punktebereich"
+minNote, maxNote, minPunkte,maxPunkte
+- um Note/Punkte Button für Sortierung
+*/
 
 var Mutex sync.Mutex					// erstellt Mutex
 	
@@ -22,7 +38,7 @@ var DurchsucheFeld felder.Feld
 var VeranstaltungFelder, MinispielFelder []felder.Feld
 var BuZurueck,BuEintrag,BuEnde, BuSuche buttons.Button
 var Akt bool = true							// True gdw. Raum gewechselt wurde _----- NICHT BENÖTIGT?!
-var Anfrage string							// Durchsuchen-String
+var Anfrage, Suchwort string							// Durchsuchen/Suchwort-String
 var Raumnummer uint8						// Raumnummer des momentanen Raumes
 var Katknopftexte, Hinzuknopftexte,VeranstaltungFeldtexte []string
 var conn SQL.Verbindung
@@ -98,7 +114,7 @@ func main () {
 }
 
 func ErstelleTexte() {
-	Katknopftexte = append(Katknopftexte, "", "Veranstaltungen", "Minispiele", "Fachgebiete", "LWB-Übersicht")
+	Katknopftexte = append(Katknopftexte, "", "Veranstaltungen", "Highscores", "Dummy", "LWB-Übersicht")
 	Hinzuknopftexte = append(Hinzuknopftexte, "Veranstaltung hinzufügen", "Minispiel hinzufügen", "SWS hinzufügen", "Raum hinzufügen","Dozent/in hinzufügen")
 	VeranstaltungFeldtexte = append(VeranstaltungFeldtexte, "Vorlesung", "Thema", "SWS", "Raum","Dozent/in")
 }
@@ -249,15 +265,15 @@ func maussteuerung () {
 			Stiftfarbe(255,255,255)
 			if BuSuche.TesteXYPosInButton(mausX,mausY) {
 				Vollrechteck(100,110,500,60)
-				suchwort := DurchsucheFeld.Edit()
+				Suchwort = DurchsucheFeld.Edit()
 				
 				Stiftfarbe(255,255,255)
 				Vollrechteck(20,170,1180,530)
 				BuZurueck.ZeichneButton()
 				
 				switch Raumnummer {
-					case 1: Anfrage = sucheDozVer(suchwort)
-					case 2: Anfrage = sucheSpielerGamesScores(suchwort)
+					case 1: Anfrage = sucheDozVer(Suchwort)
+					case 2: Anfrage = sucheSpielerGamesScores(Suchwort)
 				}
 				textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 			}
