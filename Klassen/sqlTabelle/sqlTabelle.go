@@ -105,7 +105,8 @@ func gibTabelle(conn SQL.Verbindung, anfrage string) [][]string {
 		
 	// generiere leere Tabelle
 	tabelle := erstelleTabelle(anzahlZeilen(conn,anfrage),anzahlSpalten(conn,anfrage))
-	
+	// Tabelle ist leer
+	if len(tabelle)<1 {return [][]string{{"Kein Ergebnis für diese Suchanfrage"}}}
 	// generiert benötigte Anzahl an Variablen für eine Zeile (also Anzahl der Spalten)
 	for i:=0;i<len(tabelle[0]);i++ {
 		ergebnisse = append(ergebnisse,0)	// Dummy Wert für das leere Interface
@@ -119,9 +120,23 @@ func gibTabelle(conn SQL.Verbindung, anfrage string) [][]string {
 	for rs.GibtTupel() {
 		rs.LeseTupel(ergebnisAdressen...)	// Werte werden über die Adressen an die richtige Stelle gespeichert
 		for j:=0;j<len(tabelle[0]);j++ {		// Für jeden Wert in einer Zeile, also für jede Spalte
-			tabelle[i][j] = fmt.Sprint(ergebnisse[j]) // Schreibe Inhalt in leere Tabelle
+			tabelle[i][j] = interfaceToString(ergebnisse[j])// Schreibe Inhalt in leere Tabelle
 		}
 		i+=1		// nächste Zeile
 	}
 	return tabelle	
+}
+
+// nötig um auch den Datentyp "note" bzw. []rune lesen zu können
+func interfaceToString(i interface{}) string {
+	switch v := i.(type) {
+		case string:
+			return v
+		case []uint8:
+			return string(v)
+		case float64,int64:
+			return fmt.Sprint(v)
+		default:
+			return ""
+	}
 }

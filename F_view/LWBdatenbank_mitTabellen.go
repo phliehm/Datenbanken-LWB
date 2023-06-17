@@ -24,7 +24,7 @@ var Raumnummer uint8					// Raumnummer des momentanen Raumes
 var Knopftexte []string
 var conn SQL.Verbindung
 
-
+var font string = "../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf"
 
 func main () {
 	Fenster (1200, 700)
@@ -133,7 +133,7 @@ func ZeichneRaum() {
 		ZeichneKnoepfe(Knoepfe)
 		case 1:
 		SchreibeFont(300,50,Knopftexte[1])
-		anfrage := "SELECT * FROM dozentinnen NATURAL JOIN npcs;"
+		anfrage := "SELECT * FROM dozent_innen NATURAL JOIN npcs;"
 		zeichneAnfrage(conn,anfrage)
 		BuZurueck.ZeichneButton()
 		
@@ -141,7 +141,7 @@ func ZeichneRaum() {
 		case 2:
 		SchreibeFont(300,50,Knopftexte[2])
 		anfrage := "SELECT * FROM minigames;"
-		zeichneAnfrage(conn,anfrage)
+		textboxTabelle.ZeichneAnfrage(conn,anfrage,500,200,true,0,0,0,0,0,255,30,font)
 		BuZurueck.ZeichneButton()
 		case 3:
 		SchreibeFont(300,50,Knopftexte[3])
@@ -193,13 +193,13 @@ func zeichneAnfrage(conn SQL.Verbindung,anfrage string) {
 	
 	// Nur zum Testen auch SQL Anfrage anzeigen
 	Stiftfarbe(0,0,0)
-	Schreibe(500,200,anfrage)
+	Schreibe(400,200,anfrage)
 	
 	// Textbox Tabelle
-	tbT := textboxTabelle.New(sT.GibTabelle(),sT.GibKopf(),500,250)
+	tbT := textboxTabelle.New(sT.GibTabelle(),sT.GibKopf(),400,250)
 	tbT.SetzeFarbeTabelle(0,0,0)
 	tbT.SetzeZeilenAbstand(1)
-	tbT.SetzeSchriftgrößeTabelle(16)
+	tbT.SetzeSchriftgrößeTabelle(20)
 	tbT.SetzeSpaltenAbstand(20)
 	tbT.SetzeFarbeKopf(0,0,255)
 	tbT.SetzeFontKopf("../Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")

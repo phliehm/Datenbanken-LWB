@@ -12,6 +12,8 @@ import (
 		//"time"
 		"unicode/utf8"
 		"math"
+		"../sqlTabelle"
+		"SQL"
 		)
 
 
@@ -65,6 +67,8 @@ func (h *header) zeichne() {
 func (h *header) schreibeTbHeader(x,y uint16,b,höhe uint16,tT *data) {
 	//fmt.Println("Header: ",h.kopf)
 	breiten := gibVariableBreiten(tT.stringTabelle,h.kopf)
+	if len(breiten) != len(h.kopf) {return}	// Wenn es keine Antwort gibt
+	//fmt.Println(len(breiten),len(h.kopf))
 	verschiebung := float64(x)
 	for i,zelle := range h.kopf {
 		tb := textboxen.New(uint16(math.Round(verschiebung)),y,b,höhe)
@@ -248,4 +252,37 @@ func gibVariableBreiten(tabelle [][]string,h []string) []uint16 {
 		breiten = append(breiten,findeLängstenString(spalte,h[i]))
 	}
 	return breiten
+}
+
+
+// 
+
+func ZeichneAnfrage(conn SQL.Verbindung,anfrage string,x,y uint16,zeigeAnfrage bool, 
+					rT,gT,bT,rK,gK,bK uint8, schriftgröße int, font string) {
+	//Stiftfarbe(255,255,255)
+	//Cls()
+	sT := sqlTabelle.New(conn,anfrage)
+	//fmt.Println(sT.GibTabelle())
+	
+	// SQL Anfrage anzeigen
+	if zeigeAnfrage == true {
+		// Nur zum Testen auch SQL Anfrage anzeigen
+		gfx.Stiftfarbe(0,0,0)
+		tbAnfrage := textboxen.New(10,650,1100,100)
+		tbAnfrage.SetzeFont("../Schriftarten/terminus-font/Terminus-Bold.ttf")
+		tbAnfrage.SetzeSchriftgröße(12)
+		tbAnfrage.SchreibeText(anfrage)
+		tbAnfrage.Zeichne()
+	}
+	
+	// Textbox Tabelle
+	tbT := New(sT.GibTabelle(),sT.GibKopf(),x,y)
+	tbT.SetzeFarbeTabelle(rT,gT,bT)
+	tbT.SetzeZeilenAbstand(1)
+	tbT.SetzeSchriftgrößeTabelle(schriftgröße)
+	tbT.SetzeSpaltenAbstand(20)
+	tbT.SetzeFarbeKopf(rK,gK,bK)
+	tbT.SetzeFontKopf(font)
+	tbT.SetzeFontTabelle(font)
+	tbT.Zeichne()
 }

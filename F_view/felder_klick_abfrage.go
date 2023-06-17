@@ -4,12 +4,15 @@ package main
 // Zweck: DBP - LWB - Datenbank
 //--------------------------------------------------------------------
 
-import ( 	. "gfx"
+import ( 	."gfx"
 			"fmt"
 			"sync"
 			"time"
-			//"felder"
-			"./klassen/buttons"
+			"felder"
+			"../Klassen/buttons"
+			"SQL"
+			"../Klassen/textboxTabelle"
+			"../Klassen/sqlTabelle"
 		)
 
 var Mutex sync.Mutex					// erstellt Mutex
@@ -17,13 +20,38 @@ var Mutex sync.Mutex					// erstellt Mutex
 var Knoepfe []buttons.Button			// Slice für alle erstellten Knöpfe
 var BuZurueck buttons.Button
 var Akt bool = true						// True gdw. Raum gewechselt wurde
-var Raumnummer uint8					// Raumnummer des momentanen Raumes
+var Raumnummer uint8 = 2					// Raumnummer des momentanen Raumes
+var RaumGeändert chan uint8		// könnte auch ein anderer Datentyp sein
 var Knopftexte []string
+var conn SQL.Verbindung
+
+var font string = "../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf"
+
+ 
+
 
 func main () {
+	
 	Fenster (1200, 700)
 	Fenstertitel(" ###  LWB - Datenbank  ###")
 	SetzeFont ("./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
+	
+	////////////
+	// FELDER //
+	////////////
+	/*
+	var suche felder.Feld
+	var suchwort string
+	felder.Voreinstellungen(0,255,0,32)
+	
+	suche = felder.New (10,  10, 30, 'l', "Suche")
+	
+	*/
+	//////////////////////////////////////
+	
+	RaumGeändert = make(chan uint8)
+	
+	
 	
 	Knopftexte = append(Knopftexte, "zurück", "Dozenten", "Minispiele", "Fachgebiete", "Semester")
 	
@@ -35,53 +63,36 @@ func main () {
 	bu4			:= buttons.New(100,450,300,70, 230,50,100, true, Knopftexte[4])		// Semester
 	Knoepfe = append(Knoepfe, bu1, bu2, bu3, bu4)
 	
+	SetzeFont("../Schriftarten/terminus-font/Terminus-Bold.ttf",20)
+	// Verbindungsaufbau
 	
+	conn = SQL.PgSQL ("user=lewein dbname=lewein")
+	defer conn.Beenden ()
+	fmt.Println("Verbindung hergestellt.\n")
 	
 	
 	// Das Hauptprogramm startet die View-Komponente als nebenläufigen Prozess!
-	go view_komponente()
+	//go view_komponente()
 	
 	// Nebenläufig wird die Kontroll-Komponente für die Maus gestartet.
 	go maussteuerung()
-
+	go stateMachine()
+	go beobachteRaumnummer()
+	
+	//suchwort = suche.Edit()
 	/*
-	var vname,nname,str,plz,ort,leer1,leer2 felder.Feld
-	var s string
-
-
-	vname = felder.New (10,  10, 30, 'l', "Vorname")
-	nname = felder.New (10,  50, 30, 'r', "Nachname")
-	str   = felder.New (10,  90, 30, 'z', "Straße/Hausnummer")
-	plz   = felder.New (10, 130,  5, 'l', "PLZ")
-	plz.SetzeErlaubteZeichen (felder.Digits)
-	ort   = felder.New (10, 170, 30, 'l', "Ort")
-
-	leer1 = felder.New (400, 10, 30, 'l', "")
-	leer2 = felder.New (400, 50, 30, 'l', "")
-
-	// Editieren der Eingabefelder
-	// gelieferte Zeichenketten werden nicht entgegengenommen ...
-	vname.Edit ()
-	nname.Edit ()
-	str.Edit ()
-	plz.Edit ()
-	ort.Edit ()
-
-	// ... dieser schon
-	s = leer1.Edit ()
-	// ... in das zweite leere Feld geschrieben
-	leer2.Schreibe (s)
-
-	// Bereits verwendete Felder lassen sich editieren
-	vname.Edit ()
-	nname.Edit ()
-	// oder als Ausgabefelder verwenden
-	ort.Schreibe ("Zehlendorf")
-	str.Schreibe ("Straßenname ist zu lang und wird gekürzt")
-	ort.Edit ()
+	anfrage := sucheDozVer(suchwort)
+	textboxTabelle.ZeichneAnfrage(conn,anfrage,100,200,true,0,0,0,0,0,255,16,font)
+	
+	TastaturLesen1()
 	*/
+	time.Sleep(5e8)
+	Raumnummer = 0
+	
+	for {
+		time.Sleep(1e7)
+	}
 
-	TastaturLesen1 ()
 }
 
 func ZeichneKnoepfe(knoepfe []buttons.Button) {
@@ -99,81 +110,6 @@ func DeaktiviereKnoepfe(knoepfe []buttons.Button) {
 		bu.DeaktiviereButton()
 	}
 }
-
-
-/*
-	// Das Hauptprogramm startet die View-Komponente als nebenläufigen Prozess!
-	go view_komponente(&obj, maus, okayObjekt, &stop, &akt, &ende, &punkte, &diff, &mutex, &eingabe, &wg)
-
-	// Objekte werden nach und nach in der Welt platziert
-	go spielablauf(&obj, maus, random, &mutex, &akt, &tastatur, &stop, &signal, &ende, &zweiter, &eingabe, &wert, &punkte, &punkteArr, kanal, &wg)
-
-	// Nebenläufig wird die Kontroll-Komponente für die Maus gestartet.
-	go maussteuerung(&obj, maus, okayObjekt, &signal, &stop, &akt, &ende, &punkte, &diff, &wert, kanal, &wg)
-
-	go musikhintergrund(&ende, &wg)
-
-	// Die Kontroll-Komponente 2 ist die 'Mainloop' im Hauptprogramm	
-	// Wir fragen hier nur die Tastatur ab.
-
-	wg.Add(4)						// Wait-Group erhält Counter 4 zum Warten auf das Ende der nebenläufigen Routinen
-
-	SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 28 )
-
-
-	A:	for {
-		taste, gedrueckt, tiefe = TastaturLesen1()
-		
-		if tastatur {
-			if gedrueckt == 1  { 						// Beim Drücken der Taste, nicht beim Loslassen!
-				switch {
-					case taste == 27:  									// ESC-Taste
-					break A
-					case taste==13 || taste==271:  						// Enter-Taste(n)
-					signal = true
-					case taste == 32:  									// Leer-Taste
-					eingabe += " "
-					case taste ==  8:  									// Backspace-Taste
-					if eingabe != "" {
-						eingabe = eingabe [:len(eingabe)-1]
-					}
-					case taste ==  276:  								// LINKS-Taste
-					if eingabe != "" {
-						eingabe = eingabe [:len(eingabe)-1]
-					}
-					case taste >= 48 && taste < 58 && tiefe == 0:  		// Zahlen
-					eingabe += string(taste)
-					case taste == 44:
-					eingabe += ","
-					case taste == 46:
-					eingabe += "."
-					case taste == 55 && tiefe > 0:  					// 7
-					eingabe += "["
-					case taste == 56 && tiefe > 0:  					// 8
-					eingabe += "("
-					case taste == 57 && tiefe > 0:    					// 9		
-					eingabe += ")"
-					case taste == 48 && tiefe > 0:  		  			// 0
-					eingabe += "]"
-					case taste == 46 && tiefe > 0:  		
-					eingabe += ":"
-					case taste == 49 && tiefe > 0:  		
-					eingabe += ":"
-					case taste == 50 && tiefe > 0:  		
-					eingabe += "\""
-					case taste == 51 && tiefe > 0:  		
-					eingabe += "'"
-					case taste == 92 && tiefe > 0:  		
-					eingabe += "'"
-					case taste >= 97 && taste < 123 && tiefe == 0:  	// Kleinbuchstaben
-					eingabe += string(taste)
-					case taste >= 97 && taste < 123 && tiefe > 0:		// Großbuchstaben
-					eingabe += string(taste-32)
-					default:
-				}
-			}
-		}
-*/
 
 
 
@@ -220,12 +156,12 @@ func view_komponente () {
 		UpdateAn () 										// Nun wird der gezeichnete Frame sichtbar gemacht!
 		Mutex.Unlock()
 	
-		time.Sleep(time.Duration(verzögerung * 1e5)) 		// Immer ca. 100 FPS !!
+		time.Sleep(time.Duration(verzögerung * 1e6)) 		// Immer ca. 100 FPS !!
 	}
 }
 
 func ZeichneRaum() {
-	SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 80 )
+	SetzeFont ("../Schriftarten/Ubuntu-B.ttf", 80 )
 	Stiftfarbe(100,100,100)
 	switch Raumnummer {
 		case 0:	
@@ -233,18 +169,63 @@ func ZeichneRaum() {
 		ZeichneKnoepfe(Knoepfe)
 		case 1:
 		SchreibeFont(300,50,Knopftexte[1])
-		BuZurueck.ZeichneButton()
+		/*anfrage := "SELECT * FROM dozent_innen NATURAL JOIN npcs;"
+		zeichneAnfrage(conn,anfrage)
+		*/
+		var suche felder.Feld
+		var suchwort string
+		felder.Voreinstellungen(0,255,0,32)
+	
+		suche = felder.New (10,  10, 30, 'l', "Suche")
+	
+		suchwort = suche.Edit()
+	
+		anfrage := sucheDozVer(suchwort)
+		
+		textboxTabelle.ZeichneAnfrage(conn,anfrage,100,200,true,0,0,0,0,0,255,16,font)
+		
+		BuZurueck.ZeichneButton()		
+		
 		case 2:
 		SchreibeFont(300,50,Knopftexte[2])
+		anfrage := "SELECT * FROM minigames;"
+		textboxTabelle.ZeichneAnfrage(conn,anfrage,500,200,true,0,0,0,0,0,255,30,font)
 		BuZurueck.ZeichneButton()
 		case 3:
 		SchreibeFont(300,50,Knopftexte[3])
+		anfrage := "SELECT * FROM themengebiete;"
+		zeichneAnfrage(conn,anfrage)
 		BuZurueck.ZeichneButton()
 		case 4:
+		anfrage := "SELECT * FROM veranstaltungen;"
+		zeichneAnfrage(conn,anfrage)
 		SchreibeFont(300,50,Knopftexte[4])
 		BuZurueck.ZeichneButton()
 	}
 }
+
+// state-machine
+func stateMachine() {
+	for {
+		<-RaumGeändert
+		Stiftfarbe(255,255,255)
+		Cls()
+		ZeichneRaum()
+	}
+}
+
+// Beobachtet eine globale Variable (hier Raumnummer)
+func beobachteRaumnummer() {
+	vorherigerWert := Raumnummer
+	for {
+		if vorherigerWert != Raumnummer {
+			RaumGeändert <- Raumnummer
+			vorherigerWert = Raumnummer
+		}
+		time.Sleep(1e7)
+	}
+}
+
 
 // Es folgt die Maus-Komponente 1 --- Kein Bestandteil der Welt, also unabhängig -----
 func maussteuerung () {
@@ -270,11 +251,57 @@ func maussteuerung () {
 				Akt = true		// etwas wurde geklickt und muss neu gezeichnet werden
 			}
 		}
+		
 	}
 }
 
 
 
+func zeichneAnfrage(conn SQL.Verbindung,anfrage string) {
+	Stiftfarbe(255,255,255)
+	//Cls()
+	sT := sqlTabelle.New(conn,anfrage)
+	//fmt.Println(sT.GibTabelle())
+	
+	// Nur zum Testen auch SQL Anfrage anzeigen
+	Stiftfarbe(0,0,0)
+	Schreibe(400,200,anfrage)
+	
+	// Textbox Tabelle
+	tbT := textboxTabelle.New(sT.GibTabelle(),sT.GibKopf(),400,250)
+	tbT.SetzeFarbeTabelle(0,0,0)
+	tbT.SetzeZeilenAbstand(1)
+	tbT.SetzeSchriftgrößeTabelle(20)
+	tbT.SetzeSpaltenAbstand(20)
+	tbT.SetzeFarbeKopf(0,0,255)
+	tbT.SetzeFontKopf("../Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")
+	tbT.SetzeFontTabelle("../Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")
+	tbT.Zeichne()
+	//TastaturLesen1()
+	//TastaturLesen1()
+	//tbT.VariableBreite()
+	/*gfx.Stiftfarbe(255,255,255)
+	gfx.Cls()
+	tbT.Zeichne()
+	gfx.TastaturLesen1()
+	* */
+}
 
 
+// Funktion für Suchfeld für Dozentinnen und Veranstaltungen
+func sucheDozVer(suchwort string ) string {
+	anfrage := "SELECT vname AS Vorlesung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS DozentIn FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname) LIKE '%"
+	anfrage += suchwort
+	anfrage += "%';"
+	return anfrage
+}
+
+// Funktion für SpielerInnen und Games, Scores
+func sucheSpielerGamesScores(suchwort string) string {
+	anfrage := "SELECT spname AS SpielerIn,gamename AS MiniGame,vname AS Vorlesung,note AS Note,punkte AS Punkte"+
+	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
+	anfrage += suchwort
+	anfrage += "%';"
+	return anfrage
+}
 
