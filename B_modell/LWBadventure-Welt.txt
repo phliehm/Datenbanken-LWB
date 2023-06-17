@@ -3,39 +3,40 @@
 Beschreibung der Miniwelt
 *************************
 
-Die Miniwelt beschreibt die Spielwelt des selbstgeschriebenen Programms 
-LWBadventure. Dieses Spiel ist an die Lehrerweiterbildung
-Informatik Berlin angelehnt. Die SpielerInnen absolvieren die vier
-Semester des Studiums, indem sie kleine Mini-Games spielen,
-welche die Lehrinhalte der jeweiligen Semester thematisieren.
+Die Miniwelt beschreibt die Spielwelt des im Rahmen des Software-Praktikums
+selbst programmierten Spiels "LWBadventure". Dieses Spiel ist an die
+Lehrerweiterbildung Informatik Berlin angelehnt. Die SpielerInnen absolvieren
+die vier Semester des Studiums, indem sie kleine Mini-Games spielen,
+welche die Lehrinhalte der jeweiligen Semester thematisieren und abfragen.
 
-Die Welt beinhaltet Non-Playing-Characters (NPCs) die eine Namen 
-(Alias) haben und sich in DozentInnen und sonstige NPCs unterteilen. 
-Die DozentInnen haben ein Lieblingsgetränk. Die NPCs erfüllen eine Funktion 
-im Spiel.
+Die Welt beinhaltet Non-Playing-Characters (NPCs), die eine Namen 
+(Alias) haben und sich in Dozent_innen und sonstige NPCs unterteilen. 
+Die Dozent_innen haben ein Lieblingsgetränk, die NPCs erfüllen eine bestimmte
+Aufgabe im Spiel.
 
 Das Spiel hat verschiedene Räume an verschieden Standorten (FU Berlin, 
 STEPS, Home Office). In den Räumen 1 bis 4 finden die 
-Veranstaltungen statt (Kursräume), und die anderen Räume haben eine andere 
-Funktion.
+Veranstaltungen statt (Kursräume), die anderen Räume haben eine andere 
+Funktion (Start- und Schluss-Raum).
 
 Sonstige NPCs können sich (im Gegensatz zur realen Welt) in allen
 Räumen aufhalten – sogar gleichzeitig in mehreren. 
 
-Die Veranstaltungen werden von einer DozentenIn in einem Kursraum 
-gehalten. Dabei können sie von einer anderen DozentIn unterstützt 
-werden. Veranstaltungen haben einen Titel, ein Abkürzung (Kürzel) eine 
-Semesterwochenstundenzahl, ein Semster und können einem Themengebiet zugeordnet 
+Die Veranstaltungen werden von einem Dozenten in einem Kursraum 
+gehalten. Dabei können sie von einem anderen Dozenten unterstützt 
+werden (Assistenz). Veranstaltungen haben einen Titel, ein Abkürzung (Kürzel), eine 
+Semesterwochenstundenzahl, ein Semester und können einem Themengebiet zugeordnet 
 werden.
 
-Zu den Veranstaltungen kann es Minispiele (oder Minigames) geben, aber 
-nicht zu allen, welche Prüfungen zu den Veranstaltungen repräsentieren. 
-Die SpielerInnen können verschiedene Räume betreten und dabei die 
-Minispiele spielen. Jeder Spieler erhält nach Beendigung des Spiels 
+Zu den Veranstaltungen kann es Minispiele (oder Minigames) geben, welche 
+Prüfungen zu den Veranstaltungen repräsentieren, es muss aber 
+nicht zu allen Veranstaltungen ein Minigame geben. 
+Die Spieler_innen können verschiedene Räume betreten und dabei die 
+Minispiele spielen. Jede/r Spieler_in erhält nach Beenden des Spiels 
 eine Punktzahl und eine Note. 
 
-Die SpielerInnen haben am Anfang des Spiels einen Schlüssel für den 
+Die Spieler_innen haben am Anfang des Spiels einen Schlüssel für den 
 Kursraum 1 und können diesen betreten. Im Laufe des Spiels können sie 
 sich weitere Schlüssel erspielen, um die anderen Räume zu betreten. 
-Dazu müssen Sie in den jeweiligen vorherigen Semestern die Spiele mit 
-mindestens Note 4.0 beenden.
+Dazu müssen Sie in den jeweiligen vorherigen Semestern die Spiele 
+mindestens mit der Note 4.0 beenden.

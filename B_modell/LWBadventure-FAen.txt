@@ -1,5 +1,5 @@
 
-# Funktionale Abhänigkeiten der Relationen:
+# Funktionale Abhängigkeiten der Relationen:
 # *****************************************
 
 ! = Fremdschlüssel
