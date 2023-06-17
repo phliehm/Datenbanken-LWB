@@ -3,13 +3,13 @@ Relationenmodell in dritter Normalform
 **************************************
 **************************************
 
-Folgende Relationen werden erzeugt ($ = Schlüssel, ! = Fremdschlüssel):
+Folgende Relationen werden erzeugt ($ = Schlüsselattribut, ! = Fremdschlüssel):
 
 NPCs ($ NPCNr, NPCName)
 
-Dozent_Innen (! NPCNr, Lieblingsgetränk)
+Dozent_Innen (!$ NPCNr, Lieblingsgetränk)
 
-sonstigeNPCs (! NPCNr, Aufgabe)
+sonstigeNPCs (!$ NPCNr, Aufgabe)
 
 Veranstaltungen ($ VNr, VName, Kürzel, SWS, Semster, ! GebietNr)
 
@@ -21,10 +21,10 @@ Spieler_Innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
 
 Räume ($ RaumNr, Raumname, Ort, Funktion)
 
-Unterricht (! VNr, ! NPCNr, ! RaumNr)
+Unterricht (!$ VNr, ! NPCNr, ! RaumNr)
 
-Spielstände (! GameNr, ! SpNr, Punkte, Note)
+Spielstände (!$ GameNr, !$ SpNr, Punkte, Note)
 
 Aufenthaltsorte (! NPCNr, ! RaumNr)
 
-Assistenz (! NPCNr, ! VNr)
+Assistenz (! NPCNr, !$ VNr)
