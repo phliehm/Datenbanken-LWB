@@ -1,7 +1,9 @@
 
-Funktionale Abhänigkeiten der Realtionen:
-*****************************************
+# Funktionale Abhänigkeiten der Relationen:
+# *****************************************
 
+! = Fremdschlüssel
+$ = Attribut ist Teil des Schlüssels 
 
 * NPCs($ NPC#, NPCName)
 NPC# -> NPCName
@@ -18,8 +20,29 @@ VNr -> VName,Kürzel,SWS,Semster,GebietNr
 VName -> VNr,Kürzel,SWS,Semster,GebietNr
 Kürzel -> VNr,VName,SWS,Semster,GebietNr
 
+Die Relation Veranstaltung hat 3 Schlüsselkanditaten (Vnr, VName, 
+Kürzel). Da die Namen der Verstaltungen teilweise sehr lang sind, könnte 
+man mit Rechtschreibfehlern sehr leicht Fehlermeldungen bei den 
+Zuordnungen erzeugen, zum Beispiel wenn der Vorlesungsname als 
+Fremdschlüssel für das Minigame genutzt wird. Die Kürzel wären auf 
+Grund ihrer Kürze eher ein geeigneter Schlüsselkandidat. Dann könnte 
+man auch auf die Vorlesungsnummer verzichten. Jedoch war es für uns 
+einfacher die Zahlen einander zuzuordnen. Daher haben wir uns 
+entschieden, die Vorlesungsnummer als Schlüssel zu nehmen.
+
+
 * Themengebiete ($ GebietNr, GebietName)
 GebietNr -> GebietName
+GebietName -> GebietNr
+
+Beide Attribute sind als Schlüssel geeignet. Daher könnte man auf 
+Nummer ganz verzichten und den Namen des Gebietes direkt in die 
+Relation Veranstaltungen eintragen. Wir haben uns aber entscheiden die 
+Nummer als Schlüssel zu verwenden, da die Namen der Themengebiete sehr 
+lang sind und man durch Rechtschreibfehler sehr leicht gleiche Themengebiete unterschiedlich 
+benennen könnte, und man daurch die eindeutige Zuordnung verlieren 
+würde.
+
 
 * Minigames ($ GameNr, Game-Name, ! VNr)
 Minigames(Minigame# $,Minigame-Name,Veranstaltungs# !)
@@ -27,22 +50,45 @@ GameNr -> Game-Name,VNr
 VNr -> GameNr,Game-Name
 Game-Name -> VNr,GameNr
 
+Hier gibt es 3 Schlüsselkandidaten. Wir haben uns entschieden eine GameNr
+als eigenen Schlüssel einzuführen, obwohl Minigames eine schwache 
+Entität ist und VNr als Schlüssel übernommen werden könnte. Dies könnte 
+aber dazu führen, dass Spielstände Veranstaltungen zugeordnet werden, 
+für die es keine Minispiele gibt, was vermieden werden soll. Da der 
+Game-Name eindeutig vergeben wird, könnte auch dieser als Schlüssel 
+dienen. Jedoch ist es für uns einfacher in der Relation Spielstände 
+eine Nummer einzutragen, weswegen wir die GameNr verwenden.
+
+
 * Spieler_Innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
 SpNr-> SpName,Schüsselanzahl,RaumNr
 
 * Räume ($ RaumNr, Raumname, Ort, Funktion)
 RaumNr -> Raumname,Ort,Funktion
 
-* Unterricht (! VNr, ! NPCNr, ! RaumNr)
-keine funktionalen Abhängikeiten
+* Unterricht (!$ VNr, ! NPCNr, ! RaumNr)
+VNr -> NPCNr,RaumNr
 
-* Spielstände (! GameNr, ! SpNr, Punkte, Note)
-(GameNr,SpNr -> Punkte,Note
+Durch die funktionale Abhängigkeit ist VNr ein ausreichender 
+Schlüssel. Daher ist Zerlegung in eine eine eigene Relation Unterricht eigentlich 
+nicht nötig, da jeder Veranstaltung genau eine DozentIn und ein 
+Kursraum zugeordent wird. Beides für sich sind obligatorische
+1:n-Beziehungen. Daher könnte man die NPC-Nummer und die Raumnummer als 
+Fremdschlüssel in die Veranstaltung eingetragen.
+Wir haben uns allerdings dagegen, und folgen der in der Vorlesung 
+besprochenen Zerlegung in eine eigene Relation. Wir fanden es auch der 
+Übersicht besser die Zuordunungen zwischen Veranstaltungen, DotentIn 
+und Raum in einer eigenen Relation vorzunehmen.
 
-* Aufenthaltsorte (! NPCNr, ! RaumNr)
-keine funktionale Abhängigkeiten
 
-* Assistenz (! NPCNr, ! VNr)
+* Spielstände (!$ GameNr, !$ SpNr, Punkte, Note)
+(GameNr,SpNr) -> Punkte,Note
+
+* Aufenthaltsorte (!$ NPCNr, !$ RaumNr)
+keine funktionale Abhängigkeiten, daher gehören beide Attribute zum Schlüssel
+
+
+* Assistenz (! NPCNr, !$ VNr)
 VNr -> NPCNr
 
 

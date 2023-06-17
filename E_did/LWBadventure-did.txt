@@ -1,0 +1,49 @@
+
+
+Didaktisch methodischer Kommentar
+*********************************
+
+Die Idee der Datenbank könnte mit kleinen Anpassungen auf den 
+Schulalltag angepasst werden. Dabei könnte man analog die Schule als 
+eine Spielwelt programmieren lassen und diese dann in einer Datenbank auch 
+abbilden. Ein Verknüpfung von Programmierung und Datenbank würde auch 
+die Möglichkeiten bieten, das Spiel auf einem Server zu spielen und 
+dort die Spielstände in der Datenbank zu speichern. Damit lassen sich 
+die Themen Programmierung und  Datenbanken auch 
+verknüpfen, welche in der Qualifikationsphase in der Oberstufe im 1. und 2. Semester unterrichet
+werden. In der 10. Klasse wäre die Anwendung nur für sehr 
+leistungsstarke Kurse zu empfehlen. 
+
+Dabei wären natürlich einige Anpassungen in der Namensgebung nötig. 
+Insbesondere werden DozentInnen zu LehrerInnen und Veranstaltungen 
+sollte man ggf. in Unterrichtsfächer und Stundenplanung unterteilen. 
+Ansonsten könnte man aber die Unterteilung in Spieler und andere 
+Charaktere (NPCs) im Kontext eines Spiels beibehalten. Auf sonstige NPCs 
+und Themengebiete könnte natürlich verzichtet werden.
+
+Für den Schulkontext wäre das Entitäts-Realtionsmodell schon realtiv 
+komplex, so dass es sinnvoll wäre aus Vorschlägen ein gemeinsames 
+Modell zu erarbeiten und zu diskutieren. Die anschließenden Aufgaben 
+können (im Sinne von Teile-und-Herrsche) immer wieder zerlegt und in 
+Gruppen einzeln bearbeitet werden, so dass die SchülerInnen dieses 
+Prinzip in praktischer Anwendung erfahren können. So können jeweils das 
+Auflösen der Beziehungen und das Analysieren der
+funktionalen Abhängigkeiten der Relationen aufgeteilt und die 
+Folgerungen dann im Plenum zusammengetragen und diskutiert werden. 
+
+Auch beim Implementieren der Datenbank kann die Arbeit geteilt werden, 
+so dass alle SchülerInnen jeweils eine Relation mit Inhalt umsetzen. Die 
+Anfragen können dann sowieso individuell mit Vorgaben (nutze WHERE, 
+GROUP BY usw.) gestellt werden.
+
+Durch die Aufgebenteilung könnten die jeweiligen Arbeitschritte (Aufstellen 
+des ERM, Zerlegung, Implementation und Anfragen) je nach 
+Vorerfahrung der SchülerInnen in jeweils 1 bis 2 Unterrichtsstunden 
+umgesetzt werden.
+
+Gerade die Verbindung zwischen Programmierung und Datenbank bietet 
+vielfälltige Möglichkeiten das Projekt fortzuführen. Auch die 
+Einbindung vom Thema Rechnernetzwerke könnte erfolgen, so dass das 
+Spiel online verfügbar wäre und die SpielerInnen miteinander oder 
+gegeneinander das Spiel spielen, so wie die SchülerInnen dies aus ihrem 
+Alltag schob von anderen Spielen kennen.

@@ -11,6 +11,16 @@ ternäre Beziehung => Die ternäre Beziehung wird in eine eigene Relation
 DozentInnen, Raum-Nummer und Veranstaltungs-Nummer) werden als Fremdschlüssel
 eingetragen.
 
+(Die Zerlegung in eine eine eigene Relation Unterricht ist eigentlich 
+nicht nötig, da jeder Veranstaltung genau eine DozentIn und ein 
+Kursraum zugeordent wird. Beides für sich sind obligatorische
+1:n-Beziehungen. Daher könnte man die NPC-Nummer und die Raumnummer als 
+Fremdschlüssel in die Veranstaltung eingetragen.
+Wir haben uns allerdings dagegen, und folgen der in der Vorlesung 
+besprochenen Zerlegung in eine eigene Relation. Wir fanden es auch der 
+Übersicht besser die Zuordunungen zwischen Veranstaltungen, DotentIn 
+und Raum in einer eigenen Relation vorzunehmen.)
+
 3. Dozent_innen assistieren bei Veranstaltungen:
 optionale 1:n-Beziehung => Da NULL-Werte verhindert werden sollen, wird 
 eine eigene Relation Assistenz erstellt. Die NPC-Nummer der DozentInnen 
