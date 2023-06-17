@@ -29,16 +29,66 @@ func main () {
 	} else {
 		println ("Verbindungstest erfolgreich")
 	}
-	prüfeUNDfügeHinzuNPCs(conn)
-	fügeDozentHinzu(conn)
+	
+	updateLieblingsgetraenk(conn)
+	//prüfeUNDfügeHinzuNPCs(conn)
+	//löscheAusTabelle(conn,löscheNPC,"NPC")
+	//löscheDoz(conn)
+	//prüfeUNDfügeHinzuNPCs(conn)
+	//fügeDozentHinzu(conn)
 	
 }
 
+
+// Funktion zum Updaten/Ändern des Lieblingsgetränks
+func updateLieblingsgetraenk(conn SQL.Verbindung) {
+	// Wie Löschen, nur, dass am Ende UPDATE ausgeführt wird anstatt DELETE
+	
+	var npcname felder.Feld
+	var npcnameS string
+	
+	// Tabelle anzeigen
+	anfrage := "SELECT npcname FROM npcs NATURAL JOIN dozent_innen;"
+	textboxTabelle.ZeichneAnfrage(conn,anfrage,20,200,true,0,0,0,0,0,255,16,font)
+	
+	felder.Voreinstellungen(230,230,230,20)
+	npcname = felder.New (10,  50, 20, 'l', "Name")	
+	// Eingabe in das Feld
+	npcnameS = npcname.Edit ()
+	
+	var npcnrS string //int64
+	var lieblingsgetraenk  felder.Feld
+	var lieblingsgetraenkS string
+	
+	lieblingsgetraenk   = felder.New (10,  90, 20, 'l', "Lieblingsgetränk")
+	lieblingsgetraenkS = lieblingsgetraenk.Edit()
+	// 2. Mit Anfrage in npcs die npcnr herausbekommt 
+	anfrage = "SELECT npcnr FROM npcs WHERE npcname = '"
+	anfrage += npcnameS
+	anfrage += "';"
+	sT := sqlTabelle.New(conn,anfrage)		// Sende Anfrage
+	npcnrS = sT.GibTabelle()[0][0]		// Tabelle sollte nur ein Ergebnis haben
+	
+	// 3. 
+	// Lieblingsgetränk ändern
+	anfrage = "UPDATE dozent_innen SET lieblingsgetraenk ='"+ lieblingsgetraenkS + "' WHERE npcnr =" + npcnrS + ";"
+	conn.Ausfuehren(anfrage)
+	
+	// Namen und Lieblingsgetränk anzeigen
+	gfx.Stiftfarbe(255,255,255)
+	gfx.Cls()
+	anfrage = "SELECT npcname,lieblingsgetraenk FROM npcs NATURAL JOIN dozent_innen;"
+	textboxTabelle.ZeichneAnfrage(conn,anfrage,20,200,true,0,0,0,0,0,255,16,font) 
+	
+	gfx.TastaturLesen1()
+}
+
+// Fügt NPC hinzu, prüft selbstständig welche Nummer noch frei ist
 func prüfeUNDfügeHinzuNPCs(conn SQL.Verbindung) {
 	/*	Ziel: etwas in eine Tabelle eintragen. Schlüssel wird automatisch bestimmt
 	 * 1. Lies ganze Tabelle und zeige diese
 	 * 2. Prüfe welche Zahl als nächstes als npcnr verfügbar ist, beginnend bei 1
-	 * 3. Schreibe neuen Datensatz in Tabelle
+	 * 3. Schreibe neuen Datensatz in die Tabelle
 	 * 4. Zeige neue Tabelle
 	 */
 	 
@@ -76,8 +126,7 @@ func prüfeUNDfügeHinzuNPCs(conn SQL.Verbindung) {
 		}
 	}
 	
-	// 3. 
-	
+	// 3. 	
 	// Senden der Anfragen 
 	eingabe := fmt.Sprintf(`
 		INSERT INTO npcs
@@ -93,7 +142,7 @@ func prüfeUNDfügeHinzuNPCs(conn SQL.Verbindung) {
 	conn.Ausfuehren(eingabe)
 	println ("Neue Werte wurden eingefügt!")
 	
-	// 4. 
+	// 4. Tabelle nochmal neu zeichnen
 	
 	textboxTabelle.ZeichneAnfrage(conn,anfrage,20,200,true,0,0,0,0,0,255,16,font)
 	
@@ -103,13 +152,65 @@ func prüfeUNDfügeHinzuNPCs(conn SQL.Verbindung) {
 	anfrage = "SELECT * FROM dozent_innen NATURAL JOIN npcs;"
 	textboxTabelle.ZeichneAnfrage(conn,anfrage,20,200,true,0,0,0,0,0,255,16,font)
 	gfx.TastaturLesen1 ()
+}
+
+// Schön wenn diese Funktin mit verschiedenen Fkt, funktionieren würde, derzeit nur mit Löschen
+// Man könnte jetzt aber verschiedene Löschszenarien (mit 1 Feld) definieren
+func löscheAusTabelle(conn SQL.Verbindung,Änderung func(SQL.Verbindung,string),feldname string) {
+	var feld felder.Feld
+	var feldS string
+	
+	// Tabelle anzeigen
+	anfrage := "SELECT npcname FROM npcs NATURAL JOIN dozent_innen;"
+	textboxTabelle.ZeichneAnfrage(conn,anfrage,20,200,true,0,0,0,0,0,255,16,font)
+	
+	felder.Voreinstellungen(230,230,230,20)
+	feld = felder.New (10,  50, 20, 'l', feldname)	
+	// Eingabe in das Feld
+	feldS = feld.Edit ()
+	
+	Änderung(conn,feldS)
+	// Namen der Npcs anzeigen
+	gfx.Stiftfarbe(255,255,255)
+	gfx.Cls()
+	anfrage = "SELECT npcname FROM npcs NATURAL JOIN dozent_innen;"
+	textboxTabelle.ZeichneAnfrage(conn,anfrage,20,200,true,0,0,0,0,0,255,16,font) 
+	
+	gfx.TastaturLesen1()
+	
+}
+
+
+// Löscht dozent_innen aus allen verlinkten relationen
+func löscheNPC(conn SQL.Verbindung,npcnameS string) {
+	// 1. Dozentennamen entgegennehmen
+	// 2. Mit Anfrage in npcs die npcnr herausbekommt 
+	// 3. Jetzt in dozent_innen, aufenthaltsorte,unterricht, assistenz löschen
+	// 4. Namen der Npcs anzeigen
 	 
+	 // 1. Dozentennamen entgegennehmen
+	// Variable für Nummer
+	var npcnrS string //int64
+	
+	// 2. Mit Anfrage in npcs die npcnr herausbekommt 
+	anfrage := "SELECT npcnr FROM npcs WHERE npcname = '"
+	anfrage += npcnameS
+	anfrage += "';"
+	sT := sqlTabelle.New(conn,anfrage)		// Sende Anfrage
+	npcnrS = sT.GibTabelle()[0][0]		// Tabelle sollte nur ein Ergebnis haben
+	
+	// 3. 
+	// Die Reihenfolge ist wichtig, man kann nicht zuerst aus npcs löschen
+	var löschenListe []string = []string{"unterricht","assistenz","dozent_innen","aufenthaltsorte","npcs"}
+	for _,t := range löschenListe {
+		anfrage = "DELETE FROM " + t +" WHERE npcnr =" + npcnrS + ";"
+		conn.Ausfuehren(anfrage)
+	}	 
 }
 
 
-func lösche(conn SQL.Verbindung) {
-}
 
+/*
 func fügeDozentHinzu(conn SQL.Verbindung) {
 	var npcnr,npcname,lieblingsgetraenk felder.Feld
 	var npcnameS,lieblingsgetraenkS string
@@ -146,6 +247,8 @@ func fügeDozentHinzu(conn SQL.Verbindung) {
 	
 	gfx.TastaturLesen1 ()
 }
+*/
+
 
 // transponiert einen 2d-Slice aus Strings
 func transponiere(tabelle [][]string) [][]string{
@@ -162,6 +265,7 @@ func transponiere(tabelle [][]string) [][]string{
 	return transponiert
 }
 
+// Prüft ob ein String in einer Liste von Strings enthalten ist, wenn ja, true
 func enthalten(liste []string,e string) bool{
 	fmt.Println("Element: ",e)
 	for _,s := range liste {
