@@ -104,7 +104,7 @@ COMMENT ON Table raeume IS 'Miniwelt LWBadventure';
 
 -- spieler_innen ($spNr, spName, schluesselanzahl, !raumNr)
 CREATE TABLE spieler_innen (
-  spNr	 		  	INTEGER				NOT NULL, 	--CHECK (MatrNr BETWEEN 10000 AND 99999),
+  spNr	 		  	INTEGER				NOT NULL,
   spName 		  	VARCHAR (50)		NOT NULL,
   schuesselanzahl	INTEGER				NOT NULL,
   raumNr 		 	INTEGER 			REFERENCES raeume (raumNr) DEFAULT 1,

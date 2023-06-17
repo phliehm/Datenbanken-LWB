@@ -5,9 +5,9 @@ Integritätsbedingungen
 1.
 Die Schlüsselanzahl wird von den erspielten Noten abgeleitet. Die 
 Schlüsselanzahl entspricht dem Semester, in dem sie sich befinden. Es 
-können nur Spiele gespielt werden, deren Semsternummer der 
+können nur Spiele gespielt werden, deren Semesternummer der 
 Schlüsselanzahl entspricht bzw. unterbietet. Um die Schlüsselanzahl zu 
-erhöhen müssen die SpielerInnen in den jeweiligen vorherigen Semstern 
+erhöhen müssen die SpielerInnen in den jeweiligen vorherigen Semestern 
 die Spiele mit mindestens Note 4.0 beenden.
 
 2.
@@ -16,3 +16,9 @@ Die Kursraumnummern und Semester stimmen überein.
 3.
 In den Räumen 1 bis 4 finden die Veranstaltungen statt (Kursräume), und 
 die anderen Räume haben eine andere Funktion.
+
+4.
+Es gibt maximal 4 Semester.
+
+5.
+Die Kürzel der Veranstaltungen dürfen nicht doppelt/mehrfach vergeben werden.

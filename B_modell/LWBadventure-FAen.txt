@@ -12,15 +12,17 @@ NPCNr -> NPCName
 * Dozent_Innen (!$ NPCNr, Lieblingsgetränk)
 NPCNr -> Lieblingsgetränk
 
+
 * sonstigeNPCs (!$ NPCNr, Aufgabe)
 NPCNr -> Aufgabe
 
-*Veranstaltungen ($ VNr, VName, Kürzel, SWS, Semester, ! GebietNr)
-VNr -> VName,Kürzel,SWS,Semester,GebietNr
-VName -> VNr,Kürzel,SWS,Semester,GebietNr
-Kürzel -> VNr,VName,SWS,Semester,GebietNr
 
-Die Relation Veranstaltung hat 3 Schlüsselkanditaten (Vnr, VName, 
+* Veranstaltungen ($ VNr, VName, Kürzel, SWS, Semester, ! GebietNr)
+VNr -> VName, Kürzel, SWS, Semester, GebietNr
+VName -> VNr, Kürzel, SWS, Semester, GebietNr
+Kürzel -> VNr, VName, SWS, Semester, GebietNr
+
+Die Relation Veranstaltung hat 3 Schlüsselkanditaten (VNr, VName, 
 Kürzel). Da die Namen der Verstaltungen teilweise sehr lang sind, könnte 
 man mit Rechtschreibfehlern sehr leicht Fehlermeldungen bei den 
 Zuordnungen erzeugen, zum Beispiel wenn der Vorlesungsname als 
@@ -43,10 +45,10 @@ lang sind und man durch Rechtschreibfehler beim Einfügen oder Abfragen die
 eindeutige Zuordnung verlieren könnte.
 
 
-* Minigames ($ GameNr, Game-Name, ! VNr)
-GameNr -> Game-Name,VNr
-VNr -> GameNr,Game-Name
-Game-Name -> VNr,GameNr
+* Minigames ($ GameNr, GameName, ! VNr)
+GameNr -> GameName, VNr
+VNr -> GameNr, GameName
+Game-Name -> VNr, GameNr
 
 Hier gibt es 3 Schlüsselkandidaten. Wir haben uns entschieden eine GameNr
 als eigenen Schlüssel einzuführen, obwohl Minigames eine schwache 
@@ -59,13 +61,15 @@ eine Nummer einzutragen, weswegen wir die GameNr verwenden.
 
 
 * Spieler_Innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
-SpNr-> SpName,Schüsselanzahl,RaumNr
+SpNr -> SpName, Schüsselanzahl, RaumNr
+
 
 * Räume ($ RaumNr, RaumName, Ort, Funktion)
-RaumNr -> RaumName,Ort,Funktion
+RaumNr -> RaumName, Ort, Funktion
+
 
 * Unterricht (!$ VNr, ! NPCNr, ! RaumNr)
-VNr -> NPCNr,RaumNr
+VNr -> NPCNr, RaumNr
 
 Durch die funktionale Abhängigkeit ist VNr ein ausreichender 
 Schlüssel. Daher ist Zerlegung in eine eine eigene Relation Unterricht eigentlich 
@@ -80,7 +84,8 @@ Relation vorzunehmen.
 
 
 * Spielstände (!$ GameNr, !$ SpNr, Punkte, Note)
-(GameNr,SpNr) -> Punkte,Note
+(GameNr,SpNr) -> Punkte, Note
+
 
 * Aufenthaltsorte (!$ NPCNr, !$ RaumNr)
 keine funktionale Abhängigkeiten, daher gehören beide Attribute zum Schlüssel
