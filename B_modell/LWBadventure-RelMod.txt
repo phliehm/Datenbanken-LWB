@@ -11,7 +11,7 @@ Dozent_Innen (!$ NPCNr, Lieblingsgetränk)
 
 sonstigeNPCs (!$ NPCNr, Aufgabe)
 
-Veranstaltungen ($ VNr, VName, Kürzel, SWS, Semster, ! GebietNr)
+Veranstaltungen ($ VNr, VName, Kürzel, SWS, Semester, ! GebietNr)
 
 Themengebiete ($ GebietNr, GebietName)
 
@@ -19,11 +19,11 @@ Minigames ($ GameNr, GameName, ! VNr)
 
 Spieler_Innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
 
-Räume ($ RaumNr, Raumname, Ort, Funktion)
+Räume ($ RaumNr, RaumName, Ort, Funktion)
 
 Unterricht (!$ VNr, ! NPCNr, ! RaumNr)
 
-Spielstände (!$ GameNr, !$ SpNr, Punkte, Note)
+Spielstände (!$ GameNr, !$ SpNr, Note, Punkte)
 
 Aufenthaltsorte (!$ NPCNr, !$ RaumNr)
 
