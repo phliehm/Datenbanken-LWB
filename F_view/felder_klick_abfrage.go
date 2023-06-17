@@ -290,7 +290,7 @@ func zeichneAnfrage(conn SQL.Verbindung,anfrage string) {
 
 // Funktion für Suchfeld für Dozentinnen und Veranstaltungen
 func sucheDozVer(suchwort string ) string {
-	anfrage := "SELECT vname AS Vorlesung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS DozentIn FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname) LIKE '%"
+	anfrage := "SELECT vname AS Vorlesung, kuerzel AS abk,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS DozentIn FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname,kuerzel,sws,raumnr) LIKE '%"
 	anfrage += suchwort
 	anfrage += "%';"
 	return anfrage
