@@ -1,6 +1,4 @@
 
-\o LWBadventure-query.ans
-
 -- SQL-ANFRAGEN
 -- ------------
 
@@ -57,6 +55,7 @@ SELECT npcname FROM npcs NATURAL JOIN (SELECT npcnr FROM dozent_innen EXCEPT SEL
 -- Kommentar: 	Hier braucht es einen Alias, damit der NATURAL JOIN mit der Unterabfrage funktioniert.
 --				Die Bezeichnung ist jedoch egal, da nur auf den NPCNamen projiziert wird.
 
+
 -- Anfragen, die nur mit erweiterter relationaler Algebra beschrieben werden können:
 -- ---------------------------------------------------------------------------------
 
@@ -86,4 +85,3 @@ SELECT SpName FROM spieler_innen NATURAL JOIN spielstaende GROUP BY spname HAVIN
 -- oder mit Ausgabe des jeweiligen Notendurchschnitts:
 SELECT SpName, ROUND(AVG(note),2) AS Notendurchschnitt FROM spieler_innen NATURAL JOIN spielstaende GROUP BY spname HAVING AVG(note) NOT BETWEEN 2.0 AND 4.0 ORDER BY AVG(note),spname;
 
-\o

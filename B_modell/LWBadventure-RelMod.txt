@@ -15,7 +15,7 @@ Veranstaltungen ($ VNr, VName, Kürzel, SWS, Semster, ! GebietNr)
 
 Themengebiete ($ GebietNr, GebietName)
 
-Minigames ($ GameNr, Game-Name, ! VNr)
+Minigames ($ GameNr, GameName, ! VNr)
 
 Spieler_Innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
 
@@ -25,6 +25,6 @@ Unterricht (!$ VNr, ! NPCNr, ! RaumNr)
 
 Spielstände (!$ GameNr, !$ SpNr, Punkte, Note)
 
-Aufenthaltsorte (! NPCNr, ! RaumNr)
+Aufenthaltsorte (!$ NPCNr, !$ RaumNr)
 
-Assistenz (! NPCNr, !$ VNr)
+Assistenz (!$ VNr, ! NPCNr)

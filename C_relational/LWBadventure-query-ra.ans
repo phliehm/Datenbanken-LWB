@@ -237,5 +237,4 @@ answer($a14:int,Noten.SpName:string) ->
   answer(1.66,'Phil'),
   answer(1.86,'Cyra')
 }
-Info: 5 tuples computed.          
-DES> /nolog
+Info: 5 tuples computed.
