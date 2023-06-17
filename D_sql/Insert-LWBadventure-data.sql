@@ -18,7 +18,7 @@ INSERT INTO npcs VALUES (8, 'Palim Palim');
 INSERT INTO npcs VALUES (9, 'Hubi-Horde');
 
 
--- dozent_innen (!npcNr, lieblingsgetraenk)
+-- dozent_innen (!$npcNr, lieblingsgetraenk)
 -- Folgende Getränkezuteilung wird verwendet:
 -- ******************************************
 --  Darth Schmidter		-	Extraschwarzer Kaffee
@@ -35,7 +35,7 @@ INSERT INTO dozent_innen VALUES (5, 'Kaffee mit Milch und 2x Zucker');
 INSERT INTO dozent_innen VALUES (6, 'Hefeweizen');
 
 
--- sonstigeNPCs (!npcNr, aufgabe)
+-- sonstigeNPCs (!$npcNr, aufgabe)
 INSERT INTO sonstigeNPCs VALUES (7, 'StEPS-Chefin'); 
 INSERT INTO sonstigeNPCs VALUES (8, 'Helferlein'); 
 INSERT INTO sonstigeNPCs VALUES (9, 'Kontrolletis'); 
@@ -49,18 +49,6 @@ INSERT INTO raeume VALUES (3, '3. Semester', 'FU Berlin','Kursraum 3');
 INSERT INTO raeume VALUES (4, '4. Semester', 'StEPS','Kursraum 4');
 INSERT INTO raeume VALUES (5, 'Nichtzeugnis-Verleihung', 'schöner Ort','Schluss-Raum');
 
-/*
--- kursraeume(semster,RaumNr !)
-INSERT INTO kursraeume VALUES (1,1);
-INSERT INTO kursraeume VALUES (2,2);
-INSERT INTO kursraeume VALUES (3,3);
-INSERT INTO kursraeume VALUES (4,4);
-
-
--- sraeume(sRaumNr$!,sFunktion)
-INSERT INTO sraeume VALUES (0, 'Zugang zu Kursräume');
-INSERT INTO sraeume VALUES (5, 'Zeugnisvergabe');
-*/
 
 -- themengebiete ($gebietNr, gebietName)
 INSERT INTO themengebiete VALUES (1, 'Rechnerarchitektur, Betriebs- und Kommunikationssysteme');
@@ -70,7 +58,7 @@ INSERT INTO themengebiete VALUES (4, 'Datenbanken');
 INSERT INTO themengebiete VALUES (5, 'Didaktik');
 
 
--- veranstaltungen ($vNr, vName, kuerzel, sws, !gebietNr)
+-- veranstaltungen ($vNr, vName, kuerzel, sws, semester, !gebietNr)
 INSERT INTO veranstaltungen VALUES (1, 'Betriebssystemwerkzeuge','BSW',2,1,1);
 INSERT INTO veranstaltungen VALUES (2, 'Funktionale Programmierung','FP',8,1,2);
 INSERT INTO veranstaltungen VALUES (3, 'Grundlagen der Technischen Informatik','RS',6,1,3);
@@ -87,17 +75,6 @@ INSERT INTO veranstaltungen VALUES (13, 'Unterrichtsbezogenes Datenbankpraktikum
 INSERT INTO veranstaltungen VALUES (14, 'Analyse fachlichen Lernens','AfL',3,4,5);
 
 
--- spieler_innen ($spNr, spName, schluesselanzahl, !raumNr)
-INSERT INTO spieler_innen VALUES (1, 'Cyra',1,0);  						-- sRaumNr = 0 default
-INSERT INTO spieler_innen VALUES (2, 'Maddi',1,0);
-INSERT INTO spieler_innen VALUES (3, 'Ben',1,0);
-INSERT INTO spieler_innen VALUES (4, 'Phil',1,0);
-INSERT INTO spieler_innen VALUES (5, 'Klocki',1,0);
-INSERT INTO spieler_innen VALUES (6, 'Bob',1,0);
-INSERT INTO spieler_innen VALUES (7, 'LWB-Master',1,0);
-INSERT INTO spieler_innen VALUES (8, 'Nerd42',1,0);
-
-
 -- minigames ($gameNr, gameName, !vNr)
 INSERT INTO minigames VALUES (1, 'Muster-Spiel',2);
 INSERT INTO minigames VALUES (2, 'Bauelemente-Spiel',3);
@@ -110,16 +87,18 @@ INSERT INTO minigames VALUES (8, 'theNETgame',11);
 INSERT INTO minigames VALUES (9, 'BugAttack',12);
 
 
--- aufenthaltsorte (!npcNr, !raumNr)
-INSERT INTO aufenthaltsorte VALUES (7, 0);
-INSERT INTO aufenthaltsorte VALUES (7, 4);
-INSERT INTO aufenthaltsorte VALUES (7, 5);
-INSERT INTO aufenthaltsorte VALUES (8, 0);
-INSERT INTO aufenthaltsorte VALUES (9, 0);
-INSERT INTO aufenthaltsorte VALUES (9, 4);
+-- spieler_innen ($spNr, spName, schluesselanzahl, !raumNr)
+INSERT INTO spieler_innen VALUES (1, 'Cyra',1,0);  						-- sRaumNr = 0 default
+INSERT INTO spieler_innen VALUES (2, 'Maddi',1,0);
+INSERT INTO spieler_innen VALUES (3, 'Ben',1,0);
+INSERT INTO spieler_innen VALUES (4, 'Phil',1,0);
+INSERT INTO spieler_innen VALUES (5, 'Klocki',1,0);
+INSERT INTO spieler_innen VALUES (6, 'Bob',1,0);
+INSERT INTO spieler_innen VALUES (7, 'LWB-Master',1,0);
+INSERT INTO spieler_innen VALUES (8, 'Nerd42',1,0);
 
 
--- unterricht (!vNr, !npcNr, !raumNr)	
+-- unterricht (!$vNr, !npcNr, !raumNr)	
 -- Achtung: Nur Raumnummer von 1 bis 4 verwenden!						
 INSERT INTO unterricht VALUES (1,2,1);
 INSERT INTO unterricht VALUES (2,3,1);
@@ -137,7 +116,16 @@ INSERT INTO unterricht VALUES (13,6,4);
 INSERT INTO unterricht VALUES (14,3,4);
 
 
--- assistenz (!vNr,!npcNr)
+-- aufenthaltsorte (!$npcNr, !$raumNr)
+INSERT INTO aufenthaltsorte VALUES (7, 0);
+INSERT INTO aufenthaltsorte VALUES (7, 4);
+INSERT INTO aufenthaltsorte VALUES (7, 5);
+INSERT INTO aufenthaltsorte VALUES (8, 0);
+INSERT INTO aufenthaltsorte VALUES (9, 0);
+INSERT INTO aufenthaltsorte VALUES (9, 4);
+
+
+-- assistenz (!$vNr,!npcNr)
 INSERT INTO assistenz VALUES (1,1);
 INSERT INTO assistenz VALUES (2,5);
 INSERT INTO assistenz VALUES (3,1);
@@ -147,7 +135,7 @@ INSERT INTO assistenz VALUES (12,3);
 INSERT INTO assistenz VALUES (14,4);
 
 
--- spielstaende (!gameNr, !spNr, Note, Punktzahl)
+-- spielstaende (!$gameNr, !$spNr, Note, Punktzahl)
 INSERT INTO spielstaende VALUES (1, 1, 1.7, 325);
 INSERT INTO spielstaende VALUES (1, 2, 1.3, 325);
 INSERT INTO spielstaende VALUES (1, 3, 1.0, 325);
@@ -181,7 +169,7 @@ INSERT INTO spielstaende VALUES (4, 3, 1.7, 325);
 INSERT INTO spielstaende VALUES (4, 4, 1.3, 325);
 INSERT INTO spielstaende VALUES (4, 5, 2.0, 325);
 INSERT INTO spielstaende VALUES (4, 6, 3.0, 325);
-INSERT INTO spielstaende VALUES (4, 7, 2.3, 325);
+INSERT INTO spielstaende VALUES (4, 7, 1.0, 325);
 
 INSERT INTO spielstaende VALUES (5, 1, 1.0, 100);
 INSERT INTO spielstaende VALUES (5, 2, 1.7, 88);
