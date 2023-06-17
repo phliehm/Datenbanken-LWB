@@ -751,7 +751,7 @@ A:	for i:=1; i<len(texte); i++ {										// Schleife durch die 10 Level
 		if taste==1 && status==1 {
 			if exit.Angeklickt(mausX,mausY) { 							// Ende des Spiels
 				musikstopp = true
-				StoppeAlleSounds()
+				//StoppeAlleSounds()
 				fmt.Println("exit geklickt")
 				break
 			}
