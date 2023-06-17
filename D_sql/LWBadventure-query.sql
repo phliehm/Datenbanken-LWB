@@ -1,3 +1,4 @@
+
 -- SQL-ANFRAGEN
 -- ------------
 
@@ -13,7 +14,7 @@ SELECT * FROM veranstaltungen WHERE sws = 6;
 
 -- 2b. Welche Lehrveranstaltungen gibt es im 4. Semester?
 SELECT * FROM veranstaltungen WHERE semester = 4;
- 
+
 -- 2c. Welche Minigames gibt es im 4. Semester?
 SELECT * FROM minigames NATURAL JOIN veranstaltungen WHERE semester = 4;
 
@@ -33,8 +34,9 @@ SELECT * FROM veranstaltungen NATURAL JOIN themengebiete WHERE gebietname = 'Pro
 
 -- 4b. Welche Lehrveranstaltungen haben etwas mit 'Daten' oder 'Programmierung' zu tun?
 SELECT * FROM veranstaltungen WHERE vname LIKE '%Daten%' OR vname LIKE '%Programmierung%';
+
 -- oder
-SELECT * FROM veranstaltungen NATRUAL JOIN themengebiete WHERE gebietname LIKE '%Daten%' OR gebietname LIKE '%Programmierung%';
+SELECT * FROM veranstaltungen NATURAL JOIN themengebiete WHERE gebietname LIKE '%Daten%' OR gebietname LIKE '%Programmierung%';
 
 
 -- 5. Was ist das Lieblingsgetränk von Darth Schmidter?
@@ -43,6 +45,7 @@ SELECT lieblingsgetraenk FROM dozent_innen NATURAL JOIN npcs WHERE npcname = 'Da
 
 -- 6. Welche Lehrveranstaltungen finden nicht in der 'FU Berlin' statt?
 SELECT vname, semester, ort FROM raeume NATURAL JOIN unterricht NATURAL JOIN veranstaltungen WHERE ort != 'FU Berlin';
+
 -- alternativ (falls man nicht sicher ist, ob 'FU Berlin' die vollständige Orts-Bezeichnung ist:
 SELECT vname, semester, ort FROM raeume NATURAL JOIN unterricht NATURAL JOIN veranstaltungen WHERE ort NOT LIKE '%FU%Berlin%';
 
@@ -52,15 +55,16 @@ SELECT npcname FROM npcs NATURAL JOIN (SELECT npcnr FROM dozent_innen EXCEPT SEL
 -- Kommentar: 	Hier braucht es einen Alias, damit der NATURAL JOIN mit der Unterabfrage funktioniert.
 --				Die Bezeichnung ist jedoch egal, da nur auf den NPCNamen projiziert wird.
 
+
 -- Anfragen, die nur mit erweiterter relationaler Algebra beschrieben werden können:
 -- ---------------------------------------------------------------------------------
 
--- 8. Wieviele Mini-Games gibt es in der LWB-Adventure-World? (Ausgaben-Titel: Anzahl.Minigames)
-SELECT COUNT(*) AS Anzahl.Minigames FROM minigames;
+-- 8. Wieviele Mini-Games gibt es in der LWB-Adventure-World? (Ausgaben-Titel: AnzahlMinigames)
+SELECT COUNT(*) AS AnzahlMinigames FROM minigames;
 
 
--- 9. Wieviele SWS müssen in der LWB ingesamt absolviert werden? (Ausgaben-Titel: Gesamtanzahl.SWS)
-SELECT SUM(sws) AS Gesamtanzahl.SWS FROM veranstaltungen;
+-- 9. Wieviele SWS müssen in der LWB ingesamt absolviert werden? (Ausgaben-Titel: GesamtanzahlSWS)
+SELECT SUM(sws) AS GesamtanzahlSWS FROM veranstaltungen;
 
 
 -- 10. Wie heißt die Veranstaltung mit den meisten SWS?
@@ -72,12 +76,12 @@ SELECT vname, sws, semester FROM veranstaltungen NATURAL JOIN unterricht NATURAL
 
 
 -- 12. Wieviele Veranstaltungen gibt es pro Standort?
-SELECT ort, COUNT(*) AS AnzahlVeranstaltungen FROM raeume NATRUAL JOIN unterricht GROUP BY ort ORDER BY COUNT(*);
+SELECT ort, COUNT(*) AS AnzahlVeranstaltungen FROM raeume NATURAL JOIN unterricht GROUP BY ort ORDER BY COUNT(*);
 
 
 --13. Welche Spieler_innen haben einen Gesamt-Notendurchschnitt, der nicht zwischen 2.0 und 4.0 liegt? (Sortierung nach Gesamt-Notendurchschnitt aufsteigend, also bester Schnitt zuerst)
+SELECT SpName FROM spieler_innen NATURAL JOIN spielstaende GROUP BY spname HAVING AVG(note) NOT BETWEEN 2.0 AND 4.0 ORDER BY AVG(note),spname;
 
-SELECT SpName FROM spieler_innen NATURAL JOIN spielstand WHERE note = (SELECT AVG(note) FROM spielstand WHERE AVG(note) NOT BETWEEN 2.0 AND 4.0);
 -- oder mit Ausgabe des jeweiligen Notendurchschnitts:
-SELECT SpName, AVG(note) AS Schnitt FROM spieler_innen NATURAL JOIN spielstand WHERE note = (SELECT AVG(note) FROM spielstand WHERE AVG(note) NOT BETWEEN 2.0 AND 4.0);
+SELECT SpName, ROUND(AVG(note),2) AS Notendurchschnitt FROM spieler_innen NATURAL JOIN spielstaende GROUP BY spname HAVING AVG(note) NOT BETWEEN 2.0 AND 4.0 ORDER BY AVG(note),spname;
 

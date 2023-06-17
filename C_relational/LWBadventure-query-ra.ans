@@ -1,0 +1,240 @@
+DES> %  RALG-Anfragen
+DES> % ---------------
+
+DES> % (1a) Welche Räume gibt es in der LWB-Adventure-World?
+DES> /listing Raeume
+'Raeume'(0,'Main Floor','LWB-World','Start-Raum').
+'Raeume'(1,'1. Semester','FU Berlin','Kursraum 1').
+'Raeume'(2,'2. Semester','Home Office','Kursraum 2').
+'Raeume'(3,'3. Semester','FU Berlin','Kursraum 3').
+'Raeume'(4,'4. Semester','StEPS','Kursraum 4').
+'Raeume'(5,'Nichtzeugnis-Verleihung','schöner Ort','Schluss-Raum').
+Info: 6 rules listed.
+
+DES> % (1b) Welche Funktionen haben die sonstigen NPCs im LWB-Adventure?
+DES> project Aufgabe (sonstigeNPCs);
+answer(sonstigeNPCs.Aufgabe:string) ->
+{
+  answer('Helferlein'),
+  answer('Kontrolletis'),
+  answer('StEPS-Chefin')
+}
+Info: 3 tuples computed.       
+   
+DES> % (2a) Welche Lehrveranstaltungen haben 6 SWS?
+DES> select SWS = 6 (Veranstaltungen);
+answer(Veranstaltungen.VNr:int,Veranstaltungen.VName:string,Veranstaltungen.Kuerzel:string,Veranstaltungen.SWS:int,Veranstaltungen.Semester:int,Veranstaltungen.GebietNr:int) ->
+{
+  answer(3,'Grundlagen der Technischen Informatik','RS',6,1,3),
+  answer(7,'Datenstrukturen und Datenabstraktion','ALP3',6,3,2),
+  answer(8,'Datenbanksysteme','DBSA',6,3,4),
+  answer(10,'Nichtsequentielle und verteilte Programmierung','NSP',6,4,2),
+  answer(11,'Rechnernetze','NET',6,4,1)
+}
+Info: 5 tuples computed.          
+
+DES> % (2b) Welche Lehrveranstaltungen gibt es im 4. Semester?
+DES> select Semester = 4 (Veranstaltungen);
+answer(Veranstaltungen.VNr:int,Veranstaltungen.VName:string,Veranstaltungen.Kuerzel:string,Veranstaltungen.SWS:int,Veranstaltungen.Semester:int,Veranstaltungen.GebietNr:int) ->
+{
+  answer(10,'Nichtsequentielle und verteilte Programmierung','NSP',6,4,2),
+  answer(11,'Rechnernetze','NET',6,4,1),
+  answer(12,'Unterrichtsbezogenes Softwarepraktikum','SWP',3,4,2),
+  answer(13,'Unterrichtsbezogenes Datenbankpraktikum','DBP',3,4,4),
+  answer(14,'Analyse fachlichen Lernens','AfL',3,4,5)
+}
+Info: 5 tuples computed.          
+
+DES> % (2c) Welche Minigames gibt es im 4. Semester?
+DES> select Semester = 4 (Minigames njoin Veranstaltungen);
+answer(Minigames.GameNr:int,Minigames.GameName:string,Minigames.VNr:int,Veranstaltungen.VName:string,Veranstaltungen.Kuerzel:string,Veranstaltungen.SWS:int,Veranstaltungen.Semester:int,Veranstaltungen.GebietNr:int) ->
+{
+  answer(7,'Food-Moorhuhn',10,'Nichtsequentielle und verteilte Programmierung','NSP',6,4,2),
+  answer(8,'theNETgame',11,'Rechnernetze','NET',6,4,1),
+  answer(9,'BugAttack',12,'Unterrichtsbezogenes Softwarepraktikum','SWP',3,4,2)
+}
+Info: 3 tuples computed.          
+
+DES> % (3a) Wie heißen die Spieler_innen, die bisher das LWB-Adventure gespielt haben?
+DES> project SpName (Spieler_innen);
+answer(Spieler_innen.SpName:string) ->
+{
+  answer('Ben'),
+  answer('Bob'),
+  answer('Cyra'),
+  answer('Klocki'),
+  answer('LWB-Master'),
+  answer('Maddi'),
+  answer('Nerd42'),
+  answer('Phil')
+}
+Info: 8 tuples computed.          
+
+DES> % (3b) Wie heißen die Dozenten im LWB-Adventure?
+DES> project NPCName (Dozent_innen njoin NPCs);
+answer(NPCName:string) ->
+{
+  answer('Amoebi'),
+  answer('Darth Schmidter'),
+  answer('Fab Web'),
+  answer('Herk'),
+  answer('J.EthI'),
+  answer('Winnie the K')
+}
+Info: 6 tuples computed.          
+
+DES> % (3c) Welche Funktion hat 'Heidi'?
+DES> project Aufgabe (select NPCName = 'Heidi' (sonstigeNPCs njoin NPCs));
+answer(Aufgabe:string) ->
+{
+  answer('StEPS-Chefin')
+}
+Info: 1 tuple computed.          
+
+DES> % (4a) Welche Lehrveranstaltungen gehören zum Themengebiet 'Programmierung'?
+DES> select GebietName = 'Programmierung' (Veranstaltungen njoin Themengebiete);
+answer(Veranstaltungen.VNr:int,Veranstaltungen.VName:string,Veranstaltungen.Kuerzel:string,Veranstaltungen.SWS:int,Veranstaltungen.Semester:int,Veranstaltungen.GebietNr:int,Themengebiete.GebietName:string) ->
+{
+  answer(2,'Funktionale Programmierung','FP',8,1,2,'Programmierung'),
+  answer(4,'Imperative und objektorientierte Programmierung','ALP2',7,2,2,'Programmierung'),
+  answer(7,'Datenstrukturen und Datenabstraktion','ALP3',6,3,2,'Programmierung'),
+  answer(10,'Nichtsequentielle und verteilte Programmierung','NSP',6,4,2,'Programmierung'),
+  answer(12,'Unterrichtsbezogenes Softwarepraktikum','SWP',3,4,2,'Programmierung')
+}
+Info: 5 tuples computed.          
+DES> % (4b) Welche Lehrveranstaltungen haben etwas mit 'Daten' oder 'Programmierung' zu tun?
+DES> % -->  in RA nicht möglich, da es hier keine Wildcards gibt
+
+DES> % (5) Was ist das Lieblingsgetränk von Darth Schmidter?
+DES> project Lieblingsgetraenk (select NPCName = 'Darth Schmidter' (Dozent_innen njoin NPCs));
+answer(Lieblingsgetraenk:string) ->
+{
+  answer('Extraschwarzer Kaffee')
+}
+Info: 1 tuple computed.          
+
+DES> % (6) Welche Lehrveranstaltungen finden nicht in der FU statt?
+DES> % Da eine Selektion mit Platzhaltern nicht möglich ist, muss für die RA-Anfrage die vollständige Ortsbezeichnung gegeben sein:
+DES> % Welche Lehrveranstaltungen finden nicht in der 'FU Berlin' statt?
+DES> project VName, Ort ((Raeume difference (select Ort = 'FU Berlin' (Raeume))) njoin Unterricht njoin Veranstaltungen);
+answer(VName:string,Ort:string) ->
+{
+  answer('Analyse fachlichen Lernens','StEPS'),
+  answer('Einführung in die Theoretischen Informatik','Home Office'),
+  answer('Imperative und objektorientierte Programmierung','Home Office'),
+  answer('Nichtsequentielle und verteilte Programmierung','StEPS'),
+  answer('Rechnerarchitektur','Home Office'),
+  answer('Rechnernetze','StEPS'),
+  answer('Unterrichtsbezogenes Datenbankpraktikum','StEPS'),
+  answer('Unterrichtsbezogenes Softwarepraktikum','StEPS')
+}
+Info: 8 tuples computed.          
+
+DES> % oder
+
+DES> project VName, Ort ((select Ort != 'FU Berlin' (Raeume)) njoin Unterricht njoin Veranstaltungen);
+answer(VName:string,Ort:string) ->
+{
+  answer('Analyse fachlichen Lernens','StEPS'),
+  answer('Einführung in die Theoretischen Informatik','Home Office'),
+  answer('Imperative und objektorientierte Programmierung','Home Office'),
+  answer('Nichtsequentielle und verteilte Programmierung','StEPS'),
+  answer('Rechnerarchitektur','Home Office'),
+  answer('Rechnernetze','StEPS'),
+  answer('Unterrichtsbezogenes Datenbankpraktikum','StEPS'),
+  answer('Unterrichtsbezogenes Softwarepraktikum','StEPS')
+}
+Info: 8 tuples computed.          
+
+DES> % (7) Welche Dozenten sind in der LWB nur leitend tätig und machen keine Assistenz?
+DES> project NPCName (NPCs njoin (project NPCNr (Dozent_innen) difference project NPCNr (Assistenz)));
+answer(NPCName:string) ->
+{
+  answer('Herk')
+}
+Info: 1 tuple computed.          
+
+DES> % Anfragen, die nur mit erweiterter relationaler Algebra beschrieben werden können:
+DES> % -----------------------------------------------------------------------------------
+
+DES> % (8) Wieviele Mini-Games gibt es in der LWB-Adventure-World? (Ausgaben-Titel: AnzahlMinigames)
+DES> rename Anzahl (Minigames) (group_by [] count(*) true (Minigames));
+answer(Anzahl.Minigames:int) ->
+{
+  answer(9)
+}
+Info: 1 tuple computed.          
+
+DES> % (9) Wieviele SWS müssen in der LWB ingesamt absolviert werden? (Ausgaben-Titel: GesamtanzahlSWS)
+DES> rename Gesamtanzahl (SWS) (group_by [] sum(SWS) true (Veranstaltungen));
+answer(Gesamtanzahl.SWS:int) ->
+{
+  answer(69)
+}
+Info: 1 tuple computed.          
+
+DES> % (10) Wie heißt die Veranstaltung mit den meisten SWS?
+DES> project VName (select SWS = MaxAnzahl.SWS (rename MaxAnzahl (SWS) (group_by [] max(SWS) true (Veranstaltungen)) njoin Veranstaltungen));
+answer(VName:string) ->
+{
+  answer('Funktionale Programmierung')
+}
+Info: 1 tuple computed.          
+
+DES> % (11) Gesucht sind die Namen, Semester und SWS aller Veranstaltungen von Winnie the K absteigend sortiert nach SWS-Anzahl!
+DES> sort SWS desc (project VName, SWS, Semester (select NPCName = 'Winnie the K' (Veranstaltungen njoin Unterricht njoin NPCs)));
+answer(VName:string,SWS:int,Semester:int) ->
+{
+  answer('Rechnernetze',6,4),
+  answer('Grundlagen der Technischen Informatik',6,1),
+  answer('Rechnerarchitektur',4,2),
+  answer('Fachdidaktik Informatik',4,3),
+  answer('Betriebssystemwerkzeuge',2,1)
+}
+Info: 5 tuples computed.          
+
+DES> % (12) Wieviele Veranstaltungen gibt es pro Standort?
+DES> % Ausgabe der Orte mit jeweiliger Anzahl der Veranstaltungen
+DES> rename Standorte (OrtName, AnzahlVeranstaltungen) (group_by Ort Ort,count(VNr) true (Raeume njoin Unterricht));
+answer(Standorte.OrtName:string,Standorte.AnzahlVeranstaltungen:int) ->
+{
+  answer('FU Berlin',6),
+  answer('Home Office',3),
+  answer('StEPS',5)
+}
+Info: 3 tuples computed.          
+
+DES> % oder aufsteigend sortiert:
+DES> sort AnzahlVeranstaltungen (rename Standorte (OrtName, AnzahlVeranstaltungen) (group_by Ort Ort,count(VNr) true (Raeume njoin Unterricht))); 
+answer(Standorte.OrtName:string,Standorte.AnzahlVeranstaltungen:int) ->
+{
+  answer('Home Office',3),
+  answer('StEPS',5),
+  answer('FU Berlin',6)
+}
+Info: 3 tuples computed.          
+
+DES> % (13) Welche Spieler_innen haben einen Gesamt-Notendurchschnitt, der nicht zwischen 2.0 und 4.0 liegt? (Sortierung nach Gesamt-Notendurchschnitt aufsteigend, also bester Schnitt zuerst)
+DES> % Ausgabe der SpNamen ohne Noten-Durchschnitt:
+DES> project SpName (sort Schnitt,SpName (select Schnitt < 2.0 or Schnitt > 4.0 (rename Noten (SpName,Schnitt) (group_by SpName SpName,avg(Note) true (Spielstaende njoin Spieler_innen)))));
+answer(SpName:string) ->
+{
+  answer('Ben'),
+  answer('LWB-Master'),
+  answer('Maddi'),
+  answer('Phil'),
+  answer('Cyra')
+}
+Info: 5 tuples computed.          
+
+DES> % Alternativ-Ausgabe mit SpNamen und Noten-Durchschnitt:
+DES> project round(Schnitt,2),SpName (select Schnitt < 2.0 or Schnitt > 4.0 (rename Noten (SpName,Schnitt) (group_by SpName SpName,avg(Note) true (Spielstaende njoin Spieler_innen)))); 
+answer($a14:int,Noten.SpName:string) ->
+{
+  answer(1.33,'Ben'),
+  answer(1.65,'LWB-Master'),
+  answer(1.66,'Maddi'),
+  answer(1.66,'Phil'),
+  answer(1.86,'Cyra')
+}
+Info: 5 tuples computed.

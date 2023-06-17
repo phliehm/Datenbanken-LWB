@@ -86,7 +86,7 @@ Relation vorzunehmen.
 keine funktionale Abhängigkeiten, daher gehören beide Attribute zum Schlüssel
 
 
-* Assistenz (! NPCNr, !$ VNr)
+* Assistenz (!$ VNr, ! NPCNr)
 VNr -> NPCNr
 
 
