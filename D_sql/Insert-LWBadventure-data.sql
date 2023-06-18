@@ -136,23 +136,23 @@ INSERT INTO assistenz VALUES (14,4);
 
 
 -- spielstaende (!$gameNr, !$spNr, Note, Punktzahl)
-INSERT INTO spielstaende VALUES (1, 1, 1.7, 325);
-INSERT INTO spielstaende VALUES (1, 2, 1.3, 325);
-INSERT INTO spielstaende VALUES (1, 3, 1.0, 325);
-INSERT INTO spielstaende VALUES (1, 4, 2.3, 325);
-INSERT INTO spielstaende VALUES (1, 5, 2.0, 325);
-INSERT INTO spielstaende VALUES (1, 6, 4.0, 325);
-INSERT INTO spielstaende VALUES (1, 7, 1.0, 325);
-INSERT INTO spielstaende VALUES (1, 8, 3.0, 325);
+INSERT INTO spielstaende VALUES (1, 1, 1.7, 1333);
+INSERT INTO spielstaende VALUES (1, 2, 1.3, 1456);
+INSERT INTO spielstaende VALUES (1, 3, 1.0, 1800);
+INSERT INTO spielstaende VALUES (1, 4, 2.3, 999);
+INSERT INTO spielstaende VALUES (1, 5, 2.0, 1210);
+INSERT INTO spielstaende VALUES (1, 6, 4.0, 400);
+INSERT INTO spielstaende VALUES (1, 7, 1.0, 2000);
+INSERT INTO spielstaende VALUES (1, 8, 3.0, 789);
 
-INSERT INTO spielstaende VALUES (2, 1, 1.3, 225);
-INSERT INTO spielstaende VALUES (2, 2, 1.0, 225);
-INSERT INTO spielstaende VALUES (2, 3, 1.3, 225);
-INSERT INTO spielstaende VALUES (2, 4, 1.7, 225);
-INSERT INTO spielstaende VALUES (2, 5, 2.0, 225);
-INSERT INTO spielstaende VALUES (2, 6, 3.7, 225);
-INSERT INTO spielstaende VALUES (2, 7, 1.0, 225);
-INSERT INTO spielstaende VALUES (2, 8, 2.7, 225);
+INSERT INTO spielstaende VALUES (2, 1, 1.3, 29);
+INSERT INTO spielstaende VALUES (2, 2, 1.0, 33);
+INSERT INTO spielstaende VALUES (2, 3, 1.3, 29);
+INSERT INTO spielstaende VALUES (2, 4, 1.7, 27);
+INSERT INTO spielstaende VALUES (2, 5, 2.0, 25);
+INSERT INTO spielstaende VALUES (2, 6, 3.7, 17);
+INSERT INTO spielstaende VALUES (2, 7, 1.0, 33);
+INSERT INTO spielstaende VALUES (2, 8, 2.7, 22);
 
 INSERT INTO spielstaende VALUES (3, 1, 1.0, 630);
 INSERT INTO spielstaende VALUES (3, 2, 2.3, 432);
@@ -163,13 +163,13 @@ INSERT INTO spielstaende VALUES (3, 6, 3.3, 333);
 INSERT INTO spielstaende VALUES (3, 7, 1.0, 650);
 INSERT INTO spielstaende VALUES (3, 8, 1.0, 600);
 
-INSERT INTO spielstaende VALUES (4, 1, 1.3, 325);
-INSERT INTO spielstaende VALUES (4, 2, 1.0, 325);
-INSERT INTO spielstaende VALUES (4, 3, 1.7, 325);
-INSERT INTO spielstaende VALUES (4, 4, 1.3, 325);
-INSERT INTO spielstaende VALUES (4, 5, 2.0, 325);
-INSERT INTO spielstaende VALUES (4, 6, 3.0, 325);
-INSERT INTO spielstaende VALUES (4, 7, 1.0, 325);
+INSERT INTO spielstaende VALUES (4, 1, 1.3, 5);
+INSERT INTO spielstaende VALUES (4, 2, 1.0, 6);
+INSERT INTO spielstaende VALUES (4, 3, 1.7, 4);
+INSERT INTO spielstaende VALUES (4, 4, 1.3, 5);
+INSERT INTO spielstaende VALUES (4, 5, 2.0, 3);
+INSERT INTO spielstaende VALUES (4, 6, 3.0, 2);
+INSERT INTO spielstaende VALUES (4, 7, 1.0, 6);
 
 INSERT INTO spielstaende VALUES (5, 1, 1.0, 100);
 INSERT INTO spielstaende VALUES (5, 2, 1.7, 88);
@@ -179,27 +179,27 @@ INSERT INTO spielstaende VALUES (5, 6, 6.0, 44);
 INSERT INTO spielstaende VALUES (5, 7, 1.0, 100);
 INSERT INTO spielstaende VALUES (5, 8, 2.3, 73);
 
-INSERT INTO spielstaende VALUES (6, 1, 2.3, 325);
-INSERT INTO spielstaende VALUES (6, 2, 2.0, 325);
-INSERT INTO spielstaende VALUES (6, 3, 1.7, 325);
-INSERT INTO spielstaende VALUES (6, 4, 1.0, 325);
-INSERT INTO spielstaende VALUES (6, 7, 1.0, 325);
+INSERT INTO spielstaende VALUES (6, 1, 2.3, 71);
+INSERT INTO spielstaende VALUES (6, 2, 2.0, 76);
+INSERT INTO spielstaende VALUES (6, 3, 1.7, 83);
+INSERT INTO spielstaende VALUES (6, 4, 1.0, 99);
+INSERT INTO spielstaende VALUES (6, 7, 1.0, 100);
 
-INSERT INTO spielstaende VALUES (7, 1, 1.7, 325);
-INSERT INTO spielstaende VALUES (7, 2, 2.3, 325);
-INSERT INTO spielstaende VALUES (7, 3, 1.0, 325);
-INSERT INTO spielstaende VALUES (7, 4, 1.3, 325);
-INSERT INTO spielstaende VALUES (7, 7, 1.0, 325);
+INSERT INTO spielstaende VALUES (7, 1, 1.7, 456);
+INSERT INTO spielstaende VALUES (7, 2, 2.3, 369);
+INSERT INTO spielstaende VALUES (7, 3, 1.0, 555);
+INSERT INTO spielstaende VALUES (7, 4, 1.3, 512);
+INSERT INTO spielstaende VALUES (7, 7, 1.0, 600);
 
-INSERT INTO spielstaende VALUES (8, 1, 1.3, 325);
-INSERT INTO spielstaende VALUES (8, 2, 1.0, 325);
-INSERT INTO spielstaende VALUES (8, 3, 1.7, 325);
-INSERT INTO spielstaende VALUES (8, 4, 1.3, 325);
-INSERT INTO spielstaende VALUES (8, 7, 1.0, 325);
+INSERT INTO spielstaende VALUES (8, 1, 1.3, 140);
+INSERT INTO spielstaende VALUES (8, 2, 1.0, 150);
+INSERT INTO spielstaende VALUES (8, 3, 1.7, 128);
+INSERT INTO spielstaende VALUES (8, 4, 1.3, 138);
+INSERT INTO spielstaende VALUES (8, 7, 1.0, 160);
 
-INSERT INTO spielstaende VALUES (9, 1, 3.0, 325);
-INSERT INTO spielstaende VALUES (9, 2, 2.0, 325);
-INSERT INTO spielstaende VALUES (9, 3, 1.3, 325);
-INSERT INTO spielstaende VALUES (9, 4, 1.0, 325);
-INSERT INTO spielstaende VALUES (9, 7, 1.0, 325);
+INSERT INTO spielstaende VALUES (9, 1, 3.0, 3210);
+INSERT INTO spielstaende VALUES (9, 2, 2.0, 3775);
+INSERT INTO spielstaende VALUES (9, 3, 1.3, 4252);
+INSERT INTO spielstaende VALUES (9, 4, 1.0, 4999);
+INSERT INTO spielstaende VALUES (9, 7, 1.0, 5000);
 
