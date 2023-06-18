@@ -15,6 +15,9 @@ import ( 	."gfx"
 			"../Klassen/textboxTabelle"
 			"../Klassen/sqlTabelle"
 			"../Klassen/textboxen"
+			"os"
+			"path/filepath"
+			"os/exec"
 		)
 /*
 EINTRÄGE HINZUFÜGEN:
@@ -152,7 +155,7 @@ var VeranstFelder, SpielstFelder, VeranstHinzuFelder, HighscoreFelder []felder.F
 var Ende bool = false							// True gdw. Programm beenden
 var Anfrage, Suchwort string							// Durchsuchen/Suchwort-String
 var Raumnummer uint8						// Raumnummer des momentanen Raumes
-var MinNote,MaxNote,MinPunkte,MaxPunkte string
+var MinNote,MaxNote,MinPunkte,MaxPunkte, Raumnr, Doz string
 var Katknopftexte, Hinzuknopftexte,VeranstaltungFeldtexte []string
 var conn SQL.Verbindung
 
@@ -207,8 +210,17 @@ func main () {
 }
 
 func ErstelleTexte() {
-	Katknopftexte = append(Katknopftexte, " Beenden", "Veranstaltungen", "  Spielstände", "   Dummy", " LWB-Übersicht", " Aufgaben", " freie SQL-Anfrage", "  Neuer Listen-Eintrag")
-	Hinzuknopftexte = append(Hinzuknopftexte, "       Neue Veranstaltung hinzufügen", "       Neues  -> Minispiel <-  hinzufügen", "  SWS hinzufügen", "  Raum hinzufügen","Dozent/in hinzufügen")
+	Katknopftexte = append(Katknopftexte, " Beenden", "Veranstaltungen", 
+				"  Spielstände", "   RESET Datenbank", " LWB-Übersicht", " Aufgaben", 
+				" freie SQL-Anfrage", "  Neuer Listen-Eintrag")
+	
+	Hinzuknopftexte = append(Hinzuknopftexte, 
+			"        -> Veranstaltung <-     NEU   hinzufügen", 
+			"          -> Minispiel <-       NEU   hinzufügen", 
+			"          -> Dozent/in <-       NEU   hinzufügen",
+			"          -> Spieler/in <-      NEU   hinzufügen", 
+			"  Eine ->  kurze  <- Pause einlegen und prokrastinieren!" )
+			
 	VeranstaltungFeldtexte = append(VeranstaltungFeldtexte, "NEUE Veranstaltung", "Thema", "SWS", "Raum","Dozent/in")
 }
 
@@ -232,11 +244,11 @@ func ErstelleKnoepfe() {
 				BuZurueck )
 	
 	HinzuKnoepfe = append(HinzuKnoepfe,
-				buttons.New(20,120,1160,70, 230,50,100, true, Hinzuknopftexte[0]),		// 
-				buttons.New(20,220,1160,70, 230,50,100, true, Hinzuknopftexte[1]),		// 
-				buttons.New(20,320,1160,70, 230,50,100, true, Hinzuknopftexte[2]),		// 
-				buttons.New(20,420,1160,70, 230,50,100, true, Hinzuknopftexte[3]),		// 
-				buttons.New(20,520,1160,70, 230,50,100, true, Hinzuknopftexte[4])	)	// 
+				buttons.New(20,140,1160,80, 255,132,198, true, Hinzuknopftexte[0]),		// 
+				buttons.New(20,250,1160,80, 255,234,122, true, Hinzuknopftexte[1]),		// 
+				buttons.New(20,360,1160,80, 182,249,148, true, Hinzuknopftexte[2]),		// 
+				buttons.New(20,470,1160,80, 210,128,240, true, Hinzuknopftexte[3]),		// 
+				buttons.New(20,580,1160,80, 135,250,223, true, Hinzuknopftexte[4])	)	// 
 	
 	SpielstKnoepfe = append(SpielstKnoepfe,
 				buttons.New(20,105,350,55, 0,255,0, true, 	"Spielstände durchsuchen"),
@@ -256,6 +268,13 @@ func ErstelleFelder() {
 	felder.Voreinstellungen(0,255,0,20)
 	SQLAnfrFeld = felder.New (25,  120, 115, 'l', " Stelle neue SQL-Anfrage")
 	
+	VeranstHinzuFelder = append( VeranstHinzuFelder,
+		felder.New (40, 160, 40, 'l', VeranstaltungFeldtexte[0]),	
+		felder.New (470, 160, 30, 'l', VeranstaltungFeldtexte[1]),
+		felder.New (790, 160, 2, 'l', VeranstaltungFeldtexte[2]),
+		felder.New (820, 160, 3, 'l', VeranstaltungFeldtexte[3]),
+		felder.New (900, 160, 25, 'l', VeranstaltungFeldtexte[4])	)
+	
 	felder.Voreinstellungen(0,255,0,32)
 	VeranstFelder = append( VeranstFelder,
 		felder.New (110,  110, 30, 'l', "Durchsuche Veranstaltungen"),	
@@ -269,13 +288,7 @@ func ErstelleFelder() {
 		felder.New (790, 110, 3, 'l', "max. Note"),	
 		felder.New (920, 110, 4, 'l', "min. Punkte"),
 		felder.New (1000, 110, 4, 'l', "max. Punkte")	)
-	
-	VeranstHinzuFelder = append( VeranstHinzuFelder,
-		felder.New (30, 140, 30, 'l', VeranstaltungFeldtexte[0]),	
-		felder.New (440, 140, 20, 'l', VeranstaltungFeldtexte[1]),
-		felder.New (770, 140, 2, 'l', VeranstaltungFeldtexte[2]),
-		felder.New (820, 140, 3, 'l', VeranstaltungFeldtexte[3]),
-		felder.New (910, 140, 15, 'l', VeranstaltungFeldtexte[4])	)
+
 }
 func ZeichneKatKnoepfe() {
 	for _,bu := range KatKnoepfe {
@@ -337,6 +350,10 @@ func ZeichneRaum() {
 		BuZurueck.ZeichneButton()
 		case 3:
 		SchreibeFont(300,10,Katknopftexte[3])
+		resetDatenbank()
+		SetzeFont(font,50)
+		Stiftfarbe(255,0,0)
+		SchreibeFont(100,300,"DIE DATENBANK IST JETZT WIEDER WIE NEU!")
 		BuZurueck.ZeichneButton()
 		case 4:
 		SchreibeFont(300,10,Katknopftexte[4])
@@ -374,37 +391,14 @@ func maussteuerung () {
 
 	for {
 		_, status, mausX, mausY := MausLesen1()
-		// maus.SetzeKoordinaten(mausX,mausY)								// Aktualisiert Maus-Koordinaten
 		
 		if status==1 { 													// Maustaste gedrückt
 			
-			// ------------------------------- RAUM-WECHSEL ---------------------------------------------------- AB HIER
-			for _,knopf := range KatKnoepfe { 									// überprüft Knöpfe im Array
-				if knopf.TesteXYPosInButton(mausX,mausY) {
-					switch knopf.GibBeschriftung() {
-						case Katknopftexte[0]: Ende = true; return
-						case Katknopftexte[1]: Raumnummer = 1
-						case Katknopftexte[2]: Raumnummer = 2						
-						case Katknopftexte[3]: Raumnummer = 3
-						case Katknopftexte[4]: Raumnummer = 4
-						case Katknopftexte[5]: Raumnummer = 8
-						case Katknopftexte[6]: Raumnummer = 9
-						case Katknopftexte[7]: Raumnummer = 10
-					}
-					ZeichneRaum()					// Raum wurde gewechselt und muss neu gezeichnet werden
-				}
-			}
-			if BuZurueck.TesteXYPosInButton(mausX,mausY) {					// Zurück-Botton gedrückt
-				Raumnummer = 0
-				ZeichneRaum()					// Raum wurde gewechselt und muss neu gezeichnet werden
-			}
-			// ------------------------------- RAUM-WECHSEL ---------------------------------------------------- BIS HIER
-			
-			// ------------------------------- KNOPF-FUNKTIONEN ------------------------------------------------ AB HIER
+			// ------------------------------------- KNOPF-FUNKTIONEN --------------------------------------------------------------------- AB HIER
 			Stiftfarbe(255,255,255)
 			switch Raumnummer {
-				case 1:																					// ------------------ Veranstaltungen-Raum
-				if VeranstKnoepfe[0].TesteXYPosInButton(mausX,mausY) {				// -- Durchsuche die Liste
+				case 1:																			// ------------------ Veranstaltungen-Raum
+				if VeranstKnoepfe[0].TesteXYPosInButton(mausX,mausY) {							// -- Durchsuche die Liste
 					Vollrechteck(20,105,1160,60)
 					Suchwort = VeranstFelder[0].Edit()
 					Anfrage = sucheDozVer(Suchwort)
@@ -416,19 +410,19 @@ func maussteuerung () {
 					AktUndZeichne(VeranstKnoepfe)
 					
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
-				} else if VeranstKnoepfe[1].TesteXYPosInButton(mausX,mausY) {		// -- Eintrag ändern
+				} else if VeranstKnoepfe[1].TesteXYPosInButton(mausX,mausY) {					// -- Eintrag ändern
 					Vollrechteck(20,105,1160,60)
-					Suchwort = VeranstFelder[1].Edit()		// veranstaltungsname
-					raumnr := VeranstFelder[2].Edit()		// raumnummer
-					doz := VeranstFelder[3].Edit()			//dozentIn
-					ändereInVeranstaltungen(conn , Suchwort, raumnr,doz)
-					// ----------------------------------- HIER fehlt die SQL-Anfrage zum Ändern des Eintrags
+					Suchwort := VeranstFelder[1].Edit()			// veranstaltungsname
+					Raumnr = VeranstFelder[2].Edit()			// raumnummer
+					Doz = VeranstFelder[3].Edit()				// dozentIn
+					
+					ändereInVeranstaltungen(conn , Suchwort, Raumnr, Doz)
 					
 					Suchwort = ""
 					Anfrage = sucheDozVer(Suchwort)
 					
 					Stiftfarbe(255,255,255)
-					Vollrechteck(20,105,1160,60)
+					Vollrechteck(0,105,1200,595)
 					AktUndZeichne(VeranstKnoepfe)
 					
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
@@ -442,13 +436,13 @@ func maussteuerung () {
 					Anfrage = sucheDozVer(Suchwort)
 					
 					Stiftfarbe(255,255,255)
-					Vollrechteck(20,105,1160,60)
+					Vollrechteck(0,105,1200,595)
 					AktUndZeichne(VeranstKnoepfe)
 					
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 				}
-				case 2: 																					// ------------------ Spielstände-Raum
-				if SpielstKnoepfe[0].TesteXYPosInButton(mausX,mausY) {				// -- Durchsuche die Liste
+				case 2: 																		// ------------------ Spielstände-Raum
+				if SpielstKnoepfe[0].TesteXYPosInButton(mausX,mausY) {							// -- Durchsuche die Liste
 					Vollrechteck(20,105,1160,60)
 					Suchwort = SpielstFelder[0].Edit()
 					Anfrage = sucheSpielerGamesScores(Suchwort)
@@ -460,8 +454,8 @@ func maussteuerung () {
 					
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 					
-				} else if SpielstKnoepfe[1].TesteXYPosInButton(mausX,mausY) {		// -- Highscores
-					Vollrechteck(20,105,1160,60)				
+				} else if SpielstKnoepfe[1].TesteXYPosInButton(mausX,mausY) {					// -- Highscores
+					Vollrechteck(0,170,1200,530)				
 					Anfrage = gibAnfrageHighscore()
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 					
@@ -534,72 +528,85 @@ func maussteuerung () {
 				} else if SQLAnfrKnoepfe[1].TesteXYPosInButton(mausX,mausY) {
 					zeigeAlleRelationen()
 					
-					
-				
 				}
 				case 10:
-				for _,suchknopf := range HinzuKnoepfe { 									// überprüft SUCHKNÖPFE im Array
+				for _,suchknopf := range HinzuKnoepfe { 									// überprüft EINFÜGEKNÖPFE im Array
 					if suchknopf.TesteXYPosInButton(mausX,mausY) {
-						fmt.Println("Einfüge-Knopf gedrückt: ", suchknopf.GibBeschriftung() )
+
 						switch suchknopf.GibBeschriftung() {
+							
 							case Hinzuknopftexte[0]: 
-							Vollrechteck(100,120,1000,70)
+							Vollrechteck(20,140,1160,110)
 							var veranstaltungsAttribute []string
+							var veranstaltungsString string
+							
 							// Lies die einzelnen Eingabefelder aus und schreibe sie in einen Slice
-							for _,feldwert := range VeranstHinzuFelder {
-								veranstaltungsAttribute = append(veranstaltungsAttribute,feldwert.Edit())
+							for i,feldwert := range VeranstHinzuFelder {
+								if i == 2 || i == 3 {feldwert.SetzeErlaubteZeichen (felder.Digits)} // sws, raumnr
+								wert := feldwert.Edit()
+								veranstaltungsAttribute = append(veranstaltungsAttribute, wert)
+								veranstaltungsString = veranstaltungsString + " , " + wert
 							}
 							// Füge Eintrag hinzu
-							fügeHinzuVeranst(conn,veranstaltungsAttribute)
+							hinzugefügt := fügeHinzuVeranst(conn,veranstaltungsAttribute)
+							
+							Stiftfarbe(255,255,255)
+							Vollrechteck(0,140,1200,560)
+							
+							Stiftfarbe(255,132,198)
+							switch hinzugefügt{
+								case true: SchreibeFont(40,220,"Eintrag hinzugefügt: " + veranstaltungsString[2:])
+								case false: 
+								Stiftfarbe(255,0,0)
+								SchreibeFont(40,220,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
+							}
+							
+							AktUndZeichne(HinzuKnoepfe)
 							
 							case Hinzuknopftexte[1]:	
+							Vollrechteck(20,250,1160,80)
+							Stiftfarbe(255,234,122)
 							
 							case Hinzuknopftexte[2]: 
-							Vollrechteck(590,150,80,50)
+							Vollrechteck(20,360,1160,80)
+							Stiftfarbe(182,249,148)
 							
 							case Hinzuknopftexte[3]:	
-							Vollrechteck(700,150,80,50)
+							Vollrechteck(20,470,1160,80)
+							Stiftfarbe(210,128,240)
 							
 							case Hinzuknopftexte[4]:	
-							Vollrechteck(850,150,150,50)
-								
+							Vollrechteck(20,580,1160,80)
+							Stiftfarbe(135,250,223)
 						}
 					}
 				}
-				
 			}
+			// ------------------------------------- KNOPF-FUNKTIONEN --------------------------------------------------------------------- BIS HIER
+			
+			// ------------------------------- RAUM-WECHSEL ---------------------------------------------------- AB HIER
+			for _,knopf := range KatKnoepfe { 									// überprüft Knöpfe im Array
+				if knopf.TesteXYPosInButton(mausX,mausY) {
+					switch knopf.GibBeschriftung() {
+						case Katknopftexte[0]: Ende = true; return
+						case Katknopftexte[1]: Raumnummer = 1
+						case Katknopftexte[2]: Raumnummer = 2						
+						case Katknopftexte[3]: Raumnummer = 3
+						case Katknopftexte[4]: Raumnummer = 4
+						case Katknopftexte[5]: Raumnummer = 8
+						case Katknopftexte[6]: Raumnummer = 9
+						case Katknopftexte[7]: Raumnummer = 10
+					}
+					ZeichneRaum()					// Raum wurde gewechselt und muss neu gezeichnet werden
+				}
+			}
+			if BuZurueck.TesteXYPosInButton(mausX,mausY) {					// Zurück-Botton gedrückt
+				Raumnummer = 0
+				ZeichneRaum()					// Raum wurde gewechselt und muss neu gezeichnet werden
+			}
+			// ------------------------------- RAUM-WECHSEL ---------------------------------------------------- BIS HIER
 		}
 	}
-}
-
-func zeichneAnfrage(conn SQL.Verbindung) {
-	Stiftfarbe(255,255,255)
-	//Cls()
-	sT := sqlTabelle.New(conn,Anfrage)
-	//fmt.Println(sT.GibTabelle())
-	
-	// Nur zum Testen auch SQL Anfrage anzeigen
-	Stiftfarbe(0,0,0)
-	Schreibe(400,200,Anfrage)
-	
-	// Textbox Tabelle
-	tbT := textboxTabelle.New(sT.GibTabelle(),sT.GibKopf(),400,250)
-	tbT.SetzeFarbeTabelle(0,0,0)
-	tbT.SetzeZeilenAbstand(1)
-	tbT.SetzeSchriftgrößeTabelle(20)
-	tbT.SetzeSpaltenAbstand(20)
-	tbT.SetzeFarbeKopf(0,0,255)
-	tbT.SetzeFontKopf("../Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")
-	tbT.SetzeFontTabelle("../Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")
-	tbT.Zeichne()
-	//TastaturLesen1()
-	//TastaturLesen1()
-	//tbT.VariableBreite()
-	/*gfx.Stiftfarbe(255,255,255)
-	gfx.Cls()
-	tbT.Zeichne()
-	gfx.TastaturLesen1()
-	* */
 }
 
 // Funktion für Suchfeld für Dozentinnen und Veranstaltungen
@@ -672,7 +679,7 @@ func gibAnfrageMinigames() string {
 // EINFÜGEN VON VERANSTALTUNGEN //
 //////////////////////////////////
 
-func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
+func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) bool {
 	//Name, Thema, Kürzel, Dozentin, SWS, Semester, Raum
 	// 	VeranstaltungFeldtexte = append(VeranstaltungFeldtexte, "NEUE Veranstaltung", "Thema", "SWS", "Raum","Dozent/in")
 	//zeigeVeranst(conn)
@@ -680,6 +687,12 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
 	var vnrS,vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS string
 	var gebietnrS,npcnrS string // um gebietnummer zu finden
 	var eintragWarVorhanden bool
+	
+	// Prüfe ob in allen Attributen etwas steht
+	if enthalten(attribute,"") {
+		fmt.Println("Keine valider Eintrag")
+		return false
+	}
 	
 	vnameS = attribute[0]
 	gebietnameS = attribute[1]
@@ -689,7 +702,7 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
 	semesterS ="1"
 	raumnrS = attribute[3]
 	
-	fmt.Println(vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS)
+	//fmt.Println(vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS)
 	// mögliche Probleme
 	// existiert Dozent? Existiert Thema?
 	
@@ -707,7 +720,7 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
 	
 	// VERANSTALTUNGEN
 	eintragWarVorhanden, vnrS = prüfeObVorhandenFindeNr(conn,"veranstaltungen", "vname", vnameS, "vnr")
-	if eintragWarVorhanden {return}		// Wenn es den Eintrag schon gab, mache nichts
+	if eintragWarVorhanden {return false}		// Wenn es den Eintrag schon gab, mache nichts
 	// Trage neue Veranstaltung ein
 	eingabe = fmt.Sprintf(`
 		INSERT INTO veranstaltungen 
@@ -741,6 +754,7 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
 	conn.Ausfuehren(eingabe)
 	// Nochmal Veranstaltungen zeichnen
 	//zeigeVeranst(conn)
+	return true
 }
 
 
@@ -848,10 +862,20 @@ func löscheNPC(conn SQL.Verbindung,npcnameS string) {
 func löscheVeranstaltung(conn SQL.Verbindung, veranstaltung string) {
 	// 1. Aus unterrichten löschen, dann veranstaltungen
 	
-	
 	vorhanden,vnr := prüfeObVorhandenFindeNr(conn ,"veranstaltungen", "vname", veranstaltung, "vnr")
+	fmt.Println("vnr: ",vnr,vorhanden)
 	// Wenn die Veranstaltung gar nicht existiert
 	if vorhanden == false {return}
+	
+	// Es soll keine Vorlesung die mit einem Minigame verknüpft ist gelöscht werden
+	vorhanden,_ = prüfeObVorhandenFindeNr(conn ,"minigames", "vnr", vnr, "vnr")
+	fmt.Println("vnr: ",vnr,vorhanden)
+	if vorhanden == true {return}
+	
+	// Es soll keine Vorlesung die mit einem Minigame verknüpft ist gelöscht werden
+	vorhanden,_ = prüfeObVorhandenFindeNr(conn ,"assistenz", "vnr", vnr, "vnr")
+	fmt.Println("vnr: ",vnr,vorhanden)
+	if vorhanden == true {return}
 	
 	// Lösche die Veranstaltung aus unterricht
 	eingabe := "DELETE FROM unterricht WHERE vnr=" + vnr + ";"
@@ -933,5 +957,18 @@ func zeigeAlleRelationen() {
 	tB.Zeichne()
 }
 
+// Stellt die Datenbank wieder auf den Ursprungszustand her
+func resetDatenbank() {
+	wd,_ := os.Getwd()					// Get Pfad
+	relativePath := "../D_sql"			// relativer Pfad wo ich hin möchte
+	combinedPath := filepath.Join(wd,relativePath)	// Kombiniere beide Pfade
+	absolutePath,_:= filepath.Abs(combinedPath)			// nimmt .. weg
+	os.Chdir(absolutePath)				// Gehe zum neuen Pfad
+	cmd := exec.Command("bash", "-c", "psql -U lewein -d lewein -f Install-LWBadventure.sql")	// erstelle ausführbares Objekt
+	cmd.Stdout = os.Stdout			// sende output an Konsole
+	cmd.Stderr = os.Stderr
+	cmd.Run()						// Führe aus
+	os.Chdir(wd)					// Setze Pfad auf Ausgangspfad zurück
 
+}
 

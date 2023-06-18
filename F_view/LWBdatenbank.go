@@ -150,7 +150,7 @@ var Mutex sync.Mutex					// erstellt Mutex
 var BuZurueck buttons.Button				// Spezille Knoepfe
 var KatKnoepfe, HinzuKnoepfe, VeranstKnoepfe, SpielstKnoepfe, SQLAnfrKnoepfe []buttons.Button		// Slices für alle erstellten Knöpfe / die Suchfelder
 var SQLAnfrFeld felder.Feld
-var VeranstFelder, SpielstFelder, VeranstHinzuFelder, HighscoreFelder []felder.Feld
+var VeranstFelder, SpielstFelder, VeranstHinzuFelder, DozentHinzuFelder, MinispielHinzuFelder, HighscoreFelder []felder.Feld
 
 var Ende bool = false							// True gdw. Programm beenden
 var Anfrage, Suchwort string							// Durchsuchen/Suchwort-String
@@ -210,37 +210,43 @@ func main () {
 }
 
 func ErstelleTexte() {
-	Katknopftexte = append(Katknopftexte, " Beenden", "Veranstaltungen", 
-				"  Spielstände", "   RESET Datenbank", " LWB-Übersicht", " Aufgaben", 
-				" freie SQL-Anfrage", "  Neuer Listen-Eintrag")
+	Katknopftexte = append(Katknopftexte, 
+				" Beenden", 
+				"Veranstaltungen", 
+				"  Spielstände", 
+				" !!! RESET der Datenbank !!!", 
+				" LWB-Übersicht", 
+				" Aufgaben", 
+				" freie SQL-Anfrage", 
+				"  Neuer Listen-Eintrag" )
 	
 	Hinzuknopftexte = append(Hinzuknopftexte, 
 			"        -> Veranstaltung <-     NEU   hinzufügen", 
-			"          -> Minispiel <-       NEU   hinzufügen", 
 			"          -> Dozent/in <-       NEU   hinzufügen",
+			"          -> Minispiel <-       NEU   hinzufügen", 
 			"          -> Spieler/in <-      NEU   hinzufügen", 
 			"  Eine ->  kurze  <- Pause einlegen und prokrastinieren!" )
 			
-	VeranstaltungFeldtexte = append(VeranstaltungFeldtexte, "NEUE Veranstaltung", "Thema", "SWS", "Raum","Dozent/in")
+	// VeranstaltungFeldtexte = append(VeranstaltungFeldtexte, "NEUE Veranstaltung", "Thema", "SWS", "Raum","Dozent/in")
 }
 
 func ErstelleKnoepfe() {
-	BuZurueck 	= buttons.New(20,20,200,70, 230,50,100, true, 	" zurück")					// zurück
+	BuZurueck 	= buttons.New(20,20,200,70, 255,151,196, true, 	"  zurück")					// zurück
 	
 
 	KatKnoepfe = append(KatKnoepfe,
-				buttons.New(1000,620,180,70, 230,50,100, true, Katknopftexte[0]),
-				buttons.New(100,150,300,70, 246,109,237, true, Katknopftexte[1]),
-				buttons.New(100,250,300,70, 246,109,237, true, Katknopftexte[2]),		
-				buttons.New(100,350,300,70, 246,109,237, true, Katknopftexte[3]),		
-				buttons.New(100,450,300,70, 246,109,237, true, Katknopftexte[4]),
-				buttons.New(620,160,340,130, 100,230,50, true, Katknopftexte[5]),
-				buttons.New(550,320,500,100, 50,100,230, true, Katknopftexte[6]),
-				buttons.New(500,450,610,100, 255,248,23, true, Katknopftexte[7]) )
+				buttons.New(1000,620,180,70, 255,151,196, true, Katknopftexte[0]),
+				buttons.New(130,330,300,70, 246,109,237, true, Katknopftexte[1]),
+				buttons.New(130,430,300,70, 246,109,237, true, Katknopftexte[2]),		
+				buttons.New(100,570,600,80, 230,50,100, true, Katknopftexte[3]),		
+				buttons.New(100,150,500,130, 255,193,46, true, Katknopftexte[4]),
+				buttons.New(650,150,340,130, 100,230,50, true, Katknopftexte[5]),
+				buttons.New(550,310,500,100, 50,100,230, true, Katknopftexte[6]),
+				buttons.New(500,440,610,100, 255,248,23, true, Katknopftexte[7]) )
 	
 	SQLAnfrKnoepfe = append(SQLAnfrKnoepfe,
-				buttons.New(20,110,550,50, 230,50,80, true, "     Neue SQL-Anfrage eingeben"),
-				buttons.New(600,110,550,50, 230,50,80, true, "     Bestehende Listen anzeigen"),
+				buttons.New(20,110,550,50, 0,255,0, true, "     Neue SQL-Anfrage eingeben"),
+				buttons.New(600,110,550,50, 0,255,0, true, "     Bestehende Listen anzeigen"),
 				BuZurueck )
 	
 	HinzuKnoepfe = append(HinzuKnoepfe,
@@ -269,11 +275,19 @@ func ErstelleFelder() {
 	SQLAnfrFeld = felder.New (25,  120, 115, 'l', " Stelle neue SQL-Anfrage")
 	
 	VeranstHinzuFelder = append( VeranstHinzuFelder,
-		felder.New (40, 160, 40, 'l', VeranstaltungFeldtexte[0]),	
-		felder.New (470, 160, 30, 'l', VeranstaltungFeldtexte[1]),
-		felder.New (790, 160, 2, 'l', VeranstaltungFeldtexte[2]),
-		felder.New (820, 160, 3, 'l', VeranstaltungFeldtexte[3]),
-		felder.New (900, 160, 25, 'l', VeranstaltungFeldtexte[4])	)
+		felder.New (40, 160, 40, 'l', "NEUE Veranstaltung"),	
+		felder.New (470, 160, 30, 'l', "Thema"),
+		felder.New (790, 160, 2, 'l', "SWS"),
+		felder.New (820, 160, 3, 'l', "Raum"),
+		felder.New (900, 160, 25, 'l', "Dozent/in")	)
+	
+	DozentHinzuFelder = append( DozentHinzuFelder,
+		felder.New (40, 160, 40, 'l', "NEUER Name Dozent/in"),	
+		felder.New (470, 160, 30, 'l', "Lieblingsgetränk"),	)
+	
+	MinispielHinzuFelder = append( MinispielHinzuFelder,
+		felder.New (40, 160, 40, 'l', "NEUER Minispiel-Name"),	
+		felder.New (470, 160, 30, 'l', "zugeordnete Veranstaltung")	)
 	
 	felder.Voreinstellungen(0,255,0,32)
 	VeranstFelder = append( VeranstFelder,
@@ -357,6 +371,14 @@ func ZeichneRaum() {
 		BuZurueck.ZeichneButton()
 		case 4:
 		SchreibeFont(300,10,Katknopftexte[4])
+		// Räume	
+		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageRäume(),20,170,false,0,0,0,0,0,255,16,font)
+		// DozentInnen
+		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageDozentInnen(),800,170,false,0,0,0,0,0,255,16,font)
+		// sonstige NPCs
+		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageSonstigeNPCs(),800,400,false,0,0,0,0,0,255,16,font)
+		// Minigames
+		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageMinigames(),20,400,false,0,0,0,0,0,255,16,font)
 		BuZurueck.ZeichneButton()
 		case 8:											// --> 	Aufgaben
 		SchreibeFont(300,10,Katknopftexte[5])
@@ -495,6 +517,7 @@ func maussteuerung () {
 				}
 				
 				case 4:								// LWB-Übersicht
+				/*
 				// Räume	
 				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageRäume(),20,170,false,0,0,0,0,0,255,16,font)
 				// DozentInnen
@@ -503,7 +526,7 @@ func maussteuerung () {
 				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageSonstigeNPCs(),800,400,false,0,0,0,0,0,255,16,font)
 				// Minigames
 				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageMinigames(),20,400,false,0,0,0,0,0,255,16,font)
-				
+				*/
 				case 9:
 				if SQLAnfrKnoepfe[0].TesteXYPosInButton(mausX,mausY) {									// ------- freie SQL-Anfrage
 					Stiftfarbe(255,255,255)
