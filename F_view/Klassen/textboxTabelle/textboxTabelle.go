@@ -1,7 +1,7 @@
 // Autor: Philipp Liehm
 // Datum: Juni 2023
 // Zweck: Aus einer Tabelle [][]string wird ein 2d-slice [][]textboxen.Texbox generiert
-//		  Dieser kann zur Darstellung in gfx.Verwendet werden
+//		  Dieser kann zur Darstellung in gfx verwendet werden.
 
 package textboxTabelle
 
@@ -41,6 +41,7 @@ type header struct {
 	schriftgröße int
 }
 
+// formatiert den Tabellenkopf
 func (h *header) formatiere(breite,höhe uint16) {
 	for _,t := range h.tbKopf {
 		t.SetzeBreite(breite)
@@ -55,6 +56,7 @@ func (h *header) setzeFont(f string) {
 	h.font = f
 }
 
+// zeichnet den Tabellenkopf
 func (h *header) zeichne() {
 	for _,t := range h.tbKopf {
 		//r,g,b := t.GibSchriftfarbe()
@@ -64,6 +66,7 @@ func (h *header) zeichne() {
 	}
 }
 
+// generiert die Textboxen für den Header 
 func (h *header) schreibeTbHeader(x,y uint16,b,höhe uint16,tT *data) {
 	//fmt.Println("Header: ",h.kopf)
 	breiten := gibVariableBreiten(tT.stringTabelle,h.kopf)
@@ -79,7 +82,7 @@ func (h *header) schreibeTbHeader(x,y uint16,b,höhe uint16,tT *data) {
 }
 
 
-
+// Neues Objekt vom Datentyp textboxTabelle
 func New(tabelle[][]string,kopf []string,x,y uint16) *data {
 	tT := new(data)
 	tT.zeilenAbstand = 5
@@ -158,7 +161,7 @@ func (tT *data) schreibeTbTabelle() {
 	tT.tBTabelle =  textbTabelle
 }
 
-
+// Formatiert die Tabelle
 func (tT *data) formatiere() {
 	tT.schreibeTbTabelle()			// Damit die Textboxen an die richtige Stelle gesetzt werden
 	for _,zeile:= range tT.tBTabelle {
@@ -170,6 +173,7 @@ func (tT *data) formatiere() {
 	}
 }
 
+// Zeichnet die Tabelle in ein gfx. Fenster
 func (tT *data) Zeichne() {
 	// Kopf zeichnen
 	tT.kopf.schriftgröße = tT.schriftgröße

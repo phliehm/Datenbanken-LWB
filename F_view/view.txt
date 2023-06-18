@@ -1,0 +1,84 @@
+Anleitung
+
+Es muss einmal die Datenbank bzw. die Relationen in die "lewein" - Datenbank hinzugefügt werden.
+Dies kann entweder durch Ausführen im Terminal erfolgen:
+Hierfür muss man sich im Ordner D_sql befinden und hier einen Terminal öffnen.
+--> psql
+-->\i Install-LWBadventure.sql
+--> exit
+
+Alternativ kann auch einfach das Programm "LWBdatenbank" ausgeführt und dort auf "RESET der Datenbank" geklickt werden.
+Dadurch wird automatisch die Install-LWEBadventure.sql Datei ausgeführt.
+
+ 
+Motivation
+
+Haben wir das nicht schon an anderer Stelle?
+
+Wir wollten gern eine zu unserem Software-Projekt passende Datenbank schreiben. 
+Der Aufbau unseres LWB-Adventure Spiels ist an die LehrerInnen-Weiterbildung angelehnt und 
+ähnlich von der Struktur her auch der Schule. Daher könnte die Software auch leicht an die 
+Schulwelt angepasst oder eben selbst von SchülerInnen erarbeitet und teilweise implementiert werden.
+
+
+Anwendung
+
+- Übersicht über wichtige Tabellen bzw. Informationen des LWB-Adventures
+- Suche (in mehreren verknüpften Tabellen)
+- Löschen (veranstaltungen)
+- Neuer Eintrag (veranstaltungen, dozent_innen, minispiele)
+- Limitieren der Ausgabe der Noten/Punkten (min, max) bei den Spielständen
+- Anzeigen der Highscore aller Minigames
+- Auflisten der Aufgaben der SQL-Anfragen 
+- Ausführen beliebiger SELECT Anfragen, begrenzt durch die Länge des Eingabefeldes
+- Reset der Datenbank (die Install-Datei für die SQL-Datenbank wird ausgeführt).
+
+
+Struktur der Software und erwähnenswerte Pakete
+
+- Verbindung zur Datenbank über die Klasse "SQL" (Herr Schäfer und Herr Herker?) (Installation des PostgreSQL-Go-Treibers nach Anleitung von Hr. Herker)
+- Eingabe von Daten mithilfe der Klasse "felder" (Herr Schäfer)
+- Speichern von SELECT - Anfragen mithilfe der Klasse "sqlTabelle" (Cyriacus, Liehm, Schneider, Seiß)
+- Anzeigen der SQL Tabellen mit der Klasse "textboxTabelle" (Cyriacus, Liehm, Schneider, Seiß) in einem gfx-Fenster
+- Die Klasse "textboxen" (Cyriacus, Liehm, Schneider, Seiß) basiert auf dem gfx-Paket und ermöglicht das unkomplizierte Positionieren
+von Texten und ermöglicht autoamtische oder manuelle Zeilenumbrüche.
+- Das Umschalten zwischen Seiten und Auswählen von Feldern erfolgt über die Klasse "buttons" (Cyriacus, Liehm, Schneider, Seiß)
+
+Begründung der Einschränkungen
+
+Prinzipiell wäre es wünschenswert, nahezu alle Relationen in unserer Software ändern zu können. 
+Wir haben die Klassen "felder" für die Eingabe von Werten und "SQL" zum Verbindungsaufbau und
+senden von Anfragen verwendet. Ein Problem beim Schreiben unserer Anwendung war, dass die Klasse SQL
+bei ungültigen Anfragen bzw. Senden von INSERT, DELETE, UPDATE Befehlen einen log.Fatal Fehler aufruft und somit
+direkt die Anwendung beendet, ohne die Möglichkeit zu haben den Fehler abzufangen. 
+
+Daher haben wir zwar offensichtliche Fehler in unserer Software abgefangen - z.B. kein gültiger Relationenname oder kein Schlüsselwort
+wie SELECT etc., Einschränkung bei der Eingabe in die Felder - es kann aber trotzdem zu Fehlern kommen. Daher haben wir den Funktionsumfang beschränkt, um die Nutzung nicht zu beeinträchtigen. 
+
+Weiterhin sollten hauptsächlich typische Anwendungsfälle gezeigt werden, daher haben wir auf das wiederholte Implementieren
+der gleichen Anfragen aber für andere Tabellen verzichtet. Der Programmieraufwand hätte sich hierdurch erheblich erhöht und 
+nur einen geringen Mehrwert gebracht.
+
+- Es können keine beliebgien neuen Datensätze eingetragen werden, sondern nur für bestimmte Tabellen (veranstaltungen, dozent_innen, minispiele).
+- Es können nur Veranstaltungen gelöscht werden. Schon hier war es sehr aufwendig alle Verknüpfungen mit anderen Relationen zu beachten und 
+entsprechend die zu löschende Veranstaltung auch aus anderen Relationen (z.B. unterricht) zu löschen. Entsprechen müsste man auch für das Löschen
+anderer Tabellen eine Vielzahl an Verknüpfungen beachten. 
+Man hätte zwar bei den Constraints in PostgreSQL auch ON DELETE CASCADE setzen können, hier wäre aber vielleicht ein 
+unbeabsichtigter Datenverlust die Folge, daher haben wir uns dagegen entschieden. 
+
+- Man hätte in der Ansicht der der Veranstaltungen noch mehr Spalten hinzufügen können, allerdings sind wir hier durch die Breite des Fensters bzw. 
+des Bildschirms limitiert. Die von uns erstellte Klasse textboxTabelle stellt zwar schon die Spaltenbreite optimal ein, trotzdem reicht die Fensterbreite
+wegen der langen Inhalte z.B. beim Veranstaltungsnamen nicht. 
+Hier wäre es praktisch noch ein Auswahl der angezeigen Spalten treffen zu können. 
+- 
+
+- Es können keine Assistenzen hinzugefügt oder gelöscht werden (wäre aber ansich kein Problem).
+
+mgl. Erweiterungen des Views
+
+- Sortieren von Tabellen durch Klick auf die Spaltennamen
+- Auch Einträge in Verknüpfungen wie "unterricht" und "assistenzen" können hinzugefügt oder gelöscht werden.
+- 
+
+
+

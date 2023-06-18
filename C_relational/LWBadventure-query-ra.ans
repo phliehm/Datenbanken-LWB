@@ -194,7 +194,7 @@ answer(VName:string,SWS:int,Semester:int) ->
 Info: 5 tuples computed.          
 
 DES> % (12) Wieviele Veranstaltungen gibt es pro Standort?
-DES> % Ausgabe der Orte mit jeweiliger Anzahl der Veranstaltungen
+DES> % Ausgabe der Orte mit jeweiliger Anzahl der Veranstaltungen:
 DES> rename Standorte (OrtName, AnzahlVeranstaltungen) (group_by Ort Ort,count(VNr) true (Raeume njoin Unterricht));
 answer(Standorte.OrtName:string,Standorte.AnzahlVeranstaltungen:int) ->
 {

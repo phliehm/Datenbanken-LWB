@@ -10,14 +10,15 @@ import ( 	."gfx"
 			"time"
 			"strings"
 			"felder"
-			"../Klassen/buttons"
+			"./Klassen/buttons"
 			"SQL"
-			"../Klassen/textboxTabelle"
-			"../Klassen/sqlTabelle"
-			"../Klassen/textboxen"
+			"./Klassen/textboxTabelle"
+			"./Klassen/sqlTabelle"
+			"./Klassen/textboxen"
 			"os"
 			"path/filepath"
 			"os/exec"
+			"strconv"
 		)
 /*
 EINTRÄGE HINZUFÜGEN:
@@ -150,7 +151,7 @@ var Mutex sync.Mutex					// erstellt Mutex
 var BuZurueck buttons.Button				// Spezille Knoepfe
 var KatKnoepfe, HinzuKnoepfe, VeranstKnoepfe, SpielstKnoepfe, SQLAnfrKnoepfe []buttons.Button		// Slices für alle erstellten Knöpfe / die Suchfelder
 var SQLAnfrFeld felder.Feld
-var VeranstFelder, SpielstFelder, VeranstHinzuFelder, HighscoreFelder []felder.Feld
+var VeranstFelder, SpielstFelder, VeranstHinzuFelder, DozentHinzuFelder, MinispielHinzuFelder, HighscoreFelder []felder.Feld
 
 var Ende bool = false							// True gdw. Programm beenden
 var Anfrage, Suchwort string							// Durchsuchen/Suchwort-String
@@ -159,7 +160,7 @@ var MinNote,MaxNote,MinPunkte,MaxPunkte, Raumnr, Doz string
 var Katknopftexte, Hinzuknopftexte,VeranstaltungFeldtexte []string
 var conn SQL.Verbindung
 
-var font string = "../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf"
+var font string = "./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf"
 var Aufgaben = []string{
 		"1a. Welche Räume gibt es in der LWB-Adventure-World?",
 		"1b. Welche Aufgaben haben die sonstigen NPCs im LWB-Adventure?",
@@ -185,7 +186,7 @@ var Aufgaben = []string{
 func main () {
 	Fenster (1200, 700)
 	Fenstertitel(" ###  LWB - Datenbank  ###")
-	SetzeFont ("../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
+	SetzeFont ("./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
 	
 	ErstelleTexte()
 	ErstelleKnoepfe()
@@ -210,37 +211,43 @@ func main () {
 }
 
 func ErstelleTexte() {
-	Katknopftexte = append(Katknopftexte, " Beenden", "Veranstaltungen", 
-				"  Spielstände", "   RESET Datenbank", " LWB-Übersicht", " Aufgaben", 
-				" freie SQL-Anfrage", "  Neuer Listen-Eintrag")
+	Katknopftexte = append(Katknopftexte, 
+				" Beenden", 
+				"Veranstaltungen", 
+				"  Spielstände", 
+				" !!! RESET der Datenbank !!!", 
+				" LWB-Übersicht", 
+				" Aufgaben", 
+				" freie SQL-Anfrage", 
+				"  Neuer Listen-Eintrag" )
 	
 	Hinzuknopftexte = append(Hinzuknopftexte, 
 			"        -> Veranstaltung <-     NEU   hinzufügen", 
-			"          -> Minispiel <-       NEU   hinzufügen", 
 			"          -> Dozent/in <-       NEU   hinzufügen",
+			"          -> Minispiel <-       NEU   hinzufügen", 
 			"          -> Spieler/in <-      NEU   hinzufügen", 
 			"  Eine ->  kurze  <- Pause einlegen und prokrastinieren!" )
 			
-	VeranstaltungFeldtexte = append(VeranstaltungFeldtexte, "NEUE Veranstaltung", "Thema", "SWS", "Raum","Dozent/in")
+	// VeranstaltungFeldtexte = append(VeranstaltungFeldtexte, "NEUE Veranstaltung", "Thema", "SWS", "Raum","Dozent/in")
 }
 
 func ErstelleKnoepfe() {
-	BuZurueck 	= buttons.New(20,20,200,70, 230,50,100, true, 	" zurück")					// zurück
+	BuZurueck 	= buttons.New(20,20,200,70, 255,151,196, true, 	"  zurück")					// zurück
 	
 
 	KatKnoepfe = append(KatKnoepfe,
-				buttons.New(1000,620,180,70, 230,50,100, true, Katknopftexte[0]),
-				buttons.New(100,150,300,70, 246,109,237, true, Katknopftexte[1]),
-				buttons.New(100,250,300,70, 246,109,237, true, Katknopftexte[2]),		
-				buttons.New(100,350,300,70, 246,109,237, true, Katknopftexte[3]),		
-				buttons.New(100,450,300,70, 246,109,237, true, Katknopftexte[4]),
-				buttons.New(620,160,340,130, 100,230,50, true, Katknopftexte[5]),
-				buttons.New(550,320,500,100, 50,100,230, true, Katknopftexte[6]),
-				buttons.New(500,450,610,100, 255,248,23, true, Katknopftexte[7]) )
+				buttons.New(1000,620,180,70, 255,151,196, true, Katknopftexte[0]),
+				buttons.New(130,330,300,70, 246,109,237, true, Katknopftexte[1]),
+				buttons.New(130,430,300,70, 246,109,237, true, Katknopftexte[2]),		
+				buttons.New(100,570,600,80, 230,50,100, true, Katknopftexte[3]),		
+				buttons.New(100,150,500,130, 255,193,46, true, Katknopftexte[4]),
+				buttons.New(650,150,340,130, 100,230,50, true, Katknopftexte[5]),
+				buttons.New(550,310,500,100, 50,100,230, true, Katknopftexte[6]),
+				buttons.New(500,440,610,100, 255,248,23, true, Katknopftexte[7]) )
 	
 	SQLAnfrKnoepfe = append(SQLAnfrKnoepfe,
-				buttons.New(20,110,550,50, 230,50,80, true, "     Neue SQL-Anfrage eingeben"),
-				buttons.New(600,110,550,50, 230,50,80, true, "     Bestehende Listen anzeigen"),
+				buttons.New(20,110,550,50, 0,255,0, true, "     Neue SQL-Anfrage eingeben"),
+				buttons.New(600,110,550,50, 0,255,0, true, "     Bestehende Listen anzeigen"),
 				BuZurueck )
 	
 	HinzuKnoepfe = append(HinzuKnoepfe,
@@ -269,11 +276,19 @@ func ErstelleFelder() {
 	SQLAnfrFeld = felder.New (25,  120, 115, 'l', " Stelle neue SQL-Anfrage")
 	
 	VeranstHinzuFelder = append( VeranstHinzuFelder,
-		felder.New (40, 160, 40, 'l', VeranstaltungFeldtexte[0]),	
-		felder.New (470, 160, 30, 'l', VeranstaltungFeldtexte[1]),
-		felder.New (790, 160, 2, 'l', VeranstaltungFeldtexte[2]),
-		felder.New (820, 160, 3, 'l', VeranstaltungFeldtexte[3]),
-		felder.New (900, 160, 25, 'l', VeranstaltungFeldtexte[4])	)
+		felder.New (40, 160, 40, 'l', "NEUE Veranstaltung"),	
+		felder.New (470, 160, 30, 'l', "Thema"),
+		felder.New (790, 160, 2, 'l', "SWS"),
+		felder.New (820, 160, 3, 'l', "Raum"),
+		felder.New (900, 160, 25, 'l', "Dozent/in")	)
+	
+	DozentHinzuFelder = append( DozentHinzuFelder,
+		felder.New (40, 160, 40, 'l', "NEUER Name Dozent/in"),	
+		felder.New (470, 160, 30, 'l', "Lieblingsgetränk"),	)
+	
+	MinispielHinzuFelder = append( MinispielHinzuFelder,
+		felder.New (40, 160, 40, 'l', "NEUER Minispiel-Name"),	
+		felder.New (470, 160, 30, 'l', "zugeordnete Veranstaltung")	)
 	
 	felder.Voreinstellungen(0,255,0,32)
 	VeranstFelder = append( VeranstFelder,
@@ -328,7 +343,7 @@ func ZeichneRaum() {
 	UpdateAus () 										// Nun wird alles im nicht sichtbaren "hinteren" Fenster gezeichnet!
 	Stiftfarbe(255,255,255)
 	Cls()												// Cleart vollständigen Screen
-	SetzeFont ("../Schriftarten/Ubuntu-B.ttf", 80 )
+	SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 80 )
 	Stiftfarbe(100,100,100)
 	felder.Voreinstellungen(0,255,0,32)
 	switch Raumnummer {
@@ -357,12 +372,20 @@ func ZeichneRaum() {
 		BuZurueck.ZeichneButton()
 		case 4:
 		SchreibeFont(300,10,Katknopftexte[4])
+		// Räume	
+		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageRäume(),20,170,false,0,0,0,0,0,255,16,font)
+		// DozentInnen
+		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageDozentInnen(),800,170,false,0,0,0,0,0,255,16,font)
+		// sonstige NPCs
+		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageSonstigeNPCs(),800,400,false,0,0,0,0,0,255,16,font)
+		// Minigames
+		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageMinigames(),20,400,false,0,0,0,0,0,255,16,font)
 		BuZurueck.ZeichneButton()
 		case 8:											// --> 	Aufgaben
 		SchreibeFont(300,10,Katknopftexte[5])
 		
 		//SetzeFont ("../Schriftarten/Ubuntu-B.ttf", 18 )
-		SetzeFont ("../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
+		SetzeFont ("./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
 		for i,aufgabe := range Aufgaben {
 			SchreibeFont(20,120+27*uint16(i),aufgabe)
 		}
@@ -461,7 +484,8 @@ func maussteuerung () {
 					
 				} else if SpielstKnoepfe[2].TesteXYPosInButton(mausX,mausY) {					// -- Notenbereich eingeben
 					Vollrechteck(20,105,1160,60)
-					
+					SpielstFelder[1].SetzeErlaubteZeichen(felder.Digits+".")
+					SpielstFelder[2].SetzeErlaubteZeichen(felder.Digits+".")
 					MinNote = SpielstFelder[1].Edit()
 					MaxNote = SpielstFelder[2].Edit()
 					Anfrage = gibAnfrageScoresNotenbereich(MinNote,MaxNote)
@@ -476,13 +500,14 @@ func maussteuerung () {
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 				} else if SpielstKnoepfe[3].TesteXYPosInButton(mausX,mausY) {					// -- Punktebereich eingeben
 					Vollrechteck(20,105,1160,60)
-					
+					SpielstFelder[3].SetzeErlaubteZeichen(felder.Digits)
+					SpielstFelder[4].SetzeErlaubteZeichen(felder.Digits)
 					MinPunkte = SpielstFelder[3].Edit()
 					MaxPunkte = SpielstFelder[4].Edit()
 					
 					Anfrage = gibAnfrageScoresPunktebereich(MinPunkte,MaxPunkte)
 					
-					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
+					//textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 					/*
 					Suchwort = ""
 					Anfrage = sucheSpielerGamesScores(Suchwort)
@@ -495,6 +520,7 @@ func maussteuerung () {
 				}
 				
 				case 4:								// LWB-Übersicht
+				/*
 				// Räume	
 				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageRäume(),20,170,false,0,0,0,0,0,255,16,font)
 				// DozentInnen
@@ -503,7 +529,7 @@ func maussteuerung () {
 				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageSonstigeNPCs(),800,400,false,0,0,0,0,0,255,16,font)
 				// Minigames
 				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageMinigames(),20,400,false,0,0,0,0,0,255,16,font)
-				
+				*/
 				case 9:
 				if SQLAnfrKnoepfe[0].TesteXYPosInButton(mausX,mausY) {									// ------- freie SQL-Anfrage
 					Stiftfarbe(255,255,255)
@@ -611,7 +637,7 @@ func maussteuerung () {
 
 // Funktion für Suchfeld für Dozentinnen und Veranstaltungen
 func sucheDozVer(suchwort string) string {
-	Anfrage = "SELECT vname AS Veranstaltung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS DozentIn FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname,raumnr,sws) LIKE '%"
+	Anfrage = "SELECT vname AS Veranstaltung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS Dozent_in FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname,raumnr,sws) LIKE '%"
 	Anfrage += suchwort
 	Anfrage += "%' ORDER BY raumnr LIMIT 27;"
 	return Anfrage
@@ -619,7 +645,7 @@ func sucheDozVer(suchwort string) string {
 
 // Funktion für SpielerInnen und Games, Scores
 func sucheSpielerGamesScores(suchwort string) string {
-	Anfrage := "SELECT spname AS SpielerIn,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
+	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += suchwort
 	Anfrage += "%' LIMIT 27;"
@@ -628,6 +654,8 @@ func sucheSpielerGamesScores(suchwort string) string {
 
 // Scores mit Notenbereich
 func gibAnfrageScoresNotenbereich(min,max string) string{
+	if len(min)==0 {min = "0"}
+	if len(max)==0 {max = "1000"}
 	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += Suchwort
@@ -637,6 +665,8 @@ func gibAnfrageScoresNotenbereich(min,max string) string{
 
 // Scores mit Notenbereich
 func gibAnfrageScoresPunktebereich(min,max string) string{
+	if len(min)==0 {min = "0"}
+	if len(max)==0 {max = "100000"}
 	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += Suchwort
@@ -647,14 +677,10 @@ func gibAnfrageScoresPunktebereich(min,max string) string{
 // Gibt Highscore zurück, achtung, Dopplungen
 func gibAnfrageHighscore() string {
 		//anfrage := "SELECT gamename,note,punkte FROM minigames NATURAL JOIN spielstaende;"
-		anfrage := `SELECT t.spname AS spieler_in, t.gamename AS minigame,t.vname AS veranstaltung, t.note,t.punkte
-					FROM (minigames NATURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen) t
-					INNER JOIN (
-					  SELECT gamename, MIN(punkte) AS min_punkte
-					  FROM minigames NaTURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen
-					  GROUP BY gamename
-					) AS subquery
-					ON t.gamename = subquery.gamename AND t.punkte = subquery.min_punkte ORDER BY t.gamename;`
+		anfrage := "SELECT t.spname AS spieler_in, t.gamename AS minigame,t.vname AS veranstaltung, t.note,t.punkte "+
+					"FROM (minigames NATURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen) t "+
+					"INNER JOIN ( SELECT gamename, MAX(punkte) AS max_punkte FROM minigames NATURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen GROUP BY gamename) AS subquery "+
+					" ON t.gamename = subquery.gamename AND t.punkte = subquery.max_punkte ORDER BY t.gamename;"
 		return anfrage
 }
 
@@ -674,6 +700,55 @@ func gibAnfrageSonstigeNPCs() string {
 func gibAnfrageMinigames() string {
 	return "SELECT gamename AS minigame,vname,raumname FROM minigames NATURAL JOIN raeume NATURAL JOIN veranstaltungen NATURAL JOIN unterricht; "
 }
+
+//////////////////////////////
+// EINFÜGEN VON DOZENTINNEN //
+//////////////////////////////
+
+func fügeHinzuDozentInnen(conn SQL.Verbindung,attribute []string) bool {
+	// name, lieblingsgetränk
+	
+	// Prüfe ob in allen Attributen etwas steht
+	if enthalten(attribute,"") {
+		fmt.Println("Keine valider Eintrag")
+		return false
+	}
+	
+	var npcnrS,npcnameS,lieblingsgetraenkS, eingabe string
+	var eintragWarVorhanden bool
+	
+	npcnameS = attribute[0]
+	lieblingsgetraenkS = attribute[1]
+	
+	// NPC
+	eintragWarVorhanden, npcnrS = prüfeObVorhandenFindeNr(conn,"npcs", "npcname", npcnameS, "npcnr")
+	// Wenn es den NPC noch nicht gab, füge ihn hinzu
+	if eintragWarVorhanden == false {
+		eingabe = fmt.Sprintf(`
+		INSERT INTO npcs
+		VALUES ('%s','%s');`,npcnrS,npcnameS)
+	conn.Ausfuehren(eingabe)
+	}
+	
+	// DozentIn hinzufügen
+	
+	//_ Da man ja schon eine npcnr hat, die aber nicht überschrieben werde soll
+	eintragWarVorhanden, _ = prüfeObVorhandenFindeNr(conn,"dozent_innen", "npcnr", npcnrS, "npcnr")
+	if eintragWarVorhanden == false {
+		eingabe = fmt.Sprintf(`
+		INSERT INTO dozent_innen
+		VALUES ('%s','%s');`,npcnrS,lieblingsgetraenkS)
+	conn.Ausfuehren(eingabe)
+	}
+	
+	if eintragWarVorhanden == true {return false}
+	
+	return true
+	
+	
+}
+
+
 
 //////////////////////////////////
 // EINFÜGEN VON VERANSTALTUNGEN //
@@ -701,6 +776,10 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) bool {
 	swsS = attribute[2]
 	semesterS ="1"
 	raumnrS = attribute[3]
+	
+	// Prüfe ob die Raumnr die Integritätsbedingung erfüllt
+	raumnrSAsInteger,_ := strconv.Atoi(raumnrS)
+	if raumnrSAsInteger>4 || raumnrSAsInteger==0 {return false}
 	
 	//fmt.Println(vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS)
 	// mögliche Probleme
