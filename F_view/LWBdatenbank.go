@@ -213,12 +213,12 @@ func main () {
 func ErstelleTexte() {
 	Katknopftexte = append(Katknopftexte, 
 				" Beenden", 
-				"Veranstaltungen", 
-				"  Spielstände", 
+				" Veranstaltungen", 
+				"   Spielstände", 
 				" !!! RESET der Datenbank !!!", 
 				" LWB-Übersicht", 
 				" Aufgaben", 
-				" freie SQL-Anfrage", 
+				" Freie SQL-Anfrage", 
 				"  Neuer Listen-Eintrag" )
 	
 	Hinzuknopftexte = append(Hinzuknopftexte, 
@@ -237,13 +237,13 @@ func ErstelleKnoepfe() {
 
 	KatKnoepfe = append(KatKnoepfe,
 				buttons.New(1000,620,180,70, 255,151,196, true, Katknopftexte[0]),
-				buttons.New(130,330,300,70, 246,109,237, true, Katknopftexte[1]),
-				buttons.New(130,430,300,70, 246,109,237, true, Katknopftexte[2]),		
+				buttons.New(130,330,320,70, 246,109,237, true, Katknopftexte[1]),
+				buttons.New(130,430,320,70, 246,109,237, true, Katknopftexte[2]),		
 				buttons.New(100,570,600,80, 230,50,100, true, Katknopftexte[3]),		
 				buttons.New(100,150,500,130, 255,193,46, true, Katknopftexte[4]),
 				buttons.New(650,150,340,130, 100,230,50, true, Katknopftexte[5]),
-				buttons.New(550,310,500,100, 50,100,230, true, Katknopftexte[6]),
-				buttons.New(500,440,610,100, 255,248,23, true, Katknopftexte[7]) )
+				buttons.New(560,310,500,100, 50,100,230, true, Katknopftexte[6]),
+				buttons.New(510,440,610,100, 255,248,23, true, Katknopftexte[7]) )
 	
 	SQLAnfrKnoepfe = append(SQLAnfrKnoepfe,
 				buttons.New(20,110,550,50, 0,255,0, true, "     Neue SQL-Anfrage eingeben"),
@@ -276,26 +276,26 @@ func ErstelleFelder() {
 	SQLAnfrFeld = felder.New (25,  120, 115, 'l', " Stelle neue SQL-Anfrage")
 	
 	VeranstHinzuFelder = append( VeranstHinzuFelder,
-		felder.New (40, 160, 40, 'l', "NEUE Veranstaltung"),	
-		felder.New (470, 160, 30, 'l', "Thema"),
-		felder.New (790, 160, 2, 'l', "SWS"),
-		felder.New (820, 160, 3, 'l', "Raum"),
-		felder.New (900, 160, 25, 'l', "Dozent/in")	)
+		felder.New (40, 160, 40, 'l', "NEUE Veranstaltung: Titel"),	
+		felder.New (460, 160, 30, 'l', "Thema"),
+		felder.New (780, 160, 2, 'l', "SWS"),
+		felder.New (810, 160, 3, 'l', "Raum"),
+		felder.New (860, 160, 30, 'l', "Dozent/in")	)
 	
 	DozentHinzuFelder = append( DozentHinzuFelder,
-		felder.New (40, 160, 40, 'l', "NEUER Name Dozent/in"),	
-		felder.New (470, 160, 30, 'l', "Lieblingsgetränk"),	)
+		felder.New (40, 270, 40, 'l', "NEUE/R Dozent/in: Name"),	
+		felder.New (470, 270, 30, 'l', "Lieblingsgetränk"),	)
 	
 	MinispielHinzuFelder = append( MinispielHinzuFelder,
-		felder.New (40, 160, 40, 'l', "NEUER Minispiel-Name"),	
-		felder.New (470, 160, 30, 'l', "zugeordnete Veranstaltung")	)
+		felder.New (40, 380, 40, 'l', "NEUES Minispiel: Name"),	
+		felder.New (470, 380, 40, 'l', "zugeordnete Veranstaltung")	)
 	
 	felder.Voreinstellungen(0,255,0,32)
 	VeranstFelder = append( VeranstFelder,
-		felder.New (110,  110, 30, 'l', "Durchsuche Veranstaltungen"),	
-		felder.New (80, 110, 30, 'l', "Bestehende Veranstaltung"),
-		felder.New (590, 110, 6, 'l', "Neue Raumnummer"),
-		felder.New (720, 110, 25, 'l', "Neue/r Dozent/in")	)
+		felder.New (110,  110, 30, 'l', "DURCHSUCHE Veranstaltungen"),	
+		felder.New (80, 110, 30, 'l', "LÖSCHE bestehende Veranstaltung"),
+		felder.New (590, 110, 6, 'l', "NEUE Raumnummer"),
+		felder.New (720, 110, 25, 'l', "NEUE/R Dozent/in")	)
 		
 	SpielstFelder = append( SpielstFelder,
 		felder.New (80,  110, 30, 'l', "Durchsuche Spielstände"),
@@ -520,16 +520,6 @@ func maussteuerung () {
 				}
 				
 				case 4:								// LWB-Übersicht
-				/*
-				// Räume	
-				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageRäume(),20,170,false,0,0,0,0,0,255,16,font)
-				// DozentInnen
-				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageDozentInnen(),800,170,false,0,0,0,0,0,255,16,font)
-				// sonstige NPCs
-				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageSonstigeNPCs(),800,400,false,0,0,0,0,0,255,16,font)
-				// Minigames
-				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageMinigames(),20,400,false,0,0,0,0,0,255,16,font)
-				*/
 				case 9:
 				if SQLAnfrKnoepfe[0].TesteXYPosInButton(mausX,mausY) {									// ------- freie SQL-Anfrage
 					Stiftfarbe(255,255,255)
@@ -561,8 +551,8 @@ func maussteuerung () {
 
 						switch suchknopf.GibBeschriftung() {
 							
-							case Hinzuknopftexte[0]: 
-							Vollrechteck(20,140,1160,110)
+							case Hinzuknopftexte[0]: 											// Veranstaltung HINZU
+							Vollrechteck(0,140,1200,110)
 							var veranstaltungsAttribute []string
 							var veranstaltungsString string
 							
@@ -589,21 +579,66 @@ func maussteuerung () {
 							
 							AktUndZeichne(HinzuKnoepfe)
 							
-							case Hinzuknopftexte[1]:	
-							Vollrechteck(20,250,1160,80)
+							case Hinzuknopftexte[1]: 											// Dozent/in HINZU	
+							Vollrechteck(0,250,1200,110)
+							
+							// Lies die einzelnen Eingabefelder aus 
+							DozName := DozentHinzuFelder[0].Edit()
+							DozGetraenk := DozentHinzuFelder[1].Edit()
+							
+							
+							// Füge Eintrag hinzu
+							//hinzugefügt := fügeHinzuVeranst(conn,veranstaltungsAttribute)			---> bitte hinzufügen
+							
+							hinzugefügt := true		// muss dann weggenommen werden
+							
+							Stiftfarbe(255,255,255)
+							Vollrechteck(0,140,1200,560)
+							
 							Stiftfarbe(255,234,122)
+							switch hinzugefügt{
+								case true: SchreibeFont(40,330,"Eintrag hinzugefügt: " + DozName + " , " + DozGetraenk)
+								case false: 
+								Stiftfarbe(255,0,0)
+								SchreibeFont(40,220,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
+							}
 							
-							case Hinzuknopftexte[2]: 
-							Vollrechteck(20,360,1160,80)
+							AktUndZeichne(HinzuKnoepfe)
+							
+							case Hinzuknopftexte[2]: 											// Minispiel HINZU
+							Vollrechteck(0,360,1200,110)
+							
+							// Lies die einzelnen Eingabefelder aus 
+							SpielName := MinispielHinzuFelder[0].Edit()
+							SpielVeranst := MinispielHinzuFelder[1].Edit()
+							
+							
+							// Füge Eintrag hinzu
+							//hinzugefügt := fügeHinzuVeranst(conn,veranstaltungsAttribute)			---> bitte hinzufügen
+							
+							hinzugefügt := true		// muss dann weggenommen werden
+							
+							Stiftfarbe(255,255,255)
+							Vollrechteck(0,140,1200,560)
+							
 							Stiftfarbe(182,249,148)
+							switch hinzugefügt{
+								case true: SchreibeFont(40,440,"Eintrag hinzugefügt: " + SpielName + " , " + SpielVeranst)
+								case false: 
+								Stiftfarbe(255,0,0)
+								SchreibeFont(40,220,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
+							}
 							
-							case Hinzuknopftexte[3]:	
+							AktUndZeichne(HinzuKnoepfe)
+							
+							case Hinzuknopftexte[3]: 											// Spieler/in HINZU
 							Vollrechteck(20,470,1160,80)
 							Stiftfarbe(210,128,240)
 							
-							case Hinzuknopftexte[4]:	
-							Vollrechteck(20,580,1160,80)
-							Stiftfarbe(135,250,223)
+							case Hinzuknopftexte[4]:						// prokrastinieren
+							Vollrechteck(0,140,1200,560)
+							suchknopf.SetzePosition(mausX, mausY-40)
+							AktUndZeichne(HinzuKnoepfe)
 						}
 					}
 				}
