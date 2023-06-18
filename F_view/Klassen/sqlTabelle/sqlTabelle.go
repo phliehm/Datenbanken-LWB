@@ -1,4 +1,4 @@
-// Author: Philipp Liehm
+// Autor: Philipp Liehm
 // Datum: Juni 2023
 // Zweck: 	Eine SELECT Anfrage wird für eine bestehende Verbindung gestellt
 //			und der Inhalt in eine Tabelle des Datentyps string geschrieben 

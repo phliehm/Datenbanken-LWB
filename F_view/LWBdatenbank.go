@@ -10,11 +10,11 @@ import ( 	."gfx"
 			"time"
 			"strings"
 			"felder"
-			"../Klassen/buttons"
+			"./Klassen/buttons"
 			"SQL"
-			"../Klassen/textboxTabelle"
-			"../Klassen/sqlTabelle"
-			"../Klassen/textboxen"
+			"./Klassen/textboxTabelle"
+			"./Klassen/sqlTabelle"
+			"./Klassen/textboxen"
 			"os"
 			"path/filepath"
 			"os/exec"
@@ -159,7 +159,7 @@ var MinNote,MaxNote,MinPunkte,MaxPunkte, Raumnr, Doz string
 var Katknopftexte, Hinzuknopftexte,VeranstaltungFeldtexte []string
 var conn SQL.Verbindung
 
-var font string = "../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf"
+var font string = "./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf"
 var Aufgaben = []string{
 		"1a. Welche Räume gibt es in der LWB-Adventure-World?",
 		"1b. Welche Aufgaben haben die sonstigen NPCs im LWB-Adventure?",
@@ -185,7 +185,7 @@ var Aufgaben = []string{
 func main () {
 	Fenster (1200, 700)
 	Fenstertitel(" ###  LWB - Datenbank  ###")
-	SetzeFont ("../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
+	SetzeFont ("./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
 	
 	ErstelleTexte()
 	ErstelleKnoepfe()
@@ -342,7 +342,7 @@ func ZeichneRaum() {
 	UpdateAus () 										// Nun wird alles im nicht sichtbaren "hinteren" Fenster gezeichnet!
 	Stiftfarbe(255,255,255)
 	Cls()												// Cleart vollständigen Screen
-	SetzeFont ("../Schriftarten/Ubuntu-B.ttf", 80 )
+	SetzeFont ("./Schriftarten/Ubuntu-B.ttf", 80 )
 	Stiftfarbe(100,100,100)
 	felder.Voreinstellungen(0,255,0,32)
 	switch Raumnummer {
@@ -384,7 +384,7 @@ func ZeichneRaum() {
 		SchreibeFont(300,10,Katknopftexte[5])
 		
 		//SetzeFont ("../Schriftarten/Ubuntu-B.ttf", 18 )
-		SetzeFont ("../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
+		SetzeFont ("./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
 		for i,aufgabe := range Aufgaben {
 			SchreibeFont(20,120+27*uint16(i),aufgabe)
 		}

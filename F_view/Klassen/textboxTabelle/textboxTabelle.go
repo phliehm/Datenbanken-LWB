@@ -1,4 +1,4 @@
-// Author: Philipp Liehm
+// Autor: Philipp Liehm
 // Datum: Juni 2023
 // Zweck: Aus einer Tabelle [][]string wird ein 2d-slice [][]textboxen.Texbox generiert
 //		  Dieser kann zur Darstellung in gfx.Verwendet werden
@@ -269,7 +269,7 @@ func ZeichneAnfrage(conn SQL.Verbindung,anfrage string,x,y uint16,zeigeAnfrage b
 		// Nur zum Testen auch SQL Anfrage anzeigen
 		gfx.Stiftfarbe(0,0,0)
 		tbAnfrage := textboxen.New(10,670,1100,100)
-		tbAnfrage.SetzeFont("../Schriftarten/terminus-font/Terminus-Bold.ttf")
+		tbAnfrage.SetzeFont("./Schriftarten/terminus-font/Terminus-Bold.ttf")
 		tbAnfrage.SetzeSchriftgröße(12)
 		tbAnfrage.SchreibeText(anfrage)
 		tbAnfrage.Zeichne()
