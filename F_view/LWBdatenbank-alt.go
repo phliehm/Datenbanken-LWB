@@ -8,11 +8,13 @@ import ( 	."gfx"
 			"fmt"
 			"sync"
 			"time"
+			"strings"
 			"felder"
 			"../Klassen/buttons"
 			"SQL"
 			"../Klassen/textboxTabelle"
 			"../Klassen/sqlTabelle"
+			"../Klassen/textboxen"
 		)
 /*
 EINTRÄGE HINZUFÜGEN:
@@ -29,23 +31,153 @@ ORDER:
 "Notenbereich", "Punktebereich"
 minNote, maxNote, minPunkte,maxPunkte
 - um Note/Punkte Button für Sortierung
+
+---
+-- SQL-ANFRAGEN
+-- ------------
+
+-- 1a. Welche Räume gibt es in der LWB-Adventure-World?
+\C '1a. Welche Räume gibt es in der LWB-Adventure-World?'
+SELECT * FROM raeume;
+
+-- 1b. Welche Aufgaben haben die sonstigen NPCs im LWB-Adventure?
+\C '1b. Welche Aufgaben haben die sonstigen NPCs im LWB-Adventure?'
+SELECT aufgabe FROM sonstigenpcs;
+
+
+-- 2a. Welche Lehrveranstaltungen haben 6 SWS?
+\C '2a. Welche Lehrveranstaltungen haben 6 SWS?'
+SELECT * FROM veranstaltungen WHERE sws = 6;
+
+-- 2b. Welche Lehrveranstaltungen gibt es im 4. Semester?
+\C '2b. Welche Lehrveranstaltungen gibt es im 4. Semester?'
+SELECT * FROM veranstaltungen WHERE semester = 4;
+
+-- 2c. Welche Minigames gibt es im 4. Semester?
+\C '2c. Welche Minigames gibt es im 4. Semester?'
+SELECT * FROM minigames NATURAL JOIN veranstaltungen WHERE semester = 4;
+
+
+-- 3a. Wie heißen die Spieler_innen, die bisher das LWB-Adventure gespielt haben?
+\C '3a. Wie heißen die Spieler_innen, die bisher das LWB-Adventure gespielt haben?'
+SELECT spname FROM spieler_innen;
+
+-- 3b. Wie heißen die Dozenten im LWB-Adventure?
+\C '3b. Wie heißen die Dozenten im LWB-Adventure?'
+SELECT npcname FROM dozent_innen NATURAL JOIN npcs;
+
+-- 3c. Welche Aufgabe hat NPC 'Heidi'?
+\C '3c. Welche Aufgabe hat NPC "Heidi"?'
+SELECT aufgabe FROM sonstigenpcs NATURAL JOIN npcs WHERE npcname = 'Heidi';
+
+
+-- 4a. Welche Lehrveranstaltungen gehören zum Themengebiet 'Programmierung'?
+\C '4a. Welche Lehrveranstaltungen gehören zum Themengebiet "Programmierung"?'
+SELECT * FROM veranstaltungen NATURAL JOIN themengebiete WHERE gebietname = 'Programmierung';
+
+-- 4b. Welche Lehrveranstaltungen haben etwas mit 'Daten' oder 'Programmierung' zu tun?
+\C '4b. Welche Lehrveranstaltungen haben etwas mit "Daten" oder "Programmierung" zu tun?'
+SELECT * FROM veranstaltungen WHERE vname LIKE '%Daten%' OR vname LIKE '%Programmierung%';
+
+-- oder
+\C 'oder mit Suche in ThemengebietName:'
+SELECT * FROM veranstaltungen NATURAL JOIN themengebiete WHERE gebietname LIKE '%Daten%' OR gebietname LIKE '%Programmierung%';
+
+
+-- 5. Was ist das Lieblingsgetränk von Darth Schmidter?
+\C '5. Was ist das Lieblingsgetränk von Darth Schmidter?'
+SELECT lieblingsgetraenk FROM dozent_innen NATURAL JOIN npcs WHERE npcname = 'Darth Schmidter';
+
+
+-- 6. Welche Lehrveranstaltungen finden nicht in der 'FU Berlin' statt?
+\C '6. Welche Lehrveranstaltungen finden nicht in der "FU Berlin" statt?'
+SELECT vname, semester, ort FROM raeume NATURAL JOIN unterricht NATURAL JOIN veranstaltungen WHERE ort != 'FU Berlin';
+
+-- alternativ (falls man nicht sicher ist, ob 'FU Berlin' die vollständige Orts-Bezeichnung ist:
+\C 'alternativ mit Wildcards (falls man nicht sicher ist, ob "FU Berlin" die vollständige Orts-Bezeichnung ist:'
+SELECT vname, semester, ort FROM raeume NATURAL JOIN unterricht NATURAL JOIN veranstaltungen WHERE ort NOT LIKE '%FU%Berlin%';
+
+
+-- 7. Welche Dozenten sind in der LWB nur leitend tätig und machen keine Assistenz?
+\C '7. Welche Dozenten sind in der LWB nur leitend tätig und machen keine Assistenz?'
+SELECT npcname FROM npcs NATURAL JOIN (SELECT npcnr FROM dozent_innen EXCEPT SELECT npcnr FROM assistenz) AS xyz;
+-- Kommentar: 	Hier braucht es einen Alias, damit der NATURAL JOIN mit der Unterabfrage funktioniert.
+--				Die Bezeichnung ist jedoch egal, da nur auf den NPCNamen projiziert wird.
+
+
+-- Anfragen, die nur mit erweiterter relationaler Algebra beschrieben werden können:
+-- ---------------------------------------------------------------------------------
+
+-- 8. Wieviele Mini-Games gibt es in der LWB-Adventure-World? (Ausgaben-Titel: AnzahlMinigames)
+\C '8. Wieviele Mini-Games gibt es in der LWB-Adventure-World? (Ausgaben-Titel: AnzahlMinigames)'
+SELECT COUNT(*) AS AnzahlMinigames FROM minigames;
+
+
+-- 9. Wieviele SWS müssen in der LWB ingesamt absolviert werden? (Ausgaben-Titel: GesamtanzahlSWS)
+\C '9. Wieviele SWS müssen in der LWB ingesamt absolviert werden? (Ausgaben-Titel: GesamtanzahlSWS)'
+SELECT SUM(sws) AS GesamtanzahlSWS FROM veranstaltungen;
+
+
+-- 10. Wie heißt die Veranstaltung mit den meisten SWS?
+\C '10. Wie heißt die Veranstaltung mit den meisten SWS?'
+SELECT vname FROM veranstaltungen WHERE sws = (SELECT MAX(sws) FROM veranstaltungen);
+
+
+-- 11. Gesucht sind die Namen, Semester und SWS aller Veranstaltungen von Winnie the K absteigend sortiert nach SWS-Anzahl!
+\C '11. Gesucht sind die Namen, Semester und SWS aller Veranstaltungen von Winnie the K absteigend sortiert nach SWS-Anzahl!'
+SELECT vname, sws, semester FROM veranstaltungen NATURAL JOIN unterricht NATURAL JOIN npcs WHERE npcname = 'Winnie the K' ORDER BY sws DESC;
+
+
+-- 12. Wieviele Veranstaltungen gibt es pro Standort?
+\C '12. Wieviele Veranstaltungen gibt es pro Standort?'
+SELECT ort, COUNT(*) AS AnzahlVeranstaltungen FROM raeume NATURAL JOIN unterricht GROUP BY ort ORDER BY COUNT(*);
+
+
+--13. Welche Spieler_innen haben einen Gesamt-Notendurchschnitt, der nicht zwischen 2.0 und 4.0 liegt? (Sortierung nach Gesamt-Notendurchschnitt aufsteigend, also bester Schnitt zuerst)
+\C '13. Welche Spieler_innen haben einen Gesamt-Notendurchschnitt, der nicht zwischen 2.0 und 4.0 liegt? (Sortierung nach Gesamt-Notendurchschnitt aufsteigend, also bester Schnitt zuerst)'
+SELECT SpName FROM spieler_innen NATURAL JOIN spielstaende GROUP BY spname HAVING AVG(note) NOT BETWEEN 2.0 AND 4.0 ORDER BY AVG(note),spname;
+
+-- oder mit Ausgabe des jeweiligen Notendurchschnitts:
+\C 'oder mit Ausgabe des jeweiligen Notendurchschnitts:'
+SELECT SpName, ROUND(AVG(note),2) AS Notendurchschnitt FROM spieler_innen NATURAL JOIN spielstaende GROUP BY spname HAVING AVG(note) NOT BETWEEN 2.0 AND 4.0 ORDER BY AVG(note),spname;
 */
 
 var Mutex sync.Mutex					// erstellt Mutex
 	
-var BuZurueck,BuEnde buttons.Button				// Spezille Knoepfe
-var KatKnoepfe, HinzuKnoepfe, VeranstKnoepfe, SpielstKnoepfe []buttons.Button		// Slices für alle erstellten Knöpfe / die Suchfelder
-var DurchsucheFeld felder.Feld
+var BuZurueck buttons.Button				// Spezille Knoepfe
+var KatKnoepfe, HinzuKnoepfe, VeranstKnoepfe, SpielstKnoepfe, SQLAnfrKnoepfe []buttons.Button		// Slices für alle erstellten Knöpfe / die Suchfelder
+var SQLAnfrFeld felder.Feld
 var VeranstFelder, SpielstFelder, VeranstHinzuFelder, HighscoreFelder []felder.Feld
 
-var Akt bool = true							// True gdw. Raum gewechselt wurde _----- NICHT BENÖTIGT?!
+var Ende bool = false							// True gdw. Programm beenden
 var Anfrage, Suchwort string							// Durchsuchen/Suchwort-String
 var Raumnummer uint8						// Raumnummer des momentanen Raumes
+var MinNote,MaxNote,MinPunkte,MaxPunkte string
 var Katknopftexte, Hinzuknopftexte,VeranstaltungFeldtexte []string
 var conn SQL.Verbindung
 
 var font string = "../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf"
-
+var Aufgaben = []string{
+		"1a. Welche Räume gibt es in der LWB-Adventure-World?",
+		"1b. Welche Aufgaben haben die sonstigen NPCs im LWB-Adventure?",
+		"2a. Welche Lehrveranstaltungen haben 6 SWS?",
+		"2b. Welche Lehrveranstaltungen gibt es im 4. Semester",
+		"2c. Welche Minigames gibt es im 4. Semester?",
+		"3a. Wie heißen die Spieler_innen, die bisher das LWB-Adventure gespielt haben?",
+		"3b. Wie heißen die Dozenten im LWB-Adventure?",
+		"3c. Welche Aufgabe hat NPC 'Heidi'?",
+		"4a. Welche Lehrveranstaltungen gehören zum Themengebiet 'Programmierung'?",
+		"4b. Welche Lehrveranstaltungen haben etwas mit 'Daten' oder 'Programmierung' zu tun?",
+		"5. Was ist das Lieblingsgetränk von Darth Schmidter?",
+		"6. Welche Lehrveranstaltungen finden nicht in der 'FU Berlin' statt?",
+		"7. Welche Dozenten sind in der LWB nur leitend tätig und machen keine Assistenz?",
+		"8. Wieviele Mini-Games gibt es in der LWB-Adventure-World? (Ausgaben-Titel: AnzahlMinigames)",
+		"9. Wieviele SWS müssen in der LWB ingesamt absolviert werden? (Ausgaben-Titel: GesamtanzahlSWS)",
+		"10. Wie heißt die Veranstaltung mit den meisten SWS?",
+		"11. Gesucht sind Namen, Semester und SWS aller Veranstaltungen von Winnie the K absteigend sortiert nach SWS-Anzahl!",
+		"12. Wieviele Veranstaltungen gibt es pro Standort?",
+		"13. Welche Spieler_innen haben einen Gesamt-Notendurchschnitt, der nicht zwischen 2.0 und 4.0 liegt?",
+		"       (Sortierung nach Gesamt-Notendurchschnitt aufsteigend, also bester Schnitt zuerst)" }
 
 func main () {
 	Fenster (1200, 700)
@@ -69,70 +201,35 @@ func main () {
 	
 	// Nebenläufig wird die Kontroll-Komponente für die Maus gestartet.
 	go maussteuerung()
-
-	/*
-	vname := felder.New (100,  10, 30, 'l', "Vorname")	
-	vn := vname.Edit ()
-	fmt.Println(vn)
 	
-	var vname,nname,str,plz,ort,leer1,leer2 felder.Feld
-	var s string
-
-
-	vname = felder.New (10,  10, 30, 'l', "Vorname")
-	nname = felder.New (10,  50, 30, 'r', "Nachname")
-	str   = felder.New (10,  90, 30, 'z', "Straße/Hausnummer")
-	plz   = felder.New (10, 130,  5, 'l', "PLZ")
-	plz.SetzeErlaubteZeichen (felder.Digits)
-	ort   = felder.New (10, 170, 30, 'l', "Ort")
-
-	leer1 = felder.New (400, 10, 30, 'l', "")
-	leer2 = felder.New (400, 50, 30, 'l', "")
-
-	// Editieren der Eingabefelder
-	// gelieferte Zeichenketten werden nicht entgegengenommen ...
-	vname.Edit ()
-	nname.Edit ()
-	str.Edit ()
-	plz.Edit ()
-	ort.Edit ()
-
-	// ... dieser schon
-	s = leer1.Edit ()
-	// ... in das zweite leere Feld geschrieben
-	leer2.Schreibe (s)
-
-	// Bereits verwendete Felder lassen sich editieren
-	vname.Edit ()
-	nname.Edit ()
-	// oder als Ausgabefelder verwenden
-	ort.Schreibe ("Zehlendorf")
-	str.Schreibe ("Straßenname ist zu lang und wird gekürzt")
-	ort.Edit ()
-	*/
-	for { time.Sleep(1e9) }
-	TastaturLesen1 ()
+	for !Ende { time.Sleep(1e9) }
+	//TastaturLesen1 ()
 }
 
 func ErstelleTexte() {
-	Katknopftexte = append(Katknopftexte, "", "Veranstaltungen", "  Spielstände", "   Dummy", " LWB-Übersicht", " Aufgaben", " freie SQL-Anfrage", " Neuer Listen-Eintrag")
+	Katknopftexte = append(Katknopftexte, " Beenden", "Veranstaltungen", "  Spielstände", "   Dummy", " LWB-Übersicht", " Aufgaben", " freie SQL-Anfrage", "  Neuer Listen-Eintrag")
 	Hinzuknopftexte = append(Hinzuknopftexte, "       Neue Veranstaltung hinzufügen", "       Neues  -> Minispiel <-  hinzufügen", "  SWS hinzufügen", "  Raum hinzufügen","Dozent/in hinzufügen")
 	VeranstaltungFeldtexte = append(VeranstaltungFeldtexte, "NEUE Veranstaltung", "Thema", "SWS", "Raum","Dozent/in")
 }
 
 func ErstelleKnoepfe() {
 	BuZurueck 	= buttons.New(20,20,200,70, 230,50,100, true, 	" zurück")					// zurück
-	BuEnde 		= buttons.New(1000,620,180,70, 230,50,100, true," Beenden")					// Beenden
 	
+
 	KatKnoepfe = append(KatKnoepfe,
-				buttons.New(100,150,300,70, 230,50,100, true, Katknopftexte[1]),
-				buttons.New(100,250,300,70, 230,50,100, true, Katknopftexte[2]),		
-				buttons.New(100,350,300,70, 230,50,100, true, Katknopftexte[3]),		
-				buttons.New(100,450,300,70, 230,50,100, true, Katknopftexte[4]),
-				buttons.New(620,150,330,130, 100,230,50, true, Katknopftexte[5]),
+				buttons.New(1000,620,180,70, 230,50,100, true, Katknopftexte[0]),
+				buttons.New(100,150,300,70, 246,109,237, true, Katknopftexte[1]),
+				buttons.New(100,250,300,70, 246,109,237, true, Katknopftexte[2]),		
+				buttons.New(100,350,300,70, 246,109,237, true, Katknopftexte[3]),		
+				buttons.New(100,450,300,70, 246,109,237, true, Katknopftexte[4]),
+				buttons.New(620,160,340,130, 100,230,50, true, Katknopftexte[5]),
 				buttons.New(550,320,500,100, 50,100,230, true, Katknopftexte[6]),
-				buttons.New(500,450,600,100, 130,150,100, true, Katknopftexte[7])   )
+				buttons.New(500,450,610,100, 255,248,23, true, Katknopftexte[7]) )
 	
+	SQLAnfrKnoepfe = append(SQLAnfrKnoepfe,
+				buttons.New(20,110,550,50, 230,50,80, true, "     Neue SQL-Anfrage eingeben"),
+				buttons.New(600,110,550,50, 230,50,80, true, "     Bestehende Listen anzeigen"),
+				BuZurueck )
 	
 	HinzuKnoepfe = append(HinzuKnoepfe,
 				buttons.New(20,120,1160,70, 230,50,100, true, Hinzuknopftexte[0]),		// 
@@ -156,10 +253,10 @@ func ErstelleKnoepfe() {
 }
 
 func ErstelleFelder() {
+	felder.Voreinstellungen(0,255,0,20)
+	SQLAnfrFeld = felder.New (25,  120, 115, 'l', " Stelle neue SQL-Anfrage")
+	
 	felder.Voreinstellungen(0,255,0,32)
-	
-	DurchsucheFeld = felder.New (110,  110, 30, 'l', "Durchsuche")		// durchsuchen
-	
 	VeranstFelder = append( VeranstFelder,
 		felder.New (110,  110, 30, 'l', "Durchsuche Veranstaltungen"),	
 		felder.New (80, 110, 30, 'l', "Bestehende Veranstaltung"),
@@ -167,18 +264,18 @@ func ErstelleFelder() {
 		felder.New (720, 110, 25, 'l', "Neue/r Dozent/in")	)
 		
 	SpielstFelder = append( SpielstFelder,
-		felder.New (110,  110, 30, 'l', "Durchsuche Spielstände"),	
-		felder.New (80, 110, 30, 'l', "minPunkte"),
-		felder.New (590, 110, 6, 'l', "maxPunkte"),
-		felder.New (720, 110, 25, 'l', "minNote"),
-		felder.New (720, 110, 25, 'l', "maxNote")	)
+		felder.New (80,  110, 30, 'l', "Durchsuche Spielstände"),
+		felder.New (700, 110, 3, 'l', "min. Note"),
+		felder.New (790, 110, 3, 'l', "max. Note"),	
+		felder.New (920, 110, 4, 'l', "min. Punkte"),
+		felder.New (1000, 110, 4, 'l', "max. Punkte")	)
 	
 	VeranstHinzuFelder = append( VeranstHinzuFelder,
-		felder.New (20, 160, 25, 'l', VeranstaltungFeldtexte[0]),	
-		felder.New (450, 160, 20, 'l', VeranstaltungFeldtexte[1]),
-		felder.New (770, 160, 3, 'l', VeranstaltungFeldtexte[2]),
-		felder.New (820, 160, 4, 'l', VeranstaltungFeldtexte[3]),
-		felder.New (880, 160, 15, 'l', VeranstaltungFeldtexte[4])	)
+		felder.New (30, 140, 30, 'l', VeranstaltungFeldtexte[0]),	
+		felder.New (440, 140, 20, 'l', VeranstaltungFeldtexte[1]),
+		felder.New (770, 140, 2, 'l', VeranstaltungFeldtexte[2]),
+		felder.New (820, 140, 3, 'l', VeranstaltungFeldtexte[3]),
+		felder.New (910, 140, 15, 'l', VeranstaltungFeldtexte[4])	)
 }
 func ZeichneKatKnoepfe() {
 	for _,bu := range KatKnoepfe {
@@ -225,8 +322,7 @@ func ZeichneRaum() {
 		case 0:	
 		SchreibeFont(300,10,"LWB - Datenbank")
 		AktUndZeichne(KatKnoepfe)
-		
-		BuEnde.ZeichneButton()
+
 		case 1:
 		SchreibeFont(300,10,Katknopftexte[1])
 		AktUndZeichne(VeranstKnoepfe)
@@ -247,10 +343,16 @@ func ZeichneRaum() {
 		BuZurueck.ZeichneButton()
 		case 8:											// --> 	Aufgaben
 		SchreibeFont(300,10,Katknopftexte[5])
+		
+		//SetzeFont ("../Schriftarten/Ubuntu-B.ttf", 18 )
+		SetzeFont ("../Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
+		for i,aufgabe := range Aufgaben {
+			SchreibeFont(20,120+27*uint16(i),aufgabe)
+		}
 		BuZurueck.ZeichneButton()
 		case 9:											// --> freie SQL-Anfrage
 		SchreibeFont(300,10,Katknopftexte[6])
-		BuZurueck.ZeichneButton()
+		AktUndZeichne(SQLAnfrKnoepfe)
 		case 10:										// --> Eintrag hinzufügen
 		SchreibeFont(250,10,"Eintrag hinzufügen")
 		AktiviereHinzuKnoepfe()
@@ -279,8 +381,8 @@ func maussteuerung () {
 			// ------------------------------- RAUM-WECHSEL ---------------------------------------------------- AB HIER
 			for _,knopf := range KatKnoepfe { 									// überprüft Knöpfe im Array
 				if knopf.TesteXYPosInButton(mausX,mausY) {
-					fmt.Println("Knopf gedrückt: ", knopf.GibBeschriftung() )
 					switch knopf.GibBeschriftung() {
+						case Katknopftexte[0]: Ende = true; return
 						case Katknopftexte[1]: Raumnummer = 1
 						case Katknopftexte[2]: Raumnummer = 2						
 						case Katknopftexte[3]: Raumnummer = 3
@@ -316,12 +418,13 @@ func maussteuerung () {
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 				} else if VeranstKnoepfe[1].TesteXYPosInButton(mausX,mausY) {		// -- Eintrag ändern
 					Vollrechteck(20,105,1160,60)
-					Suchwort = VeranstFelder[1].Edit()
-					VeranstFelder[2].Edit()
-					VeranstFelder[3].Edit()
-					
+					Suchwort = VeranstFelder[1].Edit()		// veranstaltungsname
+					raumnr := VeranstFelder[2].Edit()		// raumnummer
+					doz := VeranstFelder[3].Edit()			//dozentIn
+					ändereInVeranstaltungen(conn , Suchwort, raumnr,doz)
 					// ----------------------------------- HIER fehlt die SQL-Anfrage zum Ändern des Eintrags
 					
+					Suchwort = ""
 					Anfrage = sucheDozVer(Suchwort)
 					
 					Stiftfarbe(255,255,255)
@@ -331,9 +434,9 @@ func maussteuerung () {
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 				} else if VeranstKnoepfe[2].TesteXYPosInButton(mausX,mausY) {		// -- Eintrag löschen
 					Vollrechteck(20,105,1160,60)
-					Suchwort = VeranstFelder[1].Edit()
-									
-					// ----------------------------------- HIER fehlt die SQL-Anfrage zum Löschen des Eintrags
+					Suchwort = VeranstFelder[1].Edit()		// Veranstaltung
+					
+					löscheVeranstaltung(conn,Suchwort)
 					
 					Suchwort = ""
 					Anfrage = sucheDozVer(Suchwort)
@@ -345,63 +448,95 @@ func maussteuerung () {
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 				}
 				case 2: 																					// ------------------ Spielstände-Raum
-				if VeranstKnoepfe[0].TesteXYPosInButton(mausX,mausY) {				// -- Durchsuche die Liste
+				if SpielstKnoepfe[0].TesteXYPosInButton(mausX,mausY) {				// -- Durchsuche die Liste
 					Vollrechteck(20,105,1160,60)
-					Suchwort = VeranstFelder[0].Edit()
+					Suchwort = SpielstFelder[0].Edit()
 					Anfrage = sucheSpielerGamesScores(Suchwort)
 					
 					Stiftfarbe(255,255,255)
 					Vollrechteck(20,170,1180,530)
-					
 					Vollrechteck(20,105,1160,60)
 					AktUndZeichne(SpielstKnoepfe)
 					
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
-				} else if VeranstKnoepfe[1].TesteXYPosInButton(mausX,mausY) {		// -- Highscores
+					
+				} else if SpielstKnoepfe[1].TesteXYPosInButton(mausX,mausY) {		// -- Highscores
+					Vollrechteck(20,105,1160,60)				
+					Anfrage = gibAnfrageHighscore()
+					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
+					
+				} else if SpielstKnoepfe[2].TesteXYPosInButton(mausX,mausY) {					// -- Notenbereich eingeben
 					Vollrechteck(20,105,1160,60)
-					Suchwort = VeranstFelder[1].Edit()
-					VeranstFelder[2].Edit()
-					VeranstFelder[3].Edit()
 					
-					// ----------------------------------- HIER fehlt die SQL-Anfrage zum Ändern des Eintrags
-					
-					Anfrage = sucheDozVer(Suchwort)
-					
+					MinNote = SpielstFelder[1].Edit()
+					MaxNote = SpielstFelder[2].Edit()
+					Anfrage = gibAnfrageScoresNotenbereich(MinNote,MaxNote)
+										
+					/*Suchwort = ""
+					Anfrage = sucheSpielerGamesScores(Suchwort)
+					*/
 					Stiftfarbe(255,255,255)
-					Vollrechteck(20,105,1160,60)
+					Vollrechteck(20,170,1180,530)
 					AktUndZeichne(SpielstKnoepfe)
 					
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
-				} else if VeranstKnoepfe[2].TesteXYPosInButton(mausX,mausY) {		// -- Notenbereich eingeben
+				} else if SpielstKnoepfe[3].TesteXYPosInButton(mausX,mausY) {					// -- Punktebereich eingeben
 					Vollrechteck(20,105,1160,60)
-					Suchwort = VeranstFelder[1].Edit()
-									
-					// ----------------------------------- HIER fehlt die SQL-Anfrage zum Löschen des Eintrags
 					
+					MinPunkte = SpielstFelder[3].Edit()
+					MaxPunkte = SpielstFelder[4].Edit()
+					
+					Anfrage = gibAnfrageScoresPunktebereich(MinPunkte,MaxPunkte)
+					
+					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
+					/*
 					Suchwort = ""
-					Anfrage = sucheDozVer(Suchwort)
-					
+					Anfrage = sucheSpielerGamesScores(Suchwort)
+					*/
 					Stiftfarbe(255,255,255)
-					Vollrechteck(20,105,1160,60)
-					AktUndZeichne(SpielstKnoepfe)
-					
-					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
-				} else if VeranstKnoepfe[3].TesteXYPosInButton(mausX,mausY) {		// -- Punktebereich eingeben
-					Vollrechteck(20,105,1160,60)
-					Suchwort = VeranstFelder[1].Edit()
-									
-					// ----------------------------------- HIER fehlt die SQL-Anfrage zum Löschen des Eintrags
-					
-					Suchwort = ""
-					Anfrage = sucheDozVer(Suchwort)
-					
-					Stiftfarbe(255,255,255)
-					Vollrechteck(20,105,1160,60)
+					Vollrechteck(20,170,1180,530)
 					AktUndZeichne(SpielstKnoepfe)
 					
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 				}
-			
+				
+				case 4:								// LWB-Übersicht
+				// Räume	
+				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageRäume(),20,170,false,0,0,0,0,0,255,16,font)
+				// DozentInnen
+				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageDozentInnen(),800,170,false,0,0,0,0,0,255,16,font)
+				// sonstige NPCs
+				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageSonstigeNPCs(),800,400,false,0,0,0,0,0,255,16,font)
+				// Minigames
+				textboxTabelle.ZeichneAnfrage(conn,gibAnfrageMinigames(),20,400,false,0,0,0,0,0,255,16,font)
+				
+				case 9:
+				if SQLAnfrKnoepfe[0].TesteXYPosInButton(mausX,mausY) {									// ------- freie SQL-Anfrage
+					Stiftfarbe(255,255,255)
+					Vollrechteck(20,110,1160,60)
+							
+					Anfrage = SQLAnfrFeld.Edit()
+					
+					if prüfeFreieSqlAnfrage(Anfrage) == false {
+					// 	----------------- Fehler in der SQL Anfrage ----------
+						SchreibeFont(100,200,"Diese Anfrage ist ungültig. Achten Sie auf korrekte Relationennamen und Schlüsselwörter.")
+						break
+						}
+					
+					Stiftfarbe(255,255,255)
+					Vollrechteck(20,200,1160,500)
+					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
+					
+					Stiftfarbe(255,255,255)
+					Vollrechteck(20,110,1160,60)
+					SQLAnfrKnoepfe[0].ZeichneButton()
+					SQLAnfrKnoepfe[1].ZeichneButton()
+				} else if SQLAnfrKnoepfe[1].TesteXYPosInButton(mausX,mausY) {
+					zeigeAlleRelationen()
+					
+					
+				
+				}
 				case 10:
 				for _,suchknopf := range HinzuKnoepfe { 									// überprüft SUCHKNÖPFE im Array
 					if suchknopf.TesteXYPosInButton(mausX,mausY) {
@@ -469,21 +604,69 @@ func zeichneAnfrage(conn SQL.Verbindung) {
 
 // Funktion für Suchfeld für Dozentinnen und Veranstaltungen
 func sucheDozVer(suchwort string) string {
-	Anfrage = "SELECT vname AS Vorlesung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS DozentIn FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname) LIKE '%"
+	Anfrage = "SELECT vname AS Veranstaltung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS DozentIn FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname,raumnr,sws) LIKE '%"
 	Anfrage += suchwort
-	Anfrage += "%';"
+	Anfrage += "%' ORDER BY raumnr LIMIT 27;"
 	return Anfrage
 }
 
 // Funktion für SpielerInnen und Games, Scores
 func sucheSpielerGamesScores(suchwort string) string {
-	Anfrage := "SELECT spname AS SpielerIn,gamename AS MiniGame,vname AS Vorlesung,note AS Note,punkte AS Punkte"+
+	Anfrage := "SELECT spname AS SpielerIn,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += suchwort
-	Anfrage += "%';"
+	Anfrage += "%' LIMIT 27;"
 	return Anfrage
 }
 
+// Scores mit Notenbereich
+func gibAnfrageScoresNotenbereich(min,max string) string{
+	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
+	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
+	Anfrage += Suchwort
+	Anfrage += "%' AND note>="+min+" AND note<="+max+" LIMIT 27;"
+	return Anfrage
+}
+
+// Scores mit Notenbereich
+func gibAnfrageScoresPunktebereich(min,max string) string{
+	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
+	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
+	Anfrage += Suchwort
+	Anfrage += "%' AND punkte>="+min+" AND punkte<="+max+" LIMIT 27;"
+	return Anfrage
+}
+
+// Gibt Highscore zurück, achtung, Dopplungen
+func gibAnfrageHighscore() string {
+		//anfrage := "SELECT gamename,note,punkte FROM minigames NATURAL JOIN spielstaende;"
+		anfrage := `SELECT t.spname AS spieler_in, t.gamename AS minigame,t.vname AS veranstaltung, t.note,t.punkte
+					FROM (minigames NATURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen) t
+					INNER JOIN (
+					  SELECT gamename, MIN(punkte) AS min_punkte
+					  FROM minigames NaTURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen
+					  GROUP BY gamename
+					) AS subquery
+					ON t.gamename = subquery.gamename AND t.punkte = subquery.min_punkte ORDER BY t.gamename;`
+		return anfrage
+}
+
+// Gibt Anfrage für Räume
+func gibAnfrageRäume() string {
+	return "SELECT raumnr AS raum, raumname,ort,funktion FROM raeume;"
+}
+// Gibt Anfrage für npcs
+func gibAnfrageDozentInnen() string {
+	return "SELECT npcname AS name, lieblingsgetraenk FROM npcs NATURAL JOIN dozent_innen;"
+}
+// Gibt sonstige NPCs
+func gibAnfrageSonstigeNPCs() string {
+	return "SELECT npcname AS name, aufgabe FROM npcs NATURAL JOIN sonstigenpcs;"
+}
+// Gibt Minigames
+func gibAnfrageMinigames() string {
+	return "SELECT gamename AS minigame,vname,raumname FROM minigames NATURAL JOIN raeume NATURAL JOIN veranstaltungen NATURAL JOIN unterricht; "
+}
 
 //////////////////////////////////
 // EINFÜGEN VON VERANSTALTUNGEN //
@@ -564,7 +747,7 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
 // Zeigt die wesentlichen Attribute von Veranstaltungen						
 func zeigeVeranst(conn SQL.Verbindung) {
 	anfrage := "SELECT vname,gebietname,kuerzel,npcname,sws,semester,raumnr FROM veranstaltungen"+
-				" NATURAL JOIN unterricht NATURAL JOIN npcs NATURAL JOIN themengebiete;"
+				" NATURAL JOIN unterricht NATURAL JOIN npcs NATURAL JOIN themengebiete ORDER BY raumnr;"
 	textboxTabelle.ZeichneAnfrage(conn,anfrage,10,200,true,0,0,0,0,0,255,16,font) 
 				
 }
@@ -634,6 +817,121 @@ func enthalten(liste []string,e string) bool{
 	return false
 }
 
+
+// Löscht dozent_innen aus allen verlinkten relationen
+func löscheNPC(conn SQL.Verbindung,npcnameS string) {
+	// 1. Dozentennamen entgegennehmen
+	// 2. Mit Anfrage in npcs die npcnr herausbekommt 
+	// 3. Jetzt in dozent_innen, aufenthaltsorte,unterricht, assistenz löschen
+	// 4. Namen der Npcs anzeigen
+	 
+	 // 1. Dozentennamen entgegennehmen
+	// Variable für Nummer
+	var npcnrS string //int64
+	
+	// 2. Mit Anfrage in npcs die npcnr herausbekommt 
+	anfrage := "SELECT npcnr FROM npcs WHERE npcname = '"
+	anfrage += npcnameS
+	anfrage += "';"
+	sT := sqlTabelle.New(conn,anfrage)		// Sende Anfrage
+	npcnrS = sT.GibTabelle()[0][0]		// Tabelle sollte nur ein Ergebnis haben
+	
+	// 3. 
+	// Die Reihenfolge ist wichtig, man kann nicht zuerst aus npcs löschen
+	var löschenListe []string = []string{"unterricht","assistenz","dozent_innen","aufenthaltsorte","npcs"}
+	for _,t := range löschenListe {
+		anfrage = "DELETE FROM " + t +" WHERE npcnr =" + npcnrS + ";"
+		conn.Ausfuehren(anfrage)
+	}	 
+}
+
+func löscheVeranstaltung(conn SQL.Verbindung, veranstaltung string) {
+	// 1. Aus unterrichten löschen, dann veranstaltungen
+	
+	
+	vorhanden,vnr := prüfeObVorhandenFindeNr(conn ,"veranstaltungen", "vname", veranstaltung, "vnr")
+	// Wenn die Veranstaltung gar nicht existiert
+	if vorhanden == false {return}
+	
+	// Lösche die Veranstaltung aus unterricht
+	eingabe := "DELETE FROM unterricht WHERE vnr=" + vnr + ";"
+	conn.Ausfuehren(eingabe)
+	
+	// Lösche aus veranstaltungen
+	eingabe = "DELETE FROM veranstaltungen WHERE vnr=" + vnr + ";"
+	conn.Ausfuehren(eingabe)
+
+}
+
+func ändereInVeranstaltungen(conn SQL.Verbindung, veranstaltung, raumnr,doz string) {
+	var npcnr, eingabe string
+	vorhanden,vnr := prüfeObVorhandenFindeNr(conn ,"veranstaltungen", "vname", veranstaltung, "vnr")
+	// Wenn die Veranstaltung gar nicht existiert
+	if vorhanden == false {return}
+	// Prüfe ob Dozent vorhanden ist, aber nur wenn ein Name gelierfert wurde
+	if len(doz)>0 {
+		vorhanden,npcnr = prüfeObVorhandenFindeNr(conn ,"npcs", "npcname", doz, "npcnr")
+		// Wenn die Dozent gar nicht existiert
+		if vorhanden == false {return}
+		// Ändere dozentIn
+		eingabe = "UPDATE unterricht SET npcnr=" + npcnr + " WHERE vnr= "+ vnr +";"
+		conn.Ausfuehren(eingabe)
+	}
+	if len(raumnr)>0 {
+		vorhanden,raumnr = prüfeObVorhandenFindeNr(conn ,"raeume", "raumnr", raumnr, "raumnr")
+		// Wenn es den Raum gar nicht gibt, mache nichts
+		if vorhanden == false {return}
+		// Ändere Raumnr in unterricht
+		fmt.Println(raumnr,vnr)
+		eingabe = "UPDATE unterricht SET raumnr=" + raumnr + " WHERE vnr="+vnr +";"
+		conn.Ausfuehren(eingabe)
+		
+	}
+}
+
+// Liefert false wenn die Anfrage offensichtlich falsch ist, sonst true
+func prüfeFreieSqlAnfrage(anfrage string) bool {
+	if len(anfrage)==0 {return false}
+	tabellen := []string{"aufenthaltsorte","dozent_innen","minigames","npcs","raeume","sonstigenpcs",
+						"spieler_innen","spielstaende","themengebiete","unterricht","veranstaltungen"}
+	schlüsselWörter := []string{"SELECT","UPDATE","DELETE","INSERT"}				
+	
+	// Teste ob überhaupt eine Tabelle verwendet wird
+	var enthalten bool
+	for _,t := range tabellen {
+		enthalten = strings.Contains(anfrage,t)		
+		if enthalten == true {break}
+	}
+	if enthalten == false {return false}
+
+	// Teste ob ein Schlüsselwort verwendet wird
+	for _,sw := range schlüsselWörter {
+		enthalten = strings.Contains(anfrage,sw)
+		if enthalten == true {break}
+	}
+	if enthalten == false {return false}
+	
+	return true
+}
+
+// Zeichnet eine Textbox mit allen Relationen und Attributen
+func zeigeAlleRelationen() {
+	tB := textboxen.New(600,200,1100,500)
+	tB.SchreibeText(
+	"Relationen (Attribute)\n\n"+
+	"assistenz (vnr,npcnr);\n"+
+	"aufenthaltsorte (npcnr,raumnr);\n"+
+	"dozent_innen (npcnr,lieblingsgetraenk);\n"+
+	"minigames (gamenr,gamename,vnr);\n"+
+	"npcs (npcnr,npcname);\n"+
+	"raeume (raumnr,raumname,ort,funktion);\n"+
+	"sonstigenpcs (npcnr,aufgabe);\n"+
+	"themengebiete (gebietnr,gebietname);\n"+
+	"unterricht (vnr,npcnr,raumnr);\n"+
+	"veranstaltungen (vnr,vname,kuerzel,sws,semester,gebietnr);\n")
+	tB.SetzeZeilenAbstand(10)
+	tB.Zeichne()
+}
 
 
 
