@@ -15,6 +15,9 @@ import ( 	."gfx"
 			"../Klassen/textboxTabelle"
 			"../Klassen/sqlTabelle"
 			"../Klassen/textboxen"
+			"os"
+			"path/filepath"
+			"os/exec"
 		)
 /*
 EINTRÄGE HINZUFÜGEN:
@@ -208,7 +211,7 @@ func main () {
 
 func ErstelleTexte() {
 	Katknopftexte = append(Katknopftexte, " Beenden", "Veranstaltungen", 
-				"  Spielstände", "   Dummy", " LWB-Übersicht", " Aufgaben", 
+				"  Spielstände", "   RESET Datenbank", " LWB-Übersicht", " Aufgaben", 
 				" freie SQL-Anfrage", "  Neuer Listen-Eintrag")
 	
 	Hinzuknopftexte = append(Hinzuknopftexte, 
@@ -347,6 +350,10 @@ func ZeichneRaum() {
 		BuZurueck.ZeichneButton()
 		case 3:
 		SchreibeFont(300,10,Katknopftexte[3])
+		resetDatenbank()
+		SetzeFont(font,50)
+		Stiftfarbe(255,0,0)
+		SchreibeFont(100,300,"DIE DATENBANK IST JETZT WIEDER WIE NEU!")
 		BuZurueck.ZeichneButton()
 		case 4:
 		SchreibeFont(300,10,Katknopftexte[4])
@@ -405,14 +412,14 @@ func maussteuerung () {
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 				} else if VeranstKnoepfe[1].TesteXYPosInButton(mausX,mausY) {					// -- Eintrag ändern
 					Vollrechteck(20,105,1160,60)
-					suchwort := VeranstFelder[1].Edit()			// veranstaltungsname
+					Suchwort := VeranstFelder[1].Edit()			// veranstaltungsname
 					Raumnr = VeranstFelder[2].Edit()			// raumnummer
 					Doz = VeranstFelder[3].Edit()				// dozentIn
 					
 					ändereInVeranstaltungen(conn , Suchwort, Raumnr, Doz)
 					
-					// Suchwort = ""
-					Anfrage = sucheDozVer(suchwort)
+					Suchwort = ""
+					Anfrage = sucheDozVer(Suchwort)
 					
 					Stiftfarbe(255,255,255)
 					Vollrechteck(0,105,1200,595)
@@ -534,19 +541,26 @@ func maussteuerung () {
 							var veranstaltungsString string
 							
 							// Lies die einzelnen Eingabefelder aus und schreibe sie in einen Slice
-							for _,feldwert := range VeranstHinzuFelder {
+							for i,feldwert := range VeranstHinzuFelder {
+								if i == 2 || i == 3 {feldwert.SetzeErlaubteZeichen (felder.Digits)} // sws, raumnr
 								wert := feldwert.Edit()
 								veranstaltungsAttribute = append(veranstaltungsAttribute, wert)
 								veranstaltungsString = veranstaltungsString + " , " + wert
 							}
 							// Füge Eintrag hinzu
-							fügeHinzuVeranst(conn,veranstaltungsAttribute)
+							hinzugefügt := fügeHinzuVeranst(conn,veranstaltungsAttribute)
 							
 							Stiftfarbe(255,255,255)
 							Vollrechteck(0,140,1200,560)
 							
 							Stiftfarbe(255,132,198)
-							SchreibeFont(40,220,"Eintrag hinzugefügt: " + veranstaltungsString[2:])
+							switch hinzugefügt{
+								case true: SchreibeFont(40,220,"Eintrag hinzugefügt: " + veranstaltungsString[2:])
+								case false: 
+								Stiftfarbe(255,0,0)
+								SchreibeFont(40,220,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
+							}
+							
 							AktUndZeichne(HinzuKnoepfe)
 							
 							case Hinzuknopftexte[1]:	
@@ -593,36 +607,6 @@ func maussteuerung () {
 			// ------------------------------- RAUM-WECHSEL ---------------------------------------------------- BIS HIER
 		}
 	}
-}
-
-func zeichneAnfrage(conn SQL.Verbindung) {
-	Stiftfarbe(255,255,255)
-	//Cls()
-	sT := sqlTabelle.New(conn,Anfrage)
-	//fmt.Println(sT.GibTabelle())
-	
-	// Nur zum Testen auch SQL Anfrage anzeigen
-	Stiftfarbe(0,0,0)
-	Schreibe(400,200,Anfrage)
-	
-	// Textbox Tabelle
-	tbT := textboxTabelle.New(sT.GibTabelle(),sT.GibKopf(),400,250)
-	tbT.SetzeFarbeTabelle(0,0,0)
-	tbT.SetzeZeilenAbstand(1)
-	tbT.SetzeSchriftgrößeTabelle(20)
-	tbT.SetzeSpaltenAbstand(20)
-	tbT.SetzeFarbeKopf(0,0,255)
-	tbT.SetzeFontKopf("../Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")
-	tbT.SetzeFontTabelle("../Schriftarten/terminus-font/TerminusTTF-Bold-4.49.2.ttf")
-	tbT.Zeichne()
-	//TastaturLesen1()
-	//TastaturLesen1()
-	//tbT.VariableBreite()
-	/*gfx.Stiftfarbe(255,255,255)
-	gfx.Cls()
-	tbT.Zeichne()
-	gfx.TastaturLesen1()
-	* */
 }
 
 // Funktion für Suchfeld für Dozentinnen und Veranstaltungen
@@ -695,7 +679,7 @@ func gibAnfrageMinigames() string {
 // EINFÜGEN VON VERANSTALTUNGEN //
 //////////////////////////////////
 
-func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
+func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) bool {
 	//Name, Thema, Kürzel, Dozentin, SWS, Semester, Raum
 	// 	VeranstaltungFeldtexte = append(VeranstaltungFeldtexte, "NEUE Veranstaltung", "Thema", "SWS", "Raum","Dozent/in")
 	//zeigeVeranst(conn)
@@ -703,6 +687,12 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
 	var vnrS,vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS string
 	var gebietnrS,npcnrS string // um gebietnummer zu finden
 	var eintragWarVorhanden bool
+	
+	// Prüfe ob in allen Attributen etwas steht
+	if enthalten(attribute,"") {
+		fmt.Println("Keine valider Eintrag")
+		return false
+	}
 	
 	vnameS = attribute[0]
 	gebietnameS = attribute[1]
@@ -712,7 +702,7 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
 	semesterS ="1"
 	raumnrS = attribute[3]
 	
-	fmt.Println(vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS)
+	//fmt.Println(vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS)
 	// mögliche Probleme
 	// existiert Dozent? Existiert Thema?
 	
@@ -730,7 +720,7 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
 	
 	// VERANSTALTUNGEN
 	eintragWarVorhanden, vnrS = prüfeObVorhandenFindeNr(conn,"veranstaltungen", "vname", vnameS, "vnr")
-	if eintragWarVorhanden {return}		// Wenn es den Eintrag schon gab, mache nichts
+	if eintragWarVorhanden {return false}		// Wenn es den Eintrag schon gab, mache nichts
 	// Trage neue Veranstaltung ein
 	eingabe = fmt.Sprintf(`
 		INSERT INTO veranstaltungen 
@@ -764,6 +754,7 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) {
 	conn.Ausfuehren(eingabe)
 	// Nochmal Veranstaltungen zeichnen
 	//zeigeVeranst(conn)
+	return true
 }
 
 
@@ -871,10 +862,20 @@ func löscheNPC(conn SQL.Verbindung,npcnameS string) {
 func löscheVeranstaltung(conn SQL.Verbindung, veranstaltung string) {
 	// 1. Aus unterrichten löschen, dann veranstaltungen
 	
-	
 	vorhanden,vnr := prüfeObVorhandenFindeNr(conn ,"veranstaltungen", "vname", veranstaltung, "vnr")
+	fmt.Println("vnr: ",vnr,vorhanden)
 	// Wenn die Veranstaltung gar nicht existiert
 	if vorhanden == false {return}
+	
+	// Es soll keine Vorlesung die mit einem Minigame verknüpft ist gelöscht werden
+	vorhanden,_ = prüfeObVorhandenFindeNr(conn ,"minigames", "vnr", vnr, "vnr")
+	fmt.Println("vnr: ",vnr,vorhanden)
+	if vorhanden == true {return}
+	
+	// Es soll keine Vorlesung die mit einem Minigame verknüpft ist gelöscht werden
+	vorhanden,_ = prüfeObVorhandenFindeNr(conn ,"assistenz", "vnr", vnr, "vnr")
+	fmt.Println("vnr: ",vnr,vorhanden)
+	if vorhanden == true {return}
 	
 	// Lösche die Veranstaltung aus unterricht
 	eingabe := "DELETE FROM unterricht WHERE vnr=" + vnr + ";"
@@ -956,5 +957,18 @@ func zeigeAlleRelationen() {
 	tB.Zeichne()
 }
 
+// Stellt die Datenbank wieder auf den Ursprungszustand her
+func resetDatenbank() {
+	wd,_ := os.Getwd()					// Get Pfad
+	relativePath := "../D_sql"			// relativer Pfad wo ich hin möchte
+	combinedPath := filepath.Join(wd,relativePath)	// Kombiniere beide Pfade
+	absolutePath,_:= filepath.Abs(combinedPath)			// nimmt .. weg
+	os.Chdir(absolutePath)				// Gehe zum neuen Pfad
+	cmd := exec.Command("bash", "-c", "psql -U lewein -d lewein -f Install-LWBadventure.sql")	// erstelle ausführbares Objekt
+	cmd.Stdout = os.Stdout			// sende output an Konsole
+	cmd.Stderr = os.Stderr
+	cmd.Run()						// Führe aus
+	os.Chdir(wd)					// Setze Pfad auf Ausgangspfad zurück
 
+}
 
