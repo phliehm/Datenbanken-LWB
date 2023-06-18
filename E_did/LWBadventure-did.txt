@@ -3,47 +3,72 @@
 Didaktisch methodischer Kommentar
 *********************************
 
-Die Idee der Datenbank könnte mit kleinen Anpassungen auf den 
-Schulalltag angepasst werden. Dabei könnte man analog die Schule als 
-eine Spielwelt programmieren lassen und diese dann in einer Datenbank auch 
-abbilden. Ein Verknüpfung von Programmierung und Datenbank würde auch 
+Die Idee der "LWBadventure" Datenbank könnte mit kleinen Anpassungen auf den 
+Schulalltag von Schüler_innen angepasst und als "School Adventure"-Datenbank
+adaptiert werden. Man könnte analog zur LWB den Schulalltag/den Unterricht der
+Schüler_innen der jeweiligen Lerngruppe als Mini-Spielwelt modellieren
+(im Anschluss ggf. auch programmieren) lassen und diese dann in einer Datenbank 
+abbilden. Auf diese Weise ist es möglich inhaltlich direkt an die Lebens- und
+Erfahrungswelt der Schüler_innen anzuknüpfen und mit ihnen dem Schulalltag und
+dem Unterricht gemeinsam ein motivierendes und kreatives Gewand zu geben. Den
+Lehrer_innen lustige Alias-Namen zu geben und sich verschiedene Minigame-Titel
+zu den Unterrichtsfächern in den verschiedenen Klassenstufen auszudenken, macht
+sicher allen Schüler_innen Freude. Außerdem wird durch die strukturellen
+Überlegungen beim Modellieren der Datenbank das Verständnis für die (vor allem
+in der Oberstufe nicht unwichtigen) Zugehörigkeit der Schulfächern zu den
+Fachbereichen und auch für andere schulorganisatorische Strukturen vertieft.
+Eine eventuelle Verknüpfung von Programmierung und Datenbank würde auch 
 die Möglichkeiten bieten, das Spiel auf einem Server zu spielen und 
 dort die Spielstände in der Datenbank zu speichern. Damit lassen sich 
-die Themen Programmierung und  Datenbanken auch 
-verknüpfen, welche in der Qualifikationsphase in der Oberstufe im 1. und 2. Semester unterrichet
-werden. In der 10. Klasse wäre die Anwendung nur für sehr 
-leistungsstarke Kurse zu empfehlen. 
+die Themen Programmierung und Datenbanken, die in der Qualifikationsphase in der
+Oberstufe im 1. und 2. Semester unterrichet werden, gut verknüpfen. In der 10. Klasse
+wäre eine solche Anwendung aber nur für sehr leistungsstarke Kurse zu empfehlen. 
 
-Dabei wären natürlich einige Anpassungen in der Namensgebung nötig. 
-Insbesondere werden DozentInnen zu LehrerInnen und Veranstaltungen 
-sollte man ggf. in Unterrichtsfächer und Stundenplanung unterteilen. 
-Ansonsten könnte man aber die Unterteilung in Spieler und andere 
-Charaktere (NPCs) im Kontext eines Spiels beibehalten. Auf sonstige NPCs 
-und Themengebiete könnte natürlich verzichtet werden.
+Für die Adaption der "LWBadventure"-Miniwelt zur "School Adventure"-Miniwelt wären
+natürlich einige Anpassungen in der Bezeichnung von Entitäten und Beziehungen bzw.
+Relationen und Attributen nötig
+- Dozent_innen -> Lehrer_innen
+- Veranstaltungen -> Schulfächer
+  (VNR -> FachNr, SWS -> Wochenstunden, Semester -> Klassenstufe)
+- Themengebiete -> Fachbereiche (GebietNr -> FBNr, GebietName -> FBName)
+Ansonsten könnte man aber die Unterteilung in Spieler_innen und andere 
+Charaktere (NPCs) im Kontext eines Spiels beibehalten, sonstigeNPCs
+könnten z.B. Hausmeister, Sekretär_in, Sozialpädagog_innen etc. sein.
+Möchte man die Miniwelt schlanker gestalten, kann auf sonstigeNPCs 
+und Themengebiete/Fachbereiche aber auch verzichtet werden.
 
-Für den Schulkontext wäre das Entitäts-Realtionsmodell schon realtiv 
-komplex, so dass es sinnvoll wäre aus Vorschlägen ein gemeinsames 
-Modell zu erarbeiten und zu diskutieren. Die anschließenden Aufgaben 
+Für den Schulkontext wäre das ER-Modell schon relativ komplex, so dass es
+sinnvoll wäre zunächst mit den Schüler_innen ein gemeinsames Modell zu
+erarbeiten und zu diskutieren. Die anschließenden Aufgaben 
 können (im Sinne von Teile-und-Herrsche) immer wieder zerlegt und in 
-Gruppen einzeln bearbeitet werden, so dass die SchülerInnen dieses 
-Prinzip in praktischer Anwendung erfahren können. So können jeweils das 
-Auflösen der Beziehungen und das Analysieren der
-funktionalen Abhängigkeiten der Relationen aufgeteilt und die 
-Folgerungen dann im Plenum zusammengetragen und diskutiert werden. 
+Gruppen einzeln und arbeitsteilig bearbeitet werden, so dass die Schüler_innen
+dieses Prinzip in praktischer Anwendung erfahren können. So können jeweils das 
+Auflösen der Beziehungen und das Analysieren der funktionalen Abhängigkeiten
+der Relationen aufgeteilt und die Folgerungen dann im Plenum zusammengetragen
+und diskutiert werden. 
 
 Auch beim Implementieren der Datenbank kann die Arbeit geteilt werden, 
 so dass alle SchülerInnen jeweils eine Relation mit Inhalt umsetzen. Die 
-Anfragen können dann sowieso individuell mit Vorgaben (nutze WHERE, 
-GROUP BY usw.) gestellt werden.
+SQL-Anfragen können dann z. B. mithilfe des von uns erstellten Arbeitsblatts
+gestaffelt eingeführt/erarbeitet/geübt und (ggf. binnendifferenziert) vertieft
+werden. Hier bietet sich auch die Möglichkeit leistungsstarke Schüler_innen
+zusätzlich die Syntax der Relationalen Algebra erarbeiten und anwenden zu lassen.
+Unabhängig davon ist ein individuelles Ausprobieren von (evtl. auch selbst
+ausgedachtenSQL-Anfragen mit der erstellten Datenbank ebenfalls jederzeit möglich.
+Für beides können als Hilfe weitere Materialien (wie z.B. das Cheat-Sheet von
+LearningSQL.com) zur Verfügung gestellt werden.
 
-Durch die Aufgebenteilung könnten die jeweiligen Arbeitschritte (Aufstellen 
-des ERM, Zerlegung, Implementation und Anfragen) je nach 
-Vorerfahrung der SchülerInnen in jeweils 1 bis 2 Unterrichtsstunden 
+Durch die Aufgabenteilung könnten die jeweiligen Arbeitsschritte
+- gemeinsames Aufstellen des ER-Modells
+- Zerlegung ins Relationen-Schema
+- Implementierung der Datenbank
+- SQL-Anfragen
+je nach Vorerfahrung der Schüler_innen in jeweils 1 bis 2 Unterrichtsstunden 
 umgesetzt werden.
 
 Gerade die Verbindung zwischen Programmierung und Datenbank bietet 
-vielfälltige Möglichkeiten das Projekt fortzuführen. Auch die 
-Einbindung vom Thema Rechnernetzwerke könnte erfolgen, so dass das 
-Spiel online verfügbar wäre und die SpielerInnen miteinander oder 
-gegeneinander das Spiel spielen, so wie die SchülerInnen dies aus ihrem 
-Alltag schob von anderen Spielen kennen.
+vielfältige Möglichkeiten das Projekt fortzuführen. Auch eine Einbindung ins
+Thema Rechnernetzwerke könnte erfolgen, so dass das Spiel online verfügbar
+gemacht werden könnte und die Spieler_innen das "School Adventure"-Spiel
+miteinander oder gegeneinander spielen, so wie die Schüler-innen
+dies aus ihrem Alltag schon von anderen Spielen kennen.
