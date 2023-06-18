@@ -49,10 +49,10 @@ project NPCName (NPCs njoin (project NPCNr (Dozent_innen) difference project NPC
 % Anfragen, die nur mit erweiterter relationaler Algebra beschrieben werden können:
 % -----------------------------------------------------------------------------------
 
-% (8) Wieviele Mini-Games gibt es in der LWB-Adventure-World? (Ausgaben-Titel: AnzahlMinigames)
+% (8) Wieviele Mini-Games gibt es in der LWB-Adventure-World? (Ausgaben-Titel: Anzahl.Minigames)
 rename Anzahl (Minigames) (group_by [] count(*) true (Minigames));
 
-% (9) Wieviele SWS müssen in der LWB ingesamt absolviert werden? (Ausgaben-Titel: GesamtanzahlSWS)
+% (9) Wieviele SWS müssen in der LWB ingesamt absolviert werden? (Ausgaben-Titel: Gesamtanzahl.SWS)
 rename Gesamtanzahl (SWS) (group_by [] sum(SWS) true (Veranstaltungen));
 
 % (10) Wie heißt die Veranstaltung mit den meisten SWS?
