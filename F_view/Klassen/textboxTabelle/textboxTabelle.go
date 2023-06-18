@@ -149,7 +149,7 @@ func (tT *data) schreibeTbTabelle() {
 		// y-Position: y der Tabelle insgesamt + Kopf + letzte Zeile
 		y := tT.y + uint16(2*tT.schriftgröße)+(tT.zeilenAbstand+uint16(tT.schriftgröße))*uint16(i)
 		for j,_ := range zeile {
-			x:=tT.x + tT.spaltenBreite*uint16(j)	
+			x:=tT.x + tT.spaltenBreite*uint16(j)
 			t:=textboxen.New(x,y,tT.spaltenBreite,uint16(2*tT.schriftgröße))	// Höhe ist 2*Schriftgröße, muss das größer sein? +10?
 			temp = append(temp,t)
 		}
@@ -197,7 +197,7 @@ func (tT *data) VariableBreite() {
 	breiten := gibVariableBreiten(tT.stringTabelle,tT.kopf.kopf)
 	// Ändere Breite
 	for i,zeile := range tT.tBTabelle {
-		y:= tT.y + uint16(2*tT.schriftgröße)+(tT.zeilenAbstand+uint16(tT.schriftgröße))*uint16(i)
+		y:= tT.y + uint16(5)+uint16(tT.schriftgröße)+(tT.zeilenAbstand+uint16(tT.schriftgröße))*uint16(i)
 		x := float64(tT.x)
 		for j,zelle := range zeile {
 			//fmt.Println("Spaltenbreite: ",breiten[j])
@@ -209,6 +209,38 @@ func (tT *data) VariableBreite() {
 		}
 	} 
 }
+
+// Zeichnet eine SQL-Anfrage in eine Tabelle und gibt sie im gfx-Fenster aus
+func ZeichneAnfrage(conn SQL.Verbindung,anfrage string,x,y uint16,zeigeAnfrage bool, 
+					rT,gT,bT,rK,gK,bK uint8, schriftgröße int, font string) {
+	//Stiftfarbe(255,255,255)
+	//Cls()
+	sT := sqlTabelle.New(conn,anfrage)
+	//fmt.Println(sT.GibTabelle())
+	
+	// SQL Anfrage anzeigen
+	if zeigeAnfrage == true {
+		// Nur zum Testen auch SQL Anfrage anzeigen
+		gfx.Stiftfarbe(0,0,0)
+		tbAnfrage := textboxen.New(10,660,1100,100)
+		tbAnfrage.SetzeFont("./Schriftarten/terminus-font/Terminus-Bold.ttf")
+		tbAnfrage.SetzeSchriftgröße(12)
+		tbAnfrage.SchreibeText(anfrage)
+		tbAnfrage.Zeichne()
+	}
+	
+	// Textbox Tabelle
+	tbT := New(sT.GibTabelle(),sT.GibKopf(),x,y)
+	tbT.SetzeFarbeTabelle(rT,gT,bT)
+	tbT.SetzeZeilenAbstand(1)
+	tbT.SetzeSchriftgrößeTabelle(schriftgröße)
+	tbT.SetzeSpaltenAbstand(20)
+	tbT.SetzeFarbeKopf(rK,gK,bK)
+	tbT.SetzeFontKopf(font)
+	tbT.SetzeFontTabelle(font)
+	tbT.Zeichne()
+}
+
 
 //////////////////////
 // HILFS-FUNKTIONEN //
@@ -255,34 +287,4 @@ func gibVariableBreiten(tabelle [][]string,h []string) []uint16 {
 }
 
 
-// 
 
-func ZeichneAnfrage(conn SQL.Verbindung,anfrage string,x,y uint16,zeigeAnfrage bool, 
-					rT,gT,bT,rK,gK,bK uint8, schriftgröße int, font string) {
-	//Stiftfarbe(255,255,255)
-	//Cls()
-	sT := sqlTabelle.New(conn,anfrage)
-	//fmt.Println(sT.GibTabelle())
-	
-	// SQL Anfrage anzeigen
-	if zeigeAnfrage == true {
-		// Nur zum Testen auch SQL Anfrage anzeigen
-		gfx.Stiftfarbe(0,0,0)
-		tbAnfrage := textboxen.New(10,670,1100,100)
-		tbAnfrage.SetzeFont("./Schriftarten/terminus-font/Terminus-Bold.ttf")
-		tbAnfrage.SetzeSchriftgröße(12)
-		tbAnfrage.SchreibeText(anfrage)
-		tbAnfrage.Zeichne()
-	}
-	
-	// Textbox Tabelle
-	tbT := New(sT.GibTabelle(),sT.GibKopf(),x,y)
-	tbT.SetzeFarbeTabelle(rT,gT,bT)
-	tbT.SetzeZeilenAbstand(1)
-	tbT.SetzeSchriftgrößeTabelle(schriftgröße)
-	tbT.SetzeSpaltenAbstand(20)
-	tbT.SetzeFarbeKopf(rK,gK,bK)
-	tbT.SetzeFontKopf(font)
-	tbT.SetzeFontTabelle(font)
-	tbT.Zeichne()
-}

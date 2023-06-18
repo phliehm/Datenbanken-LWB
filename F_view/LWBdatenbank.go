@@ -18,6 +18,7 @@ import ( 	."gfx"
 			"os"
 			"path/filepath"
 			"os/exec"
+			"strconv"
 		)
 /*
 EINTRÄGE HINZUFÜGEN:
@@ -483,7 +484,8 @@ func maussteuerung () {
 					
 				} else if SpielstKnoepfe[2].TesteXYPosInButton(mausX,mausY) {					// -- Notenbereich eingeben
 					Vollrechteck(20,105,1160,60)
-					
+					SpielstFelder[1].SetzeErlaubteZeichen(felder.Digits+".")
+					SpielstFelder[2].SetzeErlaubteZeichen(felder.Digits+".")
 					MinNote = SpielstFelder[1].Edit()
 					MaxNote = SpielstFelder[2].Edit()
 					Anfrage = gibAnfrageScoresNotenbereich(MinNote,MaxNote)
@@ -498,13 +500,14 @@ func maussteuerung () {
 					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 				} else if SpielstKnoepfe[3].TesteXYPosInButton(mausX,mausY) {					// -- Punktebereich eingeben
 					Vollrechteck(20,105,1160,60)
-					
+					SpielstFelder[3].SetzeErlaubteZeichen(felder.Digits)
+					SpielstFelder[4].SetzeErlaubteZeichen(felder.Digits)
 					MinPunkte = SpielstFelder[3].Edit()
 					MaxPunkte = SpielstFelder[4].Edit()
 					
 					Anfrage = gibAnfrageScoresPunktebereich(MinPunkte,MaxPunkte)
 					
-					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
+					//textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
 					/*
 					Suchwort = ""
 					Anfrage = sucheSpielerGamesScores(Suchwort)
@@ -634,7 +637,7 @@ func maussteuerung () {
 
 // Funktion für Suchfeld für Dozentinnen und Veranstaltungen
 func sucheDozVer(suchwort string) string {
-	Anfrage = "SELECT vname AS Veranstaltung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS DozentIn FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname,raumnr,sws) LIKE '%"
+	Anfrage = "SELECT vname AS Veranstaltung,gebietname AS Thema,sws,raumnr AS Raumnummer,npcname AS Dozent_in FROM veranstaltungen NATURAL JOIN dozent_innen NATURAL JOIN npcs NATURAL JOIN unterricht NATURAL JOIN themengebiete  WHERE CONCAT(npcname,gebietname,vname,raumnr,sws) LIKE '%"
 	Anfrage += suchwort
 	Anfrage += "%' ORDER BY raumnr LIMIT 27;"
 	return Anfrage
@@ -642,7 +645,7 @@ func sucheDozVer(suchwort string) string {
 
 // Funktion für SpielerInnen und Games, Scores
 func sucheSpielerGamesScores(suchwort string) string {
-	Anfrage := "SELECT spname AS SpielerIn,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
+	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += suchwort
 	Anfrage += "%' LIMIT 27;"
@@ -651,6 +654,8 @@ func sucheSpielerGamesScores(suchwort string) string {
 
 // Scores mit Notenbereich
 func gibAnfrageScoresNotenbereich(min,max string) string{
+	if len(min)==0 {min = "0"}
+	if len(max)==0 {max = "1000"}
 	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += Suchwort
@@ -660,6 +665,8 @@ func gibAnfrageScoresNotenbereich(min,max string) string{
 
 // Scores mit Notenbereich
 func gibAnfrageScoresPunktebereich(min,max string) string{
+	if len(min)==0 {min = "0"}
+	if len(max)==0 {max = "100000"}
 	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += Suchwort
@@ -670,14 +677,10 @@ func gibAnfrageScoresPunktebereich(min,max string) string{
 // Gibt Highscore zurück, achtung, Dopplungen
 func gibAnfrageHighscore() string {
 		//anfrage := "SELECT gamename,note,punkte FROM minigames NATURAL JOIN spielstaende;"
-		anfrage := `SELECT t.spname AS spieler_in, t.gamename AS minigame,t.vname AS veranstaltung, t.note,t.punkte
-					FROM (minigames NATURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen) t
-					INNER JOIN (
-					  SELECT gamename, MIN(punkte) AS min_punkte
-					  FROM minigames NaTURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen
-					  GROUP BY gamename
-					) AS subquery
-					ON t.gamename = subquery.gamename AND t.punkte = subquery.min_punkte ORDER BY t.gamename;`
+		anfrage := "SELECT t.spname AS spieler_in, t.gamename AS minigame,t.vname AS veranstaltung, t.note,t.punkte "+
+					"FROM (minigames NATURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen) t "+
+					"INNER JOIN ( SELECT gamename, MAX(punkte) AS max_punkte FROM minigames NATURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen GROUP BY gamename) AS subquery "+
+					" ON t.gamename = subquery.gamename AND t.punkte = subquery.max_punkte ORDER BY t.gamename;"
 		return anfrage
 }
 
@@ -697,6 +700,55 @@ func gibAnfrageSonstigeNPCs() string {
 func gibAnfrageMinigames() string {
 	return "SELECT gamename AS minigame,vname,raumname FROM minigames NATURAL JOIN raeume NATURAL JOIN veranstaltungen NATURAL JOIN unterricht; "
 }
+
+//////////////////////////////
+// EINFÜGEN VON DOZENTINNEN //
+//////////////////////////////
+
+func fügeHinzuDozentInnen(conn SQL.Verbindung,attribute []string) bool {
+	// name, lieblingsgetränk
+	
+	// Prüfe ob in allen Attributen etwas steht
+	if enthalten(attribute,"") {
+		fmt.Println("Keine valider Eintrag")
+		return false
+	}
+	
+	var npcnrS,npcnameS,lieblingsgetraenkS, eingabe string
+	var eintragWarVorhanden bool
+	
+	npcnameS = attribute[0]
+	lieblingsgetraenkS = attribute[1]
+	
+	// NPC
+	eintragWarVorhanden, npcnrS = prüfeObVorhandenFindeNr(conn,"npcs", "npcname", npcnameS, "npcnr")
+	// Wenn es den NPC noch nicht gab, füge ihn hinzu
+	if eintragWarVorhanden == false {
+		eingabe = fmt.Sprintf(`
+		INSERT INTO npcs
+		VALUES ('%s','%s');`,npcnrS,npcnameS)
+	conn.Ausfuehren(eingabe)
+	}
+	
+	// DozentIn hinzufügen
+	
+	//_ Da man ja schon eine npcnr hat, die aber nicht überschrieben werde soll
+	eintragWarVorhanden, _ = prüfeObVorhandenFindeNr(conn,"dozent_innen", "npcnr", npcnrS, "npcnr")
+	if eintragWarVorhanden == false {
+		eingabe = fmt.Sprintf(`
+		INSERT INTO dozent_innen
+		VALUES ('%s','%s');`,npcnrS,lieblingsgetraenkS)
+	conn.Ausfuehren(eingabe)
+	}
+	
+	if eintragWarVorhanden == true {return false}
+	
+	return true
+	
+	
+}
+
+
 
 //////////////////////////////////
 // EINFÜGEN VON VERANSTALTUNGEN //
@@ -724,6 +776,10 @@ func fügeHinzuVeranst(conn SQL.Verbindung,attribute []string) bool {
 	swsS = attribute[2]
 	semesterS ="1"
 	raumnrS = attribute[3]
+	
+	// Prüfe ob die Raumnr die Integritätsbedingung erfüllt
+	raumnrSAsInteger,_ := strconv.Atoi(raumnrS)
+	if raumnrSAsInteger>4 || raumnrSAsInteger==0 {return false}
 	
 	//fmt.Println(vnameS,gebietnameS,kuerzelS,npcnameS,swsS,semesterS,raumnrS)
 	// mögliche Probleme
