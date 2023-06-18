@@ -1,8 +1,7 @@
 
 Transformation (Abbildung) vom Entity-Relationship-Modell in das relationale Modell
-
+************************************************************************************
 Kommentar zum Auflösen der Beziehungen:
-****************************************
 
 
 1. Regel:
@@ -16,12 +15,12 @@ Der Schlüssel des Enitätstyps wird Schlüssel der Tabelle.
 
 
 2. Regel:
-Jede n : m - Beziehung wird durch eine eigene Tabelle dargestellt.
+Jede n:m - Beziehung wird durch eine eigene Tabelle dargestellt.
 ➔ Regel wurde auf folgende Relationen der LWBadventure-Datenbank angewendet:
    spielen, anzutreffen in
 
 a) Spieler_innen spielen Minigames:
-   zweiseitig optionale n:m-Beziehung mit Attributen
+   zweiseitig optionale n:m - Beziehung mit Attributen
    => Die Beziehung wird in eine eigene Relation "Spielstände" mit den Schlüsseln
    der Entitäten umgewandelt. Da die Minigames eine schwache Entität sind, würde
    man die Veranstaltungs-Nummer als Fremdschlüssel verwenden. Dies könnte aber zu
@@ -31,7 +30,7 @@ a) Spieler_innen spielen Minigames:
    zusammen mit der SpielerInnen-Nummer als Fremdschlüssel einzutragen.
 
 b) sonstige NPCs sind in den Räumen anzutreffen:
-   einseitig optionale n:m-Beziehung
+   einseitig optionale n:m - Beziehung
    => Die Schlüssel der Entitäten (NPCNr und RaumNr) werden als Fremdschlüssel in
    eine neue Relation "Aufenthaltsorte" eingetragen.
 
@@ -45,10 +44,10 @@ dargestellt.
 4. Regel:
 Hat eine 1:1 oder 1:n - Beziehung keine eigenen Attribute dann gilt:
 - Ist eine Entität aus E2 zwingendes Mitglied (d. h. genau 1) einer
-  1 : n - Beziehung mit einer Entität aus E1, dann erhält E2 den primären
+  1:n - Beziehung mit einer Entität aus E1, dann erhält E2 den primären
   Schlüssel von E1 als Attribut (Fremdschlüssel).
 - Sofern eine Entität aus E2 freies Mitglied (d. h. 0,1 - konditionell) der
-  1 : n - Beziehung mit einer Entität aus E1 ist, wird diese Beziehung gewöhnlich
+  1:n - Beziehung mit einer Entität aus E1 ist, wird diese Beziehung gewöhnlich
   in einer eigenen Relation dargestellt.
 ➔ Regel wurde auf folgende Relationen der LWBadventure-Datenbank angewendet:
    unterrichten, assistieren, gehören zu, befinden sich in, zugeordnet
@@ -64,20 +63,20 @@ a) Dozent_innen unterrichten Veranstaltungen in Kursräumen:
    nicht nötig, da jeder Veranstaltung genau eine Dozent_in und ein 
    Kursraum zugeordent wird. Beides für sich sind obligatorische
    1:n-Beziehungen. Daher könnte man die NPC-Nummer und die Raumnummer als 
-   Fremdschlüssel in die Realation "Veranstaltung" eintragen.
+   Fremdschlüssel in die Relation "Veranstaltung" eintragen.
    Wir haben uns allerdings dagegen entschieden und folgen der in der Vorlesung 
    besprochenen Zerlegung in eine eigene Relation. Wir fanden es auch übersichtlicher
    die Zuordnungen zwischen Veranstaltungen, Dozent_innen und Raum in einer eigenen
    Relation vorzunehmen.)
 
 b) Dozent_innen assistieren bei Veranstaltungen:
-   optionale 1:n-Beziehung => Da NULL-Werte verhindert werden sollen, wird 
+   optionale 1:n - Beziehung => Da NULL-Werte verhindert werden sollen, wird 
    eine eigene Relation "Assistenz" erstellt. Die NPC-Nummer der DozentInnen 
    und die Veranstaltungsnummer werden als Fremdschlüssel eingetragen.
 
 c) Minigames gehören zu Veranstaltungen und sind als schwache Entität
    davon abhängig:
-   einseitig optionale 1:1-Beziehung
+   einseitig optionale 1:1 - Beziehung
    => Der Veranstaltungsschlüssel könnte als Fremdschlüssel in die Relation
    "Minigames" eingetragen werden. Hier wurde jedoch entschieden der eigentlich
    schwachen Entität einen eigenen Schlüssel "GameNr" zu geben, um diesen dann
@@ -86,11 +85,11 @@ c) Minigames gehören zu Veranstaltungen und sind als schwache Entität
    Veranstaltung kein Minigame gibt.
 
 d) Spieler_innen befindeten sich in Räumen:
-   obligatorische 1:n-Beziehung
+   obligatorische 1:n - Beziehung
    => Die Raumnummer wird als Fremdschlüssel in die Relation "Spieler_Innen"
    eingetragen.
 
 e) Veranstaltungen sind Themengebiete zugeordnet:
-   obligatorische 1:n-Beziehung
+   obligatorische 1:n - Beziehung
    => Die Gebiet-Nummer wird als Fremdschlüssel in die Relation "Veranstaltungen"
    eingetragen.
