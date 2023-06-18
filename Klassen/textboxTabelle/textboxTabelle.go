@@ -268,7 +268,7 @@ func ZeichneAnfrage(conn SQL.Verbindung,anfrage string,x,y uint16,zeigeAnfrage b
 	if zeigeAnfrage == true {
 		// Nur zum Testen auch SQL Anfrage anzeigen
 		gfx.Stiftfarbe(0,0,0)
-		tbAnfrage := textboxen.New(10,650,1100,100)
+		tbAnfrage := textboxen.New(10,670,1100,100)
 		tbAnfrage.SetzeFont("../Schriftarten/terminus-font/Terminus-Bold.ttf")
 		tbAnfrage.SetzeSchriftgröße(12)
 		tbAnfrage.SchreibeText(anfrage)
