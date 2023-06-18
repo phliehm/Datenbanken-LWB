@@ -1,7 +1,6 @@
 
 Relationenmodell in dritter Normalform
 **************************************
-**************************************
 
 Folgende Relationen werden erzeugt ($ = Schlüsselattribut, ! = Fremdschlüssel):
 
@@ -17,7 +16,7 @@ Themengebiete ($ GebietNr, GebietName)
 
 Minigames ($ GameNr, GameName, ! VNr)
 
-Spieler_Innen ($ SpNr, SpName, Schüsselanzahl, ! RaumNr)
+Spieler_Innen ($ SpNr, SpName, Schlüsselanzahl, ! RaumNr)
 
 Räume ($ RaumNr, RaumName, Ort, Funktion)
 

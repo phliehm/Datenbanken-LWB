@@ -1,11 +1,11 @@
 
-# Funktionale Abhängigkeiten der Relationen:
-# *****************************************
+Funktionale Abhängigkeiten der Relationen:
+*****************************************
 
 ! = Fremdschlüssel
 $ = Attribut ist Teil des Schlüssels 
 
-* NPCs($ NPCNr, NPCName)
+* NPCs ($ NPCNr, NPCName)
 NPCNr -> NPCName
 
 
