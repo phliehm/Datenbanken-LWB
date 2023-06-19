@@ -19,9 +19,9 @@ Die Struktur ist ähnlich dem Unterricht in der Schule in den verschiedenen Klas
 ihren belegten Fächern von bestimmten Lehrkräften. Daher könnte die Software auch leicht an die 
 Schulwelt angepasst oder eben selbst von SchülerInnen erarbeitet und teilweise implementiert werden.
 Außerdem eignet sich diese Sicht um zu zeigen, dass die meisten Computerspiele in irgendeiner Form
-eine Datenbank beinhalten müsse, um alle Gegenstände, Orte, Funktionen etc. speichern und abrufen zu können. 
-Unsere Datenbank-Sicht könnte somit auch am Anfang einer Unterrichtsreihe zum Thema Datenbanken den 
-SchülerInnen zur Verfügung gestellt werde. Durch Ausprobieren wäre dann relativ schnell klar warum welche 
+eine Datenbank beinhalten können, um alle Gegenstände, Orte, Funktionen etc. speichern und abrufen zu können. 
+Unsere Datenbank-Sicht könnte somit (mit kleinen Änderungen) auch am Anfang einer Unterrichtsreihe zum Thema Datenbanken den 
+SchülerInnen zur Verfügung gestellt werden. Durch Ausprobieren wäre dann relativ schnell klar, warum welche 
 Dinge gespeichert werden müssen und die SchülerInnen würden sicherlich auch selbst auf fehlende Funktionen
 oder Notwendige Verknüpfungen kommen.
 
@@ -32,12 +32,12 @@ Unsere Sicht hat folgende wesentlichen Funktionenen implementiert:
 
 - Übersicht über wichtige Tabellen bzw. Informationen des LWB-Adventures
 - Suche (in mehreren verknüpften Tabellen)
-- Löschen (von veranstaltungen)
+- Löschen (von selbst hinzugefügten Veranstaltungen)
 - Neue Einträge hinzufügen (veranstaltungen, dozent_innen, minispiele)
 - Limitieren der Ausgabe der Noten/Punkten (min, max) bei den Spielständen
-- Anzeigen der Highscores in allen Minigames
+- Anzeigen der Highscores in allen Minigames (des höchsten Wertes pro Spiel)
 - Auflisten der gestellten Aufgaben der SQL-Anfragen
-- Abfrage und Darstellung der gestellten Aufgaben der SQL-Anfragen
+- Darstellen der Lösung (Abfrage und Tabelle) der gestellten Aufgaben der SQL-Anfragen
 - Ausführen beliebiger SELECT Anfragen, begrenzt durch die Länge des Eingabefeldes
 - Reset der Datenbank (die Install-Datei für die SQL-Datenbank wird ausgeführt).
 
@@ -74,7 +74,7 @@ der gleichen Anfragen aber für andere Tabellen verzichtet. Der Programmieraufwa
 nur einen geringen Mehrwert gebracht.
 
 - Es können keine beliebgien neuen Datensätze eingetragen werden, sondern nur für bestimmte Tabellen (veranstaltungen, dozent_innen, minispiele).
-- Es können nur Veranstaltungen gelöscht werden und nicht z.B. DozentInnen, Minispiele etc. Schon hier war es sehr aufwendig, alle Verknüpfungen mit anderen Relationen zu beachten und 
+- Es können nur selbst eingetragende Veranstaltungen gelöscht werden und nicht z.B. DozentInnen, Minispiele etc. Schon hier war es sehr aufwendig, alle Verknüpfungen mit anderen Relationen zu beachten und 
    entsprechend die zu löschende Veranstaltung auch aus anderen Relationen (z.B. unterricht) zu löschen. Entsprechen müsste man auch für das Löschen
    anderer Tabellen eine Vielzahl an Verknüpfungen beachten. 
    Man hätte zwar bei den Constraints in PostgreSQL auch ON DELETE CASCADE setzen können, hier wäre aber vielleicht ein 
