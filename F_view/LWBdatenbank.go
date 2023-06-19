@@ -39,9 +39,9 @@ minNote, maxNote, minPunkte,maxPunkte
 
 var Mutex sync.Mutex					// erstellt Mutex
 	
-var BuZurueck buttons.Button				// Spezille Knoepfe
+var BuZurueck, AufgabenAnzeigen buttons.Button				// Spezille Knoepfe
 var KatKnoepfe, HinzuKnoepfe, VeranstKnoepfe, SpielstKnoepfe, SQLAnfrKnoepfe, AufgabenKnoepfe []buttons.Button		// Slices für alle erstellten Knöpfe / die Suchfelder
-var SQLAnfrFeld felder.Feld
+var SQLAnfrFeld, SpielerinHinzuFeld felder.Feld
 var VeranstFelder, SpielstFelder, VeranstHinzuFelder, DozentHinzuFelder, MinispielHinzuFelder, HighscoreFelder []felder.Feld
 
 var Ende bool = false							// True gdw. Programm beenden
@@ -163,11 +163,12 @@ func ErstelleKnoepfe() {
 				BuZurueck )
 	
 	HinzuKnoepfe = append(HinzuKnoepfe,
-				buttons.New(20,140,1160,80, 255,132,198, true, Hinzuknopftexte[0]),		// 
-				buttons.New(20,250,1160,80, 255,234,122, true, Hinzuknopftexte[1]),		// 
-				buttons.New(20,360,1160,80, 182,249,148, true, Hinzuknopftexte[2]),		// 
-				buttons.New(20,470,1160,80, 210,128,240, true, Hinzuknopftexte[3]),		// 
-				buttons.New(20,580,1160,80, 135,250,223, true, Hinzuknopftexte[4])	)	// 
+				buttons.New(20,140,1160,80, 255,132,198, true, Hinzuknopftexte[0]),
+				buttons.New(20,250,1160,80, 255,234,122, true, Hinzuknopftexte[1]),
+				buttons.New(20,360,1160,80, 182,249,148, true, Hinzuknopftexte[2]),
+				buttons.New(20,470,1160,80, 210,128,240, true, Hinzuknopftexte[3]),	
+				buttons.New(20,580,1160,80, 135,250,223, true, Hinzuknopftexte[4]),
+				BuZurueck	)
 	
 	SpielstKnoepfe = append(SpielstKnoepfe,
 				buttons.New(20,105,350,55, 0,255,0, true, 	"Spielstände durchsuchen"),
@@ -185,6 +186,7 @@ func ErstelleKnoepfe() {
 	for i:=0;i<19;i++ {
 		AufgabenKnoepfe = append(AufgabenKnoepfe, buttons.New(15,118+27*uint16(i),35,25, 200,255,255, true, "") ) //fmt.Sprint(i)
 	}
+	AufgabenAnzeigen = buttons.New(850,50,300,50, 200,255,255, true, "  Aufgaben anzeigen")
 }
 
 func ErstelleFelder() {
@@ -206,7 +208,10 @@ func ErstelleFelder() {
 		felder.New (40, 380, 40, 'l', "NEUES Minispiel: Name"),	
 		felder.New (470, 380, 40, 'l', "zugeordnete Veranstaltung")	)
 	
+	SpielerinHinzuFeld = felder.New (40, 490, 50, 'l', "Spieler/in NEU anlegen: Name")
+	
 	felder.Voreinstellungen(0,255,0,32)
+	
 	VeranstFelder = append( VeranstFelder,
 		felder.New (110,  110, 30, 'l', "DURCHSUCHE Veranstaltungen"),	
 		felder.New (80, 110, 30, 'l', "Bestehende Veranstaltung"),
@@ -221,40 +226,31 @@ func ErstelleFelder() {
 		felder.New (1000, 110, 4, 'l', "max. Punkte")	)
 
 }
-func ZeichneKatKnoepfe() {
-	for _,bu := range KatKnoepfe {
-		bu.ZeichneButton()
-	}
-}
-func AktiviereKatKnoepfe() {
-	for _,bu := range KatKnoepfe {
-		bu.AktiviereButton()
-	}
-}
-func DeaktiviereKatKnoepfe() {
+func DeaktiviereAlleKnoepfe() {
+	AufgabenAnzeigen.DeaktiviereButton()
+	BuZurueck.DeaktiviereButton()
 	for _,bu := range KatKnoepfe {
 		bu.DeaktiviereButton()
 	}
-}
-func ZeichneHinzuKnoepfe() {
-	for _,bu := range HinzuKnoepfe {
-		bu.ZeichneButton()
+	for _,bu := range SQLAnfrKnoepfe {
+		bu.DeaktiviereButton()
 	}
-}
-func AktiviereHinzuKnoepfe() {
 	for _,bu := range HinzuKnoepfe {
-		bu.AktiviereButton()
+		bu.DeaktiviereButton()
 	}
-}
-func DeaktiviereHinzuKnoepfe() {
-	for _,bu := range HinzuKnoepfe {
+	for _,bu := range SpielstKnoepfe {
+		bu.DeaktiviereButton()
+	}
+	for _,bu := range VeranstKnoepfe {
+		bu.DeaktiviereButton()
+	}
+	for _,bu := range AufgabenKnoepfe {
 		bu.DeaktiviereButton()
 	}
 }
 
 func ZeichneRaum() {
-	DeaktiviereKatKnoepfe()
-	DeaktiviereHinzuKnoepfe()
+	DeaktiviereAlleKnoepfe()
 
 	UpdateAus () 										// Nun wird alles im nicht sichtbaren "hinteren" Fenster gezeichnet!
 	Stiftfarbe(255,255,255)
@@ -278,15 +274,16 @@ func ZeichneRaum() {
 		AktUndZeichne(SpielstKnoepfe)
 		
 		textboxTabelle.ZeichneAnfrage(conn,sucheSpielerGamesScores(""),20,170,true,0,0,0,0,0,255,16,font)
-		BuZurueck.ZeichneButton()
 		case 3:
 		SchreibeFont(300,10,"B L I T Z E B L A N K")
+		BuZurueck.ZeichneButton()
 		resetDatenbank()
 		SetzeFont(font,50)
 		Stiftfarbe(255,0,0)
 		SchreibeFont(40,300,"DIE DATENBANK IST JETZT WIEDER GANZ DIE ALTE!")
-		BuZurueck.ZeichneButton()
+		
 		case 4:
+		BuZurueck.ZeichneButton()
 		SchreibeFont(300,10,Katknopftexte[4])
 		// Räume	
 		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageRäume(),20,170,false,0,0,0,0,0,255,16,font)
@@ -308,24 +305,25 @@ func ZeichneRaum() {
 		Stiftfarbe(200,200,200)
 		Linie (750,150,750,700)
 		Linie (0,360,1200,360)
-		BuZurueck.ZeichneButton()
 		case 8:											// --> 	Aufgaben
 		SchreibeFont(350,10,Katknopftexte[5])
 		
 		AktUndZeichne(AufgabenKnoepfe)
+		AufgabenAnzeigen.AktiviereButton()
+		AufgabenAnzeigen.ZeichneButton()
+		BuZurueck.AktiviereButton()
+		BuZurueck.ZeichneButton()
+		
 		SetzeFont ("./Schriftarten/terminus-font/TerminusTTF-4.49.2.ttf",20)
 		for i,aufgabe := range Aufgaben {
 			SchreibeFont(20,120+27*uint16(i),aufgabe)
 		}
-		BuZurueck.ZeichneButton()
 		case 9:											// --> freie SQL-Anfrage
 		SchreibeFont(300,10,Katknopftexte[6])
 		AktUndZeichne(SQLAnfrKnoepfe)
 		case 10:										// --> Eintrag hinzufügen
 		SchreibeFont(250,10,"Eintrag hinzufügen")
-		AktiviereHinzuKnoepfe()
-		ZeichneHinzuKnoepfe()
-		BuZurueck.ZeichneButton()
+		AktUndZeichne(HinzuKnoepfe)
 	}
 	UpdateAn () 										// Nun wird der gezeichnete Frame sichtbar gemacht!
 }
@@ -469,20 +467,30 @@ func maussteuerung () {
 				UpdateAn()
 				case 9:
 				if SQLAnfrKnoepfe[0].TesteXYPosInButton(mausX,mausY) {									// ------- freie SQL-Anfrage
-					Vollrechteck(20,110,1160,60)
-							
-					Anfrage = SQLAnfrFeld.Edit()
+					Vollrechteck(20,110,1160,590)
 					
-					if prüfeFreieSqlAnfrage(Anfrage) == false {
-					// 	----------------- Fehler in der SQL Anfrage ----------
-						SchreibeFont(100,200,"Diese Anfrage ist ungültig. Achten Sie auf korrekte Relationennamen und Schlüsselwörter.")
-						break
-						}
+					SetzeFont(font, 24)
+					Stiftfarbe(0,0,0)
+					SchreibeFont(49,199,"Schreibe die Funktionswörter, wie \"SELECT\" oder \"FROM\" in der Eingabe stets groß!")
+					Stiftfarbe(200,100,230)
+					SchreibeFont(50,200,"Schreibe die Funktionswörter, wie \"SELECT\" oder \"FROM\" in der Eingabe stets groß!")
+					
+					
+					Anfrage = SQLAnfrFeld.Edit()
 					
 					Stiftfarbe(255,255,255)
 					Vollrechteck(0,190,1200,510)
-					textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
+					// Vollrechteck(20,110,1160,60)
 					
+					if prüfeFreieSqlAnfrage(Anfrage) == false {
+					// 	----------------- Fehler in der SQL Anfrage ----------
+						Stiftfarbe(0,0,0)
+						SchreibeFont(99,199,"Diese Anfrage ist ungültig. Achten Sie auf korrekte Relationennamen und Schlüsselwörter.")
+						Stiftfarbe(255,0,0)
+						SchreibeFont(100,200,"Diese Anfrage ist ungültig. Achten Sie auf korrekte Relationennamen und Schlüsselwörter.")
+					} else {
+						textboxTabelle.ZeichneAnfrage(conn,Anfrage,20,170,true,0,0,0,0,0,255,16,font)
+					}
 					Stiftfarbe(255,255,255)
 					Vollrechteck(20,110,1160,60)
 					SQLAnfrKnoepfe[0].ZeichneButton()
@@ -518,9 +526,13 @@ func maussteuerung () {
 							Stiftfarbe(255,255,255)
 							Vollrechteck(0,140,1200,560)
 							
-							Stiftfarbe(255,132,198)
+							
 							switch hinzugefügt{
-								case true: SchreibeFont(40,220,"Eintrag hinzugefügt: " + veranstaltungsString[2:])
+								case true: 
+								Stiftfarbe(0,0,0)
+								SchreibeFont(39,219,"Eintrag hinzugefügt: " + veranstaltungsString[2:])
+								Stiftfarbe(255,132,198)
+								SchreibeFont(40,220,"Eintrag hinzugefügt: " + veranstaltungsString[2:])
 								case false: 
 								Stiftfarbe(255,0,0)
 								SchreibeFont(40,220,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
@@ -544,12 +556,15 @@ func maussteuerung () {
 							Stiftfarbe(255,255,255)
 							Vollrechteck(0,140,1200,560)
 							
-							Stiftfarbe(255,234,122)
 							switch hinzugefügt{
-								case true: SchreibeFont(40,330,"Eintrag hinzugefügt: " + DozName + " , " + DozGetraenk)
+								case true: 
+								Stiftfarbe(0,0,0)
+								SchreibeFont(39,329,"Eintrag hinzugefügt: " + DozName + " , " + DozGetraenk)
+								Stiftfarbe(255,234,122)
+								SchreibeFont(40,330,"Eintrag hinzugefügt: " + DozName + " , " + DozGetraenk)
 								case false: 
 								Stiftfarbe(255,0,0)
-								SchreibeFont(40,220,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
+								SchreibeFont(40,330,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
 							}
 							
 							AktUndZeichne(HinzuKnoepfe)
@@ -568,12 +583,16 @@ func maussteuerung () {
 							Stiftfarbe(255,255,255)
 							Vollrechteck(0,140,1200,560)
 							
-							Stiftfarbe(182,249,148)
+							
 							switch hinzugefügt{
-								case true: SchreibeFont(40,440,"Eintrag hinzugefügt: " + SpielName + " , " + SpielVeranst)
+								case true: 
+								Stiftfarbe(0,0,0)
+								SchreibeFont(39,439,"Eintrag hinzugefügt: " + SpielName + " , " + SpielVeranst)
+								Stiftfarbe(182,249,148)
+								SchreibeFont(40,440,"Eintrag hinzugefügt: " + SpielName + " , " + SpielVeranst)
 								case false: 
 								Stiftfarbe(255,0,0)
-								SchreibeFont(40,220,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
+								SchreibeFont(40,440,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
 							}
 							
 							AktUndZeichne(HinzuKnoepfe)
@@ -581,6 +600,30 @@ func maussteuerung () {
 							case Hinzuknopftexte[3]: 											// Spieler/in HINZU
 							Vollrechteck(20,470,1160,80)
 							Stiftfarbe(210,128,240)
+							SpielerinName := SpielerinHinzuFeld.Edit()
+							
+							hinzugefügt := true 
+							/*
+							minispielAttribute := []string{SpielName,SpielVeranst}
+							// Füge Eintrag hinzu
+							hinzugefügt := fügeHinzuMinispiel(conn,minispielAttribute)
+							*/							
+							Stiftfarbe(255,255,255)
+							Vollrechteck(0,140,1200,560)
+							
+							
+							switch hinzugefügt{
+								case true: 
+								Stiftfarbe(0,0,0)
+								SchreibeFont(39,549,"Eintrag hinzugefügt: " + SpielerinName)
+								Stiftfarbe(210,128,240)
+								SchreibeFont(40,550,"Eintrag hinzugefügt: " + SpielerinName)
+								case false: 
+								Stiftfarbe(255,0,0)
+								SchreibeFont(40,550,"Kein Eintrag hinzugefügt. Fehlerhafte Eingabe!")
+							}
+							
+							AktUndZeichne(HinzuKnoepfe)
 							
 							case Hinzuknopftexte[4]:						// prokrastinieren
 							Vollrechteck(0,140,1200,560)
