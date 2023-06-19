@@ -1,0 +1,17 @@
+
+* Zurück-Button von Aufgabenlösungen führt zu Main-Menu. Besser zu Aufgabensammlung.
+
+* Veranstaltung: Einträge ändern/löschen nicht möglich - Button entfernen
+
+* freie SQL-Abfrage funktioniert nicht immer: 
+zurückbutton ausblenden beim Eintippen? oder Klicken ermöglichen
+Kopf bleibt bei Projektion erhalten
+überschriften können sich überlappen - alte löschen
+select * from assistenz; funktioniert nicht
+
+* Dozent_innen einfügen funktioniert nicht, wenn schon vorhanden
+erst Dozent anlegen dann Veranstaltung?
+
+* Spieler_In eintragen funktioniert nicht
+
+* Highscores anzeigen?
