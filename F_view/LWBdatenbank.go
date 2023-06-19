@@ -1004,7 +1004,7 @@ func ändereInVeranstaltungen(conn SQL.Verbindung, veranstaltung, raumnr,doz str
 // Liefert false wenn die Anfrage offensichtlich falsch ist, sonst true
 func prüfeFreieSqlAnfrage(anfrage string) bool {
 	if len(anfrage)==0 {return false}
-	tabellen := []string{"aufenthaltsorte","dozent_innen","minigames","npcs","raeume","sonstigenpcs",
+	tabellen := []string{"assistenz","aufenthaltsorte","dozent_innen","minigames","npcs","raeume","sonstigenpcs",
 						"spieler_innen","spielstaende","themengebiete","unterricht","veranstaltungen"}
 	schlüsselWörter := []string{"SELECT","UPDATE","DELETE","INSERT"}				
 	
