@@ -275,14 +275,17 @@ func ZeichneRaum() {
 		
 		textboxTabelle.ZeichneAnfrage(conn,sucheSpielerGamesScores(""),20,170,true,0,0,0,0,0,255,16,font)
 		case 3:
-		SchreibeFont(300,10,"B L I T Z E B L A N K")
+		SchreibeFont(300,10,"... ein neuer Beginn")
+		BuZurueck.AktiviereButton()
 		BuZurueck.ZeichneButton()
+		
 		resetDatenbank()
 		SetzeFont(font,50)
 		Stiftfarbe(255,0,0)
 		SchreibeFont(40,300,"DIE DATENBANK IST JETZT WIEDER GANZ DIE ALTE!")
 		
 		case 4:
+		BuZurueck.AktiviereButton()
 		BuZurueck.ZeichneButton()
 		SchreibeFont(300,10,Katknopftexte[4])
 		// Räume	
@@ -601,13 +604,10 @@ func maussteuerung () {
 							Vollrechteck(20,470,1160,80)
 							Stiftfarbe(210,128,240)
 							SpielerinName := SpielerinHinzuFeld.Edit()
+							spielerInnenAttr := []string {SpielerinName}
+							hinzugefügt := fügeHinzuSpielerIn(conn, spielerInnenAttr)
 							
-							hinzugefügt := true 
-							/*
-							minispielAttribute := []string{SpielName,SpielVeranst}
-							// Füge Eintrag hinzu
-							hinzugefügt := fügeHinzuMinispiel(conn,minispielAttribute)
-							*/							
+											
 							Stiftfarbe(255,255,255)
 							Vollrechteck(0,140,1200,560)
 							
@@ -796,6 +796,30 @@ func fügeHinzuMinispiel(conn SQL.Verbindung, attribute []string) bool {
 	eingabe := fmt.Sprintf(`
 		INSERT INTO minigames
 		VALUES ('%s','%s','%s');`,gamenrS,gamenameS,vnr)
+	conn.Ausfuehren(eingabe)
+
+	return true
+	
+}
+
+// Fügt neue SpielerIn hinzug
+func fügeHinzuSpielerIn(conn SQL.Verbindung, attribute []string) bool {
+	// 1. Attribute auslesen
+	// 2. Prüfen ob SpielerIn schon existiert, wenn nicht --> Nummer nehmen und neu anlegen 
+	
+	// 1. Attribute auslesen
+	spnameS := attribute[0]
+	
+	// 2. Prüfen ob SpielerIn schon existiert, wenn nicht --> Nummer nehmen und neu anlegen
+	eintragWarVorhanden, spnr := prüfeObVorhandenFindeNr(conn,"spieler_innen", "spname", spnameS, "spnr")
+	if eintragWarVorhanden == true {return false}	
+	
+	
+	
+	// Hinzufügen
+	eingabe := fmt.Sprintf(`
+		INSERT INTO spieler_innen
+		VALUES ('%s','%s',0,0);`,spnr,spnameS)
 	conn.Ausfuehren(eingabe)
 
 	return true
