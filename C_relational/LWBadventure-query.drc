@@ -1,0 +1,44 @@
+
+%  DRC-Anfragen
+% ---------------
+
+% (1a) Welche Räume gibt es in der LWB-Adventure-World?
+q1 := { RaumNr,RaumName,Ort,Funktion | Raeume(RaumNr,RaumName,Ort,Funktion) };
+
+% (1b) Welche Funktionen haben die sonstigen NPCs im LWB-Adventure?
+q2 := { Aufgabe | (exists NPCNr) (sonstigeNPCs (NPCNr,Aufgabe)) };
+
+% (2a) Welche Lehrveranstaltungen haben 6 SWS?
+q3 := { Vnr,VName,Kuerzel,SWS,Semester,GebietNr | Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr) and SWS = 6 };
+
+% (2b) Welche Lehrveranstaltungen gibt es im 4. Semester?
+q4 := { VNr,VName,Kuerzel,SWS,Semester,GebietNr | Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr) and Semester = 4 };
+
+% (2c) Welche Minigames gibt es im 4. Semester?
+q5 := { GameNr,GameName,VNr,VName,Kuerzel,SWS,Semester,GebietNr | Minigames (GameNr,GameName) and Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr) and Semester = 4 };
+
+% (3a) Wie heißen die Spieler_innen, die bisher das LWB-Adventure gespielt haben?
+q6 := { SpName | (exists SpNr)(exists Schluesselanzahl)(exists RaumNr) (Spieler_innen (SpNr,SpName,Schluesselanzahl,RaumNr)) };
+
+% (3b) Wie heißen die Dozenten im LWB-Adventure?
+q7 := { NPCName | (exists NPCNr)(exists Lieblingsgetraenk) (Dozent_innen (NPCNr,Lieblingsgetraenk) and NPCs (NPCNr, NPCName)) };
+
+% (3c) Welche Funktion hat 'Heidi'?
+q8 := { Aufgabe | (exists NPCNr)(exists NPCName) (sonstigeNPCs (NPCNr,Aufgabe) and NPCs (NPCNr,NPCName) and NPCName = 'Heidi') };
+
+% (4a) Welche Lehrveranstaltungen gehören zum Themengebiet 'Programmierung'?
+q9 := { VNr,VName,Kuerzel,SWS,Semester,GebietNr,GebietName | Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr,GebietName) and Themengebiete (GebietNr,GebietName) and Gebietname = 'Programmierung' };
+
+% (4b) Welche Lehrveranstaltungen haben etwas mit 'Daten' oder 'Programmierung' zu tun?
+% -->  in DRC nicht möglich, da es hier keine Wildcards gibt
+
+% (5) Was ist das Lieblingsgetränk von Darth Schmidter?
+q10 := { Lieblingsgetraenk | (exists NPCNr)(exists NPCName) (Dozent_innen (NPCNr,Lieblingsgetraenk) and NPCs (NPCNr,NPCName) and NPCName = 'Darth Schmidter') };
+
+% (6) Welche Lehrveranstaltungen finden nicht in der FU statt?
+% Da eine Selektion mit Platzhaltern nicht möglich ist, muss für die RA-Anfrage die vollständige Ortsbezeichnung gegeben sein:
+% Welche Lehrveranstaltungen finden nicht in der 'FU Berlin' statt?
+q11 := { VName,Semester,Ort | (exists RaumNr)(exists RaumName)(exists Funktion)(exists VNr)(exists NPCNr)(exists VName)(exists Kuerzel)(exists SWS)(exists GebietNr) (Raeume (RaumNr,RaumName,Ort,Funktion) and Unterricht (VNr,NPCNr,RaumNr) and Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr) and Ort != 'FU Berlin') };
+
+% (7) Welche Dozenten sind in der LWB nur leitend tätig und machen keine Assistenz?
+q12 := { NPCName | (not exists NPCNr) (Assistenz (VNr,NPCNr)) and (exists NPCNr)(exists Lieblingsgetraenk) (Dozentinnen (NPCNr,Lieblingsgetraenk) and NPCs (NPCNr,NPCName)) };

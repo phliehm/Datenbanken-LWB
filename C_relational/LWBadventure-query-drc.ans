@@ -1,0 +1,144 @@
+
+DES-DRC> %  DRC-Anfragen
+DES-DRC> % ---------------
+
+DES-DRC> % (1a) Welche Räume gibt es in der LWB-Adventure-World?
+DES-DRC> q1 := { RaumNr,RaumName,Ort,Funktion | Raeume (RaumNr,RaumName,Ort,Funktion) };
+answer(Raeume.RaumNr:int,Raeume.RaumName:string,Raeume.Ort:string,Raeume.Funktion:string) ->
+{
+  answer(0,'Main Floor','LWB-World','Start-Raum'),
+  answer(1,'1. Semester','FU Berlin','Kursraum 1'),
+  answer(2,'2. Semester','Home Office','Kursraum 2'),
+  answer(3,'3. Semester','FU Berlin','Kursraum 3'),
+  answer(4,'4. Semester','StEPS','Kursraum 4'),
+  answer(5,'Nichtzeugnis-Verleihung','schöner Ort','Schluss-Raum')
+}
+Info: 6 tuples computed.
+
+DES-DRC> % (1b) Welche Funktionen haben die sonstigen NPCs im LWB-Adventure?
+DES-DRC> q2 := { Aufgabe | (exists NPCNr) (sonstigeNPCs (NPCNr,Aufgabe)) };
+answer(sonstigeNPCs.Aufgabe:string) ->
+{
+  answer('Helferlein'),
+  answer('Kontrolletis'),
+  answer('StEPS-Chefin')
+}
+Info: 3 tuples computed.       
+   
+DES-DRC> % (2a) Welche Lehrveranstaltungen haben 6 SWS?
+DES-DRC> q3 := { VNr,VName,Kuerzel,SWS,Semester,GebietNr | Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr) and SWS = 6 };
+answer(Veranstaltungen.VNr:int,Veranstaltungen.VName:string,Veranstaltungen.Kuerzel:string,Veranstaltungen.SWS:int,Veranstaltungen.Semester:int,Veranstaltungen.GebietNr:int) ->
+{
+  answer(3,'Grundlagen der Technischen Informatik','RS',6,1,3),
+  answer(7,'Datenstrukturen und Datenabstraktion','ALP3',6,3,2),
+  answer(8,'Datenbanksysteme','DBSA',6,3,4),
+  answer(10,'Nichtsequentielle und verteilte Programmierung','NSP',6,4,2),
+  answer(11,'Rechnernetze','NET',6,4,1)
+}
+Info: 5 tuples computed.          
+
+DES-DRC> % (2b) Welche Lehrveranstaltungen gibt es im 4. Semester?
+DES-DRC> q4 := { VNr,VName,Kuerzel,SWS,Semester,GebietNr | Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr) and Semester = 4 };
+answer(Veranstaltungen.VNr:int,Veranstaltungen.VName:string,Veranstaltungen.Kuerzel:string,Veranstaltungen.SWS:int,Veranstaltungen.Semester:int,Veranstaltungen.GebietNr:int) ->
+{
+  answer(10,'Nichtsequentielle und verteilte Programmierung','NSP',6,4,2),
+  answer(11,'Rechnernetze','NET',6,4,1),
+  answer(12,'Unterrichtsbezogenes Softwarepraktikum','SWP',3,4,2),
+  answer(13,'Unterrichtsbezogenes Datenbankpraktikum','DBP',3,4,4),
+  answer(14,'Analyse fachlichen Lernens','AfL',3,4,5)
+}
+Info: 5 tuples computed.          
+
+DES-DRC> % (2c) Welche Minigames gibt es im 4. Semester?
+DES-DRC> q5 := { GameNr,GameName,VNr,VName,Kuerzel,SWS,Semester,GebietNr | Minigames (GameNr, GameName) and Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr) and Semester = 4 };
+answer(Minigames.GameNr:int,Minigames.GameName:string,Minigames.VNr:int,Veranstaltungen.VName:string,Veranstaltungen.Kuerzel:string,Veranstaltungen.SWS:int,Veranstaltungen.Semester:int,Veranstaltungen.GebietNr:int) ->
+{
+  answer(7,'Food-Moorhuhn',10,'Nichtsequentielle und verteilte Programmierung','NSP',6,4,2),
+  answer(8,'theNETgame',11,'Rechnernetze','NET',6,4,1),
+  answer(9,'BugAttack',12,'Unterrichtsbezogenes Softwarepraktikum','SWP',3,4,2)
+}
+Info: 3 tuples computed.          
+
+DES-DRC> % (3a) Wie heißen die Spieler_innen, die bisher das LWB-Adventure gespielt haben?
+DES-DRC> q6 := { SpName | (exists SpNr)(exists Schluesselanzahl)(exists RaumNr) (Spieler_innen (SpNr,SpName,Schluesselanzahl,RaumNr)) };
+answer(Spieler_innen.SpName:string) ->
+{
+  answer('Ben'),
+  answer('Bob'),
+  answer('Cyra'),
+  answer('Klocki'),
+  answer('LWB-Master'),
+  answer('Maddi'),
+  answer('Nerd42'),
+  answer('Phil')
+}
+Info: 8 tuples computed.          
+DES-DRC> % (3b) Wie heißen die Dozenten im LWB-Adventure?
+DES-DRC> q7 := { NPCName | (exists NPCNr)(exists Lieblingsgetraenk) (Dozent_innen (NPCNr,Lieblingsgetraenk) and NPCs (NPCNr,NPCName)) };
+answer(NPCName:string) ->
+{
+  answer('Amoebi'),
+  answer('Darth Schmidter'),
+  answer('Fab Web'),
+  answer('Herk'),
+  answer('J.EthI'),
+  answer('Winnie the K')
+}
+Info: 6 tuples computed.          
+
+DES-DRC> % (3c) Welche Funktion hat 'Heidi'?
+DES-DRC> q8 := { Aufgabe | (exists NPCNr)(exists NPCName) (sonstigeNPCs (NPCNr,Aufgabe) and NPCs (NPCNr,NPCName) and NPCName = 'Heidi') };
+answer(Aufgabe:string) ->
+{
+  answer('StEPS-Chefin')
+}
+Info: 1 tuple computed.          
+
+DES-DRC> % (4a) Welche Lehrveranstaltungen gehören zum Themengebiet 'Programmierung'?
+DES-DRC> q9 := { VNr,VName,Kuerzel,SWS,Semester,GebietNr,GebietName | Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr,GebietName) and Themengebiete (GebietNr,GebietName) and Gebietname = 'Programmierung' };
+answer(Veranstaltungen.VNr:int,Veranstaltungen.VName:string,Veranstaltungen.Kuerzel:string,Veranstaltungen.SWS:int,Veranstaltungen.Semester:int,Veranstaltungen.GebietNr:int,Themengebiete.GebietName:string) ->
+{
+  answer(2,'Funktionale Programmierung','FP',8,1,2,'Programmierung'),
+  answer(4,'Imperative und objektorientierte Programmierung','ALP2',7,2,2, 'Programmierung'),
+  answer(7,'Datenstrukturen und Datenabstraktion','ALP3',6,3,2,'Programmierung'),
+  answer(10,'Nichtsequentielle und verteilte Programmierung','NSP',6,4,2, 'Programmierung'),
+  answer(12,'Unterrichtsbezogenes Softwarepraktikum','SWP',3,4,2,'Programmierung')
+}
+Info: 5 tuples computed.  
+        
+DES-DRC> % (4b) Welche Lehrveranstaltungen haben etwas mit 'Daten' oder 'Programmierung' zu tun?
+DES-DRC> % -->  in RA nicht möglich, da es hier keine Wildcards gibt
+
+ 
+DES-DRC> % (5) Was ist das Lieblingsgetränk von Darth Schmidter?
+DES-DRC> q10 := { Lieblingsgetraenk | (exists NPCNr)(exists NPCName) (Dozent_innen (NPCNr,Lieblingsgetraenk) and NPCs (NPCNr,NPCName) and NPCName = 'Darth Schmidter') };
+answer(Lieblingsgetraenk:string) ->
+{
+  answer('Extraschwarzer Kaffee')
+}
+Info: 1 tuple computed.          
+
+DES-DRC> % (6) Welche Lehrveranstaltungen finden nicht in der FU statt?
+DES-DRC> % Da eine Selektion mit Platzhaltern nicht möglich ist, muss für die RA-Anfrage die vollständige Ortsbezeichnung gegeben sein:
+DES-DRC> % Welche Lehrveranstaltungen finden nicht in der 'FU Berlin' statt?
+DES-DRC> q11 := { VName,Semester,Ort | (exists RaumNr)(exists RaumName)(exists Funktion) (exists VNr)(exists NPCNr)(exists VName)(exists Kuerzel)(exists SWS)(exists GebietNr) (Raeume (RaumNr,RaumName,Ort,Funktion) and Unterricht (VNr,NPCNr,RaumNr) and Veranstaltungen (VNr,VName,Kuerzel,SWS,Semester,GebietNr) and Ort != 'FU Berlin') };
+answer(VName:string,Ort:string) ->
+{
+  answer('Analyse fachlichen Lernens','StEPS'),
+  answer('Einführung in die Theoretischen Informatik','Home Office'),
+  answer('Imperative und objektorientierte Programmierung','Home Office'),
+  answer('Nichtsequentielle und verteilte Programmierung','StEPS'),
+  answer('Rechnerarchitektur','Home Office'),
+  answer('Rechnernetze','StEPS'),
+  answer('Unterrichtsbezogenes Datenbankpraktikum','StEPS'),
+  answer('Unterrichtsbezogenes Softwarepraktikum','StEPS')
+}
+Info: 8 tuples computed.
+
+DES-DRC> % (7) Welche Dozenten sind in der LWB nur leitend tätig und machen keine Assistenz?
+DES-DRC> q12 := { NPCName | (not exists NPCNr) (Assistenz (VNr,NPCNr)) and (exists NPCNr) (exists Lieblingsgetraenk) (Dozentinnen (NPCNr,Lieblingsgetraenk) and NPCs (NPCNr,NPCName)) };
+answer(NPCName:string) ->
+{
+  answer('Herk')
+}
+Info: 1 tuple computed. 
