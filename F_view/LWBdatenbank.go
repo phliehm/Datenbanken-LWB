@@ -534,13 +534,13 @@ func maussteuerung () {
 							// Lies die einzelnen Eingabefelder aus 
 							DozName := DozentHinzuFelder[0].Edit()
 							DozGetraenk := DozentHinzuFelder[1].Edit()
+							dozentInnen := []string{DozName,DozGetraenk}
+							
 							
 							
 							// Füge Eintrag hinzu
-							//hinzugefügt := fügeHinzuVeranst(conn,veranstaltungsAttribute)			---> bitte hinzufügen
-							
-							hinzugefügt := true		// muss dann weggenommen werden
-							
+							hinzugefügt := fügeHinzuDozentInnen(conn, dozentInnen)		
+														
 							Stiftfarbe(255,255,255)
 							Vollrechteck(0,140,1200,560)
 							
@@ -561,12 +561,10 @@ func maussteuerung () {
 							SpielName := MinispielHinzuFelder[0].Edit()
 							SpielVeranst := MinispielHinzuFelder[1].Edit()
 							
-							
+							minispielAttribute := []string{SpielName,SpielVeranst}
 							// Füge Eintrag hinzu
-							//hinzugefügt := fügeHinzuVeranst(conn,veranstaltungsAttribute)			---> bitte hinzufügen
-							
-							hinzugefügt := true		// muss dann weggenommen werden
-							
+							hinzugefügt := fügeHinzuMinispiel(conn,minispielAttribute)
+														
 							Stiftfarbe(255,255,255)
 							Vollrechteck(0,140,1200,560)
 							
@@ -732,7 +730,34 @@ func fügeHinzuDozentInnen(conn SQL.Verbindung,attribute []string) bool {
 	
 }
 
+// Fügt ein Minispiel hinzug, verknüpft mit einer Vorlesung
+func fügeHinzuMinispiel(conn SQL.Verbindung, attribute []string) bool {
+	// 1. Attribute auslesen
+	// 2. Veranstaltungsnamen und Nummer finden 
+	// 3. Prüfen ob Minispiel schon vorhanden, wenn nicht, hinzufügen
+	
+	// 1. Attribute auslesen
+	gamenameS := attribute[0]
+	vnameS := attribute[1]
+	
+	// 2. Veranstaltungsnamen und Nummer finden 
+	eintragWarVorhanden, vnr := prüfeObVorhandenFindeNr(conn,"veranstaltungen", "vname", vnameS, "vnr")
+	if eintragWarVorhanden == false {return false}	// Die Veranstaltung gab es gar nicht
+	
+	// 3. Prüfen ob Minispiel schon vorhanden, wenn nicht, hinzufügen
+	var gamenrS string
+	eintragWarVorhanden, gamenrS = prüfeObVorhandenFindeNr(conn,"minigames", "gamename", gamenameS, "gamenr")
+	if eintragWarVorhanden == true {return false}
+	
+	// Hinzufügen
+	eingabe := fmt.Sprintf(`
+		INSERT INTO minigames
+		VALUES ('%s','%s','%s');`,gamenrS,gamenameS,vnr)
+	conn.Ausfuehren(eingabe)
 
+	return true
+	
+}
 
 //////////////////////////////////
 // EINFÜGEN VON VERANSTALTUNGEN //

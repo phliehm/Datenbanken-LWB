@@ -13,16 +13,22 @@ Dadurch wird automatisch die Install-LWEBadventure.sql Datei ausgeführt.
 
 ### Motivation ###
 
-// Haben wir das nicht schon an anderer Stelle?
-
 Wir wollten gern eine zu unserem Software-Projekt passende Datenbank schreiben. 
 Der Aufbau unseres LWB-Adventure Spiels ist an die LehrerInnen-Weiterbildung angelehnt.
 Die Struktur ist ähnlich dem Unterricht in der Schule in den verschiedenen Klassen mit
 ihren belegten Fächern von bestimmten Lehrkräften. Daher könnte die Software auch leicht an die 
 Schulwelt angepasst oder eben selbst von SchülerInnen erarbeitet und teilweise implementiert werden.
+Außerdem eignet sich diese Sicht um zu zeigen, dass die meisten Computerspiele in irgendeiner Form
+eine Datenbank beinhalten müsse, um alle Gegenstände, Orte, Funktionen etc. speichern und abrufen zu können. 
+Unsere Datenbank-Sicht könnte somit auch am Anfang einer Unterrichtsreihe zum Thema Datenbanken den 
+SchülerInnen zur Verfügung gestellt werde. Durch Ausprobieren wäre dann relativ schnell klar warum welche 
+Dinge gespeichert werden müssen und die SchülerInnen würden sicherlich auch selbst auf fehlende Funktionen
+oder Notwendige Verknüpfungen kommen.
 
 
 ### Anwendung ###
+
+Unsere Sicht hat folgende wesentlichen Funktionenen implementiert:
 
 - Übersicht über wichtige Tabellen bzw. Informationen des LWB-Adventures
 - Suche (in mehreren verknüpften Tabellen)
@@ -45,6 +51,10 @@ Schulwelt angepasst oder eben selbst von SchülerInnen erarbeitet und teilweise 
 - Die Klasse "textboxen" (Cyriacus, Liehm, Schneider, Seiß) basiert auf dem gfx-Paket und ermöglicht das unkomplizierte Positionieren
    von Texten und ermöglicht autoamtische oder manuelle Zeilenumbrüche.
 - Das Umschalten zwischen Seiten und Auswählen von Feldern erfolgt über die Klasse "buttons" (Cyriacus, Liehm, Schneider, Seiß)
+- Grafik: Unsere Software nutzt zur grafischen Darstellung das gfx-Paket (Herr Schmidt). Es ist nicht notwendig ein ständigs Fenster-Update durchzuführen, 
+da sich nur bei Klicks oder neuen Einträgen etwas ändert. Daher wird einfach bei neuen Ereignissen die Funktion ZeichneRaum() aufgerufen.
+- In der main() Funktion wir eine Go-Routine maussteuerung() aufgerufen. Diese prüft, ob der linke Mausbutton gedrückt wurde und prüft entsprechend
+welche Aktion als nächstes auszuführen ist (Raumwechsel, Feldeintrag, Anfrage senden etc.).
 
 
 ### Begründung der Einschränkungen ###
@@ -64,7 +74,7 @@ der gleichen Anfragen aber für andere Tabellen verzichtet. Der Programmieraufwa
 nur einen geringen Mehrwert gebracht.
 
 - Es können keine beliebgien neuen Datensätze eingetragen werden, sondern nur für bestimmte Tabellen (veranstaltungen, dozent_innen, minispiele).
-- Es können nur Veranstaltungen gelöscht werden. Schon hier war es sehr aufwendig, alle Verknüpfungen mit anderen Relationen zu beachten und 
+- Es können nur Veranstaltungen gelöscht werden und nicht z.B. DozentInnen, Minispiele etc. Schon hier war es sehr aufwendig, alle Verknüpfungen mit anderen Relationen zu beachten und 
    entsprechend die zu löschende Veranstaltung auch aus anderen Relationen (z.B. unterricht) zu löschen. Entsprechen müsste man auch für das Löschen
    anderer Tabellen eine Vielzahl an Verknüpfungen beachten. 
    Man hätte zwar bei den Constraints in PostgreSQL auch ON DELETE CASCADE setzen können, hier wäre aber vielleicht ein 
@@ -78,8 +88,9 @@ nur einen geringen Mehrwert gebracht.
 - Man hätte in der Ansicht der Spielstände nur so viele Zeilen anzeigen lassen können, wie hoch in das Fenster passen. Die Ausgabe hätte so getrennt werden
    müssen, sodass ein Button die weiteren Zeilen anzeigt. Die Abfrage verdeckter Zeilen kann aber über eine Sucheinschränkung geschehen.
 
-
 - Es können keine Assistenzen hinzugefügt oder gelöscht werden (was aber programmiertechnisch gut umsetzbar wäre, hier aber keine weitere Funktionalität zeigt).
+
+
 
 
 ### Mögliche Erweiterungen des Views ###
@@ -87,6 +98,7 @@ nur einen geringen Mehrwert gebracht.
 - Das Sortieren von Tabellen durch Klick auf die Spaltennamen könnte auf- oder absteigend erfolgen.
 - Bestimmte Attribute könnten vor dem Anzeigen zu- oder abgewählt werden.
 - Einträge in Verknüpfungen wie "unterricht" und "assistenzen" können außerdem hinzugefügt oder gelöscht werden.
+- ?????
 
 
 
