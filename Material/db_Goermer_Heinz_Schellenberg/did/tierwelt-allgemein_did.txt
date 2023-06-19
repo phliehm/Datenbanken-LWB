@@ -1,9 +1,0 @@
-Didaktischer Kommentar zum Umgang mit dem Datenbankpaket
-Lebensweltbezug
-Arbeitsgemeinschaften gehören zum normalen Schulleben dazu. Ihre Mitglieder rekrutieren sich im Allgemeinen aus unterschiedlichen Klassen und Klassenstufen, sodass für die Kommunikation wichtiger Informationen die kurzen Wege innerhalb einer Lerngruppe oder eines Klassenraums wegfallen.
-	Was wichtig ist, sollte digital gespeichert, aktualisiert und kommuniziert werden. Hierfür bietet sich die Benutzung einer Datenbank mit externem Zugriff an.
-Besonders motivierend könnte es sein, mithilfe des vorliegenden Pakets - oder Teilen davon – als Vorlage eine eigene Datenbank für eine AG an der eigenen Schule zu entwerfen bzw. anzupassen.
-Methodisches
-Offensichtlich ist es möglich, der Lerngruppe oder Teilgruppen den Bau einer Datenbank zur vorliegenden Miniwelt als Projektaufgabe zu stellen. Zu Bedenken ist hierbei allerdings, dass sämtliche Materialen [vermutlich bis zur Unbrauchbarkeit] anpassungsbedürftig würden, ließe man die Schüler:innen mit abweichenden ER-Modellen und Bezeichnungen weiterarbeiten.
-	Nur ein schrittweises, weniger offenes Vorgehen mit einer Regelmäßigen Rückkehr zu Ankerpunkten bzgl. der Nomenklatur und Struktur der vorliegenden Datenbank erhält die volle Nutzbarkeit des Pakets.
-	Falls absehbar ist, dass die Lerngruppe bei einer solchen Vorgehensweise auf Motivationsprobleme stieße, sollte ein offener Modus gewählt werden, in dem eine Datenbank zu einer ähnlichen Miniwelt [schuleigene AG] entworfen wird, während das vorliegende Paket dazu genutzt wird, Beispiellösungen für universale Problemstellungen zu liefern, die besprochen und ggf. gemeinsam angepasst werden können.
