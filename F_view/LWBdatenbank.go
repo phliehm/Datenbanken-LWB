@@ -285,9 +285,10 @@ func ZeichneRaum() {
 		SchreibeFont(40,300,"DIE DATENBANK IST JETZT WIEDER GANZ DIE ALTE!")
 		
 		case 4:
+		SchreibeFont(300,10,Katknopftexte[4])
 		BuZurueck.AktiviereButton()
 		BuZurueck.ZeichneButton()
-		SchreibeFont(300,10,Katknopftexte[4])
+		
 		// Räume	
 		textboxTabelle.ZeichneAnfrage(conn,gibAnfrageRäume(),20,170,false,0,0,0,0,0,255,16,font)
 		// DozentInnen
@@ -673,7 +674,7 @@ func sucheSpielerGamesScores(suchwort string) string {
 	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += suchwort
-	Anfrage += "%' LIMIT 27;"
+	Anfrage += "%' ORDER BY gamename, note,punkte  LIMIT 27;"
 	return Anfrage
 }
 
@@ -684,7 +685,7 @@ func gibAnfrageScoresNotenbereich(min,max string) string{
 	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += Suchwort
-	Anfrage += "%' AND note>="+min+" AND note<="+max+" LIMIT 27;"
+	Anfrage += "%' AND note>="+min+" AND note<="+max+" ORDER BY t.gamename, t.note,t.punkte  LIMIT 27;"
 	return Anfrage
 }
 
@@ -695,7 +696,7 @@ func gibAnfrageScoresPunktebereich(min,max string) string{
 	Anfrage := "SELECT spname AS Spieler_in,gamename AS MiniGame,vname AS veranstaltung,note AS Note,punkte AS Punkte"+
 	 " FROM spielstaende NATURAL JOIN minigames NATURAL JOIN veranstaltungen NATURAL JOIN spieler_innen WHERE CONCAT(spname,gamename,vname,note,punkte) LIKE '%"
 	Anfrage += Suchwort
-	Anfrage += "%' AND punkte>="+min+" AND punkte<="+max+" LIMIT 27;"
+	Anfrage += "%' AND punkte>="+min+" AND punkte<="+max+" ORDER BY gamename, note,punkte LIMIT 27;"
 	return Anfrage
 }
 
@@ -705,7 +706,7 @@ func gibAnfrageHighscore() string {
 		anfrage := "SELECT t.spname AS spieler_in, t.gamename AS minigame,t.vname AS veranstaltung, t.note,t.punkte "+
 					"FROM (minigames NATURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen) t "+
 					"INNER JOIN ( SELECT gamename, MAX(punkte) AS max_punkte FROM minigames NATURAL JOIN spielstaende NATURAL JOIN spieler_innen NATURAL JOIN veranstaltungen GROUP BY gamename) AS subquery "+
-					" ON t.gamename = subquery.gamename AND t.punkte = subquery.max_punkte ORDER BY t.gamename;"
+					" ON t.gamename = subquery.gamename AND t.punkte = subquery.max_punkte ORDER BY t.gamename, t.note, t.punkte;"
 		return anfrage
 }
 
